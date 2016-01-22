@@ -53,3 +53,38 @@ Dungeon_Space_Struct *Dungeon_Space_Struct_create(Dungeon_Space_Type space_type,
 
   return dungeon_space;
 }
+
+void Dungeon_Space_Rock_destroy(Dungeon_Space_Rock *rock)
+{
+  free(rock);
+}
+
+void Dungeon_Space_Room_destroy(Dungeon_Space_Room *room)
+{
+  free(room);
+}
+
+void Dungeon_Space_Corridor_destroy(Dungeon_Space_Corridor *corridor)
+{
+  free(corridor->previous);
+  free(corridor->next);
+  free(corridor);
+}
+
+void Dungeon_Space_Struct_destroy(Dungeon_Space_Struct *dungeon_space)
+{
+  switch(dungeon_space->space_type)
+    {
+    case ROCK:
+      free(dungeon_space->rock);
+      break;
+    case ROOM:
+      free(dungeon_space->room);
+      break;
+    case CORRIDOR:
+      free(dungeon_space->corridor);
+      break;
+    }
+
+  free(dungeon_space);
+}

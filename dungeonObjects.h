@@ -39,4 +39,9 @@ Dungeon_Space_Room *Dungeon_Space_Room_create(int width, int height);
 Dungeon_Space_Corridor *Dungeon_Space_Corridor_create(Dungeon_Space_Room from, Dungeon_Space_Room to);
 Dungeon_Space_Struct *Dungeon_Space_Struct_create(Dungeon_Space_Type space_type, ...);
 
+void Dungeon_Space_Rock_destroy(Dungeon_Space_Rock *rock);
+void Dungeon_Space_Room_destroy(Dungeon_Space_Room *room);
+void Dungeon_Space_Corridor_destroy(Dungeon_Space_Corridor *corridor);
+void Dungeon_Space_Struct_destroy(Dungeon_Space_Struct *dungeon_space);
+
 #endif
