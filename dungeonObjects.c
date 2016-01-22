@@ -59,7 +59,7 @@ Dungeon_Space_Struct *Dungeon_Space_Struct_create(Dungeon_Space_Type space_type,
   
   Dungeon_Space_Struct *dungeon_space = malloc(sizeof(Dungeon_Space_Struct));
   dungeon_space->space_type = space_type;
-  dungeon_space->space_union = Dungeon_Space_Union_create(space_type, ap);
+  dungeon_space.space_union = Dungeon_Space_Union_create(space_type, ap);
   
   va_end(ap);
   
@@ -90,15 +90,15 @@ void Dungeon_Space_Union_destroy(Dungeon_Space_Type space_type, Dungeon_Space_Un
     {
     case ROCK:
       //free(dungeon_space->rock);
-	  Dungeon_Space_Rock_destroy(dungeon_space.rock);
+	  Dungeon_Space_Rock_destroy(dungeon_space->rock);
       break;
     case ROOM:
       //free(dungeon_space->room);
-	  Dungeon_Space_Room_destroy(dungeon_space.room);
+	  Dungeon_Space_Room_destroy(dungeon_space->room);
       break;
     case CORRIDOR:
       //free(dungeon_space->corridor);
-	  Dungeon_Space_Corridor_destroy(dungeon_space.corridor);
+	  Dungeon_Space_Corridor_destroy(dungeon_space->corridor);
       break;
     }
 
@@ -107,6 +107,6 @@ void Dungeon_Space_Union_destroy(Dungeon_Space_Type space_type, Dungeon_Space_Un
 
 void Dungeon_Space_Struct_destroy(Dungeon_Space_Struct *dungeon_space)
 {
-	Dungeon_Space_Union_destroy(dungeon_space.space_type, dungeon_space.space_union);
+	Dungeon_Space_Union_destroy(dungeon_space->space_type, dungeon_space->space_union);
 	free(dungeon_space);
 }
