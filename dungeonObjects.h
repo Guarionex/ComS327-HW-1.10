@@ -55,11 +55,12 @@ Dungeon_Space_Corridor Dungeon_Space_Corridor_create(char *id/*, Dungeon_Space_R
 Dungeon_Space_Union Dungeon_Space_Union_create(Dungeon_Space_Type space_type, va_list ap);
 Dungeon_Space_Struct Dungeon_Space_Struct_create(Dungeon_Space_Type space_type, ...);
 
-
+/*
 void Dungeon_Space_Rock_destroy(Dungeon_Space_Rock rock);
 void Dungeon_Space_Room_destroy(Dungeon_Space_Room room);
 void Dungeon_Space_Corridor_destroy(Dungeon_Space_Corridor corridor);
 void Dungeon_Space_Union_destroy(Dungeon_Space_Type space_type, Dungeon_Space_Union dungeon_space);
 void Dungeon_Space_Struct_destroy(Dungeon_Space_Struct dungeon_space);
+*/
 
 #endif
