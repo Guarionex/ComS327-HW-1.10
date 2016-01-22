@@ -57,7 +57,7 @@ Dungeon_Space_Struct Dungeon_Space_Struct_create(Dungeon_Space_Type space_type, 
   va_list ap;
   va_start(ap, space_type);
   
-  Dungeon_Space_Struct dungeon_space = malloc(sizeof(Dungeon_Space_Struct));
+  Dungeon_Space_Struct dungeon_space;// = malloc(sizeof(Dungeon_Space_Struct));
   dungeon_space.space_type = space_type;
   dungeon_space.space_union = Dungeon_Space_Union_create(space_type, ap);
   
