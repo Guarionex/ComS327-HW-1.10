@@ -5,7 +5,7 @@
 int main(int argc, char *argv[])
 {
 	time_t seed = time(NULL);
-	srand(time);
+	srand(seed);
 	printf("Random is %d\n", rand());
 	printf("Random is %d\n", rand());
 	printf("Random is %d\n", rand());
