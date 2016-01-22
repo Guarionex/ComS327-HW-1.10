@@ -1,6 +1,14 @@
 #ifndef DUNGEON_OBJECTS_H
 #define DUNGEON_OBJECTS_H
 
+#include <stdarg.h>
+
+typedef enum
+{
+	FALSE,
+	TRUE
+} bool;
+
 typedef enum
 {
   ROCK,
@@ -23,8 +31,9 @@ typedef struct
 
 typedef struct
 {
-  Dungeon_Space_Room previous;
-  Dungeon_Space_Room next;
+  char *id;
+  //Dungeon_Space_Room previous;
+  //Dungeon_Space_Room next;
 } Dungeon_Space_Corridor;
 
 typedef union
@@ -37,16 +46,20 @@ typedef union
 typedef struct
 {
   Dungeon_Space_Type space_type;
+  Dungeon_Space_Union space_union;
 } Dungeon_Space_Struct;
 
-Dungeon_Space_Rock *Dungeon_Space_Rock_create(int density);
-Dungeon_Space_Room *Dungeon_Space_Room_create(int width, int height);
-Dungeon_Space_Corridor *Dungeon_Space_Corridor_create(Dungeon_Space_Room from, Dungeon_Space_Room to);
-Dungeon_Space_Struct *Dungeon_Space_Struct_create(Dungeon_Space_Type space_type, ...);
+Dungeon_Space_Rock *Dungeon_Space_Rock_create(Dungeon_Space_Type space_type, int density);
+Dungeon_Space_Room *Dungeon_Space_Room_create(Dungeon_Space_Type space_type, int width, int height);
+Dungeon_Space_Corridor *Dungeon_Space_Corridor_create(char *id/*, Dungeon_Space_Room from, Dungeon_Space_Room to*/);
+Dungeon_Space_Union *Dungeon_Space_Union_create(Dungeon_Space_Type space_type, va_list ap);
+Dungeon_Space_Union *Dungeon_Space_Struct_create(Dungeon_Space_Type space_type, ...);
+
 
 void Dungeon_Space_Rock_destroy(Dungeon_Space_Rock *rock);
 void Dungeon_Space_Room_destroy(Dungeon_Space_Room *room);
 void Dungeon_Space_Corridor_destroy(Dungeon_Space_Corridor *corridor);
+void Dungeon_Space_Union_destroy(Dungeon_Space_Type space_type, Dungeon_Space_Union *dungeon_space);
 void Dungeon_Space_Struct_destroy(Dungeon_Space_Struct *dungeon_space);
 
 #endif
