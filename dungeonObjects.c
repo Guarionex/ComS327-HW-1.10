@@ -24,7 +24,7 @@ Dungeon_Space_Room *Dungeon_Space_Room_create(int width, int height)
 Dungeon_Space_Corridor *Dungeon_Space_Corridor_create(char *id/*, Dungeon_Space_Room from, Dungeon_Space_Room to*/)
 {
   Dungeon_Space_Corridor *corridor = malloc(sizeof(Dungeon_Space_Corridor));
-  corridor->id = strdub(id);
+  corridor->id = strdup(id);
   //corridor->previous = from;
   //corridor->next = to;
   return corridor;
@@ -53,7 +53,7 @@ Dungeon_Space_Union *Dungeon_Space_Union_create(Dungeon_Space_Type space_type, v
 }
 
 Dungeon_Space_Union *Dungeon_Space_Struct_create(Dungeon_Space_Type space_type, ...)
-
+{
   va_list ap;
   va_start(ap, space_type);
   
