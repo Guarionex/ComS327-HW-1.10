@@ -39,13 +39,13 @@ Dungeon_Space_Union *Dungeon_Space_Union_create(Dungeon_Space_Type space_type, v
   switch(space_type)
     {
     case ROCK:
-      dungeon_space->rock = va_arg(ap, Dungeon_Space_Rock);
+      dungeon_space->rock = va_arg(ap, *Dungeon_Space_Rock);
       break;
     case ROOM:
-      dungeon_space->room = va_arg(ap, Dungeon_Space_Room);
+      dungeon_space->room = va_arg(ap, *Dungeon_Space_Room);
       break;
     case CORRIDOR:
-      dungeon_space->corridor = va_arg(ap, Dungeon_Space_Corridor);
+      dungeon_space->corridor = va_arg(ap, *Dungeon_Space_Corridor);
       break;
     }
 
