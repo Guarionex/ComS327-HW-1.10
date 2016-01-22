@@ -26,12 +26,17 @@ typedef struct
   Dungeon_Space_Room previous;
   Dungeon_Space_Room next;
 } Dungeon_Space_Corridor;
-typedef struct
+
+typedef union
 {
-  Dungeon_Space_Type space_type;
   Dungeon_Space_Rock rock;
   Dungeon_Space_Room room;
   Dungeon_Space_Corridor corridor;
+} Dungeon_Space_Union;
+
+typedef struct
+{
+  Dungeon_Space_Type space_type;
 } Dungeon_Space_Struct;
 
 Dungeon_Space_Rock *Dungeon_Space_Rock_create(int density);
