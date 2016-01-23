@@ -60,9 +60,9 @@ int main(int argc, char *argv[])
 	rooms = generateMultipleRooms(&int_seed);
 	printf("Room 0 is %d wide and %d long\n", rooms[0].width, rooms[0].height);
 	printf("Room 1 is %d wide and %d long\n", rooms[1].width, rooms[1].height)
-	printf("size of rooms/rooms[0] is %ld", sizeof(rooms)/sizeof(*rooms));
-	printf("size of rooms is %ld", sizeof(rooms));
-	printf("size of *rooms is %ld", sizeof(*rooms));
+	printf("size of rooms/rooms[0] is %ld\n", sizeof(rooms)/sizeof(*rooms));
+	printf("size of rooms is %ld\n", sizeof(rooms));
+	printf("size of *rooms is %ld\n", sizeof(*rooms));
 	int k;
 	for(k = 0; k < sizeof(rooms)/sizeof(rooms[0]); k++)
 	{
