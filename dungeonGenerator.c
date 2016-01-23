@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "dungeonObjects.h"
+#include "dungeonRoomGenerator.h"
 
 int main(int argc, char *argv[])
 {
@@ -29,7 +31,7 @@ int main(int argc, char *argv[])
 	printf("Test width is %d\n", (rand()%4)+3);
 	printf("Test height is %d\n", (rand()%4)+2);
 	num_room =(rand()%3)+5;
-	printf("Test num_rooms is %d\n", num_room);
+	//printf("Test num_rooms is %d\n", num_room);
 	
 	int *int_collection = malloc(sizeof(int) * num_room);
 	int *int_collection_copy;
@@ -48,6 +50,18 @@ int main(int argc, char *argv[])
 	for(i = 0; int_collection[i] != '\0'; i++)
 	{
 			printf("int_collection[%d] = %d\n", i, int_collection[i]);
+	}
+	
+	
+	
+	Dungeon_Space_Room *rooms;
+	rooms = generateMultipleRooms(seed);
+	
+	int k;
+	for(k = 0; k < sizeof(rooms)/sizeof(rooms[0]); k++)
+	{
+		
+		printf("Room %d is %d wide and %d long\n", k, rooms[k].width, rooms[k].height);
 	}
 	
 	return 0;
