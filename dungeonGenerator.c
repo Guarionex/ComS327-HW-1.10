@@ -44,10 +44,10 @@ int main(int argc, char *argv[])
 	}
 	
 	int i;
-	printf("int_collection[0] = %d", int_collection[0]);
+	printf("int_collection[0] = %d\n", int_collection[0]);
 	for(i = 0; int_collection[i] != '\0'; i++)
 	{
-			printf("int_collection[%d] = %d", i, int_collection[i]);
+			printf("int_collection[%d] = %d\n", i, int_collection[i]);
 	}
 	
 	return 0;
