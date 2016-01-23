@@ -5,7 +5,7 @@
 
 Dungeon_Space_Room generateRoom(int *seed)
 {	
-	time_t seed_local;
+	int seed_local;
 	
 	if(seed <= 0)
 	{
@@ -14,7 +14,7 @@ Dungeon_Space_Room generateRoom(int *seed)
 	}
 	else if(seed > 0)
 	{
-		seed_local = &seed;
+		seed_local = seed;
 	}
 	
 	srand(seed_local);
@@ -26,7 +26,7 @@ Dungeon_Space_Room generateRoom(int *seed)
 
 Dungeon_Space_Room *generateMultipleRooms(int *seed)
 {
-	time_t seed_local;
+	int seed_local;
 	int num_room;
 	
 	if(seed <= 0)
@@ -36,7 +36,7 @@ Dungeon_Space_Room *generateMultipleRooms(int *seed)
 	}
 	else if(seed > 0)
 	{
-		seed_local = &seed;
+		seed_local = seed;
 	}
 	
 	srand(seed_local);
@@ -46,9 +46,9 @@ Dungeon_Space_Room *generateMultipleRooms(int *seed)
 	Dungeon_Space_Room *room_collection = malloc(sizeof(Dungeon_Space_Room) * num_room);
 	Dungeon_Space_Room *room_collection_ptr;
 	
-	for(room_collection_ptr = room_collection; room_collection_copy != room_collection + num_room - 1; room_collection_ptr++)
+	for(room_collection_ptr = room_collection; room_collection_ptr != room_collection + num_room - 1; room_collection_ptr++)
 	{
-		*room_collection_ptr = generateRoom(seed_local);
+		*room_collection_ptr = generateRoom(&seed_local);
 	}
 	
 	return room_collection;
