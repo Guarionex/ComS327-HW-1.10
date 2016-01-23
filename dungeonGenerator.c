@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
 	
 	
 	Dungeon_Space_Room *rooms;
-	rooms = generateMultipleRooms(seed);
+	rooms = generateMultipleRooms(&seed);
 	
 	int k;
 	for(k = 0; k < sizeof(rooms)/sizeof(rooms[0]); k++)
