@@ -1,4 +1,4 @@
-#include "dungeonRoomGenerator"
+#include "dungeonRoomGenerator.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
