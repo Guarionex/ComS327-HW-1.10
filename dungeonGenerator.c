@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 			*int_collection_copy = (random_i_1%78)+1;
 	}*/
 	int j;
-	for(j = 0; int_collection[j] != '\0'; j++)
+	for(j = 0; j < num_room; j++)
 	{
 		int_collection[j] = (random_i_1%78)+1;
 	}
