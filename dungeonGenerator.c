@@ -21,7 +21,9 @@ int main(int argc, char *argv[])
 	int random_i_2 = rand();
 	int random_i_3 = rand();
 	int num_room;
+	int int_seed = seed;
 	printf("Seed is %ld\n", seed);
+	printf("int_Seed is %d\n", int_seed);
 	printf("Random is %d\n", random_i_1);
 	printf("Random is %d\n", random_i_2);
 	printf("Random is %d\n", random_i_3);
@@ -55,7 +57,7 @@ int main(int argc, char *argv[])
 	
 	
 	Dungeon_Space_Room *rooms;
-	rooms = generateMultipleRooms(&seed);
+	rooms = generateMultipleRooms(&int_seed);
 	
 	int k;
 	for(k = 0; k < sizeof(rooms)/sizeof(rooms[0]); k++)
