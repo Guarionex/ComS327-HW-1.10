@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 	
 	Dungeon_Space_Room *rooms;
 	rooms = generateMultipleRooms(&int_seed);
-	
+	printf("Room 0 is %d wide and %d long\n", rooms[0].width, rooms[0].height);
 	int k;
 	for(k = 0; k < sizeof(rooms)/sizeof(rooms[0]); k++)
 	{
