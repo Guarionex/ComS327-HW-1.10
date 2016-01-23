@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
 	printf("Normalized is %d\n", (random_i_1%78)+1);
 	printf("Normalized is %d\n", (random_i_2%78)+1);
 	printf("Normalized is %d\n", (random_i_3%78)+1);
+	printf("0 is %d\n", (0%78)+1);
+	printf("77 is %d\n", (77%78)+1);
 	
 	return 0;
 }
