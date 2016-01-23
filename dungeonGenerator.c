@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
 	printf("Normalized is %d\n", (random_i_3%78)+1);
 	printf("Test width is %d\n", (rand()%4)+3);
 	printf("Test height is %d\n", (rand()%4)+2);
+	printf("Test num_rooms is %d\n", (rand()%3)+5);
 	
 	return 0;
 }
