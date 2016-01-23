@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 	int *int_collection_copy;
 	for(int_collection_copy = int_collection; int_collection_copy != int_collection+(sizeof(int) * num_room); int_collection_copy++)
 	{
-			*int_collection_copy = (random_i_1%78)+1;
+			*int_collection_copy = (rand()%78)+1;
 	}
 	/*int j;
 	for(j = 0; j < num_room; j++)
