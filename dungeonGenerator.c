@@ -32,16 +32,16 @@ int main(int argc, char *argv[])
 	printf("Test num_rooms is %d\n", num_room);
 	
 	int *int_collection = malloc(sizeof(int) * num_room);
-	//int *int_collection_copy;
-	/*for(int_collection_copy = int_collection; *int_collection_copy != '\0'; int_collection_copy++)
+	int *int_collection_copy;
+	for(int_collection_copy = int_collection; int_collection_copy != int_collection+(sizeof(int) * num_room); int_collection_copy++)
 	{
 			*int_collection_copy = (random_i_1%78)+1;
-	}*/
-	int j;
+	}
+	/*int j;
 	for(j = 0; j < num_room; j++)
 	{
 		int_collection[j] = (random_i_1%78)+1;
-	}
+	}*/
 	
 	int i;
 	printf("int_collection[0] = %d\n", int_collection[0]);
