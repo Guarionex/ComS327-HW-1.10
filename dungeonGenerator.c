@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 	printf("Test num_rooms is %d\n", num_room =(rand()%3)+5);
 	
 	int *int_collection = malloc(sizeof(int) * num_room);
-	int *int_collection_copy;
+	//int *int_collection_copy;
 	/*for(int_collection_copy = int_collection; *int_collection_copy != '\0'; int_collection_copy++)
 	{
 			*int_collection_copy = (random_i_1%78)+1;
