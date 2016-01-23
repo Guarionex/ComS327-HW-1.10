@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
 	printf("size of rooms is %ld\n", sizeof(rooms));
 	printf("size of *rooms is %ld\n", sizeof(*rooms));
 	int k;
-	for(k = 0; k < sizeof(rooms)/sizeof(rooms[0]); k++)
+	for(k = 0; rooms[k] != '\0'; k++)
 	{
 		
 		printf("Room %d is %d wide and %d long\n", k, rooms[k].width, rooms[k].height);
