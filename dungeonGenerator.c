@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
 	{
 			*int_collection_copy = (random_i_1%78)+1;
 	}
-	int_collection_copy = int_collection_copy - (sizeof(int) * num_room)
+	int_collection_copy = int_collection_copy - (sizeof(int) * num_room);
 	int i;
 	for(i = 0; int_collection_copy[i] != '\0'; i++)
 	{
