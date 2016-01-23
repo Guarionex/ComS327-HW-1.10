@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 	Dungeon_Space_Room *rooms;
 	rooms = generateMultipleRooms(&int_seed);
 	printf("Room 0 is %d wide and %d long\n", rooms[0].width, rooms[0].height);
-	printf("Room 1 is %d wide and %d long\n", rooms[1].width, rooms[1].height)
+	printf("Room 1 is %d wide and %d long\n", rooms[1].width, rooms[1].height);
 	printf("size of rooms/rooms[0] is %ld\n", sizeof(rooms)/sizeof(*rooms));
 	printf("size of rooms is %ld\n", sizeof(rooms));
 	printf("size of *rooms is %ld\n", sizeof(*rooms));
