@@ -15,9 +15,16 @@ int main(int argc, char *argv[])
 	}
 	 
 	srand(seed);
-	printf("Random is %d\n", rand());
-	printf("Random is %d\n", rand());
-	printf("Random is %d\n", rand());
+	int random_i_1 = rand();
+	int random_i_2 = rand();
+	int random_i_3 = rand();
+	printf("Seed is %d\n", seed);
+	printf("Random is %d\n", random_i_1);
+	printf("Random is %d\n", random_i_2);
+	printf("Random is %d\n", random_i_3);
+	printf("Random is %d\n", random_i_1);
+	printf("Random is %d\n", random_i_2);
+	printf("Random is %d\n", random_i_3);
 	
 	return 0;
 }
