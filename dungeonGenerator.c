@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	int *int_collection_copy;
 	for(int_collection_copy = int_collection; *int_collection_copy != '\0'; int_collection_copy++)
 	{
-			int_collection_copy = (random_i_1%78)+1);
+			*int_collection_copy = (random_i_1%78)+1;
 	}
 	
 	int i;
