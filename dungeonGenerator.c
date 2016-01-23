@@ -36,11 +36,11 @@ int main(int argc, char *argv[])
 	{
 			*int_collection_copy = (random_i_1%78)+1;
 	}
-	int_collection_copy = int_collection_copy - (sizeof(int) * num_room);
+	
 	int i;
-	for(i = 0; int_collection_copy[i] != '\0'; i++)
+	for(i = 0; int_collection[i] != '\0'; i++)
 	{
-			printf("int_collection_copy[%d] = %d", i, int_collection_copy[i]);
+			printf("int_collection[%d] = %d", i, int_collection[i]);
 	}
 	
 	return 0;
