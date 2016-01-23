@@ -36,7 +36,12 @@ int main(int argc, char *argv[])
 	{
 			*int_collection_copy = (random_i_1%78)+1;
 	}
-	
+	int j;
+	for(j = 0; j < num_room; j++)
+	{
+		int_collection_copy--;
+	}
+	printf("int_collection_copy[0] = %d", int_collection_copy[0]);
 	int i;
 	printf("int_collection[0] = %d", int_collection[0]);
 	for(i = 0; int_collection[i] != '\0'; i++)
