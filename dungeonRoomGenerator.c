@@ -14,7 +14,7 @@ Dungeon_Space_Room generateRoom(int *seed)
 	}
 	else if(seed > 0)
 	{
-		seed_local = seed;
+		seed_local = *seed;
 	}
 	
 	srand(seed_local);
@@ -36,7 +36,7 @@ Dungeon_Space_Room *generateMultipleRooms(int *seed)
 	}
 	else if(seed > 0)
 	{
-		seed_local = seed;
+		seed_local = *seed;
 	}
 	
 	srand(seed_local);
