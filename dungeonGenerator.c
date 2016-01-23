@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	
 	int *int_collection = malloc(sizeof(int) * num_room);
 	int *int_collection_copy;
-	for(int_collection_copy = int_collection; int_collection_copy != int_collection+(sizeof(int) * num_room)-2; int_collection_copy++)
+	for(int_collection_copy = int_collection; int_collection_copy != int_collection+num_room; int_collection_copy++)
 	{
 			*int_collection_copy = (rand()%78)+1;
 	}
