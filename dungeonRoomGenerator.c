@@ -44,14 +44,14 @@ Dungeon_Space_Room *generateMultipleRooms(int *seed)
 	num_room = (rand()%3)+5;
 	printf("Number of rooms is %d\n", num_room);
 	
-	Dungeon_Space_Room *room_collection = malloc(sizeof(Dungeon_Space_Room) * num_room);
+	Dungeon_Space_Room *room_collection = malloc(sizeof(Dungeon_Space_Room) * num_room+1);
 	Dungeon_Space_Room *room_collection_ptr;
 	
 	for(room_collection_ptr = room_collection; room_collection_ptr != room_collection + num_room - 1; room_collection_ptr++)
 	{
 		*room_collection_ptr = generateRoom();
 	}
-	
+	*room_collection_ptr = Dungeon_Space_Room_create(-1, -1);
 	return room_collection;
 	
 }
