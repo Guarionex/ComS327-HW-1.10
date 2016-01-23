@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-	time_t seed
+	time_t seed;
 	if(argc != 2)
 	{
 		seed = time(NULL);
