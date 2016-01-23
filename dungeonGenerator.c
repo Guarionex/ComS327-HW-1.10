@@ -22,9 +22,9 @@ int main(int argc, char *argv[])
 	printf("Random is %d\n", random_i_1);
 	printf("Random is %d\n", random_i_2);
 	printf("Random is %d\n", random_i_3);
-	printf("Random is %d\n", random_i_1);
-	printf("Random is %d\n", random_i_2);
-	printf("Random is %d\n", random_i_3);
+	printf("Normalized is %d\n", (random_i_1%78)+1);
+	printf("Normalized is %d\n", (random_i_2%78)+1);
+	printf("Normalized is %d\n", (random_i_3%78)+1);
 	
 	return 0;
 }
