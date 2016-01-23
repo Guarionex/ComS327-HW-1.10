@@ -28,7 +28,8 @@ int main(int argc, char *argv[])
 	printf("Normalized is %d\n", (random_i_3%78)+1);
 	printf("Test width is %d\n", (rand()%4)+3);
 	printf("Test height is %d\n", (rand()%4)+2);
-	printf("Test num_rooms is %d\n", num_room =(rand()%3)+5);
+	num_room =(rand()%3)+5;
+	printf("Test num_rooms is %d\n", num_room);
 	
 	int *int_collection = malloc(sizeof(int) * num_room);
 	//int *int_collection_copy;
