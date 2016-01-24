@@ -1,5 +1,6 @@
 #include "dungeonLevelGenerator.h"
 #include <stdlib.h>
+#include <stdio.h>
 #include <limits.h>
 
 void Create_Blank_Map(int *seed)
