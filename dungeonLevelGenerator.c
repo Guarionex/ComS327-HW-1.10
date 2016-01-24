@@ -37,6 +37,33 @@ void Create_Blank_Map(int *seed)
 	}
 }
 
+bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
+{
+	
+	int r;
+	for(r = 0; r < num_rooms; r++)
+	{
+		rooms[r].x = (rand()%79)+1;
+		rooms[r].y = (rand()%20)+1;
+		
+		int w;
+		int h;
+		for(h = 0; h < rooms[r].height; h++)
+		{
+			for(w = 0; w < rooms[r].width; w++)
+			{
+				Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROOM, rooms[r]);
+				dungeon_map[rooms[r].x+w][rooms[r].y+h] = cell;
+			}
+		}
+		
+	}
+	
+	
+	
+	return TRUE;
+}
+
 void Draw_Dungeon()
 {
 	int x;
@@ -51,7 +78,11 @@ void Draw_Dungeon()
 				{
 					printf("R");
 				}
-				else printf("r");
+				else printf(" ");
+			}
+			else if(dungeon_map[x][y].space_type == ROOM);
+			{
+				printf(".");
 			}
 		}
 		printf("\n");
