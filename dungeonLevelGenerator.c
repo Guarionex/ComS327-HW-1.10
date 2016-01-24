@@ -43,12 +43,13 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	int r;
 	for(r = 0; r < num_rooms; r++)
 	{
-		printf("rooms[%d].x = %d\n", r, rooms[r].x);
-		printf("rooms[%d].y = %d\n", r, rooms[r].y);
+		
 		while(((rooms[r].x + rooms[r].width > 80) || (rooms[r].y + rooms[r].height > 21)) || (rooms[r].x < 0 || rooms[r].y < 0))
 		{
 			rooms[r].x = (rand()%78)+1;
 			rooms[r].y = (rand()%19)+1;
+			printf("rooms[%d].x = %d\n", r, rooms[r].x);
+			printf("rooms[%d].y = %d\n", r, rooms[r].y);
 		}
 		
 		int w;
