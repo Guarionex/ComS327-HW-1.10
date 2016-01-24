@@ -65,12 +65,13 @@ int main(int argc, char *argv[])
 	printf("size of rooms is %ld\n", sizeof(rooms));
 	printf("size of *rooms is %ld\n", sizeof(*rooms));
 	int k = 0;
-	printf("Is it true width at 0 is -1? its %d", rooms[k].width);
+	printf("Is it true width at 0 is -1? its %d\n", rooms[k].width);
 	for(k = 0; rooms[k].width != -1; k++)
 	{
 		
 		printf("Room %d is %d wide and %d long\n", k, rooms[k].width, rooms[k].height);
 	}
+	printf("k = %d\n", k);
 	
 	return 0;
 }
