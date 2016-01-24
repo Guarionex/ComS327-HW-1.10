@@ -89,6 +89,7 @@ int main(int argc, char *argv[])
 		success = Place_Rooms(rooms, total_num_rooms);
 	}
 	printf("Did room placement work? %d\n", success);
+	Connect_Rooms(rooms, total_num_rooms);
 	Draw_Dungeon();
 	
 	return 0;

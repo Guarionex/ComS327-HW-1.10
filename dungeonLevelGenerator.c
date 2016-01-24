@@ -136,11 +136,11 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 
 void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 {
-	Dungeon_Space_Room[num_rooms] sorted_rooms;
+	Dungeon_Space_Room sorted_rooms[num_rooms];
 	sorted_rooms[0] = rooms[0];
 	int r;
 	int sr;
-	for(sr = 0; sr < num_rooms - 1, sr++)
+	for(sr = 0; sr < num_rooms - 1; sr++)
 	{
 		Dungeon_Space_Room closest;
 		int distance = INT_MAX;
