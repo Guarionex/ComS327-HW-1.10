@@ -4,7 +4,7 @@
 #include "dungeonObjects.h"
 #include "dungeonRoomGenerator.h"
 
-extern Dungeon_Space_Struct dungeon_map**;
+extern Dungeon_Space_Struct **dungeon_map;
 
 void Create_Blank_Map(int *seed);
 bool Place_Rooms(Dungeon_Space_Room *rooms);
