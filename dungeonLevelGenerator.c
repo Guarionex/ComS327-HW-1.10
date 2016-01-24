@@ -195,8 +195,9 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		
 		for(;;)
 		{
-			char *str;
-			Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(itoa(sr, str, 10));
+			char *str = malloc(sizeof(char) * 2);
+			itoa(sr, str, 10);
+			Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(str);
 			Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
 			switch(dungeon_map[x0][y0].space_type)
 			{
