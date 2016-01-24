@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 	
 	Dungeon_Space_Rock rock = Dungeon_Space_Rock_create((rand()%100)+1);
 	Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROCK, rock);
-	if(rock.space_type == ROCK)
+	if(cell.space_type == ROCK)
 	{
 		printf("The cell is a rock with a density of %d\n", cell.space_union.rock.density);
 	}
