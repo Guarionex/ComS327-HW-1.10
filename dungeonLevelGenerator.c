@@ -94,6 +94,9 @@ void Draw_Dungeon()
 					printf(".");
 				
 				break;
+				case CORRIDOR :
+					printf("#");
+				break;
 			}
 		}
 		printf("\n");
