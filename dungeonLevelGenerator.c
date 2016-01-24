@@ -137,7 +137,9 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 {
 	Dungeon_Space_Room sorted_rooms[num_rooms];
+	int sorted_indecis[num_rooms];
 	sorted_rooms[0] = rooms[0];
+	sorted_indecis[0] = 0;
 	printf("In connected rooms\n");
 	int r;
 	int sr;
@@ -145,16 +147,33 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	{
 		Dungeon_Space_Room closest;
 		int distance = INT_MAX;
+		int index;
 		for(r = 0; r < num_rooms; r++)
 		{
+			int i;
+			bool already_sorted = FALSE;
+			for(i = 0; i < num_rooms; i++)
+			{
+				if(sorted_indecis[i] == r)
+				{
+					already_sorted = TRUE;
+				}
+			}
+			if(already_sorted == TRUE)
+			{
+				continue;
+			}
 			int local_distance = sqrt(pow(rooms[r].x - sorted_rooms[sr].x,2)+pow(rooms[r].y - sorted_rooms[sr].y,2));
 			if(local_distance < distance && local_distance > 0)
 			{
 				distance = local_distance;
 				closest = rooms[r];
+				index = r;
 			}
 		}
 		sorted_rooms[sr+1] = closest;
+		sorted_indecis[sr+1] = index;
+		
 	}
 	
 	printf("Sorted order:\n");
