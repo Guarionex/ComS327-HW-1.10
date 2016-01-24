@@ -78,17 +78,22 @@ void Draw_Dungeon()
 	{
 		for(x = 0; x < 80; x++)
 		{
-			if(dungeon_map[x][y].space_type == ROCK)
+			switch(dungeon_map[x][y].space_type)
 			{
-				if(dungeon_map[x][y].space_union.rock.density == INT_MAX)
-				{
-					printf("R");
-				}
-				else printf(" ");
-			}
-			else if(dungeon_map[x][y].space_type == ROOM);
-			{
-				printf(".");
+				case ROCK :
+				
+					if(dungeon_map[x][y].space_union.rock.density == INT_MAX)
+					{
+						printf("R");
+					}
+					else printf(" ");
+				
+				break;
+				case ROOM :
+				
+					printf(".");
+				
+				break;
 			}
 		}
 		printf("\n");
