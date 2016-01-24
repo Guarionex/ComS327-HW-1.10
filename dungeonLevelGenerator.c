@@ -181,6 +181,53 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	{
 		printf("sorted_rooms[%d] = {x = %d, y = %d, w = %d, h = %d}\n", sr, sorted_rooms[sr].x, sorted_rooms[sr].y, sorted_rooms[sr].width, sorted_rooms[sr].height);
 	}
+	
+	for(sr = 0; sr < num_rooms; sr++)
+	{
+		int x0 = sorted_rooms[sr].x;
+		int y0 = sorted_rooms[sr].y;
+		int x1 = sorted_rooms[sr+1].x;
+		int y1 = sorted_rooms[sr+1].y;
+		
+		int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
+		int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1; 
+		int err = (dx>dy ? dx : -dy)/2, e2;
+		
+		for(;;)
+		{
+			char *str;
+			Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(itoa(sr, str, 10));
+			Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
+			switch(dungeon_map[x0][y0].space_type)
+			{
+				case ROCK:
+					dungeon_map[x0][y0] = cell;
+				break;
+				
+				case ROOM:
+					//ignore
+				break;
+				
+				case CORRIDOR:
+					//ignore
+				break;
+			}//setPixel(x0,y0);
+			if (x0==x1 && y0==y1) break;
+			e2 = err;
+			if (e2 >-dx)
+			{
+				err -= dy;
+				x0 += sx;
+			}
+			if (e2 < dy)
+			{
+				err += dx;
+				y0 += sy;
+			}
+		}
+		
+	}
+	
 }
 
 void Draw_Dungeon()
