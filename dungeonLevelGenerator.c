@@ -43,14 +43,54 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	int r;
 	for(r = 0; r < num_rooms; r++)
 	{
-		
-		while(((rooms[r].x + rooms[r].width > 79) || (rooms[r].y + rooms[r].height > 20)) || (rooms[r].x < 0 || rooms[r].y < 0))
+		bool overlap = FALSE;
+		while(((rooms[r].x + rooms[r].width > 79) || (rooms[r].y + rooms[r].height > 20)) || (rooms[r].x < 0 || rooms[r].y < 0) || overlap != TRUE)
 		{
 			rooms[r].x = (rand()%78)+1;
 			rooms[r].y = (rand()%19)+1;
+			
+			int pr;
+			for(pr = 0; pr < r; pr++)
+			{
+				if(rooms[r].x < rooms[pr].x)
+				{
+					if((rooms[r].x + rooms[r].width) > rooms[pr].x)
+					{
+						overlap = true;
+					}
+				}
+				else if(rooms[r].x > rooms[pr].x)
+				{
+					if((rooms[pr].x + rooms[pr].width) > rooms[r].x)
+					{
+						overlap = true;
+					}
+				}
+				else if(rooms[r].y < rooms[pr].y)
+				{
+					if((rooms[r].y + rooms[r].height) > rooms[pr].y)
+					{
+						overlap = true;
+					}
+				}
+				else if(rooms[r].y > rooms[pr].y)
+				{
+					if((rooms[pr].y + rooms[pr].height) > rooms[r].y)
+					{
+						overlap = true;
+					}
+				}
+				else
+				{
+						overlap = FALSE;
+				}
+			}
+			
 			printf("rooms[%d].x = %d\n", r, rooms[r].x);
 			printf("rooms[%d].y = %d\n", r, rooms[r].y);
 		}
+		
+		
 		
 		int w;
 		int h;
