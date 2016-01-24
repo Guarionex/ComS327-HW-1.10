@@ -3,6 +3,7 @@
 #include <time.h>
 #include "dungeonObjects.h"
 #include "dungeonRoomGenerator.h"
+#include "dungeonLevelGenerator.h"
 
 int main(int argc, char *argv[])
 {
@@ -79,6 +80,9 @@ int main(int argc, char *argv[])
 	{
 		printf("The cell is a rock with a density of %d\n", cell.space_union.rock.density);
 	}
+	
+	Create_Blank_Map(&int_seed);
+	Draw_Dungeon();
 	
 	return 0;
 }
