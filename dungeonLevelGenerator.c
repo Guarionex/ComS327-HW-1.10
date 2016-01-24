@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <limits.h>
 
+Dungeon_Space_Struct **dungeon_map;
+
 void Create_Blank_Map(int *seed)
 {
 	dungeon_map =  malloc(80 * sizeof(Dungeon_Space_Struct *));
