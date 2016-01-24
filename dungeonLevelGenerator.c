@@ -201,7 +201,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
 			if(x0 < 0 || x0 > 79 || y0 < 0 || y0 > 20)
 			{
-				printf("Got invalid array location\n");
+				printf("x0 = %d, y0 = %d\n", x0, y0);
 			}
 			switch(dungeon_map[x0][y0].space_type)
 			{
