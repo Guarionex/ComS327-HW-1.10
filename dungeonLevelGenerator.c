@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
+#include <math.h>
 
 Dungeon_Space_Struct **dungeon_map;
 
@@ -131,6 +132,35 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	
 	
 	return TRUE;
+}
+
+void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
+{
+	Dungeon_Space_Room[num_rooms] sorted_rooms;
+	sorted_rooms[0] = rooms[0];
+	int r;
+	int sr;
+	for(sr = 0; sr < num_rooms - 1, sr++)
+	{
+		Dungeon_Space_Room closest;
+		int distance = INT_MAX;
+		for(r = 0; r < num_rooms; r++)
+		{
+			int local_distance = sqrt(pow(rooms[r].x - sorted_rooms[sr].x,2)+pow(rooms[r].y - sorted_rooms[sr].y,2));
+			if((local_distance < distance && local_distance > 0)
+			{
+				distance = local_distance;
+				closest = rooms[r];
+			}
+		}
+		sorted_rooms[sr+1] = closest;
+	}
+	
+	printf("Sorted order:\n")
+	for(sr = 0; sr < num_rooms; sr++)
+	{
+		printf("sorted_rooms[%d] = {x = %d, y = %d, w = %d, h = %d}\n", sr, sorted_rooms[sr].x, sorted_rooms[sr].y, sorted_rooms[sr].width, sorted_rooms[sr].height);
+	}
 }
 
 void Draw_Dungeon()
