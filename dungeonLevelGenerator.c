@@ -156,7 +156,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		sorted_rooms[sr+1] = closest;
 	}
 	
-	printf("Sorted order:\n")
+	printf("Sorted order:\n");
 	for(sr = 0; sr < num_rooms; sr++)
 	{
 		printf("sorted_rooms[%d] = {x = %d, y = %d, w = %d, h = %d}\n", sr, sorted_rooms[sr].x, sorted_rooms[sr].y, sorted_rooms[sr].width, sorted_rooms[sr].height);
