@@ -83,8 +83,12 @@ int main(int argc, char *argv[])
 	
 	Create_Blank_Map(&int_seed);
 	printf("Seed is %d\n", int_seed);
-	bool succeeded = Place_Rooms(rooms, total_num_rooms);
-	printf("Did room placement work? %d\n", succeeded);
+	bool success = TRUE;
+	while(success == FALSE)
+	{
+		success = Place_Rooms(rooms, total_num_rooms);
+	}
+	printf("Did room placement work? %d\n", success);
 	Draw_Dungeon();
 	
 	return 0;

@@ -41,13 +41,21 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 {
 	
 	int r;
+	int num_attempts = 0;
 	for(r = 0; r < num_rooms; r++)
 	{
 		bool overlap = TRUE;
+		num_attempts = 0;
 		while(((rooms[r].x + rooms[r].width > 79) || (rooms[r].y + rooms[r].height > 20)) || (rooms[r].x < 0 || rooms[r].y < 0) || overlap == TRUE)
 		{
 			rooms[r].x = (rand()%78)+1;
 			rooms[r].y = (rand()%19)+1;
+			
+			if(num_attempts > 2000)
+			{
+				return FALSE;
+			}
+			num_attempts++;
 			
 			int pr;
 			overlap = FALSE;
@@ -105,7 +113,7 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			printf("rooms[%d].y = %d\n", r, rooms[r].y);
 		}
 		
-		
+		printf("Number of attempts = %d\n", num_attempts);
 		
 		int w;
 		int h;
