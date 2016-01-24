@@ -147,7 +147,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		for(r = 0; r < num_rooms; r++)
 		{
 			int local_distance = sqrt(pow(rooms[r].x - sorted_rooms[sr].x,2)+pow(rooms[r].y - sorted_rooms[sr].y,2));
-			if((local_distance < distance && local_distance > 0)
+			if(local_distance < distance && local_distance > 0)
 			{
 				distance = local_distance;
 				closest = rooms[r];
