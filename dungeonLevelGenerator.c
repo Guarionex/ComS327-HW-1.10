@@ -51,10 +51,11 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			
 			int pr;
 			overlap = FALSE;
-			bool x_overlap = FALSE;
-			bool y_overlap = FALSE;
+			
 			for(pr = 0; pr < r; pr++)
-			{
+			{	
+				bool x_overlap = FALSE;
+				bool y_overlap = FALSE;
 				if(rooms[r].x < rooms[pr].x)
 				{
 					if((rooms[r].x + rooms[r].width + 1) > rooms[pr].x)
