@@ -289,7 +289,7 @@ Dungeon_Space_Struct **Generate_Map(int *seed)
 	return dungeon_map;
 }
 
-void Draw_Dungeon()
+void Draw_Dungeon(Dungeon_Space_Struct **dungeon)
 {
 	int x;
 	int y;
@@ -297,11 +297,11 @@ void Draw_Dungeon()
 	{
 		for(x = 0; x < 80; x++)
 		{
-			switch(dungeon_map[x][y].space_type)
+			switch(dungeon[x][y].space_type)
 			{
 				case ROCK :
 				
-					if(dungeon_map[x][y].space_union.rock.density == INT_MAX)
+					if(dungeon[x][y].space_union.rock.density == INT_MAX)
 					{
 						printf("R");
 					}

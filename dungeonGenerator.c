@@ -20,8 +20,8 @@ int main(int argc, char *argv[])
 	
 	int int_seed = seed;
 	
-	Generate_Map(&int_seed);
-	Draw_Dungeon();
+	Dungeon_Space_Struct **dungeon = Generate_Map(&int_seed);
+	Draw_Dungeon(dungeon);
 	
 	return 0;
 }
