@@ -200,6 +200,8 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1; 
 		int err = (dx>dy ? dx : -dy)/2, e2;
 		
+		bool moved_x = FALSE;
+		bool moved_y = FALSE;
 		for(;;)
 		{
 			if(moved_x == TRUE && moved_y == TRUE)
@@ -209,8 +211,8 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			Place_Corridor(x0,y0, sr); //int x, int y, int index
 			if (x0==x1 && y0==y1) break;
 			e2 = err;
-			bool moved_x = FALSE;
-			bool moved_y = FALSE;
+			moved_x = FALSE;
+			moved_y = FALSE;
 			if(e2 >-dx)
 			{ 
 				err -= dy; 
