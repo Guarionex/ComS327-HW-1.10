@@ -114,7 +114,7 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			printf("rooms[%d].y = %d\n", r, rooms[r].y);
 		}
 		
-		//printf("Number of attempts = %d\n", num_attempts);
+		printf("Number of attempts = %d\n", num_attempts);
 		
 		int w;
 		int h;
@@ -145,7 +145,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	}
 	sorted_rooms[0] = rooms[0];
 	sorted_indecis[0] = 0;
-	printf("In connected rooms\n");
+	
 	int r;
 	int sr;
 	for(sr = 0; sr < num_rooms - 1; sr++)
@@ -236,10 +236,10 @@ void Place_Corridor(int x, int y, int id)
 	snprintf(str, sizeof(char)*2, "%d", id);
 	Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(str);
 	Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
-	if(x < 0 || x > 79 || y < 0 || y > 20)
+	/*if(x < 0 || x > 79 || y < 0 || y > 20)
 	{
 		printf("x0 = %d, y0 = %d\n", x, y);
-	}
+	}*/
 	switch(dungeon_map[x][y].space_type)
 	{
 		case ROCK:
@@ -254,6 +254,11 @@ void Place_Corridor(int x, int y, int id)
 			//ignore
 		break;
 	}
+}
+
+Dungeon_Space_Struct **Generate_Map(int seed)
+{
+	
 }
 
 void Draw_Dungeon()
