@@ -239,8 +239,9 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			Place_Corridor(x0,y0, sr);
 			if (x0==x1 && y0==y1) break;
 			e2 = err;
-			if (e2 < dy) { err += dx; y0 += sy; }
-			else if (e2 >-dx) { err -= dy; x0 += sx; }
+			if (e2 < dy) {y0 += sy; }
+			if (e2 >-dx) { err -= dy; x0 += sx; }
+			else if(e2 < dy) {err += dx;}
 		}
 	}
 	
