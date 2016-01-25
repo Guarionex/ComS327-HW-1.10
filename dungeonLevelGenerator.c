@@ -181,11 +181,11 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		
 	}
 	
-	printf("Sorted order:\n");
+	/*printf("Sorted order:\n");
 	for(sr = 0; sr < num_rooms; sr++)
 	{
 		printf("sorted_rooms[%d] = {x = %d, y = %d, w = %d, h = %d}\n", sr, sorted_rooms[sr].x, sorted_rooms[sr].y, sorted_rooms[sr].width, sorted_rooms[sr].height);
-	}
+	}*/
 	
 	for(sr = 0; sr < num_rooms; sr++)
 	{
@@ -266,9 +266,9 @@ Dungeon_Space_Struct **Generate_Map(int *seed)
 	for(total_num_rooms = 0; rooms[total_num_rooms].width != -1; total_num_rooms++)
 	{
 		
-		printf("Room[%d] = {w = %d, h = %d}\n", total_num_rooms, rooms[total_num_rooms].width, rooms[total_num_rooms].height);
+		//printf("Room[%d] = {w = %d, h = %d}\n", total_num_rooms, rooms[total_num_rooms].width, rooms[total_num_rooms].height);
 	}
-	printf("total_num_rooms = %d\n", total_num_rooms);
+	printf("Number of rooms is %d\n", total_num_rooms);
 	
 	Create_Blank_Map(seed);
 	printf("Seed is %d\n", *seed);
@@ -283,7 +283,7 @@ Dungeon_Space_Struct **Generate_Map(int *seed)
 	{
 		printf("Room placement failed after %d attempts\n", attempts);
 	}
-	else printf("Took %d attempts to place all rooms\n", attempts);
+	//else printf("Took %d attempts to place all rooms\n", attempts);
 	Connect_Rooms(rooms, total_num_rooms);
 	
 	return dungeon_map;
