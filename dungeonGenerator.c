@@ -57,45 +57,8 @@ int main(int argc, char *argv[])
 	
 	
 	
-	Dungeon_Space_Room *rooms;
-	rooms = generateMultipleRooms(&int_seed);
-	//printf("Room 0 is %d wide and %d long\n", rooms[0].width, rooms[0].height);
-	//printf("Room 1 is %d wide and %d long\n", rooms[1].width, rooms[1].height);
-	//printf("Room 2 is %d wide and %d long\n", rooms[2].width, rooms[2].height);
-	//printf("size of rooms/rooms[0] is %ld\n", sizeof(rooms)/sizeof(*rooms));
-	//printf("size of rooms is %ld\n", sizeof(rooms));
-	//printf("size of *rooms is %ld\n", sizeof(*rooms));
-	int total_num_rooms = 0;
-	//printf("Is it true width at 0 is -1? its %d\n", rooms[total_num_rooms].width);
-	for(total_num_rooms = 0; rooms[total_num_rooms].width != -1; total_num_rooms++)
-	{
-		
-		printf("Room[%d] = {w = %d, h = %d}\n", total_num_rooms, rooms[total_num_rooms].width, rooms[total_num_rooms].height);
-	}
-	printf("total_num_rooms = %d\n", total_num_rooms);
+	Generate_Map(&int_seed);
 	
-	/*Dungeon_Space_Rock rock = Dungeon_Space_Rock_create((rand()%100)+1);
-	Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROCK, rock);
-	if(cell.space_type == ROCK)
-	{
-		printf("The cell is a rock with a density of %d\n", cell.space_union.rock.density);
-	}*/
-	
-	Create_Blank_Map(&int_seed);
-	printf("Seed is %d\n", int_seed);
-	bool success = FALSE;
-	int attempts = 0;
-	while(success == FALSE || attempts > 2000)
-	{
-		success = Place_Rooms(rooms, total_num_rooms);
-		attempts++;
-	}
-	if(success == FALSE) 
-	{
-		printf("Room placement failed after %d attempts\n", attempts);
-	}
-	else printf("Took %d attempts to place all rooms\n", attempts);
-	Connect_Rooms(rooms, total_num_rooms);
 	Draw_Dungeon();
 	
 	return 0;

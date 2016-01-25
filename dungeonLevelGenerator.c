@@ -258,7 +258,35 @@ void Place_Corridor(int x, int y, int id)
 
 Dungeon_Space_Struct **Generate_Map(int seed)
 {
+	Dungeon_Space_Room *rooms;
+	rooms = generateMultipleRooms(&seed);
 	
+	int total_num_rooms = 0;
+	
+	for(total_num_rooms = 0; rooms[total_num_rooms].width != -1; total_num_rooms++)
+	{
+		
+		printf("Room[%d] = {w = %d, h = %d}\n", total_num_rooms, rooms[total_num_rooms].width, rooms[total_num_rooms].height);
+	}
+	printf("total_num_rooms = %d\n", total_num_rooms);
+	
+	Create_Blank_Map(&seed);
+	printf("Seed is %d\n", seed);
+	bool success = FALSE;
+	int attempts = 0;
+	while(success == FALSE || attempts > 2000)
+	{
+		success = Place_Rooms(rooms, total_num_rooms);
+		attempts++;
+	}
+	if(success == FALSE) 
+	{
+		printf("Room placement failed after %d attempts\n", attempts);
+	}
+	else printf("Took %d attempts to place all rooms\n", attempts);
+	Connect_Rooms(rooms, total_num_rooms);
+	
+	return dungeon_map;
 }
 
 void Draw_Dungeon()
