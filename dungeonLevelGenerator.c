@@ -189,10 +189,10 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	
 	for(sr = 0; sr < num_rooms; sr++)
 	{
-		int x0 = sorted_rooms[sr].x;
-		int y0 = sorted_rooms[sr].y;
-		int x1 = sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].x;
-		int y1 = sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].y;
+		int x0 = (sorted_rooms[sr].x + sorted_rooms[sr].width)/2;
+		int y0 = (sorted_rooms[sr].y + sorted_rooms[sr].height)/2;
+		int x1 = (sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].x + sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].width)/2;
+		int y1 = (sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].y + sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].height)/2;
 		
 		/*int dx = abs(x1-x0);//, sx = x0<x1 ? 1 : -1;
 		int dy = abs(y1-y0);//, sy = y0<y1 ? 1 : -1; 
