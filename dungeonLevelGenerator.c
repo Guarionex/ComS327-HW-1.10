@@ -205,6 +205,12 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			if (x0==x1 && y0==y1) break;
 			e2 = err;
 			bool moved = FALSE;
+			if(e2 < dy)
+			{ 
+				err += dx;
+				y0 += sy; 
+				moved = TRUE;
+			}
 			if(e2 >-dx) 
 			{ 
 				err -= dy;
@@ -214,15 +220,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 					moved = TRUE;
 				}
 			}
-			if(e2 < dy)
-			{ 
-				err += dx; 
-				if(moved == FALSE)
-				{
-					y0 += sy; 
-					moved = TRUE;
-				}
-			}
+			
 			
 		}
 	}
