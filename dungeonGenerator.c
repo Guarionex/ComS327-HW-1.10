@@ -16,49 +16,11 @@ int main(int argc, char *argv[])
 	{
 		seed = atoi(argv[1]);
 	}
-	 
 	srand(seed);
-	//int random_i_1 = rand();
-	//int random_i_2 = rand();
-	//int random_i_3 = rand();
-	//int num_room;
+	
 	int int_seed = seed;
-	/*printf("Seed is %ld\n", seed);
-	printf("int_Seed is %d\n", int_seed);
-	printf("Random is %d\n", random_i_1);
-	printf("Random is %d\n", random_i_2);
-	printf("Random is %d\n", random_i_3);
-	printf("Normalized is %d\n", (random_i_1%78)+1);
-	printf("Normalized is %d\n", (random_i_2%78)+1);
-	printf("Normalized is %d\n", (random_i_3%78)+1);
-	printf("Test width is %d\n", (rand()%4)+3);
-	printf("Test height is %d\n", (rand()%4)+2);
-	num_room =(rand()%3)+5;
-	//printf("Test num_rooms is %d\n", num_room);
-	
-	int *int_collection = malloc(sizeof(int) * num_room);
-	int *int_collection_copy;
-	for(int_collection_copy = int_collection; int_collection_copy != int_collection+num_room-1; int_collection_copy++)
-	{
-			*int_collection_copy = (rand()%78)+1;
-	}
-	int j;
-	for(j = 0; j < num_room; j++)
-	{
-		int_collection[j] = (random_i_1%78)+1;
-	}
-	
-	int i;
-	printf("int_collection[0] = %d\n", int_collection[0]);
-	for(i = 0; int_collection[i] != '\0'; i++)
-	{
-			printf("int_collection[%d] = %d\n", i, int_collection[i]);
-	}*/
-	
-	
 	
 	Generate_Map(&int_seed);
-	
 	Draw_Dungeon();
 	
 	return 0;
