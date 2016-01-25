@@ -223,7 +223,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			{ 
 				err += dx; 
 				y0 += sy; 
-				moved_y + TRUE;
+				moved_y = TRUE;
 			}
 		}
 	}
