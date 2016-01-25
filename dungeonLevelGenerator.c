@@ -110,11 +110,11 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 				}
 			}
 			
-			printf("rooms[%d].x = %d\n", r, rooms[r].x);
-			printf("rooms[%d].y = %d\n", r, rooms[r].y);
+			//printf("rooms[%d].x = %d\n", r, rooms[r].x);
+			//printf("rooms[%d].y = %d\n", r, rooms[r].y);
 		}
 		
-		printf("Number of attempts = %d\n", num_attempts);
+		//printf("Number of attempts = %d\n", num_attempts);
 		
 		int w;
 		int h;
