@@ -168,7 +168,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			{
 				continue;
 			}
-			int local_distance = sqrt(pow((rooms[r].x+rooms[r].width)/2 - (sorted_rooms[sr].x+sorted_rooms[sr].width)/2,2)+pow((rooms[r].y+rooms[r].height)/2 - (sorted_rooms[sr].y+sorted_rooms[sr].height)/2,2));
+			int local_distance = sqrt(pow(rooms[r].x+(rooms[r].width/2) - sorted_rooms[sr].x+(sorted_rooms[sr].width/2),2)+pow(rooms[r].y+(rooms[r].height/2) - sorted_rooms[sr].y+(sorted_rooms[sr].height/2),2));
 			if(local_distance < distance && local_distance > 0)
 			{
 				distance = local_distance;
