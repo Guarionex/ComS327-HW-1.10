@@ -256,7 +256,7 @@ void Place_Corridor(int x, int y, int id)
 	}
 }
 
-Dungeon_Space_Struct **Generate_Map(int seed)
+Dungeon_Space_Struct **Generate_Map(int *seed)
 {
 	Dungeon_Space_Room *rooms;
 	rooms = generateMultipleRooms(&seed);
