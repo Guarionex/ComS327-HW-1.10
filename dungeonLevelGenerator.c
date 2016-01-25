@@ -235,7 +235,7 @@ void Place_Corridor(int x, int y, int id)
 	snprintf(str, sizeof(char)*2, "%d", id);
 	Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(str);
 	Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
-	if(x0 < 0 || x0 > 79 || y0 < 0 || y0 > 20)
+	if(x < 0 || x > 79 || y < 0 || y > 20)
 	{
 		printf("x0 = %d, y0 = %d\n", x0, y0);
 	}
