@@ -186,53 +186,73 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	{
 		int x0 = sorted_rooms[sr].x;
 		int y0 = sorted_rooms[sr].y;
-		int x1 = sorted_rooms[sr+1].x;
-		int y1 = sorted_rooms[sr+1].y;
+		int x1 = sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].x;
+		int y1 = sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].y;
 		
-		int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
-		int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1; 
-		int err = (dx>dy ? dx : -dy)/2, e2;
+		int dx = abs(x1-x0);//, sx = x0<x1 ? 1 : -1;
+		int dy = abs(y1-y0);//, sy = y0<y1 ? 1 : -1; 
+		int p = 2 * dy - dx; //err = (dx>dy ? dx : -dy)/2, e2;
 		
-		for(;;)
+		
+		int y;
+		int x;
+		int end;
+		if(x0 > x1)
 		{
-			char *str = malloc(sizeof(char) * 2);
-			snprintf(str, sizeof(char)*2, "%d", sr);
-			Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(str);
-			Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
-			if(x0 < 0 || x0 > 79 || y0 < 0 || y0 > 20)
+			x = x1;
+			y = y1;
+			end  = x0;
+		}
+		else
+		{
+			x = x0;
+			y = y0;
+			end = x1;
+		}
+		Place_Corridor(x, y, sr);
+		while(x < end)
+		{
+			x++;
+			if(p < 0)
 			{
-				printf("x0 = %d, y0 = %d\n", x0, y0);
+				p = p + 2 * dy;
 			}
-			switch(dungeon_map[x0][y0].space_type)
+			else
 			{
-				case ROCK:
-					dungeon_map[x0][y0] = cell;
-				break;
-				
-				case ROOM:
-					//ignore
-				break;
-				
-				case CORRIDOR:
-					//ignore
-				break;
-			}//setPixel(x0,y0);
-			if (x0==x1 && y0==y1) break;
-			e2 = err;
-			if (e2 >-dx)
-			{
-				err -= dy;
-				x0 += sx;
+				y++;
+				p = p + 2* (dy - dx);
 			}
-			if (e2 < dy)
-			{
-				err += dx;
-				y0 += sy;
-			}
+			Place_Corridor(x, y, sr);
 		}
 		
 	}
 	
+}
+
+void Place_Corridor(int x, int y, int id)
+{
+	char *str = malloc(sizeof(char) * 2);
+	snprintf(str, sizeof(char)*2, "%d", id);
+	Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(str);
+	Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
+	if(x0 < 0 || x0 > 79 || y0 < 0 || y0 > 20)
+	{
+		printf("x0 = %d, y0 = %d\n", x0, y0);
+	}
+	switch(dungeon_map[x0][y0].space_type)
+	{
+		case ROCK:
+			dungeon_map[x0][y0] = cell;
+		break;
+		
+		case ROOM:
+			//ignore
+		break;
+		
+		case CORRIDOR:
+			//ignore
+		break;
+	}
 }
 
 void Draw_Dungeon()
