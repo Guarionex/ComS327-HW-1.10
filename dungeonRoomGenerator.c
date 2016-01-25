@@ -19,7 +19,7 @@ Dungeon_Space_Room generateRoom()
 	
 	//srand(seed_local);
 
-	Dungeon_Space_Room room = Dungeon_Space_Room_create((rand()%4)+3, (rand()%4)+2); 
+	Dungeon_Space_Room room = Dungeon_Space_Room_create((rand()%8)+3, (rand()%7)+2); 
 	
 	return room;
 }
