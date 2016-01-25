@@ -138,6 +138,11 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 {
 	Dungeon_Space_Room sorted_rooms[num_rooms];
 	int sorted_indecis[num_rooms];
+	int si;
+	for(si = 0; si < num_rooms; si++)
+	{
+		sorted_indecis[si] = -1;
+	}
 	sorted_rooms[0] = rooms[0];
 	sorted_indecis[0] = 0;
 	printf("In connected rooms\n");
