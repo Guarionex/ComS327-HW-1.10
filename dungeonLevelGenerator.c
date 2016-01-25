@@ -259,7 +259,7 @@ void Place_Corridor(int x, int y, int id)
 Dungeon_Space_Struct **Generate_Map(int *seed)
 {
 	Dungeon_Space_Room *rooms;
-	rooms = generateMultipleRooms(&seed);
+	rooms = generateMultipleRooms(seed);
 	
 	int total_num_rooms = 0;
 	
@@ -270,8 +270,8 @@ Dungeon_Space_Struct **Generate_Map(int *seed)
 	}
 	printf("total_num_rooms = %d\n", total_num_rooms);
 	
-	Create_Blank_Map(&seed);
-	printf("Seed is %d\n", seed);
+	Create_Blank_Map(seed);
+	printf("Seed is %d\n", *seed);
 	bool success = FALSE;
 	int attempts = 0;
 	while(success == FALSE || attempts > 2000)
