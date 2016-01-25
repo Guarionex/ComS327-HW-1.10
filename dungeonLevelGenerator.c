@@ -202,11 +202,27 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		
 		for(;;)
 		{
-			Place_Corridor(x0,y0, sr);
+			if(moved_x == TRUE && moved_y == TRUE)
+			{
+				Place_Corridor(x0 - sx, y0, sr);
+			}
+			Place_Corridor(x0,y0, sr); //int x, int y, int index
 			if (x0==x1 && y0==y1) break;
 			e2 = err;
-			if (e2 >-dx) { err -= dy; x0 += sx; }
-			if (e2 < dy) { err += dx; y0 += sy; }
+			bool moved_x = FALSE;
+			bool moved_y = FALSE;
+			if(e2 >-dx)
+			{ 
+				err -= dy; 
+				x0 += sx; 
+				moved_x = TRUE;
+			}
+			if(e2 < dy)
+			{ 
+				err += dx; 
+				y0 += sy; 
+				moved_y + TRUE;
+			}
 		}
 	}
 	
