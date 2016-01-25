@@ -239,10 +239,10 @@ void Place_Corridor(int x, int y, int id)
 	{
 		printf("x0 = %d, y0 = %d\n", x, y);
 	}
-	switch(dungeon_map[x0][y0].space_type)
+	switch(dungeon_map[x][y].space_type)
 	{
 		case ROCK:
-			dungeon_map[x0][y0] = cell;
+			dungeon_map[x][y] = cell;
 		break;
 		
 		case ROOM:
