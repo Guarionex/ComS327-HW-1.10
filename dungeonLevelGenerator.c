@@ -195,6 +195,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		int y1 = sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].y + (sorted_rooms[((sr+1) < num_rooms) ? sr+1 : 0].height / 2);
 		
 		
+		
 		int dx = abs(x1-x0), sx = x0<x1 ? 1 : -1;
 		int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1; 
 		int err = (dx>dy ? dx : -dy)/2, e2;
@@ -204,24 +205,8 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			Place_Corridor(x0,y0, sr);
 			if (x0==x1 && y0==y1) break;
 			e2 = err;
-			bool moved = FALSE;
-			if(e2 < dy)
-			{ 
-				err += dx;
-				y0 += sy; 
-				moved = TRUE;
-			}
-			if(e2 >-dx) 
-			{ 
-				err -= dy;
-				if(moved == FALSE)
-				{
-					x0 += sx;
-					moved = TRUE;
-				}
-			}
-			
-			
+			if (e2 >-dx) { err -= dy; x0 += sx; }
+			if (e2 < dy) { err += dx; y0 += sy; }
 		}
 	}
 	
