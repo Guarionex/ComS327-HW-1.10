@@ -1,1 +1,70 @@
 1/21/16 Started Project
+1/21/16 Made header with struct of rock, room, and corridor, along with an enumeration for each of those three
+1/21/16		Also made a generic struct that can be one of the three
+1/22/16 Made the union in the header
+1/22/16 Added destroy
+1/22/16 Made a union tag with a parent struct
+1/22/16 Also better defined constructor and deconstructors
+1/22/16 Fixed bugs in DungeonObjects.c
+1/22/16 Fixed deconstructors bugs related to pointers
+1/22/16 Change the structs inside union and structs to pointer
+1/22/16 Removed pointers to structs
+1/22/16 Added pass by reference in dungeonObjects.c
+1/22/16 Trying pointer implementation again
+1/22/16 Added pointer return to constructors
+1/22/16 Removed pointers from header
+1/22/16 Change from arrows to dots
+1/22/16 Removed mallocs and deconstructors
+1/22/16 Practicing rand() implementation and use from lecture
+1/22/16 Practicing using modulos to get a specific range of random numbers
+1/22/16 Testing my random implementation
+1/22/16 Testing for loop with pointer instead of counter int
+1/22/16 A lot of testing and bug fixing looping by pointer
+1/22/16 After several hours finally figured out looping by pointers
+1/23/16 Started Makefile
+1/23/16 Beginning dungeonRoomGenerator to make array of random rooms of random sizes
+1/23/16 Converting time_t to int
+1/23/16 Fixed small pointer to int bug
+1/23/16 Adding printf for debugging
+1/23/16 Changed how I'm using random for room generator
+1/23/16 Fixed parameters in header file
+1/23/16 Changed loop termination for looping through pointer of rooms (array)
+1/23/16 Experimenting loop termination with an invalid extra room at the end of the array to determine size
+1/23/16 Fully fixed for loop termination
+1/24/16 Testing tagged union
+1/24/16 Bug fix in tagged union
+1/24/16 Testing generating blank dungeonObjects
+1/24/16 Fixed global double pointer to tagged union
+1/24/16 Forgot stdio.h in dungeonLevelGenerator.can
+1/24/16 Testing room placement
+1/24/16 Fixed room generating in borders
+1/24/16 Added more debugging printf
+1/24/16 Fixed while loop condition for room placement
+1/24/16 Changed drawing to switch case
+1/24/16 Added corridor case for switch case
+1/24/16 Fixed room drawing
+1/24/16 Added condition to prevent room overlap
+1/24/16 Fixed boolean condition
+1/24/16 Added 1 spacing to room placement
+1/24/16 Enhanced overlap check
+1/24/16 Fixed boolean flags
+1/24/16 Fixed 1 spacing
+1/24/16 Started sorting rooms in rooms array by closest to first room, then closest to second, etc...
+1/24/16 Bug fixing room sorting
+1/24/16 Added debug printf to room sorting
+1/24/16 Checking sorting results
+1/24/16 Changed distance from center of room rather than corner
+1/24/16 Implementing Bresenham's line algorithm
+1/24/16 Bug fix to itoa()
+1/24/16 itoa not supported, changing to snprintf
+1/24/16 More use of debugging with printf
+1/24/16 Experimenting with line algorithm
+1/24/16 Experimenting enhancing the line algorithm to avoid diagonals
+1/24/16 Succesfully implemented line algorithm without diagonals
+1/24/16 Experimenting with more rooms and larger rooms to determine stability
+1/24/16 Done experimenting. Most stable parameters are 5 to 7 rooms of up to size 6x5
+1/24/16 Moved dungeon generation from main function to it's own function
+1/24/16 Bug fixing final implementation
+1/24/16 dungeon generator function returns a 2D array representation of dungeon and uses it to draw
+1/26/16 Finished Makefile, README, and the code itself
+1/26/16 Finished CHANGELOG. Ready to package and deliver
