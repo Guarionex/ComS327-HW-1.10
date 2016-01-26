@@ -1,0 +1,13 @@
+Homework 1.01 - Dungeon Generation
+By: Edwin O. Martinez Velazquez
+
+Dungeon Generations randomly generates a dungeon in a 80*21 grid.
+It will randomly generate between 5 to 7 rooms.
+The rooms will be of a random size between 3x2 to 6x5. This is due to stability
+It connects the rooms using Bresenham's Line Algorithm, making a line to the closest room, then looping the first room connected with the last one to force cycles.
+Rooms, Rocks, and Corridors are their own structs.
+The dungeon is a 80x21 matrix of a tagged union, containing the tag of type and an instance of room, rock, or corridor.
+
+Usage using time as seed: ./dungeonGenerator
+
+Usage using int as seed: ./dungeonGenerator <number>
