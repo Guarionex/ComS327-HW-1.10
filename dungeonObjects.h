@@ -27,11 +27,13 @@ typedef struct
   int y;
   int width;
   int height;
+  int density;
 } Dungeon_Space_Room;
 
 typedef struct
 {
   char *id;
+  int density;
   //Dungeon_Space_Room previous;
   //Dungeon_Space_Room next;
 } Dungeon_Space_Corridor;

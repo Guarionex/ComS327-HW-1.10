@@ -31,7 +31,7 @@ void Create_Blank_Map(int *seed)
 		dungeon_map[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
 		for(y = 0; y < 21; y++)
 		{
-			Dungeon_Space_Rock rock = Dungeon_Space_Rock_create((x == 0 || y == 0 || x == 79 || y == 20) ? INT_MAX : (rand()%100)+1);
+			Dungeon_Space_Rock rock = Dungeon_Space_Rock_create((x == 0 || y == 0 || x == 79 || y == 20) ? 255 : (rand()%255)+1);
 			Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROCK, rock);
 			dungeon_map[x][y] = cell;
 		}
@@ -301,7 +301,7 @@ void Draw_Dungeon(Dungeon_Space_Struct **dungeon)
 			{
 				case ROCK :
 				
-					if(dungeon[x][y].space_union.rock.density == INT_MAX)
+					if(dungeon[x][y].space_union.rock.density == 255)
 					{
 						printf("R");
 					}

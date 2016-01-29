@@ -18,6 +18,7 @@ Dungeon_Space_Room Dungeon_Space_Room_create(int width, int height)
   room.height = height;
   room.x = -1;
   room.y = -1;
+  room.density = 0;
   return room;
 }
 
@@ -25,6 +26,7 @@ Dungeon_Space_Corridor Dungeon_Space_Corridor_create(char *id/*, Dungeon_Space_R
 {
   Dungeon_Space_Corridor corridor;// = malloc(sizeof(Dungeon_Space_Corridor));
   corridor.id = strdup(id);
+  corridor.density = 0;
   //corridor->previous = from;
   //corridor->next = to;
   return corridor;
