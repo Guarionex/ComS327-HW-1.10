@@ -74,11 +74,8 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
-		char *dungeonFolder = getenv(strcat(getenv("HOME"), "/.rlg327"));
-		printf("getenv return is %s\n", dungeonFolder);
-		int m = mkdir(getenv("HOME"), ACCESSPERMS);
-		printf("mkdir did %d\n", m);
-		if( m == 0)
+		getenv(strcat(getenv("HOME"), "/.rlg327"));
+		if( mkdir(getenv("HOME"), ACCESSPERMS) == 0)
 		{
 			printf("File was created\n");
 		}
