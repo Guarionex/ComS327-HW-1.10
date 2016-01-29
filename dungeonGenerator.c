@@ -74,6 +74,14 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
 	
+		if(getnv(strcat(getenv("HOME"), "/.rlg327/")) == NULL)
+		{
+			printf("Need to make file\n");
+		}
+		else
+		{
+			printf("Folder exist\n");
+		}
 		printf("HOME : %s\n", getenv("HOME"));
 		printf("HOME : %s\n", getenv("~/COMS327"));
 		printf("HOME : %s\n", strcat(getenv("HOME"), "/COMS327/"));
