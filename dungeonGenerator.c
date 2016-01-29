@@ -38,7 +38,8 @@ int main(int argc, char *argv[])
 			}
 			else
 			{
-				printf("Usage: ./dungeonGenerator (<int> XOR --load) OR --save\n");
+				printf("Invalid argument %s\n", argv[c]);
+				return 0;
 			}
 		}
 	}
