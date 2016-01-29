@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
 		getenv(strcat(getenv("HOME"), "/.rlg327"));
 		mkdir(getenv("HOME"), ACCESSPERMS);		
 		
+		
 		//save();
 		printf("save\n");		
 	}
