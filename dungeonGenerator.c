@@ -74,7 +74,9 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
-		int m = mkdir(getenv(strcat(getenv("HOME"), "/.rlg327")), ACCESSPERMS);
+		char *dungeonFolder = getenv(strcat(getenv("HOME"), "/.rlg327"));
+		printf("getenv return is %s\n", dungeonFolder);
+		int m = mkdir(getenv("HOME"), ACCESSPERMS);
 		printf("mkdir did %d\n", m);
 		if( m == 0)
 		{
