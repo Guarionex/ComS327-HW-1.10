@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 	{
 	
 		printf("HOME : %s\n", getenv("HOME"));
-		printf("HOME : %s\n", getenv("~/"));
+		printf("HOME : %s\n", getenv("~/COMS327"));
 		//save();
 		printf("save\n");		
 	}
