@@ -76,8 +76,8 @@ int main(int argc, char *argv[])
 	{
 	
 		char *test = getenv(strcat(getenv("HOME"), "/.rlg327/"));
-		printf("Path exist? %s\n", *test);
-		if( *test == NULL)
+		printf("Path exist? %s\n", test);
+		if( *test == '\0')
 		{
 			printf("Need to make file\n");
 			printf("HOME : %s\n", getenv("HOME"));
