@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	else if(argc >= 2)
 	{
 		int c;
-		for(c = 0; c < argc; c++)
+		for(c = 1; c < argc; c++)
 		{
 			if(isstring(argv[c]) == FALSE)
 			{
