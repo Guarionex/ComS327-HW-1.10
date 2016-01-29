@@ -53,10 +53,10 @@ bool isstring(char *string)
 {
   while(*string != '\0')
     {
-      if(isdigit(*string) == FALSE)
-	{
-	  return FALSE;
-	}
+		if(isdigit(*string) != 0)
+		{
+		  return FALSE;
+		}
       string++;
     }
   return TRUE;
