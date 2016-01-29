@@ -10,9 +10,9 @@ dungeonRoomGenerator.o: dungeonRoomGenerator.h dungeonRoomGenerator.c
 dungeonLevelGenerator.o: dungeonLevelGenerator.h dungeonLevelGenerator.c
 	gcc -g -Wall -Werror dungeonLevelGenerator.c -c
 
-dungeonIO.o: dungeonIO.h dungeonIO.clean
+dungeonIO.o: dungeonIO.h dungeonIO.c
 	gcc -g -Wall -Werror dungeonIO.c -c
-	
+
 dungeonGenerator.o: dungeonGenerator.c
 	gcc -g -Wall -Werror dungeonGenerator.c -c
 
