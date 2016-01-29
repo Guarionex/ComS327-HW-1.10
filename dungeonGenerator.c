@@ -73,6 +73,8 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
+	
+		printf("HOME : %s\n", getenv("HOME"));
 		//save();
 		printf("save\n");		
 	}
