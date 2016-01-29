@@ -8,9 +8,10 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	int f;
 	for(f = 0; f < size; f++)
 	{
+		printf("flag = %d\n", flag[f]);
 		if(flag[f] == contains)
 		{
-			printf("flag = %d\n", flag[f]);
+			
 			return TRUE;
 		}
 	}
