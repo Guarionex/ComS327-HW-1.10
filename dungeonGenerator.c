@@ -29,14 +29,16 @@ int main(int argc, char *argv[])
 			{
 				if(strcmp(argv[c], "--save") == 0)
 				{
-					printf("save\n");
 					flags[c - 1] = SAVE;
 				}
 				else if(strcmp(argv[c], "--load") == 0)
 				{
-					printf("load\n");
 					flags[c - 1] = LOAD;
 				}
+			}
+			else
+			{
+				printf("Usage: ./dungeonGenerator (<int> XOR --load) OR --save\n");
 			}
 		}
 	}
@@ -46,17 +48,34 @@ int main(int argc, char *argv[])
 		printf("Usage: ./dungeonGenerator (<int> XOR --load) OR --save\n");
 		return 0;
 	}
-	
-	if(Contains_Flag(flags, (argc - 1), SEED) == FALSE)
+	else if(Contains_Flag(flags, (argc - 1), SEED) == FALSE && Contains_Flag(flags, (argc - 1), LOAD) == FALSE)
 	{
 		seed = time(NULL);
 	}
-	srand(seed);
 	
-	int int_seed = seed;
+	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
+	{
+		//load()
+		//generate()
+		//draw()
+		printf("load\n");
+	}
+	else
+	{
+		srand(seed);
+		
+		int int_seed = seed;
+		
+		Dungeon_Space_Struct **dungeon = Generate_Map(&int_seed);
+		Draw_Dungeon(dungeon);
+	}
 	
-	Dungeon_Space_Struct **dungeon = Generate_Map(&int_seed);
-	Draw_Dungeon(dungeon);
+	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
+	{
+		//save();
+		printf("save\n");		
+	}
+	
 	
 	return 0;
 }
