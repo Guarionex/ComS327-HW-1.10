@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	if(Contains_Flag(flags, (argc - 1), SEED) == Contains_Flag(flags, (argc - 1), LOAD))
+	if(Contains_Flag(flags, (argc - 1), SEED) == TRUE && Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
 		printf("Usage: ./dungeonGenerator (<int> XOR --load) OR --save\n");
 		return 0;
