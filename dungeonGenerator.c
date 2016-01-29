@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <ctype.h>
 #include "dungeonObjects.h"
 #include "dungeonRoomGenerator.h"
 #include "dungeonLevelGenerator.h"
@@ -23,7 +24,7 @@ int main(int argc, char *argv[])
 			if(isstring(argv[c]) == FALSE)
 			{
 				seed = atoi(argv[c]);
-				printf("seed = %d\n", seed);
+				printf("seed = %ld\n", seed);
 			}
 			else if(strstr(argv[c], "--") != NULL)
 			{
