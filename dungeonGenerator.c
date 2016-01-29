@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
 	
-		char *test = getenv(strcat(getenv("HOME"), "/.rlg327/"));
+		char *test = getenv(strcat(getenv("HOME"), "/.rlg327"));
 		printf("Path exist? %s\n", test);
 		if( test == NULL)
 		{
