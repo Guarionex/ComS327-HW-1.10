@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	int f;
 
 	if(Contains_Flag(flags, (argc - 1), SEED) == FALSE)
 	{
