@@ -3,6 +3,7 @@
 #include <time.h>
 #include <string.h>
 #include <ctype.h>
+#include <sys/stat.h>
 #include "dungeonObjects.h"
 #include "dungeonRoomGenerator.h"
 #include "dungeonLevelGenerator.h"
@@ -78,7 +79,7 @@ int main(int argc, char *argv[])
 		{
 			printf("Need to make file\n");
 			printf("HOME : %s\n", getenv("HOME"));
-			printf("Success = %d\n", mkdir(getenv("HOME")));
+			printf("Success = %d\n", mkdir(getenv("HOME"), ACCESSPERMS));
 		}
 		else
 		{
