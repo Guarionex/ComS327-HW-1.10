@@ -75,13 +75,16 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
 	
-		char *test = getenv(strcat(getenv("HOME"), "/.rlg327"));
+		char *dungeonFolder = strcat(getenv("HOME"), "/.rlg327");
+		char *test = getenv(dungeonFolder);
 		printf("Path exist? %s\n", test);
 		if( test == NULL)
 		{
 			printf("Need to make file\n");
+			printf("dungeonFolder before: %s\n", getenv(dungeonFolder));
 			printf("HOME : %s\n", getenv("HOME"));
 			printf("Success = %d\n", mkdir(getenv("HOME"), ACCESSPERMS));
+			printf("dungeonFolder after: %s\n", getenv(dungeonFolder));
 		}
 		else
 		{
