@@ -10,8 +10,6 @@ typedef enum
 	LOAD
 } Flags;
 
-
-
 bool Contains_Flag(Flags *flag, int size, Flags contains);
 
 

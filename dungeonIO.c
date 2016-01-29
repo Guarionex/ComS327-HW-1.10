@@ -1,8 +1,6 @@
 #include "dungeonIO.h"
 #include <stdio.h>
 
-
-
 bool Contains_Flag(Flags *flag, int size, Flags contains)
 {
 	int f;
