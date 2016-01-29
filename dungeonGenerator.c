@@ -75,9 +75,7 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
 		getenv(strcat(getenv("HOME"), "/.rlg327"));
-		mkdir(getenv("HOME"), ACCESSPERMS);
-		
-		
+		mkdir(getenv("HOME"), ACCESSPERMS);		
 		
 		//save();
 		printf("save\n");		
