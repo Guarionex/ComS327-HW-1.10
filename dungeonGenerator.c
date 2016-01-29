@@ -74,8 +74,9 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
-			
-		if(mkdir(getenv(strcat(getenv("HOME"), "/.rlg327")), ACCESSPERMS) == 0)
+		int m = mkdir(getenv(strcat(getenv("HOME"), "/.rlg327")), ACCESSPERMS);
+		printf("mkdir did %d\n", m);
+		if( m == 0)
 		{
 			printf("File was created\n");
 		}
