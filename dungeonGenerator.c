@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
 	
-		if(getnv(strcat(getenv("HOME"), "/.rlg327/")) == NULL)
+		if(getenv(strcat(getenv("HOME"), "/.rlg327/")) == NULL)
 		{
 			printf("Need to make file\n");
 		}
