@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 	int f;
 	for(f = 0; f < (argc - 1); f++)
 	{
-		printf("argc - 1 = %d", argc -1)
+		printf("argc - 1 = %d", argc -1);
 		printf("Main flag = %d\n", flags[f]);
 		
 	}
