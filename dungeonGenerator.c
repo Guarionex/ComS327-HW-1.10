@@ -13,8 +13,7 @@ bool isstring(char *string);
 int main(int argc, char *argv[])
 {
 	time_t seed;
-	Flags *flags;
-	flags = malloc((argc - 1) * sizeof(Flags));
+	Flags flags[argc - 1];
 	
 	if(argc >= 2)
 	{
@@ -24,19 +23,19 @@ int main(int argc, char *argv[])
 			if(isstring(argv[c]) == FALSE)
 			{
 				seed = atoi(argv[c]);
-				flags[c] = SEED;
+				flags[c - 1] = SEED;
 			}
 			else if(strstr(argv[c], "--") != NULL)
 			{
 				if(strcmp(argv[c], "--save") == 0)
 				{
 					printf("save\n");
-					flags[c] = SAVE;
+					flags[c - 1] = SAVE;
 				}
 				else if(strcmp(argv[c], "--load") == 0)
 				{
 					printf("load\n");
-					flags[c] = LOAD;
+					flags[c - 1] = LOAD;
 				}
 			}
 		}
