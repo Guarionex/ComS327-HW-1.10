@@ -1,7 +1,7 @@
 #include "dungeonIO.h"
 #include <stdio.h>
 
-Flags *flags;
+
 
 bool Contains_Flag(Flags *flag, int size, Flags contains)
 {
@@ -9,10 +9,19 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	for(f = 0; f < size; f++)
 	{
 		printf("flag = %d\n", flag[f]);
-		if(flag[f] == contains)
+		switch(contains)
 		{
+			case SEED:
+				if(flag[f] == SEED) return TRUE;
+			break;
 			
-			return TRUE;
+			case SAVE:
+				if(flag[f] == SAVE) return TRUE;
+			break;
+			
+			case LOAD:
+				if(flag[f] == LOAD) return TRUE;
+			break;
 		}
 	}
 	

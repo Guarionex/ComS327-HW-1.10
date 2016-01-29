@@ -10,7 +10,7 @@ typedef enum
 	LOAD
 } Flags;
 
-extern Flags *flags;
+
 
 bool Contains_Flag(Flags *flag, int size, Flags contains);
 

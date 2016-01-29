@@ -13,6 +13,7 @@ bool isstring(char *string);
 int main(int argc, char *argv[])
 {
 	time_t seed;
+	Flags *flags;
 	flags = malloc((argc - 1) * sizeof(Flags));
 	
 	if(argc >= 2)
@@ -41,12 +42,13 @@ int main(int argc, char *argv[])
 		}
 	}
 	int f;
-	for(f = 0; f < argc - 1; f++)
+	for(f = 0; f < (argc - 1); f++)
 	{
+		printf("argc - 1 = %d", argc -1)
 		printf("Main flag = %d\n", flags[f]);
 		
 	}
-	if(Contains_Flag(flags, argc - 1, SEED) == FALSE)
+	if(Contains_Flag(flags, (argc - 1), SEED) == FALSE)
 	{
 		seed = time(NULL);
 	}
