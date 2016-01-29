@@ -1,4 +1,5 @@
 #include "dungeonIO.h"
+#include <stdio.h>
 
 Flags *flags;
 
@@ -9,6 +10,7 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	{
 		if(flag[f] == contains)
 		{
+			printf("flag = %d\n", flag[f]);
 			return TRUE;
 		}
 	}
