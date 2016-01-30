@@ -83,15 +83,15 @@ int main(int argc, char *argv[])
 	{
 		strcat(dungeonFolder, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
-		if(access(dungeonFile, F_OK) == -1)
+		if(access(dungeonFolder, F_OK) == -1)
 		{
 			if (errno == ENOENT) 
 			{
-				printf ("%s does not exist\n", dungeonFile);
+				printf ("%s does not exist\n", dungeonFolder);
 			}
 			else if (errno == EACCES) 
 			{
-				printf ("%s is not accessible\n", dungeonFile);
+				printf ("%s is not accessible\n", dungeonFolder);
 			}
 			return 0;
 		}
