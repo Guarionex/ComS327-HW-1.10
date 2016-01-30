@@ -41,6 +41,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		}
 	}
 	
+	fclose(f);
 	free(header);
 	
 	return dungeon_map_load;
