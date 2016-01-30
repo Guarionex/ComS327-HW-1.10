@@ -21,8 +21,8 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
 	FILE *f;
-	//printf("file = %s\n", file);
-	if((f = fopen(file, "r")) == NULL)
+	printf("file = %s\n", file);
+	if((f = fopen("/HOME/edwinom/.rlg327/810082170.rlg327"", "r")) == NULL)
 	{
 		if (errno == EINVAL) 
 		{
@@ -30,7 +30,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		}
 		else 
 		{
-			printf ("Other error");
+			printf ("Other error\n");
 		}
 	}
 	char *header = malloc (6 * sizeof(char));
@@ -38,9 +38,9 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	{
 		printf("Header is %s\n", header);
 	}*/
-	printf("Before read\n");
-	//fread(header, sizeof (char), 6, f);
-    //printf("Header is %s\n", header);
+	
+	fread(header, sizeof (char), 6, f);
+    printf("Header is %s\n", header);
 	fclose(f);
 	free(header);
 	
