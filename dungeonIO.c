@@ -22,7 +22,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
 	FILE *f;
 	printf("file = %s\n", file);
-	if((f = fopen("/HOME/edwinom/.rlg327/810082170.rlg327"", "r")) == NULL)
+	if((f = fopen("/HOME/edwinom/.rlg327/810082170.rlg327", "r")) == NULL)
 	{
 		if (errno == EINVAL) 
 		{
