@@ -47,8 +47,8 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	
 	char *version = malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
-	char correctFormat[4] = {0x00, 0x00, 0x00, 0x00};
-	if(items < 4 || strcmp(version, correctFormat) != 0)
+	//char correctFormat[4] = {0x00, 0x00, 0x00, 0x00};
+	if(items < 4 || strcmp(version, "\x00\x00\x00\x00") != 0)
 	{
 		
 		printf("File is not in the correct format\n");
