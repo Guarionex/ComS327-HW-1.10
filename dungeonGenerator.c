@@ -13,7 +13,7 @@
 
 bool isstring(char *string);
 
-char *dungeonFolder = strcat(getenv("HOME"), "/.rlg327/");
+char *dungeonFolder;
 
 int main(int argc, char *argv[])
 {
@@ -76,12 +76,11 @@ int main(int argc, char *argv[])
 		seed = time(NULL);
 	}
 	
-	
+	dungeonFolder = strcat(getenv("HOME"), "/.rlg327/");
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
-		char *dungeonFile = strdup(dungeonFolder);
-		dungeonFile = strcat(dungeonFile, dungeonFileName);
+		strcat(dungeonFolder, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
 		/*if(access(dungeonFile, F_OK) == -1)
 		{
@@ -96,7 +95,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}*/
 		
-		Load_Dungeon(dungeonFile);
+		Load_Dungeon(dungeonFolder);
 		//generate()
 		//draw()
 		printf("load\n");
