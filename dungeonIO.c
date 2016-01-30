@@ -38,7 +38,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	{
 		printf("Header is %s\n", header);
 	}*/
-	
+	printf("Before Header\n");
 	fread(header, sizeof (char), 6, f);
     printf("Header is %s\n", header);
 	fclose(f);

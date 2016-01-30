@@ -13,6 +13,8 @@
 
 bool isstring(char *string);
 
+char *dungeonFolder = strcat(getenv("HOME"), "/.rlg327/");
+
 int main(int argc, char *argv[])
 {
 	time_t seed;
@@ -74,7 +76,7 @@ int main(int argc, char *argv[])
 		seed = time(NULL);
 	}
 	
-	char *dungeonFolder = strcat(getenv("HOME"), "/.rlg327/");
+	
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
