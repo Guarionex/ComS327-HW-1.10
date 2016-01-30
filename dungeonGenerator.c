@@ -62,8 +62,10 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
 		char *dungeonFile = strdup(dungeonFolder);
+		printf("dungeonFile = %s\n", dungeonFile);
 		dungeonFile = strstr(dungeonFile, "dungeon");
 		printf("dungeonFolder = %s\n", dungeonFolder);
+		printf("dungeonFile = %s\n", dungeonFile);
 		if(access(strcat(dungeonFolder, "dungeon"), F_OK) == -1)
 		{
 			if (errno == ENOENT) 
