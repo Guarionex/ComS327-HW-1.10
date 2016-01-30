@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		
-		Dungeon_Space_Struct **dungeon_map_load = Load_Dungeon(dungeonFile);
+		Load_Dungeon(dungeonFile);
 		//generate()
 		//draw()
 		printf("load\n");
