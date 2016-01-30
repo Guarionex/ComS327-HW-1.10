@@ -40,7 +40,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	
 	char *headerRaw = malloc (6 * sizeof(char));
 	int items = fread(headerRaw, sizeof(char), 6, f);
-	uint64_t headerBE = (uint64_t) headerRaw;
+	uint64_t headerBE = *((uint64_t *) headerRaw);
 	printf("Hex header = 0x%lx\n", headerBE);
 	/*uint64_t headerBE = headerRaw;
 	uint64_t headerH = be64toh(headerBE);
