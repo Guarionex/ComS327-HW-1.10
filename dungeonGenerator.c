@@ -17,12 +17,19 @@ int main(int argc, char *argv[])
 {
 	time_t seed;
 	Flags flags[argc - 1];
+	char *dungeonFileName;
+	bool load_param = FALSE;
 	
 	if(argc >= 2)
 	{
 		int c;
 		for(c = 1; c < argc; c++)
 		{
+			if(load_param == TRUE)
+			{
+				load_param = FALSE;
+				continue;
+			}
 			if(isstring(argv[c]) == FALSE)
 			{
 				seed = atoi(argv[c]);
@@ -36,6 +43,15 @@ int main(int argc, char *argv[])
 				}
 				else if(strcmp(argv[c], "--load") == 0)
 				{
+					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == TRUE )
+					{
+						dungeonFileName = strdup(argv[c + 1]);
+						load_param = TRUE;
+					}
+					else 
+					{
+						dungeonFileName = strdup("dungeon");
+					}
 					flags[c - 1] = LOAD;
 				}
 			}
@@ -62,7 +78,8 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
 		char *dungeonFile = strdup(dungeonFolder);
-		dungeonFile = strcat(dungeonFile, "dungeon");
+		dungeonFile = strcat(dungeonFile, dungeonFileName);
+		printf("dungeonFile = %s\n", dungeonFile);
 		if(access(dungeonFile, F_OK) == -1)
 		{
 			if (errno == ENOENT) 

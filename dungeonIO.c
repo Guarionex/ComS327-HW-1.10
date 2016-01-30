@@ -20,5 +20,7 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 /*Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
 	FILE *f;
+	f = fopen(file, "r");
+	
 	
 }*/
