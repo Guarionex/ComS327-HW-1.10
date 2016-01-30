@@ -65,11 +65,11 @@ int main(int argc, char *argv[])
 		{
 			if (errno == ENOENT) 
 			{
-				printf ("%s does not exist\n", strcat(dungeonFolder, "dungeon"));
+				printf ("%s does not exist\n", dungeonFolder);
 			}
 			else if (errno == EACCES) 
 			{
-				printf ("%s is not accessible\n", strcat(dungeonFolder, "dungeon"));
+				printf ("%s is not accessible\n", dungeonFolder);
 			}
 			return 0;
 		}
