@@ -38,19 +38,19 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		return 0;
 	}
 	
-	//char *headerRaw = malloc (8 * sizeof(char));
-	uint64_t headerBE;
-	int items = fread(headerBE, sizeof(char) * 6, 1, f);
+	char *headerRaw = malloc (6 * sizeof(char));
+	int items = fread(headerRaw, sizeof(char), 6, f);
+	uint64_t headerBE = (uint64_t) headerRaw;
 	printf("Hex header = 0x%x\n", headerBE);
 	/*uint64_t headerBE = headerRaw;
 	uint64_t headerH = be64toh(headerBE);
 	char*/
-	if(items < 6 || strcmp(headerBE, "RLG327") != 0)
+	if(items < 6 || strcmp(headerRaw, "RLG327") != 0)
 	{
 		printf("File is not in the correct format\n");
 		return 0;
 	}
-    printf("HeaderBE is %s and read %d items\n", headerBE, items);
+    printf("HeaderRaw is %s and read %d items\n", headerRaw, items);
 	
 	char *version = malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
@@ -63,7 +63,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	printf("Version Marker is %s and read %d items\n", version, items);
 	
 	fclose(f);
-	//free(headerRaw);
+	free(headerRaw);
 	
 	
 	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
