@@ -81,7 +81,7 @@ int main(int argc, char *argv[])
 		char *dungeonFile = strdup(dungeonFolder);
 		dungeonFile = strcat(dungeonFile, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
-		if(access(dungeonFile, F_OK) == -1)
+		/*if(access(dungeonFile, F_OK) == -1)
 		{
 			if (errno == ENOENT) 
 			{
@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
 				printf ("%s is not accessible\n", dungeonFile);
 			}
 			return 0;
-		}
+		}*/
 		
 		Load_Dungeon(dungeonFile);
 		//generate()
