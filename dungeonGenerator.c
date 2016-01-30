@@ -132,9 +132,10 @@ bool isstring(char *string)
 {
   while(*string != '\0')
     {
-		if(isdigit(*string) == 0)
+		if(isdigit(*string) != 0)
 		{
-		  return FALSE;
+			printf("*string = %c", *string);
+			return FALSE;
 		}
       string++;
     }
