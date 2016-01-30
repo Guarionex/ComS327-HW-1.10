@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 		seed = time(NULL);
 	}
 	
-	char *dungeonFolder = strcat(getenv("HOME"), "/.rlg327/");
+	char *dungeonFolder = strcat(getenv("HOME"), "/.rlg3272/");
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
