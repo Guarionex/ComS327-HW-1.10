@@ -40,17 +40,17 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	int items = fread(header, sizeof(char), 6, f);
 	if(items < 6 || strcmp(header, "RLG327") != 0)
 	{
-		printf("File is not in the correct format");
+		printf("File is not in the correct format\n");
 	}
     printf("Header is %s and read %d items\n", header, items);
 	
 	char *version = malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
-	if(items < 4 || strcmp(header, "") != 0)
+	if(items < 4 || strcmp(header, "\0\0\0\0") != 0)
 	{
-		printf("File is not in the correct format");
+		printf("File is not in the correct format\n");
 	}
-	printf("Header is %s and read %d items\n", version, items);
+	printf("Version Marker is %s and read %d items\n", version, items);
 	
 	fclose(f);
 	free(header);
