@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 				}
 				else if(strcmp(argv[c], "--load") == 0)
 				{
-					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL)
+					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == TRUE)
 					{
 						dungeonFileName = strdup(argv[c + 1]);
 						load_param = TRUE;
