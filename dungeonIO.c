@@ -1,5 +1,6 @@
 #include "dungeonIO.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 bool Contains_Flag(Flags *flag, int size, Flags contains)
 {
@@ -16,7 +17,8 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	return FALSE;
 }
 
-Dungeon_Space_Struct **Load_Dungeon(char *file)
+/*Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
+	FILE *f;
 	
-}
+}*/

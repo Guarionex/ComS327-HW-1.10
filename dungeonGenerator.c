@@ -4,6 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include "dungeonObjects.h"
 #include "dungeonRoomGenerator.h"
 #include "dungeonLevelGenerator.h"
@@ -74,8 +75,24 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
-		mkdir(strcat(getenv("HOME"), "/.rlg327/"), ACCESSPERMS);		
-		
+		//mkdir(strcat(getenv("HOME"), "/.rlg327/"), ACCESSPERMS);		
+		int rval = access (strcat(getenv("HOME"), "/.rlg327/"), F_OK);
+		if (rval == 0) 
+		{
+			printf ("%s exists\n", path);
+		}
+		else 
+		{
+			if (errno == ENOENT)
+			{				
+				printf ("%s does not exist\n", path);
+			}
+			else if (errno == EACCES) 
+			{
+				printf ("%s is not accessible\n", path);
+			}
+		}
+		printf("rval = %d\n", rval);
 		//save();
 		printf("save\n");		
 	}
