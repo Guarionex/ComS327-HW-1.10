@@ -86,7 +86,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	int bytesRead = 0;
 	for(y = 0; y < 21; y++)
 	{
-		printf("Y = %d\n", y);
+		//printf("Y = %d\n", y);
 		
 		for(x = 0; x < 80; x++)
 		{
@@ -94,16 +94,16 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 			{
 				dungeon_map_load[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
 			}
-			printf("X = %d\n", x);
+			//printf("X = %d\n", x);
 			Dungeon_Space_Rock rock;
 			if(x == 0 || y == 0 || x == 79 || y == 20)
 			{
-				printf("[x][y] = border\n");
+				printf("[%d][%d] = border\n", x, y);
 				 rock = Dungeon_Space_Rock_create(255);
 			}
 			else
 			{
-				printf("[x][y] = inside\n");
+				printf("[%d][%d] = inside\n", x, y);
 				//read density
 				char *densityRaw = malloc( 1 * sizeof(char));
 				if((items = fread(densityRaw, sizeof(char), 1, f)) < 1)
