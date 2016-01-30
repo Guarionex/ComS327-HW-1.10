@@ -22,7 +22,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
 	FILE *f;
 	//printf("file = %s\n", file);
-	if((f = fopen("test.txt", "r")) == NULL)
+	if((f = fopen(file, "r")) == NULL)
 	{
 		if (errno == EINVAL) 
 		{
@@ -38,8 +38,12 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	{
 		printf("Header is %s\n", header);
 	}*/
-	fread(header, sizeof (char), 6, f);
-    printf("Header is %s\n", header);
+	printf("Before read\n");
+	//fread(header, sizeof (char), 6, f);
+    //printf("Header is %s\n", header);
+	fclose(f);
+	free(header);
+	
 	
 	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
 	int x;
@@ -53,8 +57,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		}
 	}
 	
-	fclose(f);
-	free(header);
+	
 	
 	return dungeon_map_load;
 }
