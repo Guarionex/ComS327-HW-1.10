@@ -61,15 +61,17 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
+		char *dungeonFile = strstr(strdup(dungeonFolder), "dungeon");
+		printf("dungeonFolder = %s\n", dungeonFolder);
 		if(access(strcat(dungeonFolder, "dungeon"), F_OK) == -1)
 		{
 			if (errno == ENOENT) 
 			{
-				printf ("%s does not exist\n", dungeonFolder);
+				printf ("%s does not exist\n", dungeonFile);
 			}
 			else if (errno == EACCES) 
 			{
-				printf ("%s is not accessible\n", dungeonFolder);
+				printf ("%s is not accessible\n", dungeonFile);
 			}
 			return 0;
 		}
