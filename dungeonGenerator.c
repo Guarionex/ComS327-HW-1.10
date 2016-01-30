@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
 					{
 						
 						dungeonFileName = strdup("dungeon");
-					}*/)
+					}*/
 					flags[c - 1] = LOAD;
 				}
 			}
