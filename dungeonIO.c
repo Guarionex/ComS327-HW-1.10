@@ -65,7 +65,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if((items = fread(sizeRaw, sizeof(char), 4, f)) < 4)
 	{
 		printf("File is not in the correct format\n");
-		return 0;
+		//return 0;
 	}
 	uint32_t sizeBE = *((uint32_t *) sizeRaw);
 	//printf("Hex sizeBE = 0x%x\n", sizeBE);
@@ -74,13 +74,14 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if(sizeH < 1495)
 	{
 		printf("File is missing information\n");
+		return 0;
 	}
 	printf("SizeRaw is %u and read %d items\n", sizeH, items);
 	
 	fclose(f);
 	free(header);
 	free(version);
-	free(size);
+	free(sizeRaw);
 	
 	
 	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
