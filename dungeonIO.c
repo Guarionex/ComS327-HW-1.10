@@ -19,7 +19,7 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 
 Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
-	FILE *f;
+	//FILE *f;
 	printf("file = %s\n", file);
 	//f = fopen(file, "r");
 	//char *header = malloc (6 * sizeof(char));
