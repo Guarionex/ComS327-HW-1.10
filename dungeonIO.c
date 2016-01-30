@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <string.h>
 #include <endian.h>
+#include <stdint.h>
 
 bool Contains_Flag(Flags *flag, int size, Flags contains)
 {
@@ -44,12 +45,12 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	/*uint64_t headerBE = headerRaw;
 	uint64_t headerH = be64toh(headerBE);
 	char*/
-	if(items < 6 || strcmp(headerRaw, "RLG327") != 0)
+	if(items < 6 || strcmp(headerBE, "RLG327") != 0)
 	{
 		printf("File is not in the correct format\n");
 		return 0;
 	}
-    printf("HeaderRaw is %s and read %d items\n", headerRaw, items);
+    printf("HeaderBE is %s and read %d items\n", headerBE, items);
 	
 	char *version = malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
@@ -62,7 +63,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	printf("Version Marker is %s and read %d items\n", version, items);
 	
 	fclose(f);
-	free(headerRaw);
+	//free(headerRaw);
 	
 	
 	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
