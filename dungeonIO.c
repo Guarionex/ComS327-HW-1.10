@@ -22,7 +22,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
 	FILE *f;
 	//printf("file = %s\n", file);
-	if((f = fopen(file, "r")) == NULL)
+	if((f = fopen("test.txt", "r")) == NULL)
 	{
 		if (errno == EINVAL) 
 		{
