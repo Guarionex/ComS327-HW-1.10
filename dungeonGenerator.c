@@ -43,12 +43,12 @@ int main(int argc, char *argv[])
 				}
 				else if(strcmp(argv[c], "--load") == 0)
 				{
-					/*if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == TRUE )
+					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL)
 					{
 						dungeonFileName = strdup(argv[c + 1]);
 						load_param = TRUE;
 					}
-					else*/ 
+					else
 					{
 						
 						dungeonFileName = strdup("dungeon");
@@ -132,7 +132,7 @@ bool isstring(char *string)
 {
   while(*string != '\0')
     {
-		if(isdigit(*string) != 0)
+		if(!isdigit(*string))
 		{
 		  return FALSE;
 		}
