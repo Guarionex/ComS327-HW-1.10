@@ -6,6 +6,8 @@
 #include <endian.h>
 #include <stdint.h>
 
+Dungeon_Space_Struct **dungeon_map_load;
+
 bool Contains_Flag(Flags *flag, int size, Flags contains)
 {
 	int f;
@@ -78,16 +80,20 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	}
 	printf("SizeH is %u and read %d items\n", sizeH, items);
 	
-	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
+	dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
 	int x;
 	int y;
 	int bytesRead = 0;
 	for(y = 0; y < 21; y++)
 	{
 		printf("Y = %d\n", y);
-		dungeon_map_load[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
+		
 		for(x = 0; x < 80; x++)
 		{
+			if(x == 0)
+			{
+				dungeon_map_load[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
+			}
 			printf("X = %d\n", x);
 			Dungeon_Space_Rock rock;
 			if(x == 0 || y == 0 || x == 79 || y == 20)
