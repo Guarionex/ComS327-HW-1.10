@@ -65,7 +65,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if((items = fread(sizeRaw, sizeof(char), 4, f)) < 4)
 	{
 		printf("File is not in the correct format\n");
-		//return 0;
+		return 0;
 	}
 	uint32_t sizeBE = *((uint32_t *) sizeRaw);
 	//printf("Hex sizeBE = 0x%x\n", sizeBE);
