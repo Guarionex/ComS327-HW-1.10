@@ -130,14 +130,27 @@ int main(int argc, char *argv[])
 
 bool isstring(char *string)
 {
-  while(*string != '\0')
-    {
+	bool start = TRUE;
+	while(*string != '\0')
+	{
 		if(isdigit(*string) != 0)
 		{
-			printf("*string = %c", *string);
+			//printf("*string = %c", *string);
 			return FALSE;
 		}
-      string++;
+		else if(start == TRUE)
+		{
+			start = FALSE;
+			if(*string != '-')
+			{
+				return TRUE;
+			}
+		}
+		else
+		{
+			return TRUE;
+		}
+	  string++;
     }
-  return TRUE;
+	return TRUE;
 }
