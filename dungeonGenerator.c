@@ -131,12 +131,13 @@ int main(int argc, char *argv[])
 bool isstring(char *string)
 {
 	bool start = TRUE;
+	bool is_string = TRUE;
 	while(*string != '\0')
 	{
 		if(isdigit(*string) != 0)
 		{
 			//printf("*string = %c", *string);
-			return FALSE;
+			is_string = FALSE;
 		}
 		else if(start == TRUE)
 		{
@@ -152,5 +153,5 @@ bool isstring(char *string)
 		}
 	  string++;
     }
-	return TRUE;
+	return is_string;
 }
