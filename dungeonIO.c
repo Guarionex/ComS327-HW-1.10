@@ -17,10 +17,27 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	return FALSE;
 }
 
-/*Dungeon_Space_Struct **Load_Dungeon(char *file)
+Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
 	FILE *f;
 	f = fopen(file, "r");
+	char *header = malloc (6 * sizeof(char));
+	if(fgets(header, 6, f) != NULL)
+	{
+		printf("Header is %s", header);
+	}
 	
+	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
+	int x;
+	int y;
+	for(x = 0; x < 80; x++)
+	{
+		dungeon_map_load[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
+		for(y = 0; y < 21; y++)
+		{
+			
+		}
+	}
 	
-}*/
+	return dungeon_map_load;
+}

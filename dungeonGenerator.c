@@ -80,7 +80,7 @@ int main(int argc, char *argv[])
 	{
 		char *dungeonFile = strdup(dungeonFolder);
 		dungeonFile = strcat(dungeonFile, dungeonFileName);
-		printf("dungeonFile = %s\n", dungeonFile);
+		//printf("dungeonFile = %s\n", dungeonFile);
 		if(access(dungeonFile, F_OK) == -1)
 		{
 			if (errno == ENOENT) 
@@ -94,7 +94,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		
-		//load()
+		Dungeon_Space_Struct **dungeon_map_load = Load_Dungeon(dungeonFile);
 		//generate()
 		//draw()
 		printf("load\n");
@@ -136,7 +136,6 @@ bool isstring(char *string)
 	{
 		if(isdigit(*string) != 0)
 		{
-			//printf("*string = %c", *string);
 			is_string = FALSE;
 		}
 		else if(start == TRUE)
