@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
 		char *dungeonFile = strdup(dungeonFolder);
-		strstr(dungeonFile, "dungeon");
+		dungeonFile = strstr(dungeonFile, "dungeon");
 		printf("dungeonFolder = %s\n", dungeonFolder);
 		if(access(strcat(dungeonFolder, "dungeon"), F_OK) == -1)
 		{
