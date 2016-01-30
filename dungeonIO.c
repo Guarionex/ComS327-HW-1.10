@@ -73,7 +73,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		printf("File is not in the correct format\n");
 		return 0;
 	}*/
-	printf("Size is %u and read %d items\n", sizeH, items);
+	printf("Size is %lu and read %d items\n", sizeH, items);
 	
 	fclose(f);
 	free(header);
