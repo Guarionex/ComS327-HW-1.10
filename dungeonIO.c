@@ -30,16 +30,25 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		}
 		else 
 		{
-			printf ("Other error\n");
+			printf ("File error\n");
 		}
+		return 0;
 	}
 	
 	char *header = malloc (6 * sizeof(char));
 	int items = fread(header, sizeof(char), 6, f);
+	if(items < 6 || strcmp(header, "RLG327") != 0)
+	{
+		printf("File is not in the correct format");
+	}
     printf("Header is %s and read %d items\n", header, items);
 	
 	char *version = malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
+	if(items < 4 || strcmp(header, "") != 0)
+	{
+		printf("File is not in the correct format");
+	}
 	printf("Header is %s and read %d items\n", version, items);
 	
 	fclose(f);
