@@ -19,16 +19,26 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 
 Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
-	//FILE *f;
-	printf("file = %s\n", file);
-	//f = fopen(file, "r");
-	//char *header = malloc (6 * sizeof(char));
+	FILE *f;
+	//printf("file = %s\n", file);
+	if(f = fopen(file, "r") == NULL)
+	{
+		if (errno == EINVAL) 
+		{
+			printf ("The mode is invalid %s\n", file);
+		}
+		else 
+		{
+			printf ("Other error");
+		}
+	}
+	char *header = malloc (6 * sizeof(char));
 	/*if(fgets(header, 6, f) != NULL)
 	{
 		printf("Header is %s\n", header);
 	}*/
-	//fread(header, sizeof (char), 6, f);
-    //printf("Header is %s\n", header);
+	fread(header, sizeof (char), 6, f);
+    printf("Header is %s\n", header);
 	
 	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
 	int x;
@@ -42,8 +52,8 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		}
 	}
 	
-	//fclose(f);
-	//free(header);
+	fclose(f);
+	free(header);
 	
 	return dungeon_map_load;
 }
