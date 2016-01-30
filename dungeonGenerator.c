@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
 		{
 			if(load_param == TRUE)
 			{
+				flags[c - 1] = LOAD;
 				load_param = FALSE;
 				continue;
 			}
