@@ -63,13 +63,17 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	
 	char *size = malloc( 4 * sizeof(char));
 	items = fread(size, sizeof(char), 4, f);
+	uint64_t sizeBE = *((uint64_t *) size);
+	printf("Hex sizeBE = 0x%lx\n", sizeBE);
+	uint64_t sizeH = be64toh(sizeBE);
+	printf("Hex sizeH = 0x%lx\n", sizeH);
 	/*if(items < 4 || strcmp(size, "\x00\x00\x00\x00") != 0)
 	{
 		
 		printf("File is not in the correct format\n");
 		return 0;
 	}*/
-	printf("Size is %s and read %d items\n", size, items);
+	printf("Size is %l and read %d items\n", sizeH, items);
 	
 	fclose(f);
 	free(header);
