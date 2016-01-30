@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+#include <endian.h>
 
 bool Contains_Flag(Flags *flag, int size, Flags contains)
 {
@@ -36,18 +37,21 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		return 0;
 	}
 	
-	char *header = malloc (6 * sizeof(char));
-	int items = fread(header, sizeof(char), 6, f);
-	if(items < 6 || strcmp(header, "RLG327") != 0)
+	char *headerRaw = malloc (8 * sizeof(char));
+	int items = fread(headerRaw, sizeof(char), 6, f);
+	printf("Hex header = 0x%x\n", headerRaw);
+	/*uint64_t headerBE = headerRaw;
+	uint64_t headerH = be64toh(headerBE);
+	char*/
+	if(items < 6 || strcmp(headerRaw, "RLG327") != 0)
 	{
 		printf("File is not in the correct format\n");
 		return 0;
 	}
-    printf("Header is %s and read %d items\n", header, items);
+    printf("HeaderRaw is %s and read %d items\n", headerRaw, items);
 	
 	char *version = malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
-	//char correctFormat[4] = {0x00, 0x00, 0x00, 0x00};
 	if(items < 4 || strcmp(version, "\x00\x00\x00\x00") != 0)
 	{
 		
@@ -57,7 +61,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	printf("Version Marker is %s and read %d items\n", version, items);
 	
 	fclose(f);
-	free(header);
+	free(headerRaw);
 	
 	
 	Dungeon_Space_Struct **dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
