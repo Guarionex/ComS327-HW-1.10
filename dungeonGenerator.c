@@ -57,6 +57,8 @@ int main(int argc, char *argv[])
 		seed = time(NULL);
 	}
 	
+	char *dungeonFolder = strcat(getenv("HOME"), "/.rlg327/");
+	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
 		//load()
@@ -76,21 +78,22 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
+		
 		//mkdir(strcat(getenv("HOME"), "/.rlg327/"), ACCESSPERMS);		
-		int rval = access (strcat(getenv("HOME"), "/.rlg327/"), F_OK);
+		int rval = access (dungeonFolder, F_OK);
 		if (rval == 0) 
 		{
-			printf ("%s exists\n", path);
+			printf ("%s exists\n", dungeonFolder);
 		}
 		else 
 		{
 			if (errno == ENOENT)
 			{				
-				printf ("%s does not exist\n", path);
+				printf ("%s does not exist\n", dungeonFolder);
 			}
 			else if (errno == EACCES) 
 			{
-				printf ("%s is not accessible\n", path);
+				printf ("%s is not accessible\n", dungeonFolder);
 			}
 		}
 		printf("rval = %d\n", rval);
