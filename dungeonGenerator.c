@@ -135,8 +135,10 @@ bool isstring(char *string)
 	bool is_string = TRUE;
 	while(*string != '\0')
 	{
+		printf("Current char = %c\n", *string);
 		if(isdigit(*string) != 0)
 		{
+			printf("NOT a string\n");
 			is_string = FALSE;
 		}
 		else if(start == TRUE)
@@ -144,14 +146,17 @@ bool isstring(char *string)
 			start = FALSE;
 			if(*string != '-')
 			{
+				printf("It's a string\n");
 				return TRUE;
 			}
 		}
 		else
 		{
+			printf("It's a string\n");
 			return TRUE;
 		}
 	  string++;
     }
+	printf("Returned %d\n", is_string);
 	return is_string;
 }
