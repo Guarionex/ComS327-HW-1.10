@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 	{
 		char *dungeonFile = strdup(dungeonFolder);
 		printf("dungeonFile = %s\n", dungeonFile);
-		dungeonFile = strstr(dungeonFile, "dungeon");
+		dungeonFile = strcat(dungeonFile, "dungeon");
 		printf("dungeonFolder = %s\n", dungeonFolder);
 		printf("dungeonFile = %s\n", dungeonFile);
 		if(access(strcat(dungeonFolder, "dungeon"), F_OK) == -1)
