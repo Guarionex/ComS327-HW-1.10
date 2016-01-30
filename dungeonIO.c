@@ -15,3 +15,8 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	
 	return FALSE;
 }
+
+Dungeon_Space_Struct **Load_Dungeon(char *file)
+{
+	
+}
