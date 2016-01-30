@@ -48,11 +48,11 @@ int main(int argc, char *argv[])
 						dungeonFileName = strdup(argv[c + 1]);
 						load_param = TRUE;
 					}
-					else 
+					else*/ 
 					{
 						
 						dungeonFileName = strdup("dungeon");
-					}*/
+					}
 					flags[c - 1] = LOAD;
 				}
 			}
