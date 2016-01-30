@@ -90,7 +90,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		
 		for(x = 0; x < 80; x++)
 		{
-			if(x == 0)
+			if(y == 0)
 			{
 				dungeon_map_load[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
 			}
