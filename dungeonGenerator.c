@@ -101,7 +101,8 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
-		dungeonFile = strdup(dungeonFolder);
+		dungeonFile = malloc(sizeof(dungeonFolder));
+		dungeonFile = strcpy(dungeonFile, dungeonFolder);
 		dungeonFile = realloc(dungeonFile, sizeof(dungeonFileName));
 		strcat(dungeonFile, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
