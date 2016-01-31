@@ -25,7 +25,7 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 
 Dungeon_Space_Struct **Load_Dungeon(char *file)
 {
-	Dungeon_Space_Struct **fail 
+	Dungeon_Space_Struct **fail;
 	fail = malloc(sizeof(Dungeon_Space_Struct *));
 	*fail = malloc(sizeof(Dungeon_Space_Struct));
 	**fail = Dungeon_Space_Struct_create(ROCK, Dungeon_Space_Rock_create(-1));
