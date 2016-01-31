@@ -225,7 +225,8 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file)
 	}
 	
 	char *header = "RLG327"; //malloc(6 * sizeof(char));
-	int items = fread(header, sizeof(char), 6, f);
+	//printf("Header = %s\n", header);
+	int items = fwrite(header, sizeof(char), 6, f);
 	if(items < 6)
 	{
 		printf("File header write failed\n");
