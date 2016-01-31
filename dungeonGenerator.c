@@ -95,10 +95,7 @@ int main(int argc, char *argv[])
 			}
 			return 0;
 		}
-		
-		
 		Draw_Dungeon(Load_Dungeon(dungeonFolder));
-		printf("load\n");
 	}
 	else
 	{

@@ -42,16 +42,12 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	
 	char *header = malloc (6 * sizeof(char));
 	int items = fread(header, sizeof(char), 6, f);
-	/*uint64_t headerBE = *((uint64_t *) header);
-	printf("Hex headerBE = 0x%lx\n", headerBE);
-	uint64_t headerH = be64toh(headerBE);
-	printf("Hex headerH = 0x%lx\n", headerH);*/
 	if(items < 6 || strcmp(header, "RLG327") != 0)
 	{
 		printf("File header is not in the correct format\n");
 		return 0;
 	}
-    printf("Header is %s and read %d items\n", header, items);
+    //printf("Header is %s and read %d items\n", header, items);
 	
 	char *version = malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
@@ -61,7 +57,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		printf("File version is not in the correct format\n");
 		return 0;
 	}
-	printf("Version Marker is %s and read %d items\n", version, items);
+	//printf("Version Marker is %s and read %d items\n", version, items);
 	
 	char *sizeRaw = malloc( 4 * sizeof(char));
 	if((items = fread(sizeRaw, sizeof(char), 4, f)) < 4)
@@ -78,7 +74,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		printf("File is missing information\n");
 		return 0;
 	}
-	printf("SizeH is %u and read %d items\n", sizeH, items);
+	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
 	dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
 	int x;
@@ -140,8 +136,12 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 			dungeon_map_load[x][y] = cell;
 		}
 	}
-	printf("Read %d bytes\n", bytesRead);
-	//if(bytes)
+	//printf("Read %d bytes\n", bytesRead);
+	if(bytesReads < 1482)
+	{
+		printf("File cells missing, not in correct format\n");
+		return 0;
+	}
 	
 	int room_byte;
 	int num_room = 0;
@@ -196,16 +196,12 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	}
 	printf("Number of rooms = %d\n", num_room);
 	
-	
 	fclose(f);
 	free(header);
 	free(version);
 	free(sizeRaw);
-	
-	
-	
-	
-	
+	free(densityRaw);
+	free(roomRaw);
 	
 	return dungeon_map_load;
 }
