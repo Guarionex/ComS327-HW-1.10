@@ -154,10 +154,10 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 			printf("File rooms is not in the correct format\n");
 			return 0;
 		}
-		uint8_t roomXBE = *((uint8_t *) roomRaw[0]);
-		uint8_t roomYBE = *((uint8_t *) roomRaw[1]);
-		uint8_t roomWidthBE = *((uint8_t *) roomRaw[2]);
-		uint8_t roomHeightBE = *((uint8_t *) roomRaw[3]);
+		uint8_t roomXBE = *((uint8_t) roomRaw[0]);
+		uint8_t roomYBE = *((uint8_t) roomRaw[1]);
+		uint8_t roomWidthBE = *((uint8_t) roomRaw[2]);
+		uint8_t roomHeightBE = *((uint8_t) roomRaw[3]);
 		printf("Hex roomXBE = 0x%x\n", roomXBE);
 		printf("Hex roomYBE = 0x%x\n", roomYBE);
 		printf("Hex roomWidthBE = 0x%x\n", roomWidthBE);
