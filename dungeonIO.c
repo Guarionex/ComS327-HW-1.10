@@ -130,11 +130,11 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 				}
 				//printf("densityBE is %hu and read %d items\n", densityBE, items);
 				bytesRead++;
+				free(densityRaw);
 			}
 			
 			Dungeon_Space_Struct cell = (is_rock == TRUE) ? Dungeon_Space_Struct_create(ROCK, rock) : Dungeon_Space_Struct_create(CORRIDOR, corridor);
 			dungeon_map_load[x][y] = cell;
-			free(densityRaw);
 		}
 	}
 	//printf("Read %d bytes\n", bytesRead);
