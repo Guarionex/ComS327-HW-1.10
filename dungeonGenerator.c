@@ -115,6 +115,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		Draw_Dungeon(Load_Dungeon(dungeonFolder));
+		loaded = TRUE;
 	}
 	else
 	{
@@ -124,7 +125,6 @@ int main(int argc, char *argv[])
 		
 		Dungeon_Space_Struct **dungeon = Generate_Map(&int_seed);
 		Draw_Dungeon(dungeon);
-		loaded = TRUE;
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
