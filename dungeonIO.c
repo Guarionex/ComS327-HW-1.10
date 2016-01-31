@@ -185,7 +185,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 			for(w = 0; w < room.width; w++)
 			{
 				Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROOM, room);
-				dungeon_map[room.x+w][room.y+h] = cell;
+				dungeon_map_load[room.x+w][room.y+h] = cell;
 			}
 		}
 	}
