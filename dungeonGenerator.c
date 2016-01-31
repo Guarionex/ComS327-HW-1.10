@@ -14,6 +14,7 @@
 bool isstring(char *string);
 
 char *dungeonFolder;
+char *dungeonFile;
 
 int main(int argc, char *argv[])
 {
@@ -100,21 +101,23 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
-		strcat(dungeonFolder, dungeonFileName);
+		dungeonFile = strdup(dungeonFolder);
+		dungeonFile = realloc(dungeonFile, sizeof(dungeonFileName));
+		strcat(dungeonFile, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
-		if(access(dungeonFolder, F_OK) == -1)
+		if(access(dungeonFile, F_OK) == -1)
 		{
 			if (errno == ENOENT) 
 			{
-				printf ("%s does not exist\n", dungeonFolder);
+				printf ("%s does not exist\n", dungeonFile);
 			}
 			else if (errno == EACCES) 
 			{
-				printf ("%s is not accessible\n", dungeonFolder);
+				printf ("%s is not accessible\n", dungeonFile);
 			}
 			return 0;
 		}
-		Draw_Dungeon(Load_Dungeon(dungeonFolder));
+		Draw_Dungeon(Load_Dungeon(dungeonFile));
 		loaded = TRUE;
 	}
 	else
