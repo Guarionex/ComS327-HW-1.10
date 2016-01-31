@@ -14,7 +14,6 @@
 bool isstring(char *string);
 
 char *dungeonFolder;
-char *dungeonFile;
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +22,7 @@ int main(int argc, char *argv[])
 	char *dungeonFileName;
 	bool load_param = FALSE;
 	bool save_param = FALSE;
+	bool loaded = FALSE;
 	
 	if(argc >= 2)
 	{
@@ -96,26 +96,25 @@ int main(int argc, char *argv[])
 		seed = time(NULL);
 	}
 	
-	dungeonFolder = strcat(getenv("HOME"), "");
-	dungeonFile = strcat(dungeonFolder, "/.rlg327/");
+	dungeonFolder = strcat(getenv("HOME"), "/.rlg327/");
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
-		strcat(dungeonFile, dungeonFileName);
+		strcat(dungeonFolder, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
-		if(access(dungeonFile, F_OK) == -1)
+		if(access(dungeonFolder, F_OK) == -1)
 		{
 			if (errno == ENOENT) 
 			{
-				printf ("%s does not exist\n", dungeonFile);
+				printf ("%s does not exist\n", dungeonFolder);
 			}
 			else if (errno == EACCES) 
 			{
-				printf ("%s is not accessible\n", dungeonFile);
+				printf ("%s is not accessible\n", dungeonFolder);
 			}
 			return 0;
 		}
-		Draw_Dungeon(Load_Dungeon(dungeonFile));
+		Draw_Dungeon(Load_Dungeon(dungeonFolder));
 	}
 	else
 	{
@@ -125,6 +124,7 @@ int main(int argc, char *argv[])
 		
 		Dungeon_Space_Struct **dungeon = Generate_Map(&int_seed);
 		Draw_Dungeon(dungeon);
+		loaded = TRUE;
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
@@ -132,12 +132,17 @@ int main(int argc, char *argv[])
 		
 		
 		printf("getenv = %s\n", getenv("HOME"));
-		if (access(dungeonFolder, F_OK) == -1) 
+		if(loaded == FALSE)
 		{
-			mkdir(dungeonFolder, ACCESSPERMS);
-			printf("File created\n");
+			printf("dungeonFolder = %s\n", dungeonFolder);
+			if (access(dungeonFolder, F_OK) == -1) 
+			{
+				mkdir(dungeonFolder, ACCESSPERMS);
+				printf("File created\n");
+			}
+			else printf("File exist\n");
 		}
-		else printf("File exist\n");
+		
 		printf("dungeonFolder = %s\n", dungeonFolder);
 		printf("dungeonFileName = %s\n", dungeonFileName);
 		
