@@ -118,7 +118,10 @@ int main(int argc, char *argv[])
 			}
 			return 0;
 		}
-		dungeon = Draw_Dungeon(Load_Dungeon(dungeonFolder));
+		if((dungeon = Draw_Dungeon(Load_Dungeon(dungeonFolder))).space_union.density == -1)
+		{
+			printf("Failed to load dungeon\n");
+		}
 		loaded = TRUE;
 	}
 	else
