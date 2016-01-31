@@ -134,12 +134,13 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 			
 			Dungeon_Space_Struct cell = (is_rock == TRUE) ? Dungeon_Space_Struct_create(ROCK, rock) : Dungeon_Space_Struct_create(CORRIDOR, corridor);
 			dungeon_map_load[x][y] = cell;
+			free(densityRaw);
 		}
 	}
 	//printf("Read %d bytes\n", bytesRead);
-	if(bytesReads < 1482)
+	if(bytesRead != 1482)
 	{
-		printf("File cells missing, not in correct format\n");
+		printf("File cells is not in correct format\n");
 		return 0;
 	}
 	
@@ -188,6 +189,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 				dungeon_map_load[room.x+w][room.y+h] = cell;
 			}
 		}
+		free(roomRaw);
 	}
 	if(num_room != (sizeH - 1496)/4)
 	{
@@ -200,8 +202,6 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	free(header);
 	free(version);
 	free(sizeRaw);
-	free(densityRaw);
-	free(roomRaw);
 	
 	return dungeon_map_load;
 }
