@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
 	{
 		
 		
-		
+		printf("getenv = %s\n", getenv("HOME"));
 		if (access(dungeonFolder, F_OK) == -1) 
 		{
 			mkdir(dungeonFolder, ACCESSPERMS);
