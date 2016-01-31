@@ -96,39 +96,74 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 			}
 			//printf("X = %d\n", x);
 			Dungeon_Space_Rock rock;
+			Dungeon_Space_Corridor corridor;
+			bool is_rock = TRUE;
 			if(x == 0 || y == 0 || x == 79 || y == 20)
 			{
-				printf("[%d][%d] = border\n", x, y);
-				 rock = Dungeon_Space_Rock_create(255);
+				//printf("[%d][%d] = border\n", x, y);
+				rock = Dungeon_Space_Rock_create(255);
+				is_rock = TRUE;
 			}
 			else
 			{
-				printf("[%d][%d] = inside\n", x, y);
-				//read density
+				//printf("[%d][%d] = inside\n", x, y);
 				char *densityRaw = malloc( 1 * sizeof(char));
 				if((items = fread(densityRaw, sizeof(char), 1, f)) < 1)
 				{
-					printf("File size is not in the correct format\n");
+					printf("File hardness is not in the correct format\n");
 					return 0;
 				}
 				uint8_t densityBE = *((uint8_t *) densityRaw);
-				printf("Hex densityBE = 0x%x\n", densityBE);
-				//uint8_t sizeH = be8toh(sizeBE);
+				//printf("Hex densityBE = 0x%x\n", densityBE);
+				//uint8_t sizeH = be8toh(sizeBE); //Single byte, don't need to convert
 				//printf("Hex sizeH = 0x%x\n", sizeH);
-				/*if(densityBE == 256)
+				if(densityBE > 255 || densityBE < 0)
 				{
-					printf("File is missing information\n");
+					printf("Hardnest format is not correct\n");
 					return 0;
-				}*/
-				printf("densityBE is %hu and read %d items\n", densityBE, items);
+				}
+				if(densityBE != 0)
+				{
+					rock = Dungeon_Space_Rock_create(densityBE);
+					is_rock = TRUE;
+				}
+				else if(densityBE == 0)
+				{
+					corridor = Dungeon_Space_Corridor_create("0");
+					is_rock = FALSE;
+				}
+				//printf("densityBE is %hu and read %d items\n", densityBE, items);
 				bytesRead++;
 			}
 			
-			Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROCK, rock);
+			Dungeon_Space_Struct cell = (is_rock == TRUE) ? Dungeon_Space_Struct_create(ROCK, rock) : Dungeon_Space_Struct_create(CORRIDOR, corridor);
 			dungeon_map_load[x][y] = cell;
 		}
 	}
 	printf("Read %d bytes\n", bytesRead);
+	//if(bytes)
+	
+	int room_byte;
+	for(room_byte = 1496; room_byte < sizeH; room_byte += 4;)
+	{
+		char *rooms = malloc( 1 * sizeof(char));
+		if((items = fread(densityRaw, sizeof(char), 1, f)) < 1)
+		{
+			printf("File hardness is not in the correct format\n");
+			return 0;
+		}
+		uint8_t densityBE = *((uint8_t *) densityRaw);
+		//printf("Hex densityBE = 0x%x\n", densityBE);
+		//uint8_t sizeH = be8toh(sizeBE); //Single byte, don't need to convert
+		//printf("Hex sizeH = 0x%x\n", sizeH);
+		if(densityBE > 255 || densityBE < 0)
+		{
+			printf("Hardnest format is not correct\n");
+			return 0;
+		}
+		//printf("densityBE is %hu and read %d items\n", densityBE, items);
+	}
+	
 	
 	fclose(f);
 	free(header);
