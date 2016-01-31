@@ -37,7 +37,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		{
 			printf ("File error\n");
 		}
-		return 0;
+		return NULL;
 	}
 	
 	char *header = malloc (6 * sizeof(char));
@@ -45,7 +45,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if(items < 6 || strcmp(header, "RLG327") != 0)
 	{
 		printf("File header is not in the correct format\n");
-		return 0;
+		return NULL;
 	}
     //printf("Header is %s and read %d items\n", header, items);
 	
@@ -55,7 +55,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	{
 		
 		printf("File version is not in the correct format\n");
-		return 0;
+		return NULL;
 	}
 	//printf("Version Marker is %s and read %d items\n", version, items);
 	
@@ -63,7 +63,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if((items = fread(sizeRaw, sizeof(char), 4, f)) < 4)
 	{
 		printf("File size is not in the correct format\n");
-		return 0;
+		return NULL;
 	}
 	uint32_t sizeBE = *((uint32_t *) sizeRaw);
 	//printf("Hex sizeBE = 0x%x\n", sizeBE);
@@ -72,7 +72,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if(sizeH < 1495)
 	{
 		printf("File is missing information\n");
-		return 0;
+		return NULL;
 	}
 	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
@@ -107,7 +107,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 				if((items = fread(densityRaw, sizeof(char), 1, f)) < 1)
 				{
 					printf("File hardness is not in the correct format\n");
-					return 0;
+					return NULL;
 				}
 				uint8_t densityBE = *((uint8_t *) densityRaw);
 				//printf("Hex densityBE = 0x%x\n", densityBE);
@@ -116,7 +116,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 				if(densityBE > 255 || densityBE < 0)
 				{
 					printf("Hardness format is not correct\n");
-					return 0;
+					return NULL;
 				}
 				if(densityBE != 0)
 				{
@@ -141,7 +141,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if(bytesRead != 1482)
 	{
 		printf("File cells is not in correct format\n");
-		return 0;
+		return NULL;
 	}
 	
 	int room_byte;
@@ -153,7 +153,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		if((items = fread(roomRaw, sizeof(char), 4, f)) < 4)
 		{
 			printf("File rooms is not in the correct format\n");
-			return 0;
+			return NULL;
 		}
 		uint8_t roomXBE = ((uint8_t) roomRaw[0]);
 		uint8_t roomYBE = ((uint8_t) roomRaw[1]);
@@ -168,7 +168,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		if(roomXBE > 255 || roomXBE < 0 || roomYBE > 255 || roomYBE < 0 || roomWidthBE > 255 || roomWidthBE < 0 || roomHeightBE > 255 || roomHeightBE < 0)
 		{
 			printf("Hardness format is not correct\n");
-			return 0;
+			return NULL;
 		}
 		/*printf("roomXBE is %hu and read %d items\n", roomXBE, items);
 		printf("roomYBE is %hu and read %d items\n", roomYBE, items);
@@ -194,7 +194,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	if(num_room != (sizeH - 1496)/4)
 	{
 		printf("File number rooms not correct\n");
-		return 0;
+		return NULL;
 	}
 	printf("Number of rooms = %d\n", num_room);
 	
