@@ -205,3 +205,11 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	
 	return dungeon_map_load;
 }
+
+
+int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save)
+{
+	
+	
+	return 0;
+}

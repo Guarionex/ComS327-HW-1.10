@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
 	Flags flags[argc - 1];
 	char *dungeonFileName;
 	bool load_param = FALSE;
+	bool save_param = FALSE;
 	
 	if(argc >= 2)
 	{
@@ -33,6 +34,13 @@ int main(int argc, char *argv[])
 				load_param = FALSE;
 				continue;
 			}
+			if(save_param == TRUE)
+			{
+				flags[c - 1] = SAVE;
+				save_param = FALSE;
+				continue;
+			}
+			
 			if(isstring(argv[c]) == FALSE)
 			{
 				seed = atoi(argv[c]);
@@ -42,6 +50,16 @@ int main(int argc, char *argv[])
 			{
 				if(strcmp(argv[c], "--save") == 0)
 				{
+					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == TRUE)
+					{
+						dungeonFileName = strdup(argv[c + 1]);
+						save_param = TRUE;
+					}
+					else
+					{
+						
+						dungeonFileName = strdup("dungeon");
+					}
 					flags[c - 1] = SAVE;
 				}
 				else if(strcmp(argv[c], "--load") == 0)
@@ -115,8 +133,12 @@ int main(int argc, char *argv[])
 		if (access(dungeonFolder, F_OK) == -1) 
 		{
 			mkdir(dungeonFolder, ACCESSPERMS);
-			
+			printf("File created\n");
 		}
+		else printf("File exist\n");
+		printf("dungeonFolder = %s\n", dungeonFolder);
+		printf("dungeonFileName = %s\n", dungeonFileName);
+		
 		
 		//save();
 		printf("save\n");		
