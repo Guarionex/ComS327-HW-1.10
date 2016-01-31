@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
 		{
 			printf("dungeonFolder = %s\n", dungeonFolder);
 			char *substring = strstr(dungeonFolder, dungeonFileName);
-			printf("substring = %s", substring);
+			printf("substring = %s\n", substring);
 			strcpy(substring, dungeonSaveFileName);
 			printf("dungeonFolder = %s\n", dungeonFolder);
 		}
