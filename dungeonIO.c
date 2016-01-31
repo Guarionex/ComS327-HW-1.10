@@ -119,7 +119,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 				//printf("Hex sizeH = 0x%x\n", sizeH);
 				if(densityBE > 255 || densityBE < 0)
 				{
-					printf("Hardnest format is not correct\n");
+					printf("Hardness format is not correct\n");
 					return 0;
 				}
 				if(densityBE != 0)
@@ -144,24 +144,35 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	//if(bytes)
 	
 	int room_byte;
-	for(room_byte = 1496; room_byte < sizeH; room_byte += 4;)
+	int num_room = 0;
+	for(room_byte = 1496; room_byte < sizeH; room_byte += 4)
 	{
-		char *rooms = malloc( 1 * sizeof(char));
-		if((items = fread(densityRaw, sizeof(char), 1, f)) < 1)
+		num_room++;
+		char *roomRaw = malloc( 4 * sizeof(char));
+		if((items = fread(roomRaw, sizeof(char), 4, f)) < 4)
 		{
-			printf("File hardness is not in the correct format\n");
+			printf("File rooms is not in the correct format\n");
 			return 0;
 		}
-		uint8_t densityBE = *((uint8_t *) densityRaw);
-		//printf("Hex densityBE = 0x%x\n", densityBE);
+		uint8_t roomXBE = *((uint8_t *) roomRaw[0]);
+		uint8_t roomYBE = *((uint8_t *) roomRaw[1]);
+		uint8_t roomWidthBE = *((uint8_t *) roomRaw[2]);
+		uint8_t roomHeightBE = *((uint8_t *) roomRaw[3]);
+		printf("Hex roomXBE = 0x%x\n", roomXBE);
+		printf("Hex roomYBE = 0x%x\n", roomYBE);
+		printf("Hex roomWidthBE = 0x%x\n", roomWidthBE);
+		printf("Hex roomHeightBE = 0x%x\n", roomHeightBE);
 		//uint8_t sizeH = be8toh(sizeBE); //Single byte, don't need to convert
 		//printf("Hex sizeH = 0x%x\n", sizeH);
-		if(densityBE > 255 || densityBE < 0)
+		/*if(densityBE > 255 || densityBE < 0)
 		{
-			printf("Hardnest format is not correct\n");
+			printf("Hardness format is not correct\n");
 			return 0;
-		}
-		//printf("densityBE is %hu and read %d items\n", densityBE, items);
+		}*/
+		printf("roomXBE is %hu and read %d items\n", roomXBE, items);
+		printf("roomYBE is %hu and read %d items\n", roomYBE, items);
+		printf("roomWidthBE is %hu and read %d items\n", roomWidthBE, items);
+		printf("roomHeightBE is %hu and read %d items\n", roomHeightBE, items);
 	}
 	
 	
