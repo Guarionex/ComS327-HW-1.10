@@ -177,8 +177,17 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		Dungeon_Space_Room room = Dungeon_Space_Room_create(roomWidthBE, roomHeightBE);
 		room.x = roomXBE;
 		room.y = roomYBE;
-		Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROOM, room);
-		dungeon_map_load[room.x][room.y] = cell;
+		
+		int w;
+		int h;
+		for(h = 0; h < room.height; h++)
+		{
+			for(w = 0; w < room.width; w++)
+			{
+				Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROOM, room);
+				dungeon_map[room.x+w][room.y+h] = cell;
+			}
+		}
 	}
 	if(num_room != (sizeH - 1496)/4)
 	{
