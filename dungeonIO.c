@@ -158,21 +158,32 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		uint8_t roomYBE = ((uint8_t) roomRaw[1]);
 		uint8_t roomWidthBE = ((uint8_t) roomRaw[2]);
 		uint8_t roomHeightBE = ((uint8_t) roomRaw[3]);
-		printf("Hex roomXBE = 0x%x\n", roomXBE);
+		/*printf("Hex roomXBE = 0x%x\n", roomXBE);
 		printf("Hex roomYBE = 0x%x\n", roomYBE);
 		printf("Hex roomWidthBE = 0x%x\n", roomWidthBE);
-		printf("Hex roomHeightBE = 0x%x\n", roomHeightBE);
+		printf("Hex roomHeightBE = 0x%x\n", roomHeightBE);*/
 		//uint8_t sizeH = be8toh(sizeBE); //Single byte, don't need to convert
 		//printf("Hex sizeH = 0x%x\n", sizeH);
-		/*if(densityBE > 255 || densityBE < 0)
+		if(roomXBE > 255 || roomXBE < 0 || roomYBE > 255 || roomYBE < 0 || roomWidthBE > 255 || roomWidthBE < 0 || roomHeightBE > 255 || roomHeightBE < 0)
 		{
 			printf("Hardness format is not correct\n");
 			return 0;
-		}*/
-		printf("roomXBE is %hu and read %d items\n", roomXBE, items);
+		}
+		/*printf("roomXBE is %hu and read %d items\n", roomXBE, items);
 		printf("roomYBE is %hu and read %d items\n", roomYBE, items);
 		printf("roomWidthBE is %hu and read %d items\n", roomWidthBE, items);
-		printf("roomHeightBE is %hu and read %d items\n", roomHeightBE, items);
+		printf("roomHeightBE is %hu and read %d items\n", roomHeightBE, items);*/
+		
+		Dungeon_Space_Room room = Dungeon_Space_Room_create(roomWidthBE, roomHeightBE);
+		room.x = roomXBE;
+		room.y = roomYBE;
+		Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(ROOM, room);
+		dungeon_map_load[room.x][room.y] = cell;
+	}
+	if(num_room != (sizeH - 1496)/4)
+	{
+		printf("File number rooms not correct\n");
+		return 0;
 	}
 	
 	
