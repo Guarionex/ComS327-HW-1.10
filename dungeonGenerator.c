@@ -14,6 +14,7 @@
 bool isstring(char *string);
 
 char *dungeonFolder;
+Dungeon_Space_Struct **dungeon;
 
 int main(int argc, char *argv[])
 {
@@ -117,7 +118,7 @@ int main(int argc, char *argv[])
 			}
 			return 0;
 		}
-		Draw_Dungeon(Load_Dungeon(dungeonFolder));
+		dungeon = Draw_Dungeon(Load_Dungeon(dungeonFolder));
 		loaded = TRUE;
 	}
 	else
@@ -126,7 +127,7 @@ int main(int argc, char *argv[])
 		
 		int int_seed = seed;
 		
-		Dungeon_Space_Struct **dungeon = Generate_Map(&int_seed);
+		dungeon = Generate_Map(&int_seed);
 		Draw_Dungeon(dungeon);
 	}
 	
@@ -167,6 +168,7 @@ int main(int argc, char *argv[])
 		/*printf("dungeonFileName = %s\n", dungeonFileName);
 		printf("dungeonSaveFileName = %s\n", dungeonSaveFileName);*/
 		
+		Save_Dungeon(dungeon, dungeonFolder);
 		
 		//save();
 		printf("save\n");		
