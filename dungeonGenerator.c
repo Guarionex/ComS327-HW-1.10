@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
 	time_t seed;
 	Flags flags[argc - 1];
 	char *dungeonFileName;
+	char *dungeonSaveFileName;
 	bool load_param = FALSE;
 	bool save_param = FALSE;
 	bool loaded = FALSE;
@@ -53,13 +54,13 @@ int main(int argc, char *argv[])
 				{
 					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == TRUE)
 					{
-						dungeonFileName = strdup(argv[c + 1]);
+						dungeonSaveFileName = strdup(argv[c + 1]);
 						save_param = TRUE;
 					}
 					else
 					{
 						
-						dungeonFileName = strdup("dungeon");
+						dungeonSaveFileName = strdup("dungeon");
 					}
 					flags[c - 1] = SAVE;
 				}
@@ -142,9 +143,18 @@ int main(int argc, char *argv[])
 			}
 			else printf("File exist\n");
 		}
+		else
+		{
+			printf("dungeonFolder = %s\n", dungeonFolder);
+			char *substring = strstr(dungeonFolder, dungeonFileName);
+			printf("substring = %s", substring);
+			strcpy(substring, dungeonSaveFileName);
+			printf("dungeonFolder = %s\n", dungeonFolder);
+		}
 		
 		printf("dungeonFolder = %s\n", dungeonFolder);
 		printf("dungeonFileName = %s\n", dungeonFileName);
+		printf("dungeonSaveFileName = %s\n", dungeonSaveFileName);
 		
 		
 		//save();
