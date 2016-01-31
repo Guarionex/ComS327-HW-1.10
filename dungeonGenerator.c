@@ -134,24 +134,24 @@ int main(int argc, char *argv[])
 	{
 		
 		
-		printf("getenv = %s\n", getenv("HOME"));
+		//printf("getenv = %s\n", getenv("HOME"));
 		if(loaded == FALSE)
 		{
-			printf("dungeonFolder = %s\n", dungeonFolder);
+			//printf("dungeonFolder = %s\n", dungeonFolder);
 			if (access(dungeonFolder, F_OK) == -1) 
 			{
 				mkdir(dungeonFolder, ACCESSPERMS);
-				printf("File created\n");
+				//printf("File created\n");
 			}
-			else printf("File exist\n");
+			//else printf("File exist\n");
 			strcat(dungeonFolder, dungeonSaveFileName);
 			
 		}
 		else
 		{
-			printf("dungeonFolder = %s\n", dungeonFolder);
+			//printf("dungeonFolder = %s\n", dungeonFolder);
 			char *substring = strstr(dungeonFolder, dungeonFileName);
-			printf("substring = %s\n", substring);
+			//printf("substring = %s\n", substring);
 			if(save_param_used == TRUE)
 			{
 				strcpy(substring, dungeonSaveFileName);
@@ -160,12 +160,12 @@ int main(int argc, char *argv[])
 			{
 				strcpy(substring, dungeonFileName);
 			}
-			printf("dungeonFolder = %s\n", dungeonFolder);
+			//printf("dungeonFolder = %s\n", dungeonFolder);
 		}
 		
 		printf("dungeonFolder = %s\n", dungeonFolder);
-		printf("dungeonFileName = %s\n", dungeonFileName);
-		printf("dungeonSaveFileName = %s\n", dungeonSaveFileName);
+		/*printf("dungeonFileName = %s\n", dungeonFileName);
+		printf("dungeonSaveFileName = %s\n", dungeonSaveFileName);*/
 		
 		
 		//save();

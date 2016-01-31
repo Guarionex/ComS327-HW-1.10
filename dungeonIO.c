@@ -207,9 +207,34 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 }
 
 
-int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save)
+int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file)
 {
+	FILE *f;
+	printf("file = %s\n", file);
+	if((f = fopen(file, "w")) == NULL)
+	{
+		if (errno == EINVAL) 
+		{
+			printf ("The mode is invalid %s\n", file);
+		}
+		else 
+		{
+			printf ("File error\n");
+		}
+		return 0;
+	}
 	
+	char *header = "RLG327"; //malloc(6 * sizeof(char));
+	int items = fread(header, sizeof(char), 6, f);
+	if(items < 6)
+	{
+		printf("File header write failed\n");
+		return 0;
+	}
+    //printf("Header is %s and read %d items\n", header, items);
+	
+	
+	fclose(f);
 	
 	return 0;
 }
