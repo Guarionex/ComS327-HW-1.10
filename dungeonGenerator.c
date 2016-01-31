@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
 	bool load_param = FALSE;
 	bool save_param = FALSE;
 	bool loaded = FALSE;
+	bool save_param_used = FALSE;
 	
 	if(argc >= 2)
 	{
@@ -56,6 +57,7 @@ int main(int argc, char *argv[])
 					{
 						dungeonSaveFileName = strdup(argv[c + 1]);
 						save_param = TRUE;
+						save_param_used = TRUE;
 					}
 					else
 					{
@@ -142,13 +144,22 @@ int main(int argc, char *argv[])
 				printf("File created\n");
 			}
 			else printf("File exist\n");
+			strcat(dungeonFolder, dungeonSaveFileName);
+			
 		}
 		else
 		{
 			printf("dungeonFolder = %s\n", dungeonFolder);
 			char *substring = strstr(dungeonFolder, dungeonFileName);
 			printf("substring = %s\n", substring);
-			strcpy(substring, dungeonSaveFileName);
+			if(save_param_used == TRUE)
+			{
+				strcpy(substring, dungeonSaveFileName);
+			}
+			else
+			{
+				strcpy(substring, dungeonFileName);
+			}
 			printf("dungeonFolder = %s\n", dungeonFolder);
 		}
 		
