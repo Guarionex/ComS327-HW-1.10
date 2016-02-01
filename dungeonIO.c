@@ -330,8 +330,11 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	}
 	printf("End of save\n");
 	free(roomToWrite);
+	printf("Freed roomToWrite\n");
 	free(rooms);
+	printf("Freed rooms\n");
 	fclose(f);
+	printf("Closed f\n");
 	
 	return 0;
 }
