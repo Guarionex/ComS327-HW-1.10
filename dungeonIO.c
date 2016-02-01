@@ -272,9 +272,9 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	Dungeon_Space_Room *rooms = malloc(sizeof(Dungeon_Space_Room) * num_rooms);
 	printf("Before rocks\n");
 	int x, y, room_index = 0;
-	for(x = 0; x < 80; x++)
+	for(y = 0; y < 21; y++)
 	{
-		for(y = 0; y < 21; y++)
+		for(x = 0; x < 80; x++)
 		{
 			if(x == 0 || y == 0 || x == 79 || y == 20)
 			{
