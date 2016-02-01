@@ -251,7 +251,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	if((items = fwrite(&fileSizeBE, sizeof(char), 4, f)) < 4)
 	{
 		printf("File size is not in the correct format\n");
-		return NULL;
+		return 0;
 	}
 	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
