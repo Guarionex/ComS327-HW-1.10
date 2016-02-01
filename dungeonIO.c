@@ -299,6 +299,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 				
 				case CORRIDOR:
 					density = dungeon_map_save[x][y].space_union.corridor.density;
+					printf("Corridor at [%d][%d]\n", x, y);
 				break;
 			}
 			
