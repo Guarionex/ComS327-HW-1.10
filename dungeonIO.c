@@ -314,9 +314,10 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	}
 	
 	int r;
+	char *roomToWrite = malloc( 4 * sizeof(char));
 	for(r = 0; r < num_rooms; r++)
 	{
-		char *roomToWrite = malloc( 4 * sizeof(char));
+		
 		roomToWrite[0] = rooms[r].x;
 		roomToWrite[1] = rooms[r].y;
 		roomToWrite[2] = rooms[r].width;
