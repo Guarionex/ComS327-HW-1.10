@@ -270,7 +270,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
 	Dungeon_Space_Room *rooms = malloc(sizeof(Dungeon_Space_Room) * num_rooms);
-	printf("Before rocks\n");
+	//printf("Before rocks\n");
 	int x, y, room_index = 0;
 	for(y = 0; y < 21; y++)
 	{
@@ -299,7 +299,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 				
 				case CORRIDOR:
 					density = dungeon_map_save[x][y].space_union.corridor.density;
-					printf("Corridor at [%d][%d]\n", x, y);
+					//printf("Corridor at [%d][%d]\n", x, y);
 				break;
 			}
 			
@@ -313,7 +313,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 			
 		}
 	}
-	printf("Before rooms\n");
+	//printf("Before rooms\n");
 	int r;
 	char *roomToWrite = malloc( 4 * sizeof(char));
 	for(r = 0; r < num_rooms; r++)
@@ -329,13 +329,13 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 			printf("File room writing failed\n");
 		}
 	}
-	printf("End of save\n");
+	//printf("End of save\n");
 	//free(roomToWrite);
-	printf("Freed roomToWrite\n");
+	//printf("Freed roomToWrite\n");
 	free(rooms);
-	printf("Freed rooms\n");
+	//printf("Freed rooms\n");
 	fclose(f);
-	printf("Closed f\n");
+	//printf("Closed f\n");
 	
 	return 0;
 }
