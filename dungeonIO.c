@@ -225,7 +225,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_rooms)
 {
 	FILE *f;
-	printf("file = %s\n", file);
+	//printf("file = %s\n", file);
 	if((f = fopen(file, "w")) == NULL)
 	{
 		if (errno == EINVAL) 

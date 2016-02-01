@@ -170,14 +170,14 @@ int main(int argc, char *argv[])
 			//printf("dungeonFolder = %s\n", dungeonFolder);
 		}
 		
-		printf("dungeonFolder = %s\n", dungeonFolder);
+		//printf("dungeonFolder = %s\n", dungeonFolder);
 		/*printf("dungeonFileName = %s\n", dungeonFileName);
 		printf("dungeonSaveFileName = %s\n", dungeonSaveFileName);*/
 		
 		Save_Dungeon(dungeon, dungeonFolder, num_rooms);
 		
 		//save();
-		printf("save\n");		
+		//printf("save\n");		
 	}
 	
 	
