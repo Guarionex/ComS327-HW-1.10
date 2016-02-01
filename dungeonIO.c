@@ -23,6 +23,20 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	return FALSE;
 }
 
+bool Contains_Room(Dungeon_Space_Room *rooms, int size, Dungeon_Space_Room room)
+{
+	int r;
+	for(r = 0; r < size; r++)
+	{
+		if(rooms[r].x == room.x && rooms[r].y == room.y)
+		{
+			return TRUE;
+		}
+	}
+	
+	return FALSE;
+}
+
 Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 {
 	FILE *f;
@@ -240,7 +254,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	if(items < 4)
 	{
 		
-		printf("File version is not in the correct format\n");
+		printf("File version writing failed\n");
 		return -1;
 	}
 	//printf("Version Marker is %s and read %d items\n", version, items);
@@ -250,12 +264,72 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	//char *sizeRaw = malloc( 4 * sizeof(char));
 	if((items = fwrite(&fileSizeBE, sizeof(char), 4, f)) < 4)
 	{
-		printf("File size is not in the correct format\n");
+		printf("File size writing failed\n");
 		return 0;
 	}
 	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
+	Dungeon_Space_Room *rooms = malloc(sizeof(Dungeon_Space_Room) * num_rooms);
 	
+	int x, y, room_index = 0;
+	for(x = 0; x < 80; x++)
+	{
+		for(y = 0; y < 21; y++)
+		{
+			if(x == 0 || y == 0 || x == 79 || y == 20)
+			{
+				continue;
+			}
+			
+			uint8_t density;
+			switch(dungeon_map_save[x][y].space_type)
+			{
+				case ROCK:
+					density = dungeon_map_save[x][y].space_union.rock.density;
+				break;
+				
+				case ROOM:
+					density = dungeon_map_save[x][y].space_union.room.density;
+					if(Contains_Room(rooms, num_rooms, dungeon_map_save[x][y].space_union.room) == FALSE)
+					{
+						rooms[room_index] = dungeon_map_save[x][y].space_union.room;
+						room_index++;
+					}
+				break;
+				
+				case CORRIDOR:
+					density = dungeon_map_save[x][y].space_union.corridor.density;
+				break;
+			}
+			
+			if((items = fwrite(&density, sizeof(char), 1, f)) < 1)
+			{
+				printf("File hardness writing failed\n");
+				return 0;
+			}
+			
+			
+			
+		}
+	}
+	
+	int r;
+	for(r = 0; r < num_rooms; r++)
+	{
+		char *roomToWrite = malloc( 4 * sizeof(char));
+		roomToWrite[0] = rooms[r].x;
+		roomToWrite[1] = rooms[r].y;
+		roomToWrite[2] = rooms[r].width;
+		roomToWrite[3] = rooms[r].height;
+		
+		if((items = fwrite(roomToWrite, sizeof(char), 4, f)) < 4)
+		{
+			printf("File room writing failed\n");
+		}
+	}
+	
+	free(roomToWrite);
+	free(rooms);
 	fclose(f);
 	
 	return 0;

@@ -2,6 +2,7 @@
 #define DUNGEON_OBJECTS_H
 
 #include <stdarg.h>
+#include <stdint.h>
 
 typedef enum
 {
@@ -18,7 +19,7 @@ typedef enum
 
 typedef struct
 {
-  int density;
+  uint8_t density;
 } Dungeon_Space_Rock;
 
 typedef struct
@@ -27,13 +28,13 @@ typedef struct
   int y;
   int width;
   int height;
-  int density;
+  uint8_t density;
 } Dungeon_Space_Room;
 
 typedef struct
 {
   char *id;
-  int density;
+  uint8_t density;
   //Dungeon_Space_Room previous;
   //Dungeon_Space_Room next;
 } Dungeon_Space_Corridor;
