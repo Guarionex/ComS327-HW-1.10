@@ -12,8 +12,8 @@ typedef enum
 
 bool Contains_Flag(Flags *flag, int size, Flags contains);
 
-Dungeon_Space_Struct **Load_Dungeon(char *file);
-int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file);
+Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms);
+int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_rooms);
 
 
 

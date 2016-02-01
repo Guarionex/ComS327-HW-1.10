@@ -256,7 +256,7 @@ void Place_Corridor(int x, int y, int id)
 	}
 }
 
-Dungeon_Space_Struct **Generate_Map(int *seed)
+Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms)
 {
 	Dungeon_Space_Room *rooms;
 	rooms = generateMultipleRooms(seed);
@@ -269,6 +269,7 @@ Dungeon_Space_Struct **Generate_Map(int *seed)
 		//printf("Room[%d] = {w = %d, h = %d}\n", total_num_rooms, rooms[total_num_rooms].width, rooms[total_num_rooms].height);
 	}
 	printf("Number of rooms is %d\n", total_num_rooms);
+	*num_rooms = total_num_rooms;
 	
 	Create_Blank_Map(seed);
 	printf("Seed is %d\n", *seed);

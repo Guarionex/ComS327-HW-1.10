@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 	bool save_param = FALSE;
 	bool loaded = FALSE;
 	bool save_param_used = FALSE;
+	int num_rooms;
 	
 	if(argc >= 2)
 	{
@@ -118,7 +119,7 @@ int main(int argc, char *argv[])
 			}
 			return 0;
 		}
-		if((dungeon = Load_Dungeon(dungeonFolder)) == NULL)
+		if((dungeon = Load_Dungeon(dungeonFolder, &num_rooms)) == NULL)
 		{
 			printf("Failed to load dungeon\n");
 			return 0;
@@ -132,7 +133,7 @@ int main(int argc, char *argv[])
 		
 		int int_seed = seed;
 		
-		dungeon = Generate_Map(&int_seed);
+		dungeon = Generate_Map(&int_seed, &num_rooms);
 		Draw_Dungeon(dungeon);
 	}
 	
@@ -173,7 +174,7 @@ int main(int argc, char *argv[])
 		/*printf("dungeonFileName = %s\n", dungeonFileName);
 		printf("dungeonSaveFileName = %s\n", dungeonSaveFileName);*/
 		
-		Save_Dungeon(dungeon, dungeonFolder);
+		Save_Dungeon(dungeon, dungeonFolder, num_rooms);
 		
 		//save();
 		printf("save\n");		

@@ -23,7 +23,7 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	return FALSE;
 }
 
-Dungeon_Space_Struct **Load_Dungeon(char *file)
+Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 {
 	FILE *f;
 	printf("file = %s\n", file);
@@ -145,10 +145,10 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 	}
 	
 	int room_byte;
-	int num_room = 0;
+	int total_num_room = 0;
 	for(room_byte = 1496; room_byte < sizeH; room_byte += 4)
 	{
-		num_room++;
+		total_num_room++;
 		char *roomRaw = malloc( 4 * sizeof(char));
 		if((items = fread(roomRaw, sizeof(char), 4, f)) < 4)
 		{
@@ -191,12 +191,13 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 		}
 		free(roomRaw);
 	}
-	if(num_room != (sizeH - 1496)/4)
+	if(total_num_room != (sizeH - 1496)/4)
 	{
 		printf("File number rooms not correct\n");
 		return NULL;
 	}
-	printf("Number of rooms = %d\n", num_room);
+	printf("Number of rooms = %d\n", total_num_room);
+	*num_rooms = total_num_room;
 	
 	fclose(f);
 	free(header);
@@ -207,7 +208,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file)
 }
 
 
-int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file)
+int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_rooms)
 {
 	FILE *f;
 	printf("file = %s\n", file);
@@ -221,7 +222,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file)
 		{
 			printf ("File error\n");
 		}
-		return 0;
+		return -1;
 	}
 	
 	char *header = "RLG327"; //malloc(6 * sizeof(char));
@@ -230,9 +231,29 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file)
 	if(items < 6)
 	{
 		printf("File header write failed\n");
-		return 0;
+		return -1;
 	}
     //printf("Header is %s and read %d items\n", header, items);
+	
+	char *version = "\x00\x00\x00\x00";//malloc( 4 * sizeof(char));
+	items = fwrite(version, sizeof(char), 4, f);
+	if(items < 4)
+	{
+		
+		printf("File version is not in the correct format\n");
+		return -1;
+	}
+	//printf("Version Marker is %s and read %d items\n", version, items);
+	
+	uint32_t fileSizeH = (num_rooms * 4) + 1496;
+	uint32_t fileSizeBE = htobe32(fileSizeH);
+	//char *sizeRaw = malloc( 4 * sizeof(char));
+	if((items = fwrite(&fileSizeBE, sizeof(char), 4, f)) < 4)
+	{
+		printf("File size is not in the correct format\n");
+		return NULL;
+	}
+	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
 	
 	fclose(f);
