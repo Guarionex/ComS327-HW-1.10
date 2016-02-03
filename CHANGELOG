@@ -1,3 +1,4 @@
+1.01
 1/21/16 Started Project
 1/21/16 Made header with struct of rock, room, and corridor, along with an enumeration for each of those three
 1/21/16		Also made a generic struct that can be one of the three
@@ -68,3 +69,164 @@
 1/24/16 dungeon generator function returns a 2D array representation of dungeon and uses it to draw
 1/26/16 Finished Makefile, README, and the code itself
 1/26/16 Finished CHANGELOG. Ready to package and deliver
+
+1.02
+1/28/16 Started dungeonIO.h; Started header for saving and loading.
+1/28/16 Implementing argument inputs
+1/28/16 Added ctype.h and fix debug printf
+1/28/16 looping from second argument
+1/28/16 fixing isstring
+1/29/16 Made dungeonIO.c and typdef Flags enumeration and implement contains flags
+1/29/16 added dungeonIO to makefile and starting to test it in main
+1/29/16 Fixed Makefile
+1/29/16 Added debugging printf
+1/29/16 changed line of debug printf
+1/29/16 Testing flag array
+1/29/16 bug fix
+1/29/16 forgot semi colon
+1/29/16 Should fix the flag array bug
+1/29/16 Testing argument conditions
+1/29/16 removed switch case
+1/29/16 Checks if their is a seed and load flag
+1/29/16 fixed checking for seed and load flag together
+1/29/16 Finished all argument states
+1/29/16 Forgot to return on invalid argument
+1/29/16 Added density of 0 to room and corridor and change permanent rock from INT_MAX to 255
+1/29/16 No permanent rock within borders
+1/29/16 Testing getenv
+1/29/16 testing slashes in string in getenv
+1/29/16 testing getenv with strcat
+1/29/16 testing checking for folder existing or not
+1/29/16 Fixed typo in getenv
+1/29/16 testing mkdir
+1/29/16 forgot to include header for mkdir
+1/29/16 testing null return from getenv
+1/29/16 fixing segfault
+1/29/16 More getenv testing
+1/29/16 mkdir and getenv in one line
+1/29/16 final testing, should work now
+1/29/16 Cleaned up the debug code
+1/29/16 removed if else for mkdir
+1/29/16 Testing ssh
+1/29/16 final testing of ssh key
+1/29/16 removed bad use of getenv
+1/29/16 Started load method
+1/29/16 testing access
+1/29/16 added errno.h
+1/29/16 Some error fixing in access testing
+1/29/16 Testing access with non existing file
+1/29/16 added access() to load
+1/29/16 testing strcat in --load
+1/29/16 playing with string for --load
+1/29/16 more playing with strings for --load
+1/29/16 warning fix for playing with strings in --load
+1/29/16 testing strdup in --load
+1/29/16 was using strstr instead of strcat, bug fixed
+1/29/16 --load will now check for file existance
+1/29/16 testing --load param
+1/29/16 testing input order
+1/29/16 bug fix --load input
+1/29/16 Fixing isstring()
+1/29/16 more fixing isstring()
+1/29/16 debugging isstring()
+1/29/16 Fixed isstring()
+1/29/16 --load parameters should be working
+1/29/16 testing load()
+1/29/16 debbuging warnings in load()
+1/29/16 fixing warning in load()
+1/29/16 trying freads
+1/29/16 Trying closing file
+1/29/16 debugging load()
+1/29/16 looking for the error
+1/29/16 removing warnings
+1/29/16 trying to catch error
+1/29/16 forgot errno.h
+1/29/16 missed parenthesis
+1/29/16 hardcoding local txt file for fopen debugging
+1/30/16 Final test of fopen for the night
+1/30/16 trying to debug fopen
+1/30/16 string bug fixed
+1/30/16 access commented out to find bug
+1/30/16 checking if I can do strcat outside of main function
+1/30/16 Removed the strdup
+1/30/16 debugging isstring
+1/30/16 flagging load's parameter as load
+1/30/16 Should be working now
+1/30/16 edited a debugging printf
+1/30/16 forgot to change file existance checker to dungeonFolder
+1/30/16 Reading header and version marker test
+1/30/16 testing catching wrong file format
+1/30/16 forgot string.h
+1/30/16 Fixing version marker check
+1/30/16 Checking single null for version marker
+1/30/16 comparing version marker to correct version marker
+1/30/16 comparing version marker worked, removing unnecesary variables
+1/30/16 testing %x
+1/30/16 testing freads to uint64
+1/30/16 forgot stdint.h
+1/30/16 testing casting
+1/30/16 fixing patter in printf
+1/30/16 playing with referencing
+1/30/16 Converting BetoH
+1/30/16 Starting to read file size
+1/30/16 Converting file size to uint64
+1/30/16 FIxing %l to %u in printf
+1/30/16 fixed %u to %lu
+1/30/16 changed uint64 to uint32
+1/30/16 changed %lx to %x
+1/30/16 testing file size error
+1/30/16 forgot to free sizeRaw
+1/30/16 Testing wrong file size
+1/30/16 Begin reading cells
+1/30/16 made debugging printf on dungeon creation
+1/30/16 fixing mallocing
+1/30/16 changed second malloc if condition to y
+1/30/16 removing some debugging printf and editing others
+1/31/16 All 0 hardness defaults to corridors
+1/31/16 Started implementing room reading
+1/31/16 fixing cast
+1/31/16 fixing char to uint8 cast
+1/31/16 Now reading and making rooms
+1/31/16 Drawing loaded dungeon
+1/31/16 Fixed room drawing
+1/31/16 correcting dungeon map name
+1/31/16 Finished loading and remove most debug printf
+1/31/16 Removing some freeing bugs
+1/31/16 Another freeing fix
+1/31/16 Making saving param
+1/31/16 testing getenv after load in save
+1/31/16 made path separate from file
+1/31/16 save checks if the file was loaded
+1/31/16 misplace loaded flag
+1/31/16 doing strings with realloc
+1/31/16 changed strdup to strcpy
+1/31/16 going back to original
+1/31/16 testing string manipulation
+1/31/16 forgot \n
+1/31/16 Testing input conditions
+1/31/16 testing writing RLG327
+1/31/16 Forgot to call save
+1/31/16 Fixing return for load
+1/31/16 load returns invalid dungeon on fail
+1/31/16 fixing malloc
+1/31/16 fixing mallocing fail load
+1/31/16 Forgot ;
+1/31/16 split load and draw into two lines
+1/31/16 forgot to change fread to fwrite
+1/31/16 testing writing file size
+1/31/16 fixed return statement from NULL to 0
+1/31/16 Testing saving
+1/31/16 fixing room writing malloc bug
+1/31/16 Finding bug
+1/31/16 added debug printf
+1/31/16 commenting out failing free
+1/31/16 debugging corridor
+1/31/16 change dungeon loop to row major
+1/31/16 Removing debug printf
+2/2/16 catches invalid -- switch and README updated
+2/2/16 Testing a freeing memory of roomToWrite
+2/2/16 Taking last code commit back
+2/2/16 Testing accepting number only file for --load
+2/2/16 Removing last commit of taking number only filename for load
+2/2/16 Added more usage printf for invalid load and seed argument
+2/2/16 Finished CHANGELOG. Ready to package and deliver
