@@ -1,6 +1,7 @@
-Homework 1.01 - Dungeon Generation
+Homework 1.02 - Dungeon Load/Save
 By: Edwin O. Martinez Velazquez
 
+1.01:
 Dungeon Generations randomly generates a dungeon in a 80*21 grid.
 It will randomly generate between 5 to 7 rooms.
 The rooms will be of a random size between 3x2 to 6x5. This is due to stability
@@ -8,6 +9,26 @@ It connects the rooms using Bresenham's Line Algorithm, making a line to the clo
 Rooms, Rocks, and Corridors are their own structs.
 The dungeon is a 80x21 matrix of a tagged union, containing the tag of type and an instance of room, rock, or corridor.
 
+1.02:
+Program now has --load & --save switch.
+--load switch has optional parameter to specify which file to load from
+--save switch has optional parameter to specify which file to save to
+If no parameter for --load it will default to "dungeon". File must be a string, e.g., must contain at least 1 character other than a digit. 
+If no parameter for --save it will default to "dungeon", unless --load switch has a specified file. In which case it will save to the file loaded from.
+--load and --save can be used together, in which case it will load the file and then save it.
+--load cannot be used with a seed. A digit only parameter after --load will be read as a seed and fail
+--save can be used with a seed or random seed (no input argument)
+File must be in the appropiate format, otherwise program file indicate it is not.
+Saving file will indicate if there was any errors in the writing process.
+Order of switches doesn't matter.
+
+
 Usage using time as seed: ./dungeonGenerator
 
 Usage using int as seed: ./dungeonGenerator <number>
+
+Usage for load: ./dungeonGenerator --load <optional file name>
+
+Usage for save: ./dungeonGenerator --save <optional file name> <optional seed>
+
+Usage for load/save: ./dungeonGenerator --load <optional file name> --save <optional file name>

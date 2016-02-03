@@ -82,6 +82,11 @@ int main(int argc, char *argv[])
 					}
 					flags[c - 1] = LOAD;
 				}
+				else
+				{
+					printf("Invalid argument %s\n", argv[c]);
+					return 0;
+				}
 			}
 			else
 			{
