@@ -315,9 +315,10 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	}
 	//printf("Before rooms\n");
 	int r;
+	char *roomToWrite = malloc( 4 * sizeof(char));
 	for(r = 0; r < num_rooms; r++)
 	{
-		char *roomToWrite = malloc( 4 * sizeof(char));
+		
 		roomToWrite[0] = rooms[r].x;
 		roomToWrite[1] = rooms[r].y;
 		roomToWrite[2] = rooms[r].width;
@@ -327,9 +328,6 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 		{
 			printf("File room writing failed\n");
 		}
-		
-		roomToWrite -= 4;
-		free(roomToWrite);
 	}
 	//printf("End of save\n");
 	//free(roomToWrite);
