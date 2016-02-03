@@ -98,7 +98,9 @@ int main(int argc, char *argv[])
 
 	if(Contains_Flag(flags, (argc - 1), SEED) == TRUE && Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
-		printf("Usage: ./dungeonGenerator (<int> XOR --load) OR --save\n");
+		printf("Usage for load: ./dungeonGenerator --load <optional file name>\n");
+		printf("Usage for load/save: ./dungeonGenerator --load <optional file name> --save <optional file name>\n");
+		printf("File name cannot be numbers only. Read README for details\n");
 		return 0;
 	}
 	else if(Contains_Flag(flags, (argc - 1), SEED) == FALSE && Contains_Flag(flags, (argc - 1), LOAD) == FALSE)
