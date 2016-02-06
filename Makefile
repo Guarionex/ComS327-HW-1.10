@@ -1,5 +1,5 @@
-dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o dungeonGenerator.o
-	gcc dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o dungeonGenerator.o -o dungeonGenerator -lm
+dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o dungeonGenerator.o
+	gcc dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o dungeonGenerator.o -o dungeonGenerator -lm
 
 dungeonObjects.o: dungeonObjects.h dungeonObjects.c
 	gcc -g -Wall -Werror dungeonObjects.c -c
@@ -12,6 +12,9 @@ dungeonLevelGenerator.o: dungeonLevelGenerator.h dungeonLevelGenerator.c
 
 dungeonIO.o: dungeonIO.h dungeonIO.c
 	gcc -g -Wall -Werror dungeonIO.c -c
+	
+binheap.o: binheap.h binheap.c
+	gcc -g -Wall -Werror binheap.c -c
 
 dungeonGenerator.o: dungeonGenerator.c
 	gcc -g -Wall -Werror dungeonGenerator.c -c
