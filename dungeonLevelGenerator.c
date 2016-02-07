@@ -206,9 +206,9 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		{
 			if(moved_x == TRUE && moved_y == TRUE)
 			{
-				Place_Corridor(x0 - sx, y0, sr);
+				Place_Corridor(x0 - sx, y0);
 			}
-			Place_Corridor(x0,y0, sr); //int x, int y, int index
+			Place_Corridor(x0,y0); //int x, int y, int index
 			if (x0==x1 && y0==y1) break;
 			e2 = err;
 			moved_x = FALSE;
@@ -230,11 +230,9 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 	
 }
 
-void Place_Corridor(int x, int y, int id)
+void Place_Corridor(int x, int y)
 {
-	char *str = malloc(sizeof(char) * 2);
-	snprintf(str, sizeof(char)*2, "%d", id);
-	Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create(str);
+	Dungeon_Space_Corridor corridor = Dungeon_Space_Corridor_create();
 	Dungeon_Space_Struct cell = Dungeon_Space_Struct_create(CORRIDOR, corridor);
 	/*if(x < 0 || x > 79 || y < 0 || y > 20)
 	{

@@ -24,10 +24,10 @@ Dungeon_Space_Room Dungeon_Space_Room_create(int width, int height)
   return room;
 }
 
-Dungeon_Space_Corridor Dungeon_Space_Corridor_create(char *id/*, Dungeon_Space_Room from, Dungeon_Space_Room to*/)
+Dungeon_Space_Corridor Dungeon_Space_Corridor_create(/*char *id, Dungeon_Space_Room from, Dungeon_Space_Room to*/)
 {
   Dungeon_Space_Corridor corridor;// = malloc(sizeof(Dungeon_Space_Corridor));
-  corridor.id = strdup(id);
+  //corridor.id = strdup(id);
   corridor.density = 0;
   //corridor->previous = from;
   //corridor->next = to;

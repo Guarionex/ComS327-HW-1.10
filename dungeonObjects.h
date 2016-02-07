@@ -41,7 +41,7 @@ typedef struct
 
 typedef struct
 {
-  char *id;
+  //char *id;
   uint8_t density;
   //Dungeon_Space_Room previous;
   //Dungeon_Space_Room next;
@@ -62,7 +62,7 @@ typedef struct
 
 Dungeon_Space_Rock Dungeon_Space_Rock_create(int density);
 Dungeon_Space_Room Dungeon_Space_Room_create(int width, int height);
-Dungeon_Space_Corridor Dungeon_Space_Corridor_create(char *id/*, Dungeon_Space_Room from, Dungeon_Space_Room to*/);
+Dungeon_Space_Corridor Dungeon_Space_Corridor_create(/*char *id, Dungeon_Space_Room from, Dungeon_Space_Room to*/);
 Dungeon_Space_Union Dungeon_Space_Union_create(Dungeon_Space_Type space_type, va_list ap);
 Dungeon_Space_Struct Dungeon_Space_Struct_create(Dungeon_Space_Type space_type, ...);
 
