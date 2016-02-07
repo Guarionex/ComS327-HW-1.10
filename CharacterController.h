@@ -2,6 +2,7 @@
 #define CHARACTER_CONTROLLER_H
 
 #include "dungeonObjects.h"
+#include <time.h>
 
 typedef struct player
 {

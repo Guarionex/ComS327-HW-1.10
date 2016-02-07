@@ -1,4 +1,4 @@
-#import "CharacterController.h"
+#include "CharacterController.h"
 
 player_t pc;
 
@@ -40,7 +40,18 @@ player_t Place_Player(Dungeon_Space_Struct **dungeon, int seed)
 		}
 	}
 	
-	srand(seed);
+	int seed_local;
+	
+	if(seed <= 0)
+	{
+		seed_local = time(NULL);
+		*seed = seed_local;
+	}
+	else if(seed > 0)
+	{
+		seed_local = *seed;
+	}
+	srand(seed_local);
 	pc.pos = open_pos[rand()%open_count];
 	pc.cell = dungeon[pc.pos.x][pc.pos.y];
 	
