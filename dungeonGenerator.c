@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		Set_Dungeon(dungeon);
-		Set_Player(Place_Player(dungeon, -1));
+		Set_Player(Place_Player(dungeon, *((int *)-1)));
 		Draw_Dungeon();
 		loaded = TRUE;
 	}
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 		
 		dungeon = Generate_Map(&int_seed, &num_rooms);
 		Set_Dungeon(dungeon);
-		Set_Player(Place_Player(dungeon, int_seed));
+		Set_Player(Place_Player(dungeon, &int_seed));
 		Draw_Dungeon();
 	}
 	

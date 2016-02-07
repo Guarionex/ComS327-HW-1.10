@@ -13,6 +13,6 @@ typedef struct player
 
 extern player_t pc;
 
-player_t Place_Player(Dungeon_Space_Struct **dungeon, int seed);
+player_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 
 #endif

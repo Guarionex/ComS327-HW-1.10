@@ -2,7 +2,7 @@
 
 player_t pc;
 
-player_t Place_Player(Dungeon_Space_Struct **dungeon, int seed)
+player_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = malloc(sizeof(pos_t));
 	open_pos[0] = NULL_POS;
