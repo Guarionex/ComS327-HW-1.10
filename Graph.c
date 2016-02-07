@@ -46,7 +46,7 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 	new_vertex.y = y;
 	
 	internal_graph.num_vertices++;
-	internal_graph.vertices = realloc(internal_graph.vertices, sizeof(vertex_t) + internal_graph.num_vertices);
+	internal_graph.vertices = realloc(internal_graph.vertices, sizeof(vertex_t) + (sizeof(vertex_t) * internal_graph.num_vertices));
 	internal_graph.vertices[internal_graph.num_vertices-1] = new_vertex;
 	internal_graph.vertices[internal_graph.num_vertices] = NULL;
 	
@@ -61,7 +61,7 @@ bool Add_Edge(vertex_t *source, vertex_t *target)
 	new_edge.weight = (*target != NULL) ? *target.weight : INT_MAX;
 	
 	internal_graph.num_edges++;
-	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + internal_graph.num_edges);
+	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
 	internal_graph.edges[internal_graph.num_edges-1] = new_edge;
 	internal_graph.edges[internal_graph.num_edges] = NULL;
 	
