@@ -1,8 +1,8 @@
 #include "Graph.h"
 
 graph_t internal_graph;
-const vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
-const edge_t NULL_EDGE = {NULL_VERTEX, NULL_VERTEX,-1};
+vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
+edge_t NULL_EDGE = {.source = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .target = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .weight = -1};
 
 graph_t Create_Graph()
 {
