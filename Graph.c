@@ -1,9 +1,9 @@
 #include "Graph.h"
 
 graph_t internal_graph;
+vertex_t NULL_VERTEX = {Dungeon_Space_Struct_create(ROCK, Dungeon_Space_Rock_create(0)),-1, -1, -1};
+edge_t NULL_EDGE = {NULL_VERTEX, NULL_VERTEX,-1};
 
- edge_t NULL_EDGE = {,,-1};
-vertex_t NULL_VERTEX = {,-1, -1, -1};
 graph_t Create_Graph()
 {
 	internal_graph.num_vertices = 0;
@@ -60,7 +60,7 @@ bool Add_Edge(vertex_t *source, vertex_t *target)
 	edge_t new_edge;
 	new_edge.source = source;
 	new_edge.target = target;
-	new_edge.weight = (Compare_Vertices(*target, NULL_VERTEX) == FALSE) ? *target.weight : INT_MAX;
+	new_edge.weight = (Compare_Vertices(*target, NULL_VERTEX) == FALSE) ? target->weight : INT_MAX;
 	
 	internal_graph.num_edges++;
 	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
@@ -80,7 +80,7 @@ vertex_t *Get_Vertex(int x, int y)
 			return &internal_graph.vertices[v];
 		}
 	}
-	return NULL_VERTEX;
+	return &NULL_VERTEX;
 }
 
 bool Compare_Vertices(vertex_t key, vertex_t with)
