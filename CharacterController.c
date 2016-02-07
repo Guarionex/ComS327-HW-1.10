@@ -42,13 +42,13 @@ player_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	
 	int seed_local;
 	
-	if(seed <= 0)
+	if(*seed <= 0)
 	{
 		seed_local = time(NULL);
 		*seed = seed_local;
 		printf("Seed from time\n");
 	}
-	else if(seed > 0)
+	else if(*seed > 0)
 	{
 		seed_local = *seed;
 		printf("Seed from input %d\n", seed_local);
