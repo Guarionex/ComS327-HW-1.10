@@ -2,7 +2,7 @@
 
 graph_t internal_graph;
 vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
-edge_t NULL_EDGE = {*.source = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, *.target = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .weight = -1};
+edge_t NULL_EDGE = {.*source = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .*target = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .weight = -1};
 
 graph_t Create_Graph()
 {
