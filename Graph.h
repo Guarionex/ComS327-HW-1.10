@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include "dungeonObjects.h"
+#include <limits.h>
 
 typedef struct vertex
 {

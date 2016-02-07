@@ -1,5 +1,4 @@
 #include "Graph.h"
-#include <limits.h>
 
 graph_t internal_graph;
 
