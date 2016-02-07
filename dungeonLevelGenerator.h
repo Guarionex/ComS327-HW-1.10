@@ -11,7 +11,7 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms);
 void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms);
 void Place_Corridor(int x, int y, int id);
 Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms);
-void Draw_Dungeon(Dungeon_Space_Struct **dungeon);
+
 
 
 #endif

@@ -290,35 +290,3 @@ Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms)
 	return dungeon_map;
 }
 
-void Draw_Dungeon(Dungeon_Space_Struct **dungeon)
-{
-	int x;
-	int y;
-	for(y = 0; y < 21; y++)
-	{
-		for(x = 0; x < 80; x++)
-		{
-			switch(dungeon[x][y].space_type)
-			{
-				case ROCK :
-				
-					if(dungeon[x][y].space_union.rock.density == 255)
-					{
-						printf("R");
-					}
-					else printf(" ");
-				
-				break;
-				case ROOM :
-				
-					printf(".");
-				
-				break;
-				case CORRIDOR :
-					printf("#");
-				break;
-			}
-		}
-		printf("\n");
-	}
-}
