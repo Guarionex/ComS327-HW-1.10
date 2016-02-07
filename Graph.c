@@ -77,7 +77,7 @@ vertex_t Get_Vertex(int x, int y)
 	{
 		if((internal_graph.vertices[v].x == x) && (internal_graph.vertices[v].y == y))
 		{
-			return &internal_graph.vertices[v];
+			return internal_graph.vertices[v];
 		}
 	}
 	return NULL_VERTEX;
@@ -99,7 +99,7 @@ edge_t *Get_Edges_Of(vertex_t vertex)
 	for(e = 0; e < internal_graph.num_edges; e++)
 	{
 		edge_t current_edge = internal_graph.edges[e];
-		if(Compare_Vertices(*current_edge.source, vertex) == TRUE)
+		if(Compare_Vertices(current_edge.source, vertex) == TRUE)
 		{
 			adjacent_edges[edge_count] = current_edge;
 			edge_count++;

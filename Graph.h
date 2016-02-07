@@ -22,7 +22,7 @@ typedef struct edge
 	int weight;
 } edge_t;
 
-extern edge_t NULL_EDGE;
+extern const edge_t NULL_EDGE;
 
 typedef struct graph
 {
@@ -32,7 +32,7 @@ typedef struct graph
 	edge_t *edges;
 } graph_t;
 
-extern const graph_t internal_graph;
+extern  graph_t internal_graph;
 
 graph_t Create_Graph();
 void Destroy_Graph(graph_t *destroy_graph);
