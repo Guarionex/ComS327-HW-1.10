@@ -133,7 +133,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		Set_Dungeon(dungeon);
-		Set_Player(Place_Player(dungeon, *((int *)-1)));
+		Set_Player(Place_Player(dungeon, *(int *null_seed = -1)));
 		Draw_Dungeon();
 		loaded = TRUE;
 	}
