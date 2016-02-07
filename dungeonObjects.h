@@ -10,6 +10,12 @@ typedef enum
 	TRUE
 } bool;
 
+typedef struct position
+{
+	int x;
+	int y;
+} pos_t;
+
 typedef enum
 {
   ROCK,
