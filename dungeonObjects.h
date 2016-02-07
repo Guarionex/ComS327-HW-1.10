@@ -16,7 +16,7 @@ typedef struct position
 	int y;
 } pos_t;
 
-extern pos_t NULL_POS;
+extern const pos_t NULL_POS;
 
 typedef enum
 {
