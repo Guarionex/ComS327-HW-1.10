@@ -3,6 +3,7 @@
 
 #include "dungeonObjects.h"
 #include "CharacterController.h"
+#include <stdio.h>
 
 extern Dungeon_Space_Struct **current_dungeon;
 extern player_t pc;
