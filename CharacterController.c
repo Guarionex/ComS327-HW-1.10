@@ -45,10 +45,12 @@ player_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	{
 		seed_local = time(NULL);
 		*seed = seed_local;
+		printf("Seed from time\n");
 	}
 	else if(seed > 0)
 	{
 		seed_local = *seed;
+		printf("Seed from input\n");
 	}
 	srand(seed_local);
 	pc.pos = open_pos[rand()%open_count];

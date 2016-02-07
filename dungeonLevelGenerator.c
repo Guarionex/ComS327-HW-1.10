@@ -290,6 +290,7 @@ Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms)
 
 void Destroy_Dungeon(Dungeon_Space_Struct **dungeon)
 {
+	free(*dungeon);
 	free(dungeon);
 }
 
