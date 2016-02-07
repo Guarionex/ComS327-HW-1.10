@@ -288,3 +288,8 @@ Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms)
 	return dungeon_map;
 }
 
+void Destroy_Dungeon(Dungeon_Space_Struct **dungeon)
+{
+	free(dungeon);
+}
+

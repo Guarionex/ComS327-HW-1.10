@@ -193,6 +193,7 @@ int main(int argc, char *argv[])
 		//printf("save\n");		
 	}
 	
+	Destroy_Dungeon(dungeon);
 	
 	return 0;
 }
