@@ -113,6 +113,7 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
+		int null_seed = -1;
 		strcat(dungeonFolder, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
 		if(access(dungeonFolder, F_OK) == -1)
@@ -133,7 +134,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		Set_Dungeon(dungeon);
-		Set_Player(Place_Player(dungeon, *((int *)null_seed = -1)));
+		Set_Player(Place_Player(dungeon, &null_seed));
 		Draw_Dungeon();
 		loaded = TRUE;
 	}
