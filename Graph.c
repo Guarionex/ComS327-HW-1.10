@@ -1,7 +1,7 @@
 #include "Graph.h"
 
 graph_t internal_graph;
-vertex_t NULL_VERTEX = {Dungeon_Space_Struct_create(ROCK, Dungeon_Space_Rock_create(0)),-1, -1, -1};
+vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
 edge_t NULL_EDGE = {NULL_VERTEX, NULL_VERTEX,-1};
 
 graph_t Create_Graph()
@@ -94,12 +94,12 @@ bool Compare_Vertices(vertex_t key, vertex_t with)
 
 edge_t *Get_Edges_Of(vertex_t vertex)
 {
-	edge_t adjacent_edges[8];
+	edge_t *adjacent_edges = malloc(sizeof(edge_t) * 8);
 	int e, edge_count = 0;
 	for(e = 0; e < internal_graph.num_edges; e++)
 	{
 		edge_t current_edge = internal_graph.edges[e];
-		if(Compare_Vertices(current_edge.source, vertex) == TRUE)
+		if(Compare_Vertices(*current_edge.source, vertex) == TRUE)
 		{
 			adjacent_edges[edge_count] = current_edge;
 			edge_count++;
@@ -111,7 +111,7 @@ edge_t *Get_Edges_Of(vertex_t vertex)
 
 graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
 {
-	graph_t dungeon_graph = Create_Graph();
+	Create_Graph();
 	
 	int y, x;
 	for(y = 0; y < 21; y++)
@@ -130,7 +130,7 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
 		{
 			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20))
 			{
-				Add_Edge(&internal_graph.vertices[v], NULL_VERTEX);
+				Add_Edge(&internal_graph.vertices[v], &NULL_VERTEX);
 			}
 			else Add_Edge(&internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
 			
@@ -147,5 +147,5 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
 		}
 	}
 	
-	
+	return internal_graph;
 }
