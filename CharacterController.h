@@ -3,6 +3,7 @@
 
 #include "dungeonObjects.h"
 #include <time.h>
+#include <stdlib.h>
 
 typedef struct player
 {

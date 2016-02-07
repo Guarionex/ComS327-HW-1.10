@@ -3,6 +3,7 @@
 
 #include "dungeonObjects.h"
 #include <limits.h>
+#include <stdlib.h>
 
 typedef struct vertex
 {
