@@ -10,6 +10,7 @@
 #include "dungeonRoomGenerator.h"
 #include "dungeonLevelGenerator.h"
 #include "dungeonIO.h"
+#include "GameStateManager.h"
 
 bool isstring(char *string);
 
@@ -131,7 +132,9 @@ int main(int argc, char *argv[])
 			printf("Failed to load dungeon\n");
 			return 0;
 		}
-		Draw_Dungeon(dungeon);
+		Set_Dungeon(dungeon);
+		Set_Player(Place_Player(dungeon, -1));
+		Draw_Dungeon();
 		loaded = TRUE;
 	}
 	else
@@ -141,7 +144,9 @@ int main(int argc, char *argv[])
 		int int_seed = seed;
 		
 		dungeon = Generate_Map(&int_seed, &num_rooms);
-		Draw_Dungeon(dungeon);
+		Set_Dungeon(dungeon);
+		Set_Player(Place_Player(dungeon, int_seed));
+		Draw_Dungeon();
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
