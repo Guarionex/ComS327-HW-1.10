@@ -13,12 +13,16 @@ typedef struct vertex
 	int y;	
 } vertex_t;
 
+typedef vertex_t NULL_VERTEX = {,-1, -1, -1};
+
 typedef struct edge
 {
 	vertex_t *source;
 	vertex_t *target;
 	int weight;
 } edge_t;
+
+typedef edge_t NULL_EDGE = {,,-1};
 
 typedef struct graph
 {

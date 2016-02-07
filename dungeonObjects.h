@@ -16,6 +16,8 @@ typedef struct position
 	int y;
 } pos_t;
 
+typedef pos_t NULL_POS = {-1, -1};
+
 typedef enum
 {
   ROCK,

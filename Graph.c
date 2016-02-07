@@ -8,8 +8,8 @@ graph_t Create_Graph()
 	internal_graph.num_edges = 0;
 	internal_graph.vertices = malloc(sizeof(vertex_t));
 	internal_graph.edges = malloc(sizeof(edge_t));
-	internal_graph.vertices[0] = NULL;
-	internal_graph.edges[0] = NULL;
+	internal_graph.vertices[0] = NULL_VERTEX;
+	internal_graph.edges[0] = NULL_EDGE;
 	
 	return internal_graph;
 }
@@ -48,7 +48,7 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 	internal_graph.num_vertices++;
 	internal_graph.vertices = realloc(internal_graph.vertices, sizeof(vertex_t) + (sizeof(vertex_t) * internal_graph.num_vertices));
 	internal_graph.vertices[internal_graph.num_vertices-1] = new_vertex;
-	internal_graph.vertices[internal_graph.num_vertices] = NULL;
+	internal_graph.vertices[internal_graph.num_vertices] = NULL_VERTEX;
 	
 	return TRUE;
 }
@@ -58,12 +58,12 @@ bool Add_Edge(vertex_t *source, vertex_t *target)
 	edge_t new_edge;
 	new_edge.source = source;
 	new_edge.target = target;
-	new_edge.weight = (*target != NULL) ? *target.weight : INT_MAX;
+	new_edge.weight = (Compare_Vertices(*target, NULL_VERTEX) == FALSE) ? *target.weight : INT_MAX;
 	
 	internal_graph.num_edges++;
 	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
 	internal_graph.edges[internal_graph.num_edges-1] = new_edge;
-	internal_graph.edges[internal_graph.num_edges] = NULL;
+	internal_graph.edges[internal_graph.num_edges] = NULL_EDGE;
 	
 	return TRUE;
 }
@@ -78,7 +78,7 @@ vertex_t *Get_Vertex(int x, int y)
 			return &internal_graph.vertices[v];
 		}
 	}
-	return NULL;
+	return NULL_VERTEX;
 }
 
 bool Compare_Vertices(vertex_t key, vertex_t with)
@@ -128,7 +128,7 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
 		{
 			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20))
 			{
-				Add_Edge(&internal_graph.vertices[v], NULL);
+				Add_Edge(&internal_graph.vertices[v], NULL_VERTEX);
 			}
 			else Add_Edge(&internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
 			
