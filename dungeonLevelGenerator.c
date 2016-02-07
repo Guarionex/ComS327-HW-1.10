@@ -284,7 +284,7 @@ Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms)
 	}
 	//else printf("Took %d attempts to place all rooms\n", attempts);
 	Connect_Rooms(rooms, total_num_rooms);
-	
+	free(rooms);
 	return dungeon_map;
 }
 
