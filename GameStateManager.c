@@ -21,7 +21,7 @@ void Draw_Dungeon(void)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			if(pc.pos.x == x && pc.pos.y == y;)
+			if(pc.pos.x == x && pc.pos.y == y)
 			{
 				printf("@");
 			}
