@@ -1,8 +1,8 @@
 #include "Graph.h"
 
 graph_t internal_graph;
-vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
-edge_t NULL_EDGE = {.source = &{.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .target = &{.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .weight = -1};
+const vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
+const edge_t NULL_EDGE = {.source = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .target = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .weight = -1};
 
 graph_t Create_Graph()
 {
@@ -55,12 +55,12 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 	return TRUE;
 }
 
-bool Add_Edge(vertex_t *source, vertex_t *target)
+bool Add_Edge(vertex_t source, vertex_t target)
 {
 	edge_t new_edge;
 	new_edge.source = source;
 	new_edge.target = target;
-	new_edge.weight = (Compare_Vertices(*target, NULL_VERTEX) == FALSE) ? target->weight : INT_MAX;
+	new_edge.weight = (Compare_Vertices(target, NULL_VERTEX) == FALSE) ? target.weight : INT_MAX;
 	
 	internal_graph.num_edges++;
 	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
@@ -70,7 +70,7 @@ bool Add_Edge(vertex_t *source, vertex_t *target)
 	return TRUE;
 }
 
-vertex_t *Get_Vertex(int x, int y)
+vertex_t Get_Vertex(int x, int y)
 {
 	int v;
 	for(v = 0; v < internal_graph.num_vertices; v++)
@@ -80,7 +80,7 @@ vertex_t *Get_Vertex(int x, int y)
 			return &internal_graph.vertices[v];
 		}
 	}
-	return &NULL_VERTEX;
+	return NULL_VERTEX;
 }
 
 bool Compare_Vertices(vertex_t key, vertex_t with)
@@ -130,9 +130,9 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
 		{
 			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20))
 			{
-				Add_Edge(&internal_graph.vertices[v], &NULL_VERTEX);
+				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
 			}
-			else Add_Edge(&internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
+			else Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
 			
 			a++;
 			if(a > 1)
