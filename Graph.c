@@ -2,6 +2,8 @@
 
 graph_t internal_graph;
 
+ edge_t NULL_EDGE = {,,-1};
+vertex_t NULL_VERTEX = {,-1, -1, -1};
 graph_t Create_Graph()
 {
 	internal_graph.num_vertices = 0;

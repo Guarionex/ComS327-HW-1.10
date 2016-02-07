@@ -4,6 +4,8 @@
 #include <stdarg.h>
 #include <string.h>
 
+ pos_t NULL_POS = {-1, -1};
+
 Dungeon_Space_Rock Dungeon_Space_Rock_create(int density)
 {
   Dungeon_Space_Rock rock;// = malloc(sizeof(Dungeon_Space_Rock));

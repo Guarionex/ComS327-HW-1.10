@@ -13,7 +13,7 @@ typedef struct vertex
 	int y;	
 } vertex_t;
 
-typedef vertex_t NULL_VERTEX = {,-1, -1, -1};
+extern vertex_t NULL_VERTEX = {,-1, -1, -1};
 
 typedef struct edge
 {
@@ -22,7 +22,7 @@ typedef struct edge
 	int weight;
 } edge_t;
 
-typedef edge_t NULL_EDGE = {,,-1};
+extern edge_t NULL_EDGE = {,,-1};
 
 typedef struct graph
 {
