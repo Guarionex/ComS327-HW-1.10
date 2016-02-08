@@ -31,7 +31,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : INT_MAX;
 		predecessor[v] = NULL_VERTEX;
 		
-		nodes[v] = binheap_insert(&h, graph.vertices + v);
+		nodes[v] = binheap_insert(&h, &(graph.vertices[v]));
 	}
 	
 	while(!binheap_is_empty(&h))
@@ -52,7 +52,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
 		}
-		free(adjacent_edges);
+		//free(adjacent_edges);
 	}
 }
 
