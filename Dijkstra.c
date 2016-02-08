@@ -8,7 +8,7 @@ int32_t compare_vertex(const void *key, const void *with)
 {
 	vertex_t from = *((vertex_t *) key);
 	vertex_t to = *((vertex_t *) with);
-	printf("Distance[%d] = %d and Distance[%d] = %d\n",from.y*80+from.x, to.y*80+to.x);
+	printf("Distance[%d]  and Distance[%d] \n",from.y*80+from.x, to.y*80+to.x);
 	int32_t distance_between = distance[from.y*80+from.x] - distance[to.y*80+to.x];
 	return distance_between;
 }
