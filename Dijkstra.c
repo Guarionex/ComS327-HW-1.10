@@ -1,4 +1,5 @@
 #include "Dijkstra.h"
+#include <stdio.h>
 
 int *distance;
 vertex_t *predecessor;
