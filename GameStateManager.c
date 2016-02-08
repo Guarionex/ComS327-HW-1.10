@@ -15,15 +15,18 @@ void Set_Player(player_t player)
 
 char **Generate_Distance_Dungeon(void)
 {
-	/*graph_t graphed_dungeon = */GenerateGraph(current_dungeon);
+	graph_t graphed_dungeon = GenerateGraph(current_dungeon);
+	vertex_t player_vertex = Get_Vertex(pc.pos.x, pc.pos.y);
+	
 	char **char_dungeon;
 	char_dungeon = malloc(80 * sizeof(char *));
 	int x;
 	for(x = 0; x < 80; x++)
 	{
-		char_dungeon = malloc(21 * sizeof(char));
-		
+		char_dungeon = malloc(21 * sizeof(char));	
 	}
+	
+	Dijkstra(graphed_dungeon, player_vertex);
 	
 	return char_dungeon;
 }

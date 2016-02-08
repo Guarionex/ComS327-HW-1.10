@@ -4,6 +4,7 @@
 #include "dungeonObjects.h"
 #include "CharacterController.h"
 #include "Graph.h"
+#include "Dijkstra.h"
 #include <stdio.h>
 
 extern Dungeon_Space_Struct **current_dungeon;
