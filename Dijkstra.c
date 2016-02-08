@@ -27,7 +27,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 	predecessor = malloc(sizeof(vertex_t) * num_vertices);
 	
 	binheap_t h;
-	binheap_init(&h, compare_vertex, free);	
+	binheap_init(&h, compare_vertex, NULL);	
 	
 	int v;
 	for(v = 0; v < num_vertices; v++)
