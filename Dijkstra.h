@@ -19,7 +19,7 @@ typedef struct predecessor
 } predecessor_t;*/
 
 int32_t compare(const void *key, const void *with);
-void Dijkstra(Graph *graph, vertex_t src);
+void Dijkstra(graph_t *graph, vertex_t src);
 vertex_t *Get_Path(vertex_t target);
 int Get_Cost(vertex_t target);
 

@@ -5,14 +5,14 @@ vertex_t *predecessor;
 
 int32_t compare_vertex(const void *key, const void *with)
 {
-	vertex_t from = (vertex_t) *key;
-	vertex_t to = (vertex_t) *with;
+	vertex_t from = *((vertex_t *) key);
+	vertex_t to = *((vertex_t *) with);
 	
 	int32_t distance_between = distance[from.y*80+from.x] - distance[to.y*80+to.x];
 	return distance_between;
 }
 
-void Dijkstra(Graph graph, vertex_t src)
+void Dijkstra(graph_t graph, vertex_t src)
 {
 	int num_vertices = graph.num_vertices;
 	binheap_node_t nodes[num_vertices];
