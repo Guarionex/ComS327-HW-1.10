@@ -11,7 +11,7 @@ int32_t compare_vertex(const void *key, const void *with)
 	if(from.x >= 80 || from.y >= 21 || from.x < 0 || from.y < 0)
 	{
 		printf("From: weight=%d, x=%d, y=%d\n", from.weight, from.x, from.y);
-		return INT_MAX;
+		//return INT_MAX;
 	}
 	//printf("From: x=%d y=%d, To: x=%d y=%d\n", from.x, from.y, to.x, to.y);
 	//printf("Distance[%d]  and Distance[%d] \n",from.y*80+from.x, to.y*80+to.x);
@@ -32,8 +32,8 @@ void Dijkstra(graph_t graph, vertex_t src)
 	int v;
 	for(v = 0; v < num_vertices; v++)
 	{
-		int index_y = v/80;
-		int index_x = v - (index_y * 80);
+		int index_y = graph.vertices[v].y;
+		int index_x = graph.vertices[v].x;
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : INT_MAX;
 		predecessor[v] = NULL_VERTEX;
 		vertex_t *insert_vertex = malloc(sizeof(vertex_t));
