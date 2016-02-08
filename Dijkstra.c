@@ -15,7 +15,7 @@ int32_t compare_vertex(const void *key, const void *with)
 void Dijkstra(graph_t graph, vertex_t src)
 {
 	int num_vertices = graph.num_vertices;
-	binheap_node_t nodes[num_vertices];
+	binheap_node_t *nodes[num_vertices];
 	distance = malloc(sizeof(int) * num_vertices);
 	predecessor = malloc(sizeof(vertex_t) * num_vertices);
 	
@@ -35,9 +35,10 @@ void Dijkstra(graph_t graph, vertex_t src)
 	
 	while(!binheap_is_empty(&h))
 	{
-		vertex_t current = (vertex_t) *(binheap_remove_min(&h));
+		vertex_t current = *((vertex_t *) binheap_remove_min(&h));
 		
-		edge_t adjacent_edges[8] = Get_Edges_Of(current);
+		edge_t adjacent_edges[8];
+		adjacent_edges = Get_Edges_Of(current);
 		int e;
 		for(e = 0; e < 8; e++)
 		{
