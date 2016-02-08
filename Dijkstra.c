@@ -10,10 +10,10 @@ int32_t compare_vertex(const void *key, const void *with)
 	vertex_t to = *((vertex_t *) with);
 	if(from.x >= 80 || from.y >= 21 || from.x < 0 || from.y < 0)
 	{
-		return INT_MAX;
 		printf("From: weight=%d, x=%d, y=%d\n", from.weight, from.x, from.y);
+		return INT_MAX;
 	}
-	printf("From: x=%d y=%d, To: x=%d y=%d\n", from.x, from.y, to.x, to.y);
+	//printf("From: x=%d y=%d, To: x=%d y=%d\n", from.x, from.y, to.x, to.y);
 	//printf("Distance[%d]  and Distance[%d] \n",from.y*80+from.x, to.y*80+to.x);
 	int32_t distance_between = distance[from.y*80+from.x] - distance[to.y*80+to.x];
 	return distance_between;
