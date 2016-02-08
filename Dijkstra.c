@@ -23,6 +23,8 @@ void Dijkstra(graph_t graph, vertex_t src)
 	binheap_t h;
 	binheap_init(&h, compare_vertex, NULL);	
 	
+	vertex_t current;
+	
 	int v;
 	for(v = 0; v < num_vertices; v++)
 	{
@@ -36,10 +38,9 @@ void Dijkstra(graph_t graph, vertex_t src)
 	
 	while(!binheap_is_empty(&h))
 	{
-		vertex_t current = *((vertex_t *) binheap_remove_min(&h));
+		current = *((vertex_t *) binheap_remove_min(&h));
 		
-		edge_t *adjacent_edges = malloc(sizeof(edge_t)*8);
-		adjacent_edges = Get_Edges_Of(current);
+		edge_t *adjacent_edges = Get_Edges_Of(current);
 		int e;
 		for(e = 0; e < 8; e++)
 		{
