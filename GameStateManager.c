@@ -2,6 +2,7 @@
 
 Dungeon_Space_Struct **current_dungeon;
 player_t pc;
+ char **distance_map;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -17,6 +18,7 @@ char **Generate_Distance_Dungeon(void)
 {
 	graph_t graphed_dungeon = GenerateGraph(current_dungeon);
 	vertex_t player_vertex = Get_Vertex(pc.pos.x, pc.pos.y);
+	int distances_int[graphed_dungeon.num_vertices];
 	
 	char **char_dungeon;
 	char_dungeon = malloc(80 * sizeof(char *));
@@ -34,6 +36,14 @@ char **Generate_Distance_Dungeon(void)
 	}*/
 	
 	Dijkstra(graphed_dungeon, player_vertex);
+	
+	int d;
+	for(d = 0; d < graphed_dungeon.num_vertices; d++)
+	{
+		distances_int = Get_Cost(graphed_dungeon.vertices[d]);
+	}
+	
+	
 	
 	return char_dungeon;
 }
