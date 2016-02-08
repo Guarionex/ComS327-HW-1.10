@@ -15,8 +15,15 @@ void Set_Player(player_t player)
 
 char **Generate_Distance_Dungeon(void)
 {
-	graph_t graphed_dungeon = GenerateGraph(current_dungeon);
+	/*graph_t graphed_dungeon = */GenerateGraph(current_dungeon);
 	char **char_dungeon;
+	char_dungeon = malloc(80 * sizeof(char *));
+	int x;
+	for(x = 0; x < 80; x++)
+	{
+		char_dungeon = malloc(21 * sizeof(char));
+		
+	}
 	
 	return char_dungeon;
 }
