@@ -26,7 +26,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 	binheap_node_t *nodes[num_vertices];
 	distance = malloc(sizeof(int) * num_vertices);
 	predecessor = malloc(sizeof(vertex_t) * num_vertices);
-	visited = malloc(sizeof(vertex_t) * num_vertices)
+	visited = malloc(sizeof(vertex_t) * num_vertices);
 	int visited_count = 0;
 	
 	binheap_t h;
