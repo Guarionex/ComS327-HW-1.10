@@ -16,7 +16,7 @@ dungeonIO.o: dungeonIO.h dungeonIO.c
 binheap.o: binheap.h binheap.c
 	gcc -g -Wall -Werror binheap.c -c
 	
-Dijkstra.o: Dijkstra.h Dijkstra.clean
+Dijkstra.o: Dijkstra.h Dijkstra.c
 	gcc -g -Wall -Werror Dijkstra.c -c
 
 Graph.o: Graph.h Graph.c
