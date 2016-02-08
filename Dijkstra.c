@@ -37,7 +37,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 	{
 		vertex_t current = *((vertex_t *) binheap_remove_min(&h));
 		
-		edge_t adjacent_edges[8];
+		edge_t *adjacent_edges = malloc(sizeof(edge_t)*8);
 		adjacent_edges = Get_Edges_Of(current);
 		int e;
 		for(e = 0; e < 8; e++)
