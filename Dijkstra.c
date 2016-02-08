@@ -23,8 +23,6 @@ void Dijkstra(graph_t graph, vertex_t src)
 	binheap_t h;
 	binheap_init(&h, compare_vertex, NULL);	
 	
-	vertex_t current;
-	
 	int v;
 	for(v = 0; v < num_vertices; v++)
 	{
@@ -32,23 +30,24 @@ void Dijkstra(graph_t graph, vertex_t src)
 		int index_x = v - (index_y * 80);
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : INT_MAX;
 		predecessor[v] = NULL_VERTEX;
-		
-		nodes[v] = binheap_insert(&h, &(graph.vertices[v]));
+		vertex_t *insert_vertex;
+		*insert_vertex = graph.vertices[v];
+		nodes[v] = binheap_insert(&h, insert_vertex);
 	}
 	
 	while(!binheap_is_empty(&h))
 	{
-		current = *((vertex_t *) binheap_remove_min(&h));
+		vertex_t *current = (vertex_t *) binheap_remove_min(&h);
 		
-		edge_t *adjacent_edges = Get_Edges_Of(current);
+		edge_t *adjacent_edges = Get_Edges_Of(*current);
 		int e;
 		for(e = 0; e < 8; e++)
 		{
 			vertex_t next = adjacent_edges[e].source;
-			if(distance[current.y*80+current.x] + next.weight < distance[next.y*80+next.x])
+			if(distance[current->y*80+current->x] + next.weight < distance[next.y*80+next.x])
 			{
-				distance[next.y*80+next.x] = distance[current.y*80+current.x] + next.weight;
-				predecessor[next.y*80+next.x] = current;
+				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
+				predecessor[next.y*80+next.x] = *current;
 				//printf("Num_vertices = %d and next index = %d\n", num_vertices, next.y*80+next.x);
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
