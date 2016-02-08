@@ -3,6 +3,7 @@
 
 int *distance;
 vertex_t *predecessor;
+vertex_t *visited;
 
 int32_t compare_vertex(const void *key, const void *with)
 {
@@ -25,6 +26,8 @@ void Dijkstra(graph_t graph, vertex_t src)
 	binheap_node_t *nodes[num_vertices];
 	distance = malloc(sizeof(int) * num_vertices);
 	predecessor = malloc(sizeof(vertex_t) * num_vertices);
+	visited = malloc(sizeof(vertex_t) * num_vertices)
+	int visited_count = 0;
 	
 	binheap_t h;
 	binheap_init(&h, compare_vertex, NULL);	
@@ -45,13 +48,15 @@ void Dijkstra(graph_t graph, vertex_t src)
 	while(!binheap_is_empty(&h))
 	{
 		vertex_t *current = (vertex_t *) binheap_remove_min(&h);
+		visited[visited_count] = *current;
+		visited_count++;
 		
 		edge_t *adjacent_edges = Get_Edges_Of(*current);
 		int e;
 		for(e = 0; e < 8; e++)
 		{
 			vertex_t next = adjacent_edges[e].source;
-			if(distance[current->y*80+current->x] + next.weight < distance[next.y*80+next.x])
+			if((distance[current->y*80+current->x] + next.weight < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE))
 			{
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
 				predecessor[next.y*80+next.x] = *current;

@@ -92,6 +92,19 @@ bool Compare_Vertices(vertex_t key, vertex_t with)
 	return FALSE;
 }
 
+bool Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t find)
+{
+	int e;
+	for(e = 0; e < num_elements; e++)
+	{
+		if(Compare_Vertices(vertex_collection[e], find) == TRUE)
+		{
+			return TRUE;
+		}
+	}
+	return FALSE;
+}
+
 edge_t *Get_Edges_Of(vertex_t vertex)
 {
 	edge_t *adjacent_edges = malloc(sizeof(edge_t) * 8);
