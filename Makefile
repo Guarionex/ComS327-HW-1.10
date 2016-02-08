@@ -1,5 +1,5 @@
-dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Graph.o CharacterController.o GameStateManager.o dungeonGenerator.o
-	gcc dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Graph.o CharacterController.o  GameStateManager.o dungeonGenerator.o -o dungeonGenerator -lm
+dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o GameStateManager.o dungeonGenerator.o
+	gcc dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dungeonGenerator.o -o dungeonGenerator -lm
 
 dungeonObjects.o: dungeonObjects.h dungeonObjects.c
 	gcc -g -Wall -Werror dungeonObjects.c -c
@@ -16,6 +16,9 @@ dungeonIO.o: dungeonIO.h dungeonIO.c
 binheap.o: binheap.h binheap.c
 	gcc -g -Wall -Werror binheap.c -c
 	
+Dijkstra.o: Dijkstra.h Dijkstra.clean
+	gcc -g -Wall -Werror Dijkstra.c -c
+
 Graph.o: Graph.h Graph.c
 	gcc -g -Wall -Werror Graph.c -c
 	
