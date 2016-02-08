@@ -26,7 +26,7 @@ char **Generate_Distance_Dungeon(void)
 		char_dungeon = malloc(21 * sizeof(char));	
 	}
 	
-	Dijkstra(graphed_dungeon, player_vertex);
+	//Dijkstra(graphed_dungeon, player_vertex);
 	
 	return char_dungeon;
 }
