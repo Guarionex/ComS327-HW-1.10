@@ -10,7 +10,7 @@ int32_t compare_vertex(const void *key, const void *with)
 	vertex_t to = *((vertex_t *) with);
 	if(from.x >= 80 || from.y >= 21)
 	{
-		switch()
+		switch(from.vertexData.space_type)
 		{
 			case ROCK:
 			printf("ROCK\n");
