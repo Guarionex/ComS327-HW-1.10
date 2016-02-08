@@ -10,20 +10,7 @@ int32_t compare_vertex(const void *key, const void *with)
 	vertex_t to = *((vertex_t *) with);
 	if(from.x >= 80 || from.y >= 21)
 	{
-		switch(from.vertexData.space_type)
-		{
-			case ROCK:
-			printf("ROCK\n");
-			break;
-			
-			case ROOM:
-			printf("ROOM\n");
-			break;
-			
-			case CORRIDOR:
-			printf("CORRIDOR\n");
-			break;
-		}
+		return INT_MAX;
 		printf("From: weight=%d, x=%d, y=%d\n", from.weight, from.x, from.y);
 	}
 	//printf("From: x=%d y=%d, To: x=%d y=%d\n", from.x, from.y, to.x, to.y);
