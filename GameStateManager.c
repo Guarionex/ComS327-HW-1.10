@@ -13,6 +13,14 @@ void Set_Player(player_t player)
 	pc = player;
 }
 
+char **Generate_Distance_Dungeon(void)
+{
+	graph_t graphed_dungeon = GenerateGraph(current_dungeon);
+	char **char_dungeon;
+	
+	return char_dungeon;
+}
+
 void Draw_Dungeon(void)
 {
 	int x;
@@ -51,4 +59,9 @@ void Draw_Dungeon(void)
 		}
 		printf("\n");
 	}
+}
+
+void Draw_Distance_Dungeon(char **char_map)
+{
+	
 }

@@ -148,6 +148,7 @@ int main(int argc, char *argv[])
 		Set_Dungeon(dungeon);
 		Set_Player(Place_Player(dungeon, &int_seed));
 		Draw_Dungeon();
+		Generate_Distance_Dungeon();
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
