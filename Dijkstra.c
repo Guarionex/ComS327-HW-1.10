@@ -8,7 +8,7 @@ int32_t compare_vertex(const void *key, const void *with)
 {
 	vertex_t from = *((vertex_t *) key);
 	vertex_t to = *((vertex_t *) with);
-	if(from.x >= 80 || from.y >= 21)
+	if(from.x >= 80 || from.y >= 21 || from.x < 0 || from.y < 0)
 	{
 		return INT_MAX;
 		printf("From: weight=%d, x=%d, y=%d\n", from.weight, from.x, from.y);
