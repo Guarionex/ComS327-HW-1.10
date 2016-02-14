@@ -41,8 +41,9 @@ char **Generate_Distance_Dungeon(void)
 	for(d = 0; d < graphed_dungeon.num_vertices; d++)
 	{
 		distances_int[d] = Get_Cost(graphed_dungeon.vertices[d]);
+		printf("Int at [%d][%d] in [%d] = %d\n", graphed_dungeon.vertices[d].x , graphed_dungeon.vertices[d].y, d, distances_int[d]);
 	}
-	printf("Using distances_int = %d\n", distances_int[0]);
+	
 	for(y = 0; y < 21; y++)
 	{
 		for(x = 0; x < 80; x++)

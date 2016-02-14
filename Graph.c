@@ -144,13 +144,14 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
 		{
 			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20))
 			{
+				//continue;
 				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
-				printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
+				//printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
 			}
 			else 
 			{
 				Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
-				printf("Vertex at [%d][%d] is of weight = %d\n", internal_graph.vertices[v].x+a, internal_graph.vertices[v].y+b, Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).weight);
+				//printf("Vertex at [%d][%d] is of weight = %d\n", internal_graph.vertices[v].x+a, internal_graph.vertices[v].y+b, Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).weight);
 			}
 			
 			a++;
