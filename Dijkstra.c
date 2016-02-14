@@ -55,7 +55,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		int e;
 		for(e = 0; e < 8; e++)
 		{
-			vertex_t next = adjacent_edges[e].source;
+			vertex_t next = adjacent_edges[e].target;
 			if(Compare_Vertices(*current, next) == TRUE)
 			{
 				//printf("Same vertex\n");
