@@ -56,9 +56,13 @@ void Dijkstra(graph_t graph, vertex_t src)
 		for(e = 0; e < 8; e++)
 		{
 			vertex_t next = adjacent_edges[e].source;
-			if(Compare_Vertices(*current, next))
+			if(Compare_Vertices(*current, next) == TRUE)
 			{
-				printf("Same vertex\n");
+				//printf("Same vertex\n");
+			}
+			else
+			{
+				printf("Different vertex\n");
 			}
 			if((distance[current->y*80+current->x] + next.weight < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE))
 			{
