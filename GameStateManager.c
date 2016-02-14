@@ -22,7 +22,7 @@ char **Generate_Distance_Dungeon(void)
 	
 	char **char_dungeon;
 	char_dungeon = malloc(80 * sizeof(char *));
-	int x;
+	int x, y;
 	for(x = 0; x < 80; x++)
 	{
 		char_dungeon = malloc(21 * sizeof(char));	
@@ -40,9 +40,17 @@ char **Generate_Distance_Dungeon(void)
 	int d;
 	for(d = 0; d < graphed_dungeon.num_vertices; d++)
 	{
-		distances_int = Get_Cost(graphed_dungeon.vertices[d]);
+		distances_int[d] = Get_Cost(graphed_dungeon.vertices[d]);
 	}
 	
+	for(y = 0; y < 21; y++)
+	{
+		for(x = 0; x < 80; x++)
+		{
+			char_dungeon[x][y] = distances_int[y*80+x];
+			printf("Char at [%d][%d] = %c\n", x, y, char_dungeon[x][y]);
+		}
+	}
 	
 	
 	return char_dungeon;
