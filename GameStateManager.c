@@ -47,7 +47,7 @@ char **Generate_Distance_Dungeon(void)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			char_dungeon[x][y] = distances_int[y*80+x];
+			char_dungeon[x][y] = distances_int[y*80+x] + '0';
 			printf("Char at [%d][%d] = %c\n", x, y, char_dungeon[x][y]);
 		}
 	}
