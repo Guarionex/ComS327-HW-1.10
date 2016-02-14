@@ -69,7 +69,9 @@ void Dijkstra(graph_t graph, vertex_t src)
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
 				predecessor[next.y*80+next.x] = *current;
 				//printf("Num_vertices = %d and next index = %d\n", num_vertices, next.y*80+next.x);
+				printf("Before decrease next is [%d][%d]\n", next.x, next.y);
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
+				printf("After decrease\n");
 			}
 		}
 		//free(adjacent_edges);
