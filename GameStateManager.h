@@ -6,6 +6,7 @@
 #include "Graph.h"
 #include "Dijkstra.h"
 #include <stdio.h>
+#include <stdint.h>
 
 extern Dungeon_Space_Struct **current_dungeon;
 extern player_t pc;

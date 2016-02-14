@@ -18,7 +18,7 @@ char **Generate_Distance_Dungeon(void)
 {
 	graph_t graphed_dungeon = GenerateGraph(current_dungeon);
 	vertex_t player_vertex = Get_Vertex(pc.pos.x, pc.pos.y);
-	int distances_int[graphed_dungeon.num_vertices];
+	uint8_t distances_int[graphed_dungeon.num_vertices];
 	
 	char **char_dungeon;
 	char_dungeon = malloc(80 * sizeof(char *));
@@ -47,7 +47,7 @@ char **Generate_Distance_Dungeon(void)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			char_dungeon[x][y] = distances_int[y*80+x] + '0';
+			char_dungeon[x][y] = distances_int[y*80+x];
 			printf("Char at [%d][%d] = %c\n", x, y, char_dungeon[x][y]);
 		}
 	}
