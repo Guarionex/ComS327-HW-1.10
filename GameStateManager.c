@@ -42,13 +42,13 @@ char **Generate_Distance_Dungeon(void)
 	{
 		distances_int[d] = Get_Cost(graphed_dungeon.vertices[d]);
 	}
-	
+	printf("Using distances_int = %d\n", distances_int[0]);
 	for(y = 0; y < 21; y++)
 	{
 		for(x = 0; x < 80; x++)
 		{
 			//printf("Before char at [%d][%d] = %c\n", x, y, char_dungeon[x][y]);
-			printf("Int at [%d][%d] in [%d] = %d\n", x, y, y*80+x, distances_int[y*80+x]);
+			//printf("Int at [%d][%d] in [%d] = %d\n", x, y, y*80+x, distances_int[y*80+x]);
 			//char_dungeon[x][y] = (char) distances_int[y*80+x];
 			//printf("Char at [%d][%d] = %c\n", x, y, char_dungeon[x][y]);
 		}
