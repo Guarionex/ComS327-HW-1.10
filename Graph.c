@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include <stdio.h>
 
 graph_t internal_graph;
 const vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
