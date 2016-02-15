@@ -8,7 +8,7 @@
 typedef struct vertex
 {
 	Dungeon_Space_Struct vertexData;
-	int weight;
+	uint weight;
 	int x;
 	int y;	
 } vertex_t;
