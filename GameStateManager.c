@@ -47,6 +47,7 @@ char *Generate_Distance_Dungeon(void)
 		//printf("Before char at [%d][%d] = %c\n", x, y, distance_map[x][y]);
 		//printf("Int at [%d][%d] in [%d] = %d\n", x, y, y*80+x, distances_int[y*80+x]);
 		//distance_map[x][y] = (char) distances_int[y*80+x];
+		printf("distances_int[0] = %d\n", distances_int[0]);
 		switch(distances_int[z])
 		{
 			case 0:

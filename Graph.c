@@ -144,7 +144,10 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 		{
 			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20) || (tunneler == FALSE && internal_graph.vertices[v].vertexData.space_type == ROCK))
 			{
-				//continue;
+				if(internal_graph.vertices[v].x == 0 && internal_graph.vertices[v].y == 0)
+				{
+					printf("This is [0][0]\n");
+				}
 				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
 				//printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
 			}
