@@ -2,7 +2,7 @@
 
 Dungeon_Space_Struct **current_dungeon;
 player_t pc;
-char **distance_map;
+char *distance_map;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -14,7 +14,7 @@ void Set_Player(player_t player)
 	pc = player;
 }
 
-char **Generate_Distance_Dungeon(void)
+char *Generate_Distance_Dungeon(void)
 {
 	graph_t graphed_dungeon = GenerateGraph(current_dungeon);
 	vertex_t player_vertex = Get_Vertex(pc.pos.x, pc.pos.y);
@@ -39,272 +39,269 @@ char **Generate_Distance_Dungeon(void)
 	//printf("Using distances_int = %d\n", distances_int[0]);
 	
 	
-	distance_map = malloc(80 * sizeof(char *));
-	int x, y;
-	for(y = 0; y < 21; y++)
+	distance_map = malloc(1680 * sizeof(char));
+	int x, y, z;
+	for(z = 0; z < 1680; z++)
 	{
-		for(x = 0; x < 80; x++)
+		//distance_map = malloc(21 * sizeof(char));
+		//printf("Before char at [%d][%d] = %c\n", x, y, distance_map[x][y]);
+		//printf("Int at [%d][%d] in [%d] = %d\n", x, y, y*80+x, distances_int[y*80+x]);
+		//distance_map[x][y] = (char) distances_int[y*80+x];
+		switch(distances_int[z])
 		{
-			distance_map = malloc(21 * sizeof(char));
-			//printf("Before char at [%d][%d] = %c\n", x, y, distance_map[x][y]);
-			//printf("Int at [%d][%d] in [%d] = %d\n", x, y, y*80+x, distances_int[y*80+x]);
-			//distance_map[x][y] = (char) distances_int[y*80+x];
-			switch(distances_int[y*80+x])
-			{
-				case 0:
-				distance_map[x][y] = '0';
-				break;
-				
-				case 1:
-				distance_map[x][y] = '1';
-				break;
-				
-				case 2:
-				distance_map[x][y] = '2';
-				break;
-				
-				case 3:
-				distance_map[x][y] = '3';
-				break;
-				
-				case 4:
-				distance_map[x][y] = '4';
-				break;
-				
-				case 5:
-				distance_map[x][y] = '5';
-				break;
-				
-				case 6:
-				distance_map[x][y] = '6';
-				break;
-				
-				case 7:
-				distance_map[x][y] = '7';
-				break;
-				
-				case 8:
-				distance_map[x][y] = '8';
-				break;
-				
-				case 9:
-				distance_map[x][y] = '9';
-				break;
-				
-				case 10:
-				distance_map[x][y] = 'a';
-				break;
-				
-				case 11:
-				distance_map[x][y] = 'b';
-				break;
-				
-				case 12:
-				distance_map[x][y] = 'c';
-				break;
-				
-				case 13:
-				distance_map[x][y] = 'd';
-				break;
-				
-				case 14:
-				distance_map[x][y] = 'e';
-				break;
-				
-				case 15:
-				distance_map[x][y] = 'f';
-				break;
-				
-				case 16:
-				distance_map[x][y] = 'g';
-				break;
-				
-				case 17:
-				distance_map[x][y] = 'h';
-				break;
-				
-				case 18:
-				distance_map[x][y] = 'i';
-				break;
-				
-				case 19:
-				distance_map[x][y] = 'j';
-				break;
-				
-				case 20:
-				distance_map[x][y] = 'k';
-				break;
-				
-				case 21:
-				distance_map[x][y] = 'l';
-				break;
-				
-				case 22:
-				distance_map[x][y] = 'm';
-				break;
-				
-				case 23:
-				distance_map[x][y] = 'n';
-				break;
-				
-				case 24:
-				distance_map[x][y] = 'o';
-				break;
-				
-				case 25:
-				distance_map[x][y] = 'p';
-				break;
-				
-				case 26:
-				distance_map[x][y] = 'q';
-				break;
-				
-				case 27:
-				distance_map[x][y] = 'r';
-				break;
-				
-				case 28:
-				distance_map[x][y] = 's';
-				break;
-				
-				case 29:
-				distance_map[x][y] = 't';
-				break;
-				
-				case 30:
-				distance_map[x][y] = 'u';
-				break;
-				
-				case 31:
-				distance_map[x][y] = 'v';
-				break;
-				
-				case 32:
-				distance_map[x][y] = 'w';
-				break;
-				
-				case 33:
-				distance_map[x][y] = 'x';
-				break;
-				
-				case 34:
-				distance_map[x][y] = 'y';
-				break;
-				
-				case 35:
-				distance_map[x][y] = 'z';
-				break;
-				
-				case 36:
-				distance_map[x][y] = 'A';
-				break;
-				
-				case 37:
-				distance_map[x][y] = 'B';
-				break;
-				
-				case 38:
-				distance_map[x][y] = 'C';
-				break;
-				
-				case 39:
-				distance_map[x][y] = 'D';
-				break;
-				
-				case 40:
-				distance_map[x][y] = 'E';
-				break;
-				
-				case 41:
-				distance_map[x][y] = 'F';
-				break;
-				
-				case 42:
-				distance_map[x][y] = 'G';
-				break;
-				
-				case 43:
-				distance_map[x][y] = 'H';
-				break;
-				
-				case 44:
-				distance_map[x][y] = 'I';
-				break;
-				
-				case 45:
-				distance_map[x][y] = 'J';
-				break;
-				
-				case 46:
-				distance_map[x][y] = 'K';
-				break;
-				
-				case 47:
-				distance_map[x][y] = 'L';
-				break;
-				
-				case 48:
-				distance_map[x][y] = 'M';
-				break;
-				
-				case 49:
-				distance_map[x][y] = 'N';
-				break;
-				
-				case 50:
-				distance_map[x][y] = 'O';
-				break;
-				
-				case 51:
-				distance_map[x][y] = 'P';
-				break;
-				
-				case 52:
-				distance_map[x][y] = 'Q';
-				break;
-				
-				case 53:
-				distance_map[x][y] = 'R';
-				break;
-				
-				case 54:
-				distance_map[x][y] = 'S';
-				break;
-				
-				case 55:
-				distance_map[x][y] = 'T';
-				break;
-				
-				case 56:
-				distance_map[x][y] = 'U';
-				break;
-				
-				case 57:
-				distance_map[x][y] = 'V';
-				break;
-				
-				case 58:
-				distance_map[x][y] = 'W';
-				break;
-				
-				case 59:
-				distance_map[x][y] = 'X';
-				break;
-				
-				case 60:
-				distance_map[x][y] = 'Y';
-				break;
-				
-				case 61:
-				distance_map[x][y] = 'Z';
-				break;
-				
-				default:
-				distance_map[x][y] = '~';
-				break;
-			}
-			//printf("Char at [%d][%d] = %c\n", x, y, distance_map[x][y]);
+			case 0:
+			distance_map[z] = '0';
+			break;
+			
+			case 1:
+			distance_map[z] = '1';
+			break;
+			
+			case 2:
+			distance_map[z] = '2';
+			break;
+			
+			case 3:
+			distance_map[z] = '3';
+			break;
+			
+			case 4:
+			distance_map[z] = '4';
+			break;
+			
+			case 5:
+			distance_map[z] = '5';
+			break;
+			
+			case 6:
+			distance_map[z] = '6';
+			break;
+			
+			case 7:
+			distance_map[z] = '7';
+			break;
+			
+			case 8:
+			distance_map[z] = '8';
+			break;
+			
+			case 9:
+			distance_map[z] = '9';
+			break;
+			
+			case 10:
+			distance_map[z] = 'a';
+			break;
+			
+			case 11:
+			distance_map[z] = 'b';
+			break;
+			
+			case 12:
+			distance_map[z] = 'c';
+			break;
+			
+			case 13:
+			distance_map[z] = 'd';
+			break;
+			
+			case 14:
+			distance_map[z] = 'e';
+			break;
+			
+			case 15:
+			distance_map[z] = 'f';
+			break;
+			
+			case 16:
+			distance_map[z] = 'g';
+			break;
+			
+			case 17:
+			distance_map[z] = 'h';
+			break;
+			
+			case 18:
+			distance_map[z] = 'i';
+			break;
+			
+			case 19:
+			distance_map[z] = 'j';
+			break;
+			
+			case 20:
+			distance_map[z] = 'k';
+			break;
+			
+			case 21:
+			distance_map[z] = 'l';
+			break;
+			
+			case 22:
+			distance_map[z] = 'm';
+			break;
+			
+			case 23:
+			distance_map[z] = 'n';
+			break;
+			
+			case 24:
+			distance_map[z] = 'o';
+			break;
+			
+			case 25:
+			distance_map[z] = 'p';
+			break;
+			
+			case 26:
+			distance_map[z] = 'q';
+			break;
+			
+			case 27:
+			distance_map[z] = 'r';
+			break;
+			
+			case 28:
+			distance_map[z] = 's';
+			break;
+			
+			case 29:
+			distance_map[z] = 't';
+			break;
+			
+			case 30:
+			distance_map[z] = 'u';
+			break;
+			
+			case 31:
+			distance_map[z] = 'v';
+			break;
+			
+			case 32:
+			distance_map[z] = 'w';
+			break;
+			
+			case 33:
+			distance_map[z] = 'x';
+			break;
+			
+			case 34:
+			distance_map[z] = 'y';
+			break;
+			
+			case 35:
+			distance_map[z] = 'z';
+			break;
+			
+			case 36:
+			distance_map[z] = 'A';
+			break;
+			
+			case 37:
+			distance_map[z] = 'B';
+			break;
+			
+			case 38:
+			distance_map[z] = 'C';
+			break;
+			
+			case 39:
+			distance_map[z] = 'D';
+			break;
+			
+			case 40:
+			distance_map[z] = 'E';
+			break;
+			
+			case 41:
+			distance_map[z] = 'F';
+			break;
+			
+			case 42:
+			distance_map[z] = 'G';
+			break;
+			
+			case 43:
+			distance_map[z] = 'H';
+			break;
+			
+			case 44:
+			distance_map[z] = 'I';
+			break;
+			
+			case 45:
+			distance_map[z] = 'J';
+			break;
+			
+			case 46:
+			distance_map[z] = 'K';
+			break;
+			
+			case 47:
+			distance_map[z] = 'L';
+			break;
+			
+			case 48:
+			distance_map[z] = 'M';
+			break;
+			
+			case 49:
+			distance_map[z] = 'N';
+			break;
+			
+			case 50:
+			distance_map[z] = 'O';
+			break;
+			
+			case 51:
+			distance_map[z] = 'P';
+			break;
+			
+			case 52:
+			distance_map[z] = 'Q';
+			break;
+			
+			case 53:
+			distance_map[z] = 'R';
+			break;
+			
+			case 54:
+			distance_map[z] = 'S';
+			break;
+			
+			case 55:
+			distance_map[z] = 'T';
+			break;
+			
+			case 56:
+			distance_map[z] = 'U';
+			break;
+			
+			case 57:
+			distance_map[z] = 'V';
+			break;
+			
+			case 58:
+			distance_map[z] = 'W';
+			break;
+			
+			case 59:
+			distance_map[z] = 'X';
+			break;
+			
+			case 60:
+			distance_map[z] = 'Y';
+			break;
+			
+			case 61:
+			distance_map[z] = 'Z';
+			break;
+			
+			default:
+			distance_map[z] = '~';
+			break;
 		}
+		//printf("Char at [%d][%d] = %c\n", x, y, distance_map[x][y]);
 	}
 	
 	
@@ -351,7 +348,7 @@ void Draw_Dungeon(void)
 	}
 }
 
-void Draw_Distance_Dungeon(char **char_map)
+void Draw_Distance_Dungeon(char *char_map)
 {
 	int x;
 	int y;
@@ -360,7 +357,7 @@ void Draw_Distance_Dungeon(char **char_map)
 		for(x = 0; x < 80; x++)
 		{
 			
-			printf("%c", char_map[x][y]);
+			printf("%c", char_map[y*80+x]);
 			
 		}
 		printf("\n");

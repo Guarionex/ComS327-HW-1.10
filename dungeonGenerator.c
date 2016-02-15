@@ -16,7 +16,7 @@ bool isstring(char *string);
 
 char *dungeonFolder;
 Dungeon_Space_Struct **dungeon;
-char **distance_dungeon;
+char *distance_dungeon;
 
 int main(int argc, char *argv[])
 {
