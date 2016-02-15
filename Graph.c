@@ -155,7 +155,7 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 				{
 					Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
 				}
-				Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
+				else Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
 				//printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
 			}
 			else if(!(tunneler == FALSE && Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).vertexData.space_type == ROCK))
