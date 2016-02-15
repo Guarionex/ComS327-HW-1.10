@@ -16,6 +16,7 @@ bool isstring(char *string);
 
 char *dungeonFolder;
 Dungeon_Space_Struct **dungeon;
+char **distance_dungeon;
 
 int main(int argc, char *argv[])
 {
@@ -148,7 +149,8 @@ int main(int argc, char *argv[])
 		Set_Dungeon(dungeon);
 		Set_Player(Place_Player(dungeon, &int_seed));
 		Draw_Dungeon();
-		Generate_Distance_Dungeon();
+		distance_dungeon = Generate_Distance_Dungeon();
+		Draw_Distance_Dungeon(distance_dungeon);
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
