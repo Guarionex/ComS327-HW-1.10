@@ -60,19 +60,12 @@ void Dijkstra(graph_t graph, vertex_t src)
 		for(e = 0; e < 8; e++)
 		{
 			vertex_t next = adjacent_edges[e].target;
-			if(Compare_Vertices(*current, next) == TRUE)
-			{
-				//printf("Same vertex\n");
-			}
-			else
-			{
-				//printf("Different vertex\n");
-			}
+			
 			if((distance[current->y*80+current->x] + next.weight < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE))
 			{
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
 				predecessor[next.y*80+next.x] = *current;
-				if((current->y*80+current->x) == 0)
+				
 				if((next.y*80+next.x) == 0)
 				{
 					printf("distance at next 0 = %d\n", distance[next.y*80+next.x]);
