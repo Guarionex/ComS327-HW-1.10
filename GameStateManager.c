@@ -95,211 +95,211 @@ char **Generate_Distance_Dungeon(void)
 				
 				case 10:
 				char_dungeon[x][y] = 'a';
-				break
+				break;
 				
 				case 11:
 				char_dungeon[x][y] = 'b';
-				break
+				break;
 				
 				case 12:
 				char_dungeon[x][y] = 'c';
-				break
+				break;
 				
 				case 13:
 				char_dungeon[x][y] = 'd';
-				break
+				break;
 				
 				case 14:
 				char_dungeon[x][y] = 'e';
-				break
+				break;
 				
 				case 15:
 				char_dungeon[x][y] = 'f';
-				break
+				break;
 				
 				case 16:
 				char_dungeon[x][y] = 'g';
-				break
+				break;
 				
 				case 17:
 				char_dungeon[x][y] = 'h';
-				break
+				break;
 				
 				case 18:
 				char_dungeon[x][y] = 'i';
-				break
+				break;
 				
 				case 19:
 				char_dungeon[x][y] = 'j';
-				break
+				break;
 				
 				case 20:
 				char_dungeon[x][y] = 'k';
-				break
+				break;
 				
 				case 21:
 				char_dungeon[x][y] = 'l';
-				break
+				break;
 				
 				case 22:
 				char_dungeon[x][y] = 'm';
-				break
+				break;
 				
 				case 23:
 				char_dungeon[x][y] = 'n';
-				break
+				break;
 				
 				case 24:
 				char_dungeon[x][y] = 'o';
-				break
+				break;
 				
 				case 25:
 				char_dungeon[x][y] = 'p';
-				break
+				break;
 				
 				case 26:
 				char_dungeon[x][y] = 'q';
-				break
+				break;
 				
 				case 27:
 				char_dungeon[x][y] = 'r';
-				break
+				break;
 				
 				case 28:
 				char_dungeon[x][y] = 's';
-				break
+				break;
 				
 				case 29:
 				char_dungeon[x][y] = 't';
-				break
+				break;
 				
 				case 30:
 				char_dungeon[x][y] = 'u';
-				break
+				break;
 				
 				case 31:
 				char_dungeon[x][y] = 'v';
-				break
+				break;
 				
 				case 32:
 				char_dungeon[x][y] = 'w';
-				break
+				break;
 				
 				case 33:
 				char_dungeon[x][y] = 'x';
-				break
+				break;
 				
 				case 34:
 				char_dungeon[x][y] = 'y';
-				break
+				break;
 				
 				case 35:
 				char_dungeon[x][y] = 'z';
-				break
+				break;
 				
 				case 36:
 				char_dungeon[x][y] = 'A';
-				break
+				break;
 				
 				case 37:
 				char_dungeon[x][y] = 'B';
-				break
+				break;
 				
 				case 38:
 				char_dungeon[x][y] = 'C';
-				break
+				break;
 				
 				case 39:
 				char_dungeon[x][y] = 'D';
-				break
+				break;
 				
 				case 40:
 				char_dungeon[x][y] = 'E';
-				break
+				break;
 				
 				case 41:
 				char_dungeon[x][y] = 'F';
-				break
+				break;
 				
 				case 42:
 				char_dungeon[x][y] = 'G';
-				break
+				break;
 				
 				case 43:
 				char_dungeon[x][y] = 'H';
-				break
+				break;
 				
 				case 44:
 				char_dungeon[x][y] = 'I';
-				break
+				break;
 				
 				case 45:
 				char_dungeon[x][y] = 'J';
-				break
+				break;
 				
 				case 46:
 				char_dungeon[x][y] = 'K';
-				break
+				break;
 				
 				case 47:
 				char_dungeon[x][y] = 'L';
-				break
+				break;
 				
 				case 48:
 				char_dungeon[x][y] = 'M';
-				break
+				break;
 				
 				case 49:
 				char_dungeon[x][y] = 'N';
-				break
+				break;
 				
 				case 50:
 				char_dungeon[x][y] = 'O';
-				break
+				break;
 				
 				case 51:
 				char_dungeon[x][y] = 'P';
-				break
+				break;
 				
 				case 52:
 				char_dungeon[x][y] = 'Q';
-				break
+				break;
 				
 				case 53:
 				char_dungeon[x][y] = 'R';
-				break
+				break;
 				
 				case 54:
 				char_dungeon[x][y] = 'S';
-				break
+				break;
 				
 				case 55:
 				char_dungeon[x][y] = 'T';
-				break
+				break;
 				
 				case 56:
 				char_dungeon[x][y] = 'U';
-				break
+				break;
 				
 				case 57:
 				char_dungeon[x][y] = 'V';
-				break
+				break;
 				
 				case 58:
 				char_dungeon[x][y] = 'W';
-				break
+				break;
 				
 				case 59:
 				char_dungeon[x][y] = 'X';
-				break
+				break;
 				
 				case 60:
 				char_dungeon[x][y] = 'Y';
-				break
+				break;
 				
 				case 61:
 				char_dungeon[x][y] = 'Z';
-				break
+				break;
 				
 				default:
 				char_dungeon[x][y] = '~';
