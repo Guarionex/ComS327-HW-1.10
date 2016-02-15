@@ -151,11 +151,7 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 				{
 					printf("Current is is [0][0] with a weight of %d\n", internal_graph.vertices[v].weight);
 				}*/
-				if(Compare_Vertices(NULL_VERTEX, Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b)) == TRUE)
-				{
-					Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
-				}
-				else Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
+				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
 				//printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
 			}
 			else if(!(tunneler == FALSE && Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).vertexData.space_type == ROCK))

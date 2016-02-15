@@ -19,7 +19,7 @@ typedef struct edge
 {
 	vertex_t source;
 	vertex_t target;
-	int weight;
+	uint weight;
 } edge_t;
 
 extern const edge_t NULL_EDGE;
