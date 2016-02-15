@@ -38,14 +38,14 @@ char **Generate_Distance_Dungeon(void)
 	}
 	//printf("Using distances_int = %d\n", distances_int[0]);
 	
-	char **char_dungeon;
-	char_dungeon = malloc(80 * sizeof(char *));
+	char char_dungeon[80][21];
+	//char_dungeon = malloc(80 * sizeof(char *));
 	int x, y;
 	for(y = 0; y < 21; y++)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			char_dungeon = malloc(21 * sizeof(char));
+			//char_dungeon = malloc(21 * sizeof(char));
 			//printf("Before char at [%d][%d] = %c\n", x, y, char_dungeon[x][y]);
 			//printf("Int at [%d][%d] in [%d] = %d\n", x, y, y*80+x, distances_int[y*80+x]);
 			//char_dungeon[x][y] = (char) distances_int[y*80+x];
