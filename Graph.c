@@ -38,11 +38,11 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 		break;
 		
 		case ROOM:
-			new_vertex.weight = 1;
+			new_vertex.weight = 0;
 		break;
 		
 		case CORRIDOR:
-			new_vertex.weight = 1;
+			new_vertex.weight = 0;
 		break;
 	}
 	new_vertex.x = x;
@@ -142,13 +142,13 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 		int e, a = -1, b = -1;
 		for(e = 0; e < 8; e++)
 		{
-			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20) || (tunneler == TRUE && internal_graph.vertices[v].vertexData.space_type == ROCK))
+			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20) || (tunneler == FALSE && internal_graph.vertices[v].vertexData.space_type == ROCK))
 			{
 				//continue;
 				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
 				//printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
 			}
-			else 
+			else if(!(tunneler == FALSE && Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).space_type == ROCK))
 			{
 				Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
 				//printf("Vertex at [%d][%d] is of weight = %d\n", internal_graph.vertices[v].x+a, internal_graph.vertices[v].y+b, Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).weight);
