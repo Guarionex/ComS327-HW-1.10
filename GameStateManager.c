@@ -363,7 +363,27 @@ void Draw_Distance_Dungeon(char *char_map)
 			}
 			else
 			{
-				printf("%c", char_map[y*80+x]);
+				if(char_map[y*80+x] == ' ')
+				{
+					switch(current_dungeon[x][y].space_type)
+				{
+					case ROCK :
+						printf(" ");
+					break;
+					
+					case ROOM :
+						printf(".");
+					break;
+					
+					case CORRIDOR :
+						printf("#");
+					break;
+				}
+				}
+				else 
+				{
+					printf("%c", char_map[y*80+x]);
+				}
 			}
 			
 		}
