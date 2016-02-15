@@ -38,9 +38,9 @@ void Dijkstra(graph_t graph, vertex_t src)
 		int index_y = graph.vertices[v].y;
 		int index_x = graph.vertices[v].x;
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : 428400;
-		if(Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE)
+		if(index_x == 0 && index_y == 0)
 		{
-			printf("Source is at [%d][%d]\n", index_x, index_y);
+			printf("Weight at [0][0] with v = %d\n", graph.vertices[v].weight, v);
 		}
 		predecessor[v] = NULL_VERTEX;
 		vertex_t *insert_vertex = malloc(sizeof(vertex_t));
