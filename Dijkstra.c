@@ -59,7 +59,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 			
 			if((distance[current->y*80+current->x] + next.weight + 1 < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE))
 			{
-				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
+				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight + 1;
 				predecessor[next.y*80+next.x] = *current;
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
