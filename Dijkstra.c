@@ -62,16 +62,16 @@ void Dijkstra(graph_t graph, vertex_t src)
 			}
 			else
 			{
-				printf("Different vertex\n");
+				//printf("Different vertex\n");
 			}
 			if((distance[current->y*80+current->x] + next.weight < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE))
 			{
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
 				predecessor[next.y*80+next.x] = *current;
 				//printf("Num_vertices = %d and next index = %d\n", num_vertices, next.y*80+next.x);
-				printf("Before decrease next is [%d][%d]\n", next.x, next.y);
+				//printf("Before decrease next is [%d][%d]\n", next.x, next.y);
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
-				printf("After decrease\n");
+				//printf("After decrease\n");
 			}
 		}
 		//free(adjacent_edges);
