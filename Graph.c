@@ -123,7 +123,7 @@ edge_t *Get_Edges_Of(vertex_t vertex)
 	return adjacent_edges;
 }
 
-graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
+graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 {
 	Create_Graph();
 	
@@ -142,7 +142,7 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon)
 		int e, a = -1, b = -1;
 		for(e = 0; e < 8; e++)
 		{
-			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20))
+			if((internal_graph.vertices[v].x == 0) || (internal_graph.vertices[v].x == 79) || (internal_graph.vertices[v].y == 0) || (internal_graph.vertices[v].y == 20) || (tunneler == TRUE && internal_graph.vertices[v].vertexData.space_type == ROCK))
 			{
 				//continue;
 				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);

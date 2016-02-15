@@ -42,7 +42,7 @@ vertex_t Get_Vertex(int x, int y);
 bool Compare_Vertices(vertex_t key, vertex_t with);
 bool Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t find);
 edge_t *Get_Edges_Of(vertex_t vertex);
-graph_t GenerateGraph(Dungeon_Space_Struct **dungeon);
+graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler);
 
 
 #endif
