@@ -40,7 +40,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : 428400;
 		if(Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE)
 		{
-			printf("Source is at [%d][%d]", index_x, index_y);
+			printf("Source is at [%d][%d]\n", index_x, index_y);
 		}
 		predecessor[v] = NULL_VERTEX;
 		vertex_t *insert_vertex = malloc(sizeof(vertex_t));
@@ -72,6 +72,14 @@ void Dijkstra(graph_t graph, vertex_t src)
 			{
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
 				predecessor[next.y*80+next.x] = *current;
+				if((current->y*80+current->x) == 0)
+				{
+					printf("distance at current 0 = %d\n", distance[current->y*80+current->x]);
+				}
+				if((next.y*80+next.x) == 0)
+				{
+					printf("distance at nextt 0 = %d\n", distance[next.y*80+next.x]);
+				}
 				//printf("Num_vertices = %d and next index = %d\n", num_vertices, next.y*80+next.x);
 				//printf("Before decrease next is [%d][%d]\n", next.x, next.y);
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
