@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
-		//int null_seed = -1;
+		int null_seed = -1;
 		strcat(dungeonFolder, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
 		if(access(dungeonFolder, F_OK) == -1)
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		Set_Dungeon(dungeon);
-		player_t player;
+		//player_t player;
 		//player.cell = dungeon[18][4];
 		//player.pos.x = 18;
 		//player.pos.y = 4;
