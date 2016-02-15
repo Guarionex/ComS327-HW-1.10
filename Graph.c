@@ -32,8 +32,8 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 		case ROCK:
 			//new_vertex.weight = cell.space_union.rock.density;
 			if(cell.space_union.rock.density <= 84) new_vertex.weight = 1;
-			else if(cell.space_union.rock.density >= 85 && cell.space_union.rock.density <= 170) new_vertex.weight = 2;
-			else if(cell.space_union.rock.density >= 171 && cell.space_union.rock.density <= 254) new_vertex.weight = 3;
+			else if(cell.space_union.rock.density <= 170) new_vertex.weight = 2;
+			else if(cell.space_union.rock.density <= 254) new_vertex.weight = 3;
 			else new_vertex.weight = 428400;
 		break;
 		
@@ -151,7 +151,11 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 				{
 					printf("Current is is [0][0] with a weight of %d\n", internal_graph.vertices[v].weight);
 				}*/
-				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
+				if(Compare_Vertices(NULL_VERTEX, Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b)) == TRUE)
+				{
+					Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
+				}
+				Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
 				//printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
 			}
 			else if(!(tunneler == FALSE && Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).vertexData.space_type == ROCK))
