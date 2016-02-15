@@ -14,9 +14,9 @@ void Set_Player(player_t player)
 	pc = player;
 }
 
-char *Generate_Distance_Dungeon(void)
+char *Generate_Distance_Dungeon(bool tunneler)
 {
-	graph_t graphed_dungeon = GenerateGraph(current_dungeon, FALSE);
+	graph_t graphed_dungeon = GenerateGraph(current_dungeon, tunneler);
 	vertex_t player_vertex = Get_Vertex(pc.pos.x, pc.pos.y);
 	uint distances_int[graphed_dungeon.num_vertices];
 	
