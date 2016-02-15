@@ -31,9 +31,9 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 	{
 		case ROCK:
 			//new_vertex.weight = cell.space_union.rock.density;
-			if(cell.space_union.rock.density <= 84) new_vertex.weight = 2;
-			else if(cell.space_union.rock.density <= 170) new_vertex.weight = 3;
-			else if(cell.space_union.rock.density <= 254) new_vertex.weight = 4;
+			if(cell.space_union.rock.density <= 84) new_vertex.weight = 1;
+			else if(cell.space_union.rock.density <= 170) new_vertex.weight = 2;
+			else if(cell.space_union.rock.density <= 254) new_vertex.weight = 3;
 			else new_vertex.weight = 428400;
 		break;
 		
