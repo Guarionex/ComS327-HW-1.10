@@ -146,13 +146,17 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 			{
 				if(internal_graph.vertices[v].x == 0 && internal_graph.vertices[v].y == 0)
 				{
-					printf("This is [0][0]\n");
+					printf("Current is is [0][0]\n");
 				}
 				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
 				//printf("[%d][%d] is a border\n", internal_graph.vertices[v].x, internal_graph.vertices[v].y);
 			}
 			else if(!(tunneler == FALSE && Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).vertexData.space_type == ROCK))
 			{
+				if(Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).x == 0 && Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).y == 0)
+				{
+					printf("Neighboor is [0][0]\n");
+				}
 				Add_Edge(internal_graph.vertices[v], Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b));
 				//printf("Vertex at [%d][%d] is of weight = %d\n", internal_graph.vertices[v].x+a, internal_graph.vertices[v].y+b, Get_Vertex(internal_graph.vertices[v].x + a, internal_graph.vertices[v].y + b).weight);
 			}
