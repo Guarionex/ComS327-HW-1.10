@@ -40,7 +40,7 @@ char *Generate_Distance_Dungeon(void)
 	
 	
 	distance_map = malloc(1680 * sizeof(char));
-	int x, y, z;
+	int z;
 	for(z = 0; z < 1680; z++)
 	{
 		//distance_map = malloc(21 * sizeof(char));
