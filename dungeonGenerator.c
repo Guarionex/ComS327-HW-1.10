@@ -115,7 +115,7 @@ int main(int argc, char *argv[])
 	
 	if(Contains_Flag(flags, (argc - 1), LOAD) == TRUE)
 	{
-		int null_seed = -1;
+		//int null_seed = -1;
 		strcat(dungeonFolder, dungeonFileName);
 		//printf("dungeonFile = %s\n", dungeonFile);
 		if(access(dungeonFolder, F_OK) == -1)
