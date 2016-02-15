@@ -138,11 +138,10 @@ int main(int argc, char *argv[])
 		}
 		Set_Dungeon(dungeon);
 		player_t player;
-		player.cell = dungeon[18][4];
-		player.pos.x = 18;
-		player.pos.y = 4;
-		//Place_Player(dungeon, &null_seed)
-		Set_Player(player);
+		//player.cell = dungeon[18][4];
+		//player.pos.x = 18;
+		//player.pos.y = 4;
+		Set_Player(Place_Player(dungeon, &null_seed));
 		Draw_Dungeon();
 		printf("\n");
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
