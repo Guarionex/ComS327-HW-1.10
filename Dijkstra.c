@@ -67,6 +67,10 @@ void Dijkstra(graph_t graph, vertex_t src)
 			
 			if((distance[current->y*80+current->x] + next.weight < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE))
 			{
+				if(next.y == 0 && next.x == 0)
+				{
+					printf("Before change distance at 0 = %d\n", distance[0]);
+				}
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
 				predecessor[next.y*80+next.x] = *current;
 				
