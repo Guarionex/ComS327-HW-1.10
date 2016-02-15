@@ -165,6 +165,7 @@ graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
 			}
 			else
 			{
+				printf("This happened\n");
 				Add_Edge(internal_graph.vertices[v], NULL_VERTEX);
 			}
 			
