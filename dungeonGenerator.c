@@ -18,6 +18,7 @@ bool isstring(char *string);
 char *dungeonFolder;
 Dungeon_Space_Struct **dungeon;
 char *distance_dungeon;
+char *distance_dungeon_tunneler;
 
 int main(int argc, char *argv[])
 {
@@ -147,8 +148,8 @@ int main(int argc, char *argv[])
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
 		Draw_Distance_Dungeon(distance_dungeon);
 		printf("\n");
-		distance_dungeon = Generate_Distance_Dungeon(TRUE);
-		Draw_Distance_Dungeon(distance_dungeon);
+		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
+		Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		loaded = TRUE;
 	}
 	else
@@ -165,8 +166,8 @@ int main(int argc, char *argv[])
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
 		Draw_Distance_Dungeon(distance_dungeon);
 		printf("\n");
-		distance_dungeon = Generate_Distance_Dungeon(TRUE);
-		Draw_Distance_Dungeon(distance_dungeon);
+		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
+		Draw_Distance_Dungeon(distance_dungeon_tunneler);
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
