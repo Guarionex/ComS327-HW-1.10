@@ -34,7 +34,7 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 			if(cell.space_union.rock.density <= 84) new_vertex.weight = 1;
 			else if(cell.space_union.rock.density <= 170) new_vertex.weight = 2;
 			else if(cell.space_union.rock.density <= 254) new_vertex.weight = 3;
-			else new_vertex.weight = INT_MAX;
+			else new_vertex.weight = 428400;
 		break;
 		
 		case ROOM:
@@ -61,7 +61,7 @@ bool Add_Edge(vertex_t source, vertex_t target)
 	edge_t new_edge;
 	new_edge.source = source;
 	new_edge.target = target;
-	new_edge.weight = (Compare_Vertices(target, NULL_VERTEX) == FALSE) ? target.weight : INT_MAX;
+	new_edge.weight = (Compare_Vertices(target, NULL_VERTEX) == FALSE) ? target.weight : 428400;
 	
 	internal_graph.num_edges++;
 	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
