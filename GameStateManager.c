@@ -329,7 +329,7 @@ void Draw_Dungeon(void)
 					
 						if(current_dungeon[x][y].space_union.rock.density == 255)
 						{
-							printf("R");
+							printf("~");
 						}
 						else printf(" ");
 					
