@@ -42,6 +42,10 @@ void Dijkstra(graph_t graph, vertex_t src)
 		{
 			printf("Weight at [0][0] = %d with v = %d\n", graph.vertices[v].weight, v);
 		}
+		if(v == 0)
+		{
+			printf("Distance set at 0 = %d\n", distance[v]);
+		}
 		predecessor[v] = NULL_VERTEX;
 		vertex_t *insert_vertex = malloc(sizeof(vertex_t));
 		*insert_vertex = graph.vertices[v];
