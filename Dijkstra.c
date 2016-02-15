@@ -73,12 +73,11 @@ void Dijkstra(graph_t graph, vertex_t src)
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
 				predecessor[next.y*80+next.x] = *current;
 				if((current->y*80+current->x) == 0)
-				{
-					printf("distance at current 0 = %d\n", distance[current->y*80+current->x]);
-				}
 				if((next.y*80+next.x) == 0)
 				{
-					printf("distance at nextt 0 = %d\n", distance[next.y*80+next.x]);
+					printf("distance at next 0 = %d\n", distance[next.y*80+next.x]);
+					printf("Next weight is %d\n", next.weight);
+					printf("distance at current %d = %d\n", (current->y*80+current->x), distance[current->y*80+current->x]);
 				}
 				//printf("Num_vertices = %d and next index = %d\n", num_vertices, next.y*80+next.x);
 				//printf("Before decrease next is [%d][%d]\n", next.x, next.y);
