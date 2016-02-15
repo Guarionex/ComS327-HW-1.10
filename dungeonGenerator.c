@@ -11,6 +11,7 @@
 #include "dungeonLevelGenerator.h"
 #include "dungeonIO.h"
 #include "GameStateManager.h"
+#include "CharacterController.h"
 
 bool isstring(char *string);
 
@@ -135,7 +136,12 @@ int main(int argc, char *argv[])
 			return 0;
 		}
 		Set_Dungeon(dungeon);
-		Set_Player(Place_Player(dungeon, &null_seed));
+		player_t player;
+		player.cell == dungeon[4][19];
+		player.pos.x = 4;
+		player.pos.y = 19;
+		//Place_Player(dungeon, &null_seed)
+		Set_Player(player);
 		Draw_Dungeon();
 		loaded = TRUE;
 	}
