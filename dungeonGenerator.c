@@ -149,8 +149,10 @@ int main(int argc, char *argv[])
 		Set_Dungeon(dungeon);
 		Set_Player(Place_Player(dungeon, &int_seed));
 		Draw_Dungeon();
+		printf("\n");
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
 		Draw_Distance_Dungeon(distance_dungeon);
+		printf("\n");
 		distance_dungeon = Generate_Distance_Dungeon(TRUE);
 		Draw_Distance_Dungeon(distance_dungeon);
 	}

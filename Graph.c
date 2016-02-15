@@ -62,10 +62,10 @@ bool Add_Edge(vertex_t source, vertex_t target)
 	new_edge.source = source;
 	new_edge.target = target;
 	new_edge.weight = (Compare_Vertices(target, NULL_VERTEX) == FALSE) ? target.weight : 428400;
-	if(source.x == 0 && source.y == 0)
+	/*if(source.x == 0 && source.y == 0)
 	{
 		printf("Weight of edge at source [0][0] = %d\n", new_edge.weight);
-	}
+	}*/
 	internal_graph.num_edges++;
 	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
 	internal_graph.edges[internal_graph.num_edges-1] = new_edge;
