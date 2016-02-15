@@ -38,11 +38,11 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 		break;
 		
 		case ROOM:
-			new_vertex.weight = 0;
+			new_vertex.weight = 1;
 		break;
 		
 		case CORRIDOR:
-			new_vertex.weight = 0;
+			new_vertex.weight = 1;
 		break;
 	}
 	new_vertex.x = x;
