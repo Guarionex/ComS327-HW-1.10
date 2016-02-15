@@ -299,7 +299,7 @@ char *Generate_Distance_Dungeon(bool tunneler)
 			break;
 			
 			default:
-			distance_map[z] = '~';
+			distance_map[z] = ' ';
 			break;
 		}
 		//printf("Char at [%d][%d] = %c\n", x, y, distance_map[x][y]);
@@ -357,8 +357,14 @@ void Draw_Distance_Dungeon(char *char_map)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			
-			printf("%c", char_map[y*80+x]);
+			if(x == 0 || x == 79 || y == 0 || y == 20)
+			{
+				printf("~");
+			}
+			else
+			{
+				printf("%c", char_map[y*80+x]);
+			}
 			
 		}
 		printf("\n");
