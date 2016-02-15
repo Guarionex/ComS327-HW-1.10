@@ -3,6 +3,7 @@
 Dungeon_Space_Struct **current_dungeon;
 player_t pc;
  char **distance_map;
+ char char_dungeon[80][21];
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -38,7 +39,7 @@ char **Generate_Distance_Dungeon(void)
 	}
 	//printf("Using distances_int = %d\n", distances_int[0]);
 	
-	char char_dungeon[80][21];
+	
 	//char_dungeon = malloc(80 * sizeof(char *));
 	int x, y;
 	for(y = 0; y < 21; y++)
