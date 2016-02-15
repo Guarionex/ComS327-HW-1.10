@@ -137,9 +137,9 @@ int main(int argc, char *argv[])
 		}
 		Set_Dungeon(dungeon);
 		player_t player;
-		player.cell = dungeon[19][3];
-		player.pos.x = 19;
-		player.pos.y = 3;
+		player.cell = dungeon[18][4];
+		player.pos.x = 18;
+		player.pos.y = 4;
 		//Place_Player(dungeon, &null_seed)
 		Set_Player(player);
 		Draw_Dungeon();
