@@ -1,4 +1,4 @@
-Homework 1.02 - Dungeon Load/Save
+Homework 1.03 - Path Finding
 By: Edwin O. Martinez Velazquez
 
 1.01:
@@ -22,6 +22,17 @@ File must be in the appropiate format, otherwise program file indicate it is not
 Saving file will indicate if there was any errors in the writing process.
 Order of switches doesn't matter.
 
+1.03:
+Program now calculates distances from player.
+A player is set randomly with the seed used for a random dungeon. For loaded dungeons, the player will be placed randomly.
+Player is placed in any floor space (room or corridor or cell with a hardness of 0).
+The program will generate the first dungeon as normal. Then it will graph the dungeon floors and perform Dijkstra's algorithm. This results in a cost map for non tunneler monsters.
+The program will then generate a third map by graphing the entire dungeon and running Dijkstra algorithm on that. The resulting map is the cost for tunneler monsters.
+Cost to each cell start from 0 (player's position) to 9, then a to z, and A to Z. If a cost is larger than Z (61) then the cell will be rendered normally.
+The weight of each cell is determined by hardness. A hardness of 0 (floor) is 1. 
+Cells with hardness of 1 to 84 also have a weight of 1, 85 to 170 have a weight of 2, and 171 to 254 have a weight of 3. Cells of 255 hardness have weights of 428400 (255 hardness x 1680 cells).
+Tunnelling effort is not taken into account in this version as it is not required in the assignment specificaitons.
+Borders are now draw with ~
 
 Usage using time as seed: ./dungeonGenerator
 
