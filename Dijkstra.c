@@ -52,8 +52,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		visited[visited_count] = *current;
 		visited_count++;
 		
-		edge_t adjacent_edges[8];
-		Get_Edges_Of(*current, adjacent_edges);
+		edge_t *adjacent_edges = Get_Edges_Of(*current);
 		int e;
 		for(e = 0; e < 8; e++)
 		{
@@ -66,7 +65,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
 		}
-		//free(adjacent_edges);
+		free(adjacent_edges);
 	}
 	//free(nodes);
 	binheap_delete(&h);

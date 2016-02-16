@@ -122,9 +122,9 @@ bool Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t fin
 	return FALSE;
 }
 
- void Get_Edges_Of(vertex_t vertex, edge_t adjacent_edges[])
+edge_t *Get_Edges_Of(vertex_t vertex)
 {
-	//edge_t *adjacent_edges = malloc(sizeof(edge_t) * 8);
+	edge_t *adjacent_edges = malloc(sizeof(edge_t) * 8);
 	int e, edge_count = 0;
 	for(e = 0; e < internal_graph.num_edges; e++)
 	{
@@ -136,7 +136,7 @@ bool Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t fin
 		}
 	}
 	
-	//return adjacent_edges;
+	return adjacent_edges;
 }
 
 graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
