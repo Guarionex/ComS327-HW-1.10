@@ -3,6 +3,7 @@
 Dungeon_Space_Struct **current_dungeon;
 player_t pc;
 char *distance_map;
+graph_t graphed_dungeon;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -16,7 +17,7 @@ void Set_Player(player_t player)
 
 char *Generate_Distance_Dungeon(bool tunneler)
 {
-	graph_t graphed_dungeon = GenerateGraph(current_dungeon, tunneler);
+	graphed_dungeon = GenerateGraph(current_dungeon, tunneler);
 	vertex_t player_vertex = Get_Vertex(pc.pos.x, pc.pos.y);
 	uint distances_int[graphed_dungeon.num_vertices];
 	
@@ -389,4 +390,9 @@ void Draw_Distance_Dungeon(char *char_map)
 		}
 		printf("\n");
 	}
+}
+
+void Destroy_All(void)
+{
+	void Destroy_Graph(graphed_dungeon);
 }
