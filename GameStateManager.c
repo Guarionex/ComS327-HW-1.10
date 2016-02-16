@@ -395,5 +395,5 @@ void Draw_Distance_Dungeon(char *char_map)
 void Destroy_All(void)
 {
 	Destroy_Dijkstra();
-	Destroy_Graph(graphed_dungeon);
+	Destroy_Graph(&graphed_dungeon);
 }
