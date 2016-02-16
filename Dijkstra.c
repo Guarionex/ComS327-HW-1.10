@@ -52,7 +52,8 @@ void Dijkstra(graph_t graph, vertex_t src)
 		visited[visited_count] = *current;
 		visited_count++;
 		
-		edge_t *adjacent_edges = Get_Edges_Of(*current);
+		edge_t adjacent_edges[8];
+		Get_Edges_Of(*current, adjacent_edges);
 		int e;
 		for(e = 0; e < 8; e++)
 		{
