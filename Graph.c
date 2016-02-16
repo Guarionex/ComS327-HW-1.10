@@ -22,7 +22,7 @@ void Destroy_Graph(graph_t *destroy_graph)
 {
 	free(internal_graph.vertices);
 	free(internal_graph.edges);
-	free(adjacent_edges);
+	
 }
 
 bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
