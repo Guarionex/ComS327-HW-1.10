@@ -390,3 +390,8 @@ void Draw_Distance_Dungeon(char *char_map)
 		printf("\n");
 	}
 }
+
+void Destroy_All(void)
+{
+	Destroy_Dijkstra();
+}
