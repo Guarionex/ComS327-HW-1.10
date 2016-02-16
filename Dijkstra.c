@@ -60,6 +60,8 @@ void Dijkstra(graph_t graph, vertex_t src)
 			
 			if((distance[current->y*80+current->x] + next.weight  < distance[next.y*80+next.x]))
 			{
+				if(distance[current->y*80+current->x] + next.weight);
+				if(distance[next.y*80+next.x]);
 				if((Contains_Vertex(visited, visited_count, next) == FALSE))
 				{
 					if((Compare_Vertices(next, NULL_VERTEX) == FALSE))
