@@ -4,6 +4,7 @@
 graph_t internal_graph;
 const vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
 const edge_t NULL_EDGE = {.source = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .target = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .weight = -1};
+edge_t *adjacent_edges;
 
 graph_t Create_Graph()
 {
@@ -13,6 +14,7 @@ graph_t Create_Graph()
 	internal_graph.edges = malloc(sizeof(edge_t));
 	internal_graph.vertices[0] = NULL_VERTEX;
 	internal_graph.edges[0] = NULL_EDGE;
+	adjacent_edges = malloc(sizeof(edge_t) * 8);
 	
 	return internal_graph;
 }
@@ -21,6 +23,7 @@ void Destroy_Graph(graph_t *destroy_graph)
 {
 	free(internal_graph.vertices);
 	free(internal_graph.edges);
+	free(adjacent_edges);
 }
 
 bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
@@ -124,7 +127,7 @@ bool Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t fin
 
 edge_t *Get_Edges_Of(vertex_t vertex)
 {
-	edge_t *adjacent_edges = malloc(sizeof(edge_t) * 8);
+	//edge_t *adjacent_edges = malloc(sizeof(edge_t) * 8);
 	int e, edge_count = 0;
 	for(e = 0; e < internal_graph.num_edges; e++)
 	{

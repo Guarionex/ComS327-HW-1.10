@@ -45,14 +45,14 @@ void Dijkstra(graph_t graph, vertex_t src)
 		nodes[v] = binheap_insert(&h, insert_vertex + v);
 		
 	}
-	edge_t *adjacent_edges = malloc(sizeof(edge_t)*8);
+	
 	while(!binheap_is_empty(&h))
 	{
 		vertex_t *current = (vertex_t *) binheap_remove_min(&h);
 		visited[visited_count] = *current;
 		visited_count++;
 		
-		adjacent_edges = Get_Edges_Of(*current);
+		edge_t *adjacent_edges = Get_Edges_Of(*current);
 		int e;
 		for(e = 0; e < 8; e++)
 		{
@@ -65,9 +65,8 @@ void Dijkstra(graph_t graph, vertex_t src)
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
 		}
-		
+		free(adjacent_edges);
 	}
-	free(adjacent_edges);
 	//free(nodes);
 	binheap_delete(&h);
 }
