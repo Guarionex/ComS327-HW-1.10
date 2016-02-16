@@ -42,7 +42,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		predecessor[v] = NULL_VERTEX;
 		//vertex_t *insert_vertex = malloc(sizeof(vertex_t));
 		insert_vertex[v] = graph.vertices[v];
-		nodes[v] = binheap_insert(&h, insert_vertex[v]);
+		nodes[v] = binheap_insert(&h, insert_vertex + v);
 		
 	}
 	
