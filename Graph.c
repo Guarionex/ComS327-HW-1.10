@@ -19,7 +19,6 @@ graph_t Create_Graph()
 
 void Destroy_Graph(graph_t *destroy_graph)
 {
-	Destroy_Dijkstra();
 	free(internal_graph.vertices);
 	free(internal_graph.edges);
 }

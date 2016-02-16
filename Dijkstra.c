@@ -66,9 +66,6 @@ void Dijkstra(graph_t graph, vertex_t src)
 		}
 		//free(adjacent_edges);
 	}
-	
-	free(nodes);
-	free(insert_vertex);
 }
 
 vertex_t *Get_Path(vertex_t target)
@@ -90,11 +87,4 @@ vertex_t *Get_Path(vertex_t target)
 int Get_Cost(vertex_t target)
 {
 	return distance[target.y*80+target.x];
-}
-
-void Destroy_Dijkstra(void)
-{
-	free(distance);
-	free(predecessor);
-	free(visited);
 }
