@@ -150,7 +150,7 @@ int main(int argc, char *argv[])
 		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 		Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		loaded = TRUE;
-		//Destroy_All();
+		Destroy_All();
 	}
 	else
 	{
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 		printf("\n");
 		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 		Draw_Distance_Dungeon(distance_dungeon_tunneler);
-		//Destroy_All();
+		Destroy_All();
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
