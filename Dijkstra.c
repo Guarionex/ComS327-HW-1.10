@@ -65,7 +65,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
 		}
-		free(adjacent_edges);
+		//free(adjacent_edges);
 	}
 	//free(nodes);
 	binheap_delete(&h);
