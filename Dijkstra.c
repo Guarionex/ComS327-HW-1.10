@@ -40,7 +40,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : 428400;
 		predecessor[v] = NULL_VERTEX;
 		vertex_t *insert_vertex = malloc(sizeof(vertex_t));
-		insert_vertex = graph.vertices[v];
+		*insert_vertex = graph.vertices[v];
 		nodes[v] = binheap_insert(&h, insert_vertex);
 		
 	}
