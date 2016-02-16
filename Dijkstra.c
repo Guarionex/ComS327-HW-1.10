@@ -66,7 +66,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		}
 		//free(adjacent_edges);
 	}
-	free(nodes);
+	//free(nodes);
 }
 
 vertex_t *Get_Path(vertex_t target)
