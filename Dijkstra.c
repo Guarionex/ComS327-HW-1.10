@@ -27,6 +27,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 	distance = malloc(sizeof(uint) * num_vertices);
 	predecessor = malloc(sizeof(vertex_t) * num_vertices);
 	visited = malloc(sizeof(vertex_t) * num_vertices);
+	vertex_t insert_vertex[num_vertices];
 	int visited_count = 0;
 	
 	binheap_t h;
@@ -39,9 +40,9 @@ void Dijkstra(graph_t graph, vertex_t src)
 		int index_x = graph.vertices[v].x;
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : 428400;
 		predecessor[v] = NULL_VERTEX;
-		vertex_t *insert_vertex = malloc(sizeof(vertex_t));
-		*insert_vertex = graph.vertices[v];
-		nodes[v] = binheap_insert(&h, insert_vertex);
+		//vertex_t *insert_vertex = malloc(sizeof(vertex_t));
+		insert_vertex[v] = graph.vertices[v];
+		nodes[v] = binheap_insert(&h, insert_vertex[v]);
 		
 	}
 	
