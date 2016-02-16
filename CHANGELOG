@@ -230,3 +230,210 @@
 2/2/16 Removing last commit of taking number only filename for load
 2/2/16 Added more usage printf for invalid load and seed argument
 2/2/16 Finished CHANGELOG. Ready to package and deliver
+2/4/16 Update README.md
+2/6/16 Including binheap files and updating makefile for them
+2/7/16 Implemented a graph with vertex and edges for dungeon
+2/7/16 Added position struct to dungeonObjects
+2/7/16 move limits.h to header file in graph
+2/7/16 Started character controller
+2/7/16 Player Character done in CharacterController
+2/7/16 Made GameStateManager
+2/7/16 Moved Draw_Dungeon to GameStateManager
+2/7/16 player placement selects seed by time if no seed inputed
+2/7/16 Include GameStateManager in main
+2/7/16 Fixed realloc in Graph.c and updated Makefile
+2/7/16 Forgot to include stdlib.h
+2/7/16 Created invalid structs for NULLS
+2/7/16 Fixed declaring NULL structs
+2/7/16 fixed extern declarations
+2/7/16 passing seed by reference in Place_Player
+2/7/16 forgot stdio.h in GameStateManager
+2/7/16 Had an extra ;
+2/7/16 Fixing making an int a pointer and dereference
+2/7/16 Bug fixing last change
+2/7/16 remove crazy in line value to int pointer
+2/7/16 Fixed Makefile
+2/7/16 Fixing memory leak in dungeonRoomGenerator
+2/7/16 Changed corridor struct and it's constructors to fix memory leak
+2/7/16 Forgot to change header for Place_Corridor
+2/7/16 freeing malloced memory
+2/7/16 Freeing malloced memory in CharacterController
+2/7/16 Added destroy dungeon to close memory leaks
+2/7/16 Freeing dungeon twice and debugging seed for character
+2/7/16 Forgot stdio in charactercontroller
+2/7/16 Correctly freeing double pointer and more seed debugging
+2/7/16 forgot to dereference seed in characterdontroller
+2/7/16 Bug fixing in Graph.c
+2/7/16 Debugging Graph.c
+2/7/16 Made NULL structs const
+2/7/16 Made NULL_POS const
+2/7/16 Remove const keyword and hardcoded NULL_VERTEX in NULL_EDGE
+2/7/16 dereference in NULL_EDGE
+2/7/16 Trying to fix pointer
+2/7/16 Fixing same stuff
+2/7/16 Removed pointer and remade NULL structs const
+2/7/16 Fixing bugs in Graph
+2/7/16 Updated Makefile to include Graph
+2/7/16 Started Dijkstra's algorithm
+2/7/16 Finished Dijkstra start debugging
+2/7/16 Updated makefile for dijstra
+2/7/16 Fixed autocorrect from Dijkstra.clean to .c
+2/7/16 Debugging Dijkstra
+2/8/16 Bug fixing dijsktra
+2/8/16 More bug fixing Dijkstra
+2/8/16 Testing graph generation
+2/8/16 forgot to include graph.h
+2/8/16 debugging graphing
+2/8/16 Testing calling Dijkstra function
+2/8/16 Re testing graphing
+2/8/16 Commenting out unused variables
+2/8/16 Looking or memory leak in dijstra
+2/8/16 Fixing memory leak in Dijkstra
+2/8/16 Forgot stdio.h in Dijkstra
+2/8/16 Debuging memory leaks
+2/8/16 Fixing bugs
+2/8/16 Commenting debug printf out
+2/8/16 Testing fixes
+2/8/16 Bug fix
+2/8/16 more debugging dijkstra
+2/8/16 debugging printf
+2/8/16 debugging comment
+2/8/16 Testing index with printf
+2/8/16 more printf testing
+2/8/16 returning int max when out of bounds
+2/8/16 remove heap deconstructor
+2/8/16 validating graph
+2/8/16 cahged some indexing, testing again
+2/8/16 Ignores vertices that have been removed from heap
+2/8/16 Forgot ;
+2/8/16 passing all distances total to int array
+2/14/16 testing int to char
+2/14/16 testing the + '0' for int to char
+2/14/16 changed distance array to uint8
+2/14/16 implicit cast (char)
+2/14/16 debugging printf
+2/14/16 debugging distances_int from getcots
+2/14/16 changed from uint8 to uint
+2/14/16 fix to uint type
+2/14/16 debugging with printf
+2/14/16 debugging with printf in graph
+2/14/16 forgot stdio
+2/14/16 Looking at distances again
+2/14/16 was getting source of edge not target, checking distances with this change
+2/14/16 testing getting target vertex
+2/14/16 Checking same as last commiut
+2/14/16 checking if different vertex from edge target
+2/14/16 debugging with printf
+2/14/16 check for null vertex
+2/14/16 checking distances
+2/14/16 changing to unsing int for distance
+2/14/16 changed INT_MAX to 428400 to avoid overflow
+2/14/16 drawing distance duingeon
+2/14/16 forgot a lot of ;
+2/14/16 segfault in double char array
+2/14/16 change from double pointer to double array
+2/14/16 made double char array a global
+2/14/16 changed global char double array to double pointer
+2/14/16 change double pointer to single pointer
+2/14/16 few warning fixes
+2/14/16 testing for non tunneler map
+2/14/16 debugging 0 distances
+2/14/16 changed room and corridor weights from 0 to 1
+2/14/16 changed weights back to 0 to debug, now filtering out neighboring rocks
+2/14/16 Forgot to acces vertexData
+2/14/16 change rooms and corridors to weight of 1
+2/14/16 checking for [0][0]
+2/14/16 looking where [0][0] gets 0 weight
+2/14/16 Trying to fet where [0][0] gets set to 0 distance
+2/14/16 debugging [0][0]=0
+2/14/16 didn't correctly delete if statement
+2/14/16 more debug printf
+2/14/16 checking edge weight
+2/14/16 more trying to find that 0
+2/14/16 checking tunneler map
+2/14/16 making edge to null on non tunneller rocks
+2/14/16 commenting out debug printf and drawing both distance maps
+2/14/16 More commenting out debug printf and added new lines between maps
+2/14/16 changing ~ to white space and making borders ~
+2/14/16 Changed Border on normal map from R to ~
+2/14/16 hardcoding player pos to check solution map
+2/14/16 bug fixing last commit
+2/14/16 mixed my x and y for hardcoded player pos
+2/14/16 drawing loaded distancef maps
+2/14/16 debugging tunneler
+2/14/16 remove last commit
+2/14/16 made new variable for second distance map
+2/14/16 setting hard limits on cell weight
+2/14/16 messing with border stuff
+2/14/16 forgot to do else
+2/14/16 Remove last commit and making edge weight uint
+2/14/16 shifted weights to 2, 3, 4
+2/14/16 removing last commit
+2/15/16 Using the professor's weights
+2/15/16 +1 in Dijkstra for tunnelers
+2/15/16 Removed the + 1
+2/15/16 Check for +1, but doesn't add it
+2/15/16 graph weights are back to normal
+2/15/16 trying the + 1 in distance if
+2/15/16 removed all of the professor's version of weights, back to what assignment asks for
+2/15/16 player pos is no longer hard coded on load
+2/15/16 Forgot to uncomment and comment a few things
+2/15/16 if distance > Z, draw map normally in that cell
+2/16/16 Finished README
+2/16/16 freeing and destroying
+2/16/16 calling destroy
+2/16/16 made insert_vertex not a pointer and passing to heap by reference
+2/16/16 forgot to remove the malloc of insert_vertex
+2/16/16 moved Destroy_Dijstra to gamestatemanager
+2/16/16 passing graph to destroy by reference
+2/16/16 Broke something, trying to find it
+2/16/16 trying to fix what I broke
+2/16/16 commenting out destroy
+2/16/16 moved graph to local space
+2/16/16 made insert_vertex a pionter again
+2/16/16 fixing how I'm calling pointer
+2/16/16 fixing another call to a pointer variable
+2/16/16 Revert "fixing another call to a pointer variable"
+2/16/16 Revert "fixing how I'm calling pointer"
+2/16/16 Revert "made insert_vertex a pionter again" 
+2/16/16 Revert "moved graph to local space" 
+2/16/16 Revert "commenting out destroy"
+2/16/16 Revert "trying to fix what I broke" 
+2/16/16 Revert "Broke something, trying to find it" 
+2/16/16 Revert "passing graph to destroy by reference" 
+2/16/16 Revert "moved Destroy_Dijstra to gamestatemanager" 
+2/16/16 Revert "forgot to remove the malloc of insert_vertex" 
+2/16/16 Revert "made insert_vertex not a pointer and passing to heap by reference"
+2/16/16 Revert "calling destroy" 
+2/16/16 Revert "freeing and destroying" 
+2/16/16 freeing nodes, and all 3 dijstra member variables
+2/16/16 removed free(nodes)
+2/16/16 destroying dijstra twice
+2/16/16 freeing inster_vertex
+2/16/16 passing insert_vertex by reference instead of pointer
+2/16/16 making inster_vertex a pointer again and freeing it after use
+2/16/16 moved insert_vertex declaration out of for loop
+2/16/16 not freeing insert_vertex
+2/16/16 removing last few commits
+2/16/16 deleting binheap after using it
+2/16/16 changed inster_vertex to array
+2/16/16 small change to referencing vertex array
+2/16/16 made graph a global in GameStateManager
+2/16/16 destroyiung graph
+2/16/16 pasing graph by reference
+2/16/16 trying to free adjacent edges
+2/16/16 moved adjacent edges to global and free it on destroy all
+2/16/16 removed freeing adjacent edges and freeing distance maps
+2/16/16 moved adjacent edge back to local
+2/16/16 freeing adjacent edges
+2/16/16 breaking up if to find invalid read
+2/16/16 splitting if more to find invalid read
+2/16/16 put if back in one line and commented out first destroy all
+2/16/16 No memory leaks, but invalid read for unkown reasons
+2/16/16 testing moving adjacent edges out of loop and mallocing
+2/16/16 handling free in graph
+2/16/16 commented out free
+2/16/16 making adjacent edge an array and pass by reference
+2/16/16 removing last commit
+2/16/16 forgot to revert one more thing
+2/16/16 Finished CHANGELOG. Ready to package and deliver
