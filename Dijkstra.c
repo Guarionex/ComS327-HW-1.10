@@ -58,11 +58,17 @@ void Dijkstra(graph_t graph, vertex_t src)
 		{
 			vertex_t next = adjacent_edges[e].target;
 			
-			if((distance[current->y*80+current->x] + next.weight  < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE))
+			if((distance[current->y*80+current->x] + next.weight  < distance[next.y*80+next.x]))
 			{
-				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
-				predecessor[next.y*80+next.x] = *current;
-				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
+				if((Contains_Vertex(visited, visited_count, next) == FALSE))
+				{
+					if((Compare_Vertices(next, NULL_VERTEX) == FALSE))
+					{
+						distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
+						predecessor[next.y*80+next.x] = *current;
+						binheap_decrease_key(&h, nodes[next.y*80+next.x]);
+					}
+				}
 			}
 		}
 		free(adjacent_edges);
