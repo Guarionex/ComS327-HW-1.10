@@ -67,7 +67,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		//free(adjacent_edges);
 	}
 	
-	//free(nodes);
+	free(nodes);
 	//free(insert_vertex);
 }
 
