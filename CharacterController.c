@@ -4,7 +4,7 @@ player_t pc;
 int *character_map;
 character_t *character_list;
 const character_t NULL_CHARACTER = {.id = -1 };
-num_characters;
+int num_characters;
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
