@@ -53,6 +53,7 @@ player_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	srand(seed_local);
 	pc.pos = open_pos[rand()%open_count];
 	pc.cell = dungeon[pc.pos.x][pc.pos.y];
+	pc.speed = 10;
 	free(open_pos);
 	return pc;
 }
