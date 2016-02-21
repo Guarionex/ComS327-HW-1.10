@@ -9,7 +9,7 @@
 #include <stdint.h>
 
 extern Dungeon_Space_Struct **current_dungeon;
-extern character_t pc;
+extern character_t player_character;
 extern char *distance_map;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon);

@@ -1,7 +1,7 @@
 #include "GameStateManager.h"
 
 Dungeon_Space_Struct **current_dungeon;
-character_t pc;
+character_t player_character;
 char *distance_map;
 graph_t graphed_dungeon;
 
@@ -12,13 +12,13 @@ void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 
 void Set_Player(character_t player)
 {
-	pc = player;
+	player_character = player;
 }
 
 char *Generate_Distance_Dungeon(bool tunneler)
 {
 	graphed_dungeon = GenerateGraph(current_dungeon, tunneler);
-	vertex_t player_vertex = Get_Vertex(pc.pos.x, pc.pos.y);
+	vertex_t player_vertex = Get_Vertex(player_character.pos.x, player_character.pos.y);
 	uint distances_int[graphed_dungeon.num_vertices];
 	
 	
@@ -318,7 +318,7 @@ void Draw_Dungeon(void)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			if(pc.pos.x == x && pc.pos.y == y)
+			if(player_character.pos.x == x && player_character.pos.y == y)
 			{
 				printf("@");
 			}
