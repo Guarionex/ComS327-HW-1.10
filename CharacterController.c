@@ -191,7 +191,7 @@ bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
 	int index = get_character_index_by_id(character_id);
 	if(index < 0) 
 	{ 
-		return;
+		return FALSE;
 	}
 	
 	int seed_local;
@@ -209,8 +209,7 @@ bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
 	switch(character_list[index].character_type)
 	{
 		case PLAYER:
-		int move = rand()%9;
-		return move_player(&character_list[index], move, dungeon);
+		return move_player(&character_list[index], rand()%9, dungeon);
 		break;
 		
 		case MONSTER:
@@ -259,7 +258,7 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		case 6:
 		a = -1;
 		b = 1;
-		break
+		break;
 		
 		case 7:
 		a = 0;
@@ -271,7 +270,7 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		b = 1;
 		break;
 		
-		default;
+		default:
 		a = 0;
 		b =0;
 		break;
