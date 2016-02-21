@@ -67,7 +67,7 @@ character_parent_t character_parent_create(character_type_t character_type, va_l
       character_parent.player = va_arg(ap, player_t);
       break;
     case MONSTER:
-      character_parent.monster = va_arg(ap, character_parent.player_t);
+      character_parent.monster = va_arg(ap, monster_t);
       break;
     }
 
@@ -87,5 +87,5 @@ character_t character_tag_create(int speed, int timer, character_type_t characte
   
   va_end(ap);
   
-  return dungeon_space;
+  return character_tag;
 }
