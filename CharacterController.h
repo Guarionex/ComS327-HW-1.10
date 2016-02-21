@@ -50,10 +50,16 @@ extern const character_t NULL_CHARACTER;
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_parent_t character_parent_create(character_type_t character_type, va_list ap);
-character_t character_tag_create(int speed, int timer, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...);
+character_t character_tag_create(int speed, int timer, int id, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...);
 void create_character_list();
 void add_character(character_t new_character);
-character_t delete_character(character_t dead_character);
+character_t delete_character(int id);
+character_t get_character_by_id(int id);
+int get_character_index_by_id(int id);
+int check_character_map(int x, int y);
+bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon);
+
+
 
 
 #endif
