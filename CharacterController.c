@@ -53,7 +53,39 @@ player_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	srand(seed_local);
 	pc.pos = open_pos[rand()%open_count];
 	pc.cell = dungeon[pc.pos.x][pc.pos.y];
-	pc.speed = 10;
 	free(open_pos);
 	return pc;
+}
+
+character_parent_t character_parent_create(character_type_t character_type, va_list ap)
+{
+  character_parent_t character_parent;
+
+  switch(character_type)
+    {
+    case PLAYER:
+      character_parent.player = va_arg(ap, player_t);
+      break;
+    case MONSTER:
+      character_parent.monster = va_arg(ap, character_parent.player_t);
+      break;
+    }
+
+  return character_parent;
+}
+
+character_t character_tag_create(int speed, int timer, character_type_t character_type, ...)
+{
+  va_list ap;
+  va_start(ap, character_type);
+  
+  character_t character_tag;
+  character_tag.speed = speed;
+  character_tag.timer = timer;
+  character_tag.character_type = character_type;
+  character_tag.character_parent_t = character_parent_create(character_type, ap);
+  
+  va_end(ap);
+  
+  return dungeon_space;
 }
