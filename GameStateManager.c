@@ -33,7 +33,7 @@ void populate_monsters(int num_mon, int *seed)
 	int m;
 	for(m = 0; m < num_mon; m++)
 	{
-		create_monster(&seed_local);
+		create_monster(current_dungeon, &seed_local);
 	}
 }
 
@@ -343,6 +343,10 @@ void Draw_Dungeon(void)
 			if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y)
 			{
 				printf("@");
+			}
+			else if(check_character_map(int x, int y) > 0)
+			{
+				printf("M");
 			}
 			else
 			{

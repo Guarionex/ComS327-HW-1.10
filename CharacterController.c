@@ -68,12 +68,60 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	return player;
 }
 
-void create_monster(int *seed)
+void create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 {	
 	uint8_t powers = 0x0;
 	powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
-	printf("Powers is 0x%x\n", powers);
+	pos_t *open_pos = malloc(sizeof(pos_t));
+	pos_t mon_pos;
+	int open_count = 0;
+	if((0x4 & powers) == 0x4)
+	{
+		mon_pos.x = (rand()%78)+1;
+		mon_pos.y = (rand()%19)+1;
+	}
+	else
+	{
+		int x, y;
+		for(x = 0; x < 80; x++)
+		{
+			for(y = 0; y < 21; y++)
+			{
+				pos_t new_pos;
+				switch(dungeon[x][y].space_type)
+				{
+					case ROCK:
+					break;
+					
+					case ROOM:
+						new_pos.x = x;
+						new_pos.y = y;
+						open_count++;
+						open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+						open_pos[open_count-1] = new_pos;
+						open_pos[open_count] = NULL_POS;
+					break;
+					
+					case CORRIDOR:
+						new_pos.x = x;
+						new_pos.y = y;
+						open_count++;
+						open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+						open_pos[open_count-1] = new_pos;
+						open_pos[open_count] = NULL_POS;
+					break;
+				}
+			}
+		}
+		mon_pos = open_pos[rand()%open_count];
+	}
+	
+	monster_t monster = {.abilities = powers};
+	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
+	add_character(monster);
+	free(open_pos);
+	return mon;
 }
 
 character_parent_t character_parent_create(character_type_t character_type, va_list ap)
