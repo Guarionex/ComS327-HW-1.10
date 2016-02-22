@@ -401,7 +401,7 @@ void Destroy_All(void)
 
 void turn(int *seed)
 {
-	binheap_node_t *nodes[num_vertices];
+	//binheap_node_t *nodes[num_characters];
 	
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
@@ -409,7 +409,7 @@ void turn(int *seed)
 	int p;
 	for(p = 0; p < num_characters; p++)
 	{
-		nodes[p] = binheap_insert(&h, character_list + p);
+		/*nodes[p] = */binheap_insert(&h, character_list + p);
 	}
 	
 	while(!binheap_is_empty(&h))
