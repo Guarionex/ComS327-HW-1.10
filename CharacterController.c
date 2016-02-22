@@ -194,17 +194,7 @@ bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
 		return FALSE;
 	}
 	
-	int seed_local;
-	if(*seed <= 0)
-	{
-		seed_local = time(NULL);
-		*seed = seed_local;
-	}
-	else if(*seed > 0)
-	{
-		seed_local = *seed;
-	}
-	srand(seed_local);
+	
 	
 	switch(character_list[index].character_type)
 	{

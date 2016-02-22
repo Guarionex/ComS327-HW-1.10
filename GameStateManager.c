@@ -421,7 +421,7 @@ void turn(int *seed)
 		/*nodes[p] = */binheap_insert(&h, current);
 		
 		Draw_Dungeon();
-		sleep(5);
+		sleep(1);
 	}
 	
 	binheap_delete(&h);
