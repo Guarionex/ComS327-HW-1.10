@@ -60,11 +60,32 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	pos_t new_pos = open_pos[rand()%open_count];
 	//pc.cell = dungeon[pc.pos.x][pc.pos.y];
 	pc.name = "Edwin";
-	player = character_tag_create(10, 10, 0, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
+	player = character_tag_create(10, 0, 0, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
 	create_character_list();
 	add_character(player);
 	free(open_pos);
 	return player;
+}
+
+void create_monster(int *seed)
+{
+	int seed_local;
+	
+	if(*seed <= 0)
+	{
+		seed_local = time(NULL);
+		*seed = seed_local;
+	}
+	else if(*seed > 0)
+	{
+		seed_local = *seed;
+	}
+	srand(seed_local);
+	
+	uint8_t powers = 0x0;
+	powers = powers | (rand()%2 == 0) ? 0x0 : 0x1 | (rand()%2 == 0) ? 0x0 : 0x2 | (rand()%2 == 0) ? 0x0 : 0x4 | (rand()%2 == 0) ? 0x0 : 0x8;
+	
+	printf("Powers is 0x%x\n", powers);
 }
 
 character_parent_t character_parent_create(character_type_t character_type, va_list ap)

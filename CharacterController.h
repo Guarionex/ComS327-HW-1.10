@@ -16,14 +16,11 @@ typedef enum character_type_enum
 typedef struct player
 {
 	char *name;
-	//Dungeon_Space_Struct cell;
-	//pos_t pos;
 } player_t;
 
 typedef struct monster
 {
-	int abilities;
-	//pos_t pos;
+	uint8_t abilities;
 } monster_t;
 
 typedef union character_parent
@@ -50,6 +47,7 @@ extern int num_characters;
 extern const character_t NULL_CHARACTER;
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
+void create_monster(int *seed);
 character_parent_t character_parent_create(character_type_t character_type, va_list ap);
 character_t character_tag_create(int32_t speed, int32_t timer, int id, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...);
 void create_character_list();

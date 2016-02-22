@@ -28,6 +28,8 @@ int main(int argc, char *argv[])
 	char *dungeonSaveFileName;
 	bool load_param = FALSE;
 	bool save_param = FALSE;
+	bool nummon_param = FALSE;
+	int nummon_value = 0;
 	bool loaded = FALSE;
 	bool save_param_used = FALSE;
 	int num_rooms;
@@ -48,6 +50,11 @@ int main(int argc, char *argv[])
 				flags[c - 1] = SAVE;
 				save_param = FALSE;
 				continue;
+			}
+			if(nummon_param == TRUE)
+			{
+				flags[c - 1] = NUMMON;
+				nummon_param = FALSE;
 			}
 			
 			if(isstring(argv[c]) == FALSE)
@@ -85,6 +92,18 @@ int main(int argc, char *argv[])
 						dungeonFileName = strdup("dungeon");
 					}
 					flags[c - 1] = LOAD;
+				}
+				else if(strcmp(argv[c], "--nummon") == 0)
+				{
+					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == FALSE)
+					{
+						nummon_param = TRUE;
+						nummon_value = atoi(argv[c+1]);
+					}
+					else
+					{
+						printf("Invalid parameter for --nummon\n");
+					}
 				}
 				else
 				{
@@ -162,10 +181,11 @@ int main(int argc, char *argv[])
 		dungeon = Generate_Map(&int_seed, &num_rooms);
 		Set_Dungeon(dungeon);
 		Set_Player(Place_Player(dungeon, &int_seed));
+		void populate_monsters(nummon_value, &int_seed)
 		Draw_Dungeon();
 		//printf("\n");
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
-		Draw_Distance_Dungeon(distance_dungeon);
+		//Draw_Distance_Dungeon(distance_dungeon);
 		Destroy_All();
 		//printf("\n");
 		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);

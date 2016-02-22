@@ -15,6 +15,15 @@ void Set_Player(character_t player)
 	player_character = player;
 }
 
+void populate_monsters(int num_mon, int *seed)
+{
+	int m;
+	for(m = 0; m < num_mon; m++)
+	{
+		character_t create_monster(seed);
+	}
+}
+
 char *Generate_Distance_Dungeon(bool tunneler)
 {
 	graphed_dungeon = GenerateGraph(current_dungeon, tunneler);
@@ -417,11 +426,11 @@ void turn(int *seed)
 		character_t *current = (character_t *) binheap_remove_min(&h);
 		
 		move_character(current->id, seed, current_dungeon);
-		current->timer += current->speed;
+		current->timer += 100/current->speed;
 		/*nodes[p] = */binheap_insert(&h, current);
 		
 		Draw_Dungeon();
-		sleep(1);
+		sleep(3);
 	}
 	
 	binheap_delete(&h);

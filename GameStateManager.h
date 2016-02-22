@@ -16,6 +16,7 @@ extern char *distance_map;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon);
 void Set_Player(character_t player);
+void populate_monsters(int num_mon, int *seed);
 char *Generate_Distance_Dungeon(bool tunneler);
 void Draw_Dungeon(void);
 void Draw_Distance_Dungeon(char *char_map);
