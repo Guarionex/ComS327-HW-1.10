@@ -194,6 +194,7 @@ int main(int argc, char *argv[])
 		//turn(&int_seed);
 		//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		Destroy_All();
+		printf("Made it here\n");
 	}
 	
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
