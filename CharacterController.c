@@ -73,7 +73,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	uint8_t powers = 0x0;
 	powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
-	//printf("Monster %d is 0x%x\n", num_characters, powers);
+	printf("Monster %d is 0x%x\n", num_characters, powers);
 	
 	pos_t *open_pos = malloc(sizeof(pos_t));
 	pos_t mon_pos;
@@ -149,6 +149,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	if((monster.abilities & 0x2) == 0x2)
 	{
 		monster.memory = get_character_by_id(0).pos;
+		printf("Monster %d knows player is at [%d][%d]\n", num_characters, monster.memory.x, monster.memory.y);
 	}
 	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	add_character(mon);
