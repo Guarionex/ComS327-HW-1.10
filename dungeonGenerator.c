@@ -45,13 +45,13 @@ int main(int argc, char *argv[])
 				load_param = FALSE;
 				continue;
 			}
-			if(save_param == TRUE)
+			else if(save_param == TRUE)
 			{
 				flags[c - 1] = SAVE;
 				save_param = FALSE;
 				continue;
 			}
-			if(nummon_param == TRUE)
+			else if(nummon_param == TRUE)
 			{
 				//flags[c - 1] = NUMMON;
 				nummon_param = FALSE;
