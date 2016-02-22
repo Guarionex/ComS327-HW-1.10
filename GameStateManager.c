@@ -446,8 +446,12 @@ void turn(int *seed)
 		current->timer += 100/current->speed;
 		/*nodes[p] = */binheap_insert(&h, current);
 		
-		Draw_Dungeon();
-		sleep(3);
+		if(current->character_type == PLAYER)
+		{
+			update_telepath();
+			Draw_Dungeon();
+			sleep(3);
+		}
 	}
 	
 	binheap_delete(&h);
