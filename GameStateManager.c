@@ -417,7 +417,7 @@ void turn(int *seed)
 		character_t *current = (character_t *) binheap_remove_min(&h);
 		
 		move_character(current->id, seed, current_dungeon);
-		
+		current->timer += current->speed;
 		/*nodes[p] = */binheap_insert(&h, current);
 		
 		Draw_Dungeon();
