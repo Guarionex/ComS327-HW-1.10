@@ -296,7 +296,7 @@ bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
 		break;
 		
 		case MONSTER:
-		
+		return move_monster(&character_list[index], dungeon);
 		break;
 	}
 	
@@ -438,7 +438,7 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
-					printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 			}
 			else
@@ -446,12 +446,12 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
-					printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+					//printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
 					character_list[m].character_parent.monster.memory = NULL_POS;
-					printf("Monster %d lost sight of player\n", character_list[m].id);
+					//printf("Monster %d lost sight of player\n", character_list[m].id);
 				}
 			}
 		}
@@ -524,4 +524,76 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 	}
 	
 	return found_player;
+}
+
+bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
+{
+	pos_t move_to = {.x = player_to_move->x, .y = player_to_move->y};
+	bool moving = FALSE;
+	
+	if((player_to_move->character_parent.monster.abilities & 0x1) == 0x1)
+	{
+		if(player_to_move->character_parent.monster.memory.x != NULL_POS.x && player_to_move->character_parent.monster.memory.y != NULL_POS.y )
+		{
+			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
+			{
+				//tunneler dijkstra
+				//chisel
+				//if density <= 0 moving = TRUE;
+			}
+			else
+			{
+				//non-tunneler dijkstra
+				moving = TRUE;
+			}
+		}
+	}
+	else
+	{
+		if(player_to_move->character_parent.monster.memory.x != NULL_POS.x && player_to_move->character_parent.monster.memory.y != NULL_POS.y )
+		{
+			//find direction
+			int a = 0, b = 0;
+			if(player_to_move->x - player_to_move->character_parent.monster.memory.x > 0)
+			{
+				a = -1;
+			}
+			else if(player_to_move->x - player_to_move->character_parent.monster.memory.x < 0)
+			{
+				a = 1;
+			}
+			
+			if(player_to_move->y - player_to_move->character_parent.monster.memory.y > 0)
+			{
+				b = -1;
+			}
+			else if(player_to_move->y - player_to_move->character_parent.monster.memory.y < 0)
+			{
+				b = 1;
+			}
+			
+			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
+			{
+				//chisel
+				//if density <= 0 moving = TRUE;
+			}
+			else
+			{
+				if(dungeon[player_to_move->x+a][player_to_move->y+b].space_type != ROCK)
+				{
+					move_to.x += a;
+					move_to.y += b;
+					
+					moving = TRUE;
+				}
+			}
+		}
+	}
+	
+	if((player_to_move->character_parent.monster.abilities & 0x8) == 0x8)
+	{
+		//coin toss random move or chosen move
+	}
+	
+	return moving;
 }

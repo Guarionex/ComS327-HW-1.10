@@ -63,6 +63,7 @@ int32_t compare_character(const void *key, const void *with);
 void update_telepath(void);
 void line_of_sight(Dungeon_Space_Struct **dungeon);
 bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon);
+bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon);
 
 
 
