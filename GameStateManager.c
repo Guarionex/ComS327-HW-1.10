@@ -17,11 +17,11 @@ void Set_Player(character_t player)
 
 void populate_monsters(int num_mon, int *seed)
 {
-	/*int m;
+	int m;
 	for(m = 0; m < num_mon; m++)
 	{
 		create_monster(seed);
-	}*/
+	}
 }
 
 char *Generate_Distance_Dungeon(bool tunneler)
