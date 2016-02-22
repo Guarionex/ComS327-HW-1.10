@@ -145,10 +145,14 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 		mon_pos = open_pos[rand()%open_count];
 	}
 	
-	monster_t monster = {.abilities = powers};
+	monster_t monster = {.abilities = powers, .memory = NULL_POS};
 	if((monster.abilities & 0x2) == 0x2)
 	{
 		monster.memory = get_character_by_id(0).pos;
+	}
+	if((monster.abilities & 0x4) == 0x4 && dungeon[mon_pos.x][mon_pos.y].space_type == ROCK)
+	{
+		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 	}
 	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	add_character(mon);
@@ -413,7 +417,111 @@ void update_telepath(void)
 		if((character_list[m].character_type == MONSTER) && ((character_list[m].character_parent.monster.abilities & 0x2) == 0x2))
 		{
 			character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
-			printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+			//printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
 	}
+}
+
+void line_of_site(Dungeon_Space_Struct **dungeon)
+{
+	int m;
+	for(m = 0; m < num_characters; m++)
+	{
+		if(character_list[m].character_type == MONSTER)
+		{
+			if((character_list[m].character_parent.monster.abilities & 0x2) == 0x2)
+			{
+				continue;
+			}
+			else if((character_list[m].character_parent.monster.abilities & 0x1) == 0x1)
+			{
+				if(line_of_site_helper(character_list[m].pos, dungeon) == TRUE)
+				{
+					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
+					printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+				}
+			}
+			else
+			{
+				if(line_of_site_helper(character_list[m].pos, dungeon) == TRUE)
+				{
+					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
+					printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+				}
+				else
+				{
+					character_list[m].character_parent.monster.memory = NULL_POS;
+					printf("Monster %d lost sight of player\n", character_list[m].id);
+				}
+			}
+		}
+	}
+}
+
+bool line_of_site_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
+{
+	bool found_player = FALSE, failed = FALSE;
+	int a = -1, b = -1;
+	pos_t current = pos;
+	
+	while(found_player == FALSE && failed == FALSE)
+	{
+		current.x += a;
+		current.y += b;
+		switch(dungeon[current.x][current.y].space_type)
+		{
+			case ROCK:
+			if(a == -1 && b == -1)
+			{
+				a = 0;
+			}
+			else if(a == 0 && b == -1)
+			{
+				a = 1;
+			}
+			else if(a == 1 && b == -1)
+			{
+				a = -1;
+				b = 0;
+			}
+			else if(a == -1 && b == 0)
+			{
+				a = 1;
+			}
+			else if(a == 1 && b == 0)
+			{
+				a = -1;
+				b = 1
+			}
+			else if(a == -1 && b == 1)
+			{
+				a = 0;
+			}
+			else if(a == 0 && b == 1)
+			{
+				a = 1;
+			}
+			else if(a == 1 && b == 1)
+			{
+				failed = TRUE;
+			}
+			break;
+			
+			case ROOM:
+			if((get_character_by_id(0).pos.x == current.x) && (get_character_by_id(0).pos.y == current.y))
+			{
+				found_player = TRUE;
+			}
+			break;
+			
+			case CORRIDOR:
+			if((get_character_by_id(0).pos.x == current.x) && (get_character_by_id(0).pos.y == current.y))
+			{
+				found_player = TRUE;
+			}
+			break;
+		}
+	}
+	
+	return found_player;
 }

@@ -61,6 +61,7 @@ bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
 bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dungeon);
 int32_t compare_character(const void *key, const void *with);
 void update_telepath(void);
+void line_of_site(Dungeon_Space_Struct **dungeon);
 
 
 
