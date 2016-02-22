@@ -181,7 +181,7 @@ int main(int argc, char *argv[])
 		dungeon = Generate_Map(&int_seed, &num_rooms);
 		Set_Dungeon(dungeon);
 		Set_Player(Place_Player(dungeon, &int_seed));
-		void populate_monsters(nummon_value, &int_seed)
+		populate_monsters(nummon_value, &int_seed)
 		Draw_Dungeon();
 		//printf("\n");
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
