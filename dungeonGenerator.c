@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 			}
 			if(nummon_param == TRUE)
 			{
-				flags[c - 1] = NUMMON;
+				//flags[c - 1] = NUMMON;
 				nummon_param = FALSE;
 				continue;
 			}
@@ -104,6 +104,7 @@ int main(int argc, char *argv[])
 					else
 					{
 						printf("Invalid parameter for --nummon\n");
+						return 0;
 					}
 				}
 				else
