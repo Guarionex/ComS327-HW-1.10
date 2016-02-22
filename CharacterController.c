@@ -462,7 +462,7 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 {
 	bool found_player = FALSE, failed = FALSE;
 	int a = -1, b = -1;
-	pos_t current = pos;
+	pos_t current = monster_pos;
 	
 	while(found_player == FALSE && failed == FALSE)
 	{
@@ -491,7 +491,7 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 			else if(a == 1 && b == 0)
 			{
 				a = -1;
-				b = 1
+				b = 1;
 			}
 			else if(a == -1 && b == 1)
 			{
