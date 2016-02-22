@@ -47,16 +47,14 @@ int main(int argc, char *argv[])
 			}
 			if(save_param == TRUE)
 			{
-				printf("IDK why I'm here\n");
 				flags[c - 1] = SAVE;
 				save_param = FALSE;
 				continue;
 			}
 			if(nummon_param == TRUE)
 			{
-				//flags[c - 1] = NUMMON;
+				flags[c - 1] = NUMMON;
 				nummon_param = FALSE;
-				printf("Nummon = %d\n", nummon_value);
 				continue;
 			}
 			

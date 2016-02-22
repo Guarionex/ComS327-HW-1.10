@@ -7,7 +7,8 @@ typedef enum
 {
 	SEED,
 	SAVE, 
-	LOAD
+	LOAD,
+	NUMMON
 } Flags;
 
 bool Contains_Flag(Flags *flag, int size, Flags contains);
