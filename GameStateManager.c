@@ -437,7 +437,7 @@ void turn(int *seed)
 	{
 		/*nodes[p] = */binheap_insert(&h, character_list + p);
 	}
-	line_of_site(current_dungeon);
+	line_of_sight(current_dungeon);
 	while(!binheap_is_empty(&h))
 	{
 		character_t *current = (character_t *) binheap_remove_min(&h);
@@ -449,7 +449,7 @@ void turn(int *seed)
 		if(current->character_type == PLAYER)
 		{
 			update_telepath();
-			line_of_site(current_dungeon);
+			line_of_sight(current_dungeon);
 			Draw_Dungeon();
 			sleep(3);
 		}

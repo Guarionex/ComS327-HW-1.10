@@ -422,7 +422,7 @@ void update_telepath(void)
 	}
 }
 
-void line_of_site(Dungeon_Space_Struct **dungeon)
+void line_of_sight(Dungeon_Space_Struct **dungeon)
 {
 	int m;
 	for(m = 0; m < num_characters; m++)
@@ -435,7 +435,7 @@ void line_of_site(Dungeon_Space_Struct **dungeon)
 			}
 			else if((character_list[m].character_parent.monster.abilities & 0x1) == 0x1)
 			{
-				if(line_of_site_helper(character_list[m].pos, dungeon) == TRUE)
+				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
 					printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
@@ -443,7 +443,7 @@ void line_of_site(Dungeon_Space_Struct **dungeon)
 			}
 			else
 			{
-				if(line_of_site_helper(character_list[m].pos, dungeon) == TRUE)
+				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
 					printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
@@ -458,7 +458,7 @@ void line_of_site(Dungeon_Space_Struct **dungeon)
 	}
 }
 
-bool line_of_site_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
+bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 {
 	bool found_player = FALSE, failed = FALSE;
 	int a = -1, b = -1;
