@@ -18,7 +18,7 @@ void Set_Player(character_t player)
 char *Generate_Distance_Dungeon(bool tunneler)
 {
 	graphed_dungeon = GenerateGraph(current_dungeon, tunneler);
-	vertex_t player_vertex = Get_Vertex(player_character.pos.x, player_character.pos.y);
+	vertex_t player_vertex = Get_Vertex(get_character_by_id(0).pos.x, get_character_by_id(0).pos.y);
 	uint distances_int[graphed_dungeon.num_vertices];
 	
 	
@@ -318,7 +318,7 @@ void Draw_Dungeon(void)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			if(player_character.pos.x == x && player_character.pos.y == y)
+			if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y)
 			{
 				printf("@");
 			}
