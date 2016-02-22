@@ -17,10 +17,23 @@ void Set_Player(character_t player)
 
 void populate_monsters(int num_mon, int *seed)
 {
+	int seed_local;
+	
+	if(*seed <= 0)
+	{
+		seed_local = time(NULL);
+		*seed = seed_local;
+	}
+	else if(*seed > 0)
+	{
+		seed_local = *seed;
+	}
+	srand(seed_local);
+	
 	int m;
 	for(m = 0; m < num_mon; m++)
 	{
-		create_monster(seed);
+		create_monster(seed_local);
 	}
 }
 
