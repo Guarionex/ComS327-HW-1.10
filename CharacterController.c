@@ -84,7 +84,7 @@ void create_monster(int *seed)
 	srand(seed_local);
 	
 	uint8_t powers = 0x0;
-	powers = powers | 0x1;//(rand()%2 == 0) ? 0x0 : 0x1 | (rand()%2 == 0) ? 0x0 : 0x2 | (rand()%2 == 0) ? 0x0 : 0x4 | (rand()%2 == 0) ? 0x0 : 0x8;
+	powers = powers | (rand()%2 == 0) ? 0x0 : 0x1 ;//| (rand()%2 == 0) ? 0x0 : 0x2 | (rand()%2 == 0) ? 0x0 : 0x4 | (rand()%2 == 0) ? 0x0 : 0x8;
 	
 	printf("Powers is 0x%x\n", powers);
 }
