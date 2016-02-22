@@ -413,7 +413,7 @@ void update_telepath(void)
 		if((character_list[m].character_type == MONSTER) && ((character_list[m].character_parent.monster.abilities & 0x2) == 0x2))
 		{
 			character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
-			printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list.character_parent.monster.memory.y);
+			printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
 	}
 }
