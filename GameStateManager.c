@@ -344,7 +344,7 @@ void Draw_Dungeon(void)
 			{
 				printf("@");
 			}
-			else if(check_character_map(int x, int y) > 0)
+			else if(check_character_map(x, y) > 0)
 			{
 				printf("M");
 			}
