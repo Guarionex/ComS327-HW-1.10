@@ -80,8 +80,24 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	int open_count = 0;
 	if((0x4 & powers) == 0x4)
 	{
-		mon_pos.x = (rand()%78)+1;
-		mon_pos.y = (rand()%19)+1;
+		bool pos_found = FALSE;
+		int attempts = 0;
+		while(pos_found == FALSE && attempts < 10000)
+		{
+			attempts++;
+			int x = (rand()%78)+1;
+			int y = (rand()%19)+1;
+			if(check_character_map(x, y) == -1)
+			{
+				mon_pos.x = x;
+				mon_pos.y = y;
+				pos_found = TRUE;
+			}
+		}
+		if(attempts == 10000)
+		{
+			return NULL_CHARACTER;
+		}
 	}
 	else
 	{
@@ -97,24 +113,34 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 					break;
 					
 					case ROOM:
-						new_pos.x = x;
-						new_pos.y = y;
-						open_count++;
-						open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
-						open_pos[open_count-1] = new_pos;
-						open_pos[open_count] = NULL_POS;
+						if(check_character_map(x, y) == -1)
+						{
+							new_pos.x = x;
+							new_pos.y = y;
+							open_count++;
+							open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+							open_pos[open_count-1] = new_pos;
+							open_pos[open_count] = NULL_POS;
+						}
 					break;
 					
 					case CORRIDOR:
-						new_pos.x = x;
-						new_pos.y = y;
-						open_count++;
-						open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
-						open_pos[open_count-1] = new_pos;
-						open_pos[open_count] = NULL_POS;
+						if(check_character_map(x, y) == -1)
+						{
+							new_pos.x = x;
+							new_pos.y = y;
+							open_count++;
+							open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+							open_pos[open_count-1] = new_pos;
+							open_pos[open_count] = NULL_POS;
+						}
 					break;
 				}
 			}
+		}
+		if(open_count == 0)
+		{
+			return NULL_CHARACTER;
 		}
 		mon_pos = open_pos[rand()%open_count];
 	}
