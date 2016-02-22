@@ -149,6 +149,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	add_character(mon);
 	free(open_pos);
+	printf("Number of monsters so far = %d\n", num_characters);
 	return mon;
 }
 
