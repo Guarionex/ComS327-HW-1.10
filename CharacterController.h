@@ -21,6 +21,7 @@ typedef struct player
 typedef struct monster
 {
 	uint8_t abilities;
+	pos_t memory;
 } monster_t;
 
 typedef union character_parent
@@ -37,7 +38,7 @@ typedef struct character_tag
 	pos_t pos;
 	Dungeon_Space_Struct cell;
 	character_type_t character_type;
-	character_parent_t character_parent_t;
+	character_parent_t character_parent;
 } character_t;
 
 extern player_t pc;

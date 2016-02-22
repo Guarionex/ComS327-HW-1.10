@@ -73,7 +73,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	uint8_t powers = 0x0;
 	powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
-	printf("Monster %d is 0x%x\n", num_characters, powers);
+	//printf("Monster %d is 0x%x\n", num_characters, powers);
 	
 	pos_t *open_pos = malloc(sizeof(pos_t));
 	pos_t mon_pos;
@@ -146,10 +146,13 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	}
 	
 	monster_t monster = {.abilities = powers};
+	if((monster.abilities & 0x2) == 0x2)
+	{
+		monster.memory = get_character_by_id(0).pos;
+	}
 	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	add_character(mon);
 	free(open_pos);
-	printf("Number of monsters so far = %d\n", num_characters);
 	return mon;
 }
 
@@ -182,7 +185,7 @@ character_t character_tag_create(int32_t speed, int32_t timer, int id, pos_t pos
   character_tag.pos = pos;
   character_tag.cell = cell;
   character_tag.character_type = character_type;
-  character_tag.character_parent_t = character_parent_create(character_type, ap);
+  character_tag.character_parent = character_parent_create(character_type, ap);
   
   va_end(ap);
   
