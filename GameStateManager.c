@@ -398,3 +398,31 @@ void Destroy_All(void)
 	Destroy_Graph(&graphed_dungeon);
 	free(distance_map);
 }
+
+void turn(int *seed)
+{
+	binheap_node_t *nodes[num_vertices];
+	
+	binheap_t h;
+	binheap_init(&h, compare_character, NULL);	
+	
+	int p;
+	for(p = 0; p < num_characters; p++)
+	{
+		nodes[p] = binheap_insert(&h, character_list + p);
+	}
+	
+	while(!binheap_is_empty(&h))
+	{
+		character_t *current = (character_t *) binheap_remove_min(&h);
+		
+		move_character(current->id, seed, current_dungeon);
+		
+		/*nodes[p] = */binheap_insert(&h, current);
+		
+		Draw_Dungeon();
+		sleep(5);
+	}
+	
+	binheap_delete(&h);
+}

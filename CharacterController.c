@@ -84,7 +84,7 @@ character_parent_t character_parent_create(character_type_t character_type, va_l
   return character_parent;
 }
 
-character_t character_tag_create(int speed, int timer, int id, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
+character_t character_tag_create(int32_t speed, int32_t timer, int id, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
 {
   va_list ap;
   va_start(ap, character_type);
@@ -285,8 +285,10 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		}
 		else
 		{
+			character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 			player_to_move->pos.x = player_to_move->pos.x+a;
 			player_to_move->pos.y = player_to_move->pos.y+b;
+			character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 			dungeon[player_to_move->pos.x][player_to_move->pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 			player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 			return TRUE;
@@ -294,19 +296,32 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		break;
 		
 		case ROOM:
+		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 		player_to_move->pos.x = player_to_move->pos.x+a;
 		player_to_move->pos.y = player_to_move->pos.y+b;
+		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 		return TRUE;
 		break;
 		
 		case CORRIDOR:
+		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 		player_to_move->pos.x = player_to_move->pos.x+a;
 		player_to_move->pos.y = player_to_move->pos.y+b;
+		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 		return TRUE;
 		break;
 	}
 	
 	return FALSE;
+}
+
+int32_t compare_character(const void *key, const void *with)
+{
+	character_t from = *((character_t *) key);
+	character_t to = *((character_t *) with);
+	
+	int32_t turn_difference = from.timer - to.timer;
+	return turn_difference;
 }

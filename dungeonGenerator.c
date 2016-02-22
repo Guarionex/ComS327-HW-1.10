@@ -165,11 +165,13 @@ int main(int argc, char *argv[])
 		Draw_Dungeon();
 		printf("\n");
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
-		Draw_Distance_Dungeon(distance_dungeon);
+		turn(&int_seed);
+		//Draw_Distance_Dungeon(distance_dungeon);
 		Destroy_All();
 		printf("\n");
 		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
-		Draw_Distance_Dungeon(distance_dungeon_tunneler);
+		turn(&int_seed);
+		//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		Destroy_All();
 	}
 	
