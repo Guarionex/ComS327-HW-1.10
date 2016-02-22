@@ -33,7 +33,7 @@ void populate_monsters(int num_mon, int *seed)
 	int m;
 	for(m = 0; m < num_mon; m++)
 	{
-		create_monster(seed_local);
+		create_monster(&seed_local);
 	}
 }
 
