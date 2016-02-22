@@ -106,6 +106,7 @@ int main(int argc, char *argv[])
 						printf("Invalid parameter for --nummon\n");
 						return 0;
 					}
+					flags[c - 1] = NUMMON;
 				}
 				else
 				{
