@@ -55,6 +55,7 @@ int main(int argc, char *argv[])
 			{
 				flags[c - 1] = NUMMON;
 				nummon_param = FALSE;
+				continue;
 			}
 			
 			if(isstring(argv[c]) == FALSE)

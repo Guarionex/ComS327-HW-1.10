@@ -70,7 +70,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 void create_monster(int *seed)
 {
-	int seed_local;
+	/*int seed_local;
 	
 	if(*seed <= 0)
 	{
@@ -81,10 +81,10 @@ void create_monster(int *seed)
 	{
 		seed_local = *seed;
 	}
-	srand(seed_local);
+	srand(seed_local);*/
 	
 	uint8_t powers = 0x0;
-	powers = powers | 0x1;//(rand()%2 == 0) ? 0x0 : 0x1 | (rand()%2 == 0) ? 0x0 : 0x2 | (rand()%2 == 0) ? 0x0 : 0x4 | (rand()%2 == 0) ? 0x0 : 0x8;
+	powers = powers | (rand()%2 == 0) ? 0x0 : 0x1 | (rand()%2 == 0) ? 0x0 : 0x2 | (rand()%2 == 0) ? 0x0 : 0x4 | (rand()%2 == 0) ? 0x0 : 0x8;
 	
 	printf("Powers is 0x%x\n", powers);
 }
