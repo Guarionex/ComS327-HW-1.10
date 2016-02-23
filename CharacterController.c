@@ -446,7 +446,7 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
 					character_list[m].character_parent.monster.lost = FALSE;
-					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+					printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
@@ -623,11 +623,11 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					//printf("Smallest is %d\n", smallest_index);
 					move_to.x += a;
 					move_to.y += b;
-					printf("Player found\n");
+					//printf("Player found\n");
 				}
 				else
 				{
-					printf("Player lost\n");
+					//printf("Player lost\n");
 					int a = 0, b = 0;
 					if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
 					{
