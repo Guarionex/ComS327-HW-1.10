@@ -71,13 +71,13 @@ void Dijkstra(graph_t graph, vertex_t src)
 	binheap_delete(&h);
 }
 
-vertex_t *Get_Path(vertex_t target)
+vertex_t *Get_Path(vertex_t source, vertex_t target)
 {
 	vertex_t *path = malloc(sizeof(vertex_t));
 	path[0] = NULL_VERTEX;
 	int previous = target.y*80+target.x, path_count = 0;
 	
-	while(Compare_Vertices(predecessor[previous], NULL_VERTEX) == FALSE)
+	while(Compare_Vertices(predecessor[previous], source) == FALSE)
 	{
 		path[path_count] = predecessor[previous];
 		path_count++;
