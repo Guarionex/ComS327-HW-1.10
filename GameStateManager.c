@@ -4,6 +4,8 @@ Dungeon_Space_Struct **current_dungeon;
 character_t player_character;
 char *distance_map;
 graph_t graphed_dungeon;
+char *distance_dungeon;
+char *distance_dungeon_tunneler;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -432,7 +434,7 @@ void turn(int *seed)
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
 	
-	vertex_t *path = Get_Path(Get_Vertex(character_list[1].pos.x, character_list[1].pos.y));
+	vertex_t *path = Get_Path(Get_Vertex(character_list[1].pos.x, character_list[1].y));
 	int l = 0;
 	printf("Path is: ");
 	while(Compare_Vertices(path[l], NULL_VERTEX) == FALSE)
