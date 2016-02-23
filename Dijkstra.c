@@ -77,7 +77,7 @@ vertex_t *Get_Path(vertex_t source, vertex_t target)
 	path[0] = NULL_VERTEX;
 	int previous = target.y*80+target.x, path_count = 0;
 	
-	while(Compare_Vertices(predecessor[previous], source) == FALSE)
+	while(previous >= 0 && Compare_Vertices(predecessor[previous], source) == FALSE)
 	{
 		path[path_count] = predecessor[previous];
 		path_count++;
