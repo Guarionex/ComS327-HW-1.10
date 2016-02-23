@@ -480,6 +480,7 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 	{
 		current.x += a;
 		current.y += b;
+		printf("Checking [%d][%d]\n", current.x, current.y);
 		switch(dungeon[current.x][current.y].space_type)
 		{
 			case ROCK:
