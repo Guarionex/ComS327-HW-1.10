@@ -70,7 +70,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 {	
-	uint8_t powers = 0b0110;
+	uint8_t powers = 0b1110;
 	//powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
@@ -529,9 +529,45 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 {
 	pos_t move_to = {.x = player_to_move->pos.x, .y = player_to_move->pos.y};
-	bool moving = FALSE;
+	bool moving = FALSE, erratic = FALSE;
 	
-	if((player_to_move->character_parent.monster.abilities & 0x1) == 0x1)
+	if((player_to_move->character_parent.monster.abilities & 0x8) == 0x8)
+	{
+		if(rand()%2 == 1)
+		{
+			erratic = TRUE;
+			int a = (rand()%3)-1;
+			int b = (rand()%3)-1;
+			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x0 && dungeon[player_to_move->x+a][player_to_move->y+b].space_type != ROCK)
+			{
+				move_to.x += a;
+				move_to.y += b;
+			}
+			else if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
+			{
+				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+				{
+					uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
+					dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+					if(chisel == 0)
+					{
+						move_to.x += a;
+						move_to.y += b;
+						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+					}
+				}
+				else
+				{
+					move_to.x += a;
+					move_to.y += b;
+				}
+			}
+		}
+		//coin toss random move or chosen move
+	}
+	
+	if((player_to_move->character_parent.monster.abilities & 0x1) == 0x1 && erratic == FALSE)
 	{
 		if(player_to_move->character_parent.monster.memory.x != NULL_POS.x && player_to_move->character_parent.monster.memory.y != NULL_POS.y )
 		{
@@ -548,7 +584,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			}
 		}
 	}
-	else
+	else if(erratic == FALSE)
 	{
 		if(player_to_move->character_parent.monster.memory.x != NULL_POS.x && player_to_move->character_parent.monster.memory.y != NULL_POS.y )
 		{
@@ -609,19 +645,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 		}
 	}
 	
-	if((player_to_move->character_parent.monster.abilities & 0x8) == 0x8)
-	{
-		/*if(rand()%2 == 1)
-		{
-			int a = (rand()%3)-1;
-			int b = (rand()%3)-1;
-			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x0 && dungeon[player_to_move->x+a][player_to_move->y+b].space_type != ROCK)
-			{
-				
-			}
-		}*/
-		//coin toss random move or chosen move
-	}
+	
 	
 	character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 	player_to_move->pos.x = move_to.x;
