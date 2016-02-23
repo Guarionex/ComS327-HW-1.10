@@ -432,6 +432,16 @@ void turn(int *seed)
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
 	
+	vertex_t *path = Get_Path(Get_Vertex(character_list[1].x, character_list[1].y));
+	int l = 0;
+	printf("Path is: ");
+	while(Compare_Vertices(path[l], NULL_VERTEX) == FALSE)
+	{
+		printf("[%d][%d]->", path[l].x, path[l].y);
+		l++;
+	}
+	printf("\n");
+	
 	int p;
 	for(p = 0; p < num_characters; p++)
 	{
