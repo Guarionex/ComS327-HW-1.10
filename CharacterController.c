@@ -376,11 +376,8 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 			player_to_move->pos.y = player_to_move->pos.y+b;
 			if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
 			{
-				character_t charact = get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
-				if(charact.alive == TRUE)
-				{
-					charact.alive = FALSE;
-				}
+				int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
+				character_list[dead_index].alive = false;
 			}
 			character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 			dungeon[player_to_move->pos.x][player_to_move->pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
@@ -395,11 +392,8 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		player_to_move->pos.y = player_to_move->pos.y+b;
 		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
 		{
-			character_t charact = get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
-			if(charact.alive == TRUE)
-			{
-				charact.alive = FALSE;
-			}
+			int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
+			character_list[dead_index].alive = false;
 		}
 		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
@@ -412,11 +406,8 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		player_to_move->pos.y = player_to_move->pos.y+b;
 		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
 		{
-			character_t charact = get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
-			if(charact.alive == TRUE)
-			{
-				charact.alive = FALSE;
-			}
+			int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
+			character_list[dead_index].alive = false;
 		}
 		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
@@ -838,11 +829,8 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 	player_to_move->pos.y = move_to.y;
 	if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] >= 0)
 	{
-		character_t charact = get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
-		if(charact.alive == TRUE)
-		{
-			charact.alive = FALSE;
-		}
+		int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
+		character_list[dead_index].alive = false;
 	}
 	character_map[player_to_move->pos.y*80+player_to_move->pos.x] = player_to_move->id;
 	player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
