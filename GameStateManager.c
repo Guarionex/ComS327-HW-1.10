@@ -428,18 +428,9 @@ void Destroy_All(void)
 void turn(int *seed)
 {
 	//binheap_node_t *nodes[num_characters];
-	vertex_t *path = malloc(sizeof(vertex_t));
+	
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
-	
-	int pa = Get_Path(Get_Vertex(character_list[1].pos.x, character_list[1].pos.y), path);
-	int l;
-	printf("Path is: ");
-	for(l = 0; l < pa; l++)
-	{
-		printf("[%d][%d] ", path[l].x, path[l].y);
-	}
-	printf("\n");
 	
 	int p;
 	for(p = 0; p < num_characters; p++)
