@@ -70,7 +70,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 {	
-	uint8_t powers = 0b0010;
+	uint8_t powers = 0b0110;
 	//powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
@@ -576,6 +576,23 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			{
 				//chisel
 				//if density <= 0 moving = TRUE;
+				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+				{
+					uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
+					dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+					if(chisel == 0)
+					{
+						move_to.x += a;
+						move_to.y += b;
+						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+					}
+				}
+				else
+				{
+					move_to.x += a;
+					move_to.y += b;
+				}
 			}
 			else
 			{
