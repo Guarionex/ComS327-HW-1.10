@@ -528,7 +528,7 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 
 bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 {
-	pos_t move_to = {.x = player_to_move->x, .y = player_to_move->y};
+	pos_t move_to = {.x = player_to_move->pos.x, .y = player_to_move->pos.y};
 	bool moving = FALSE;
 	
 	if((player_to_move->character_parent.monster.abilities & 0x1) == 0x1)
@@ -554,20 +554,20 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 		{
 			//find direction
 			int a = 0, b = 0;
-			if(player_to_move->x - player_to_move->character_parent.monster.memory.x > 0)
+			if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
 			{
 				a = -1;
 			}
-			else if(player_to_move->x - player_to_move->character_parent.monster.memory.x < 0)
+			else if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x < 0)
 			{
 				a = 1;
 			}
 			
-			if(player_to_move->y - player_to_move->character_parent.monster.memory.y > 0)
+			if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y > 0)
 			{
 				b = -1;
 			}
-			else if(player_to_move->y - player_to_move->character_parent.monster.memory.y < 0)
+			else if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y < 0)
 			{
 				b = 1;
 			}
@@ -579,7 +579,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			}
 			else
 			{
-				if(dungeon[player_to_move->x+a][player_to_move->y+b].space_type != ROCK)
+				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
 				{
 					move_to.x += a;
 					move_to.y += b;
