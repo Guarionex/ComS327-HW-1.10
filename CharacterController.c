@@ -538,7 +538,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			erratic = TRUE;
 			int a = (rand()%3)-1;
 			int b = (rand()%3)-1;
-			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x0 && dungeon[player_to_move->x+a][player_to_move->y+b].space_type != ROCK)
+			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x0 && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
 			{
 				move_to.x += a;
 				move_to.y += b;
