@@ -13,6 +13,8 @@
 extern Dungeon_Space_Struct **current_dungeon;
 extern character_t player_character;
 extern char *distance_map;
+extern char *distance_dungeon;
+extern char *distance_dungeon_tunneler;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon);
 void Set_Player(character_t player);

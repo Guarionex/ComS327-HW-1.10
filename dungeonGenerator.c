@@ -17,8 +17,7 @@ bool isstring(char *string);
 
 char *dungeonFolder;
 Dungeon_Space_Struct **dungeon;
-char *distance_dungeon;
-char *distance_dungeon_tunneler;
+
 
 int main(int argc, char *argv[])
 {
@@ -187,11 +186,11 @@ int main(int argc, char *argv[])
 		populate_monsters(nummon_value, &int_seed);
 		Draw_Dungeon();
 		//printf("\n");
-		distance_dungeon = Generate_Distance_Dungeon(FALSE);
+		//distance_dungeon = Generate_Distance_Dungeon(FALSE);
 		//Draw_Distance_Dungeon(distance_dungeon);
 		Destroy_All();
 		//printf("\n");
-		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
+		//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 		turn(&int_seed);
 		//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		Destroy_All();

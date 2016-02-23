@@ -428,9 +428,18 @@ void Destroy_All(void)
 void turn(int *seed)
 {
 	//binheap_node_t *nodes[num_characters];
-	
+	vertex_t *path;
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
+	
+	int pa = Get_Path(character_list[1], path);
+	int l;
+	printf("Path is: ")
+	for(l = 0; l < pa; l++)
+	{
+		printf("[%d][%d] ", path[l].x, path[l].y);
+	}
+	printf("\n");
 	
 	int p;
 	for(p = 0; p < num_characters; p++)
@@ -448,6 +457,8 @@ void turn(int *seed)
 		
 		if(current->character_type == PLAYER)
 		{
+			distance_dungeon = Generate_Distance_Dungeon(FALSE);
+			distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon();

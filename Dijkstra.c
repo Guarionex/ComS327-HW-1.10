@@ -71,9 +71,9 @@ void Dijkstra(graph_t graph, vertex_t src)
 	binheap_delete(&h);
 }
 
-vertex_t *Get_Path(vertex_t target)
+int Get_Path(vertex_t target, vertex_t *path)
 {
-	vertex_t *path = malloc(sizeof(vertex_t));
+	path = malloc(sizeof(vertex_t));
 	int previous = target.y*80+target.x, path_count = 0;
 	
 	while(Compare_Vertices(predecessor[previous], NULL_VERTEX) == FALSE)
@@ -84,7 +84,7 @@ vertex_t *Get_Path(vertex_t target)
 		previous = predecessor[previous].y*80+predecessor[previous].x;
 	}
 	
-	return path;
+	return path_count;
 }
 
 int Get_Cost(vertex_t target)

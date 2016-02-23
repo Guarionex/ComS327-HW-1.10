@@ -542,6 +542,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			{
 				move_to.x += a;
 				move_to.y += b;
+				moving = TRUE;
 			}
 			else if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
 			{
@@ -555,12 +556,14 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 						move_to.x += a;
 						move_to.y += b;
 						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+						moving = TRUE;
 					}
 				}
 				else
 				{
 					move_to.x += a;
 					move_to.y += b;
+					moving = TRUE;
 				}
 			}
 		}
@@ -622,12 +625,14 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 						move_to.x += a;
 						move_to.y += b;
 						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+						moving = TRUE;
 					}
 				}
 				else
 				{
 					move_to.x += a;
 					move_to.y += b;
+					moving = TRUE;
 				}
 			}
 			else
@@ -637,7 +642,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					move_to.x += a;
 					move_to.y += b;
 					
-					printf("I'm there\n");
+					//printf("I'm there\n");
 					
 					moving = TRUE;
 				}
