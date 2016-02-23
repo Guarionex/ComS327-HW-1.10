@@ -498,7 +498,7 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 			{
 				a = 1;
 			}
-			current = mon_pos;
+			current = monster_pos;
 			break;
 			
 			case ROOM:
