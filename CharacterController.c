@@ -606,7 +606,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 							a = i;
 							b = j;
 						}
-						
+						printf("i = %d, j = %d", i, j);
 						i++;
 						if(i > 1)
 						{

@@ -468,7 +468,7 @@ void turn(int *seed)
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon();
-			sleep(1);
+			sleep(3);
 		}
 	}
 	
