@@ -446,7 +446,7 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
 					character_list[m].character_parent.monster.lost = FALSE;
-					printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
@@ -483,39 +483,19 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 		switch(dungeon[current.x][current.y].space_type)
 		{
 			case ROCK:
-			if(a == -1 && b == -1)
-			{
-				a = 0;
-			}
-			else if(a == 0 && b == -1)
-			{
-				a = 1;
-			}
-			else if(a == 1 && b == -1)
-			{
-				a = -1;
-				b = 0;
-			}
-			else if(a == -1 && b == 0)
-			{
-				a = 1;
-			}
-			else if(a == 1 && b == 0)
-			{
-				a = -1;
-				b = 1;
-			}
-			else if(a == -1 && b == 1)
-			{
-				a = 0;
-			}
-			else if(a == 0 && b == 1)
-			{
-				a = 1;
-			}
-			else if(a == 1 && b == 1)
+			if(a == 1 && b == 1)
 			{
 				failed = TRUE;
+			}
+			a++;
+			if(a > 1)
+			{
+				a = -1;
+				b++;
+			}
+			if(a == 0 && b == 0)
+			{
+				a = 1;
 			}
 			break;
 			
