@@ -72,8 +72,8 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 {	
-	uint8_t powers = 0b0001;
-	//powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
+	uint8_t powers = 0b0000;
+	powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
 	
@@ -480,7 +480,7 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 	{
 		current.x += a;
 		current.y += b;
-		printf("Checking [%d][%d]\n", current.x, current.y);
+		//printf("Checking [%d][%d]\n", current.x, current.y);
 		switch(dungeon[current.x][current.y].space_type)
 		{
 			case ROCK:
@@ -569,9 +569,95 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 		{
 			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
 			{
-				//tunneler dijkstra
-				//chisel
-				//if density <= 0 moving = TRUE;
+				int a = -1, b = -1, i = -1, j = -1, n, smallest_index = 428400;
+					for(n = 0; n < 8; n++)
+					{
+						
+						if(distance_converter(dis_map[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]) < smallest_index)
+						{
+							smallest_index = distance_converter(dis_map[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]);
+							a = i;
+							b = j;
+						}
+						//printf("i = %d, j = %d\n with distance = %d", i, j, distance_converter(dis_map[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]));
+						i++;
+						if(i > 1)
+						{
+							i = -1;
+							j++;
+						}
+						if(i == 0 && j == 0)
+						{
+							i = 1;
+						}
+						
+						
+					}
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					{
+						uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
+						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+						if(chisel == 0)
+						{
+							move_to.x += a;
+							move_to.y += b;
+							dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+							moving = TRUE;
+						}
+					}
+					else
+					{
+						move_to.x += a;
+						move_to.y += b;
+						moving = TRUE;
+					}
+				}
+				else
+				{
+					//printf("Player lost\n");
+					int a = 0, b = 0;
+					if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
+					{
+						a = -1;
+					}
+					else if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x < 0)
+					{
+						a = 1;
+					}
+					
+					if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y > 0)
+					{
+						b = -1;
+					}
+					else if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y < 0)
+					{
+						b = 1;
+					}
+					
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					{
+						uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
+						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+						if(chisel == 0)
+						{
+							move_to.x += a;
+							move_to.y += b;
+							dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+							moving = TRUE;
+						}
+					}
+					else
+					{
+						move_to.x += a;
+						move_to.y += b;
+						moving = TRUE;
+					}
+
+					
+				}
+				moving = TRUE;
 			}
 			else
 			{
