@@ -346,7 +346,7 @@ void Draw_Dungeon(void)
 			{
 				printf("@");
 			}
-			if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
+			else if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
 			{
 				printf("%x", get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities);
 			}
