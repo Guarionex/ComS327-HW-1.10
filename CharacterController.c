@@ -540,8 +540,12 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			}
 			else if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
 			{
-				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 				{
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					{
+						return moving;
+					}
 					uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
 					dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
@@ -596,8 +600,12 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 						
 						
 					}
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 					{
+						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+						{
+							return moving;
+						}
 						uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
 						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
@@ -638,8 +646,12 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 						b = 1;
 					}
 					
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 					{
+						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+						{
+							return moving;
+						}
 						uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
 						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
@@ -755,8 +767,12 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			{
 				//chisel
 				//if density <= 0 moving = TRUE;
-				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 				{
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					{
+						return moving;
+					}
 					uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
 					dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
