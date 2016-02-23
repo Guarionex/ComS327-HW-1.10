@@ -428,7 +428,7 @@ void Destroy_All(void)
 void turn(int *seed)
 {
 	//binheap_node_t *nodes[num_characters];
-	vertex_t *path;
+	vertex_t *path = malloc(sizeof(vertex_t));
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
 	
