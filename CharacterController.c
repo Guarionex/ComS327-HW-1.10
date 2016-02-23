@@ -285,7 +285,7 @@ int check_character_map(int x, int y)
 bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
 {
 	int index = get_character_index_by_id(character_id);
-	if(index < 0) 
+	if(index < 0 || character_list[index].alive == FALSE) 
 	{ 
 		return FALSE;
 	}
@@ -374,6 +374,10 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 			character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 			player_to_move->pos.x = player_to_move->pos.x+a;
 			player_to_move->pos.y = player_to_move->pos.y+b;
+			if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
+			{
+				get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]).alive = FALSE;
+			}
 			character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 			dungeon[player_to_move->pos.x][player_to_move->pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 			player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
@@ -385,6 +389,10 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 		player_to_move->pos.x = player_to_move->pos.x+a;
 		player_to_move->pos.y = player_to_move->pos.y+b;
+		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
+		{
+			get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]).alive = FALSE;
+		}
 		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 		return TRUE;
@@ -394,6 +402,10 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 		player_to_move->pos.x = player_to_move->pos.x+a;
 		player_to_move->pos.y = player_to_move->pos.y+b;
+		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
+		{
+			get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]).alive = FALSE;
+		}
 		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 		return TRUE;
@@ -812,6 +824,10 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 	character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 	player_to_move->pos.x = move_to.x;
 	player_to_move->pos.y = move_to.y;
+	if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] >= 0)
+	{
+		get_character_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]).alive = FALSE;
+	}
 	character_map[player_to_move->pos.y*80+player_to_move->pos.x] = player_to_move->id;
 	player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 	
