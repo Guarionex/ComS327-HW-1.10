@@ -6,6 +6,8 @@ int *character_map;
 character_t *character_list;
 const character_t NULL_CHARACTER = {.id = -1 };
 int num_characters;
+char *dis_map;
+char *dis_map_tun;
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
@@ -70,7 +72,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 {	
-	uint8_t powers = 0b1110;
+	uint8_t powers = 0b0011;
 	//powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
@@ -145,7 +147,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 		mon_pos = open_pos[rand()%open_count];
 	}
 	
-	monster_t monster = {.abilities = powers, .memory = NULL_POS};
+	monster_t monster = {.abilities = powers, .lost = TRUE,.memory = NULL_POS};
 	if((monster.abilities & 0x2) == 0x2)
 	{
 		monster.memory = get_character_by_id(0).pos;
@@ -406,6 +408,10 @@ int32_t compare_character(const void *key, const void *with)
 	character_t to = *((character_t *) with);
 	
 	int32_t turn_difference = from.timer - to.timer;
+	if(turn_difference == 0)
+	{
+		turn_difference = from.id - to.id;
+	}
 	return turn_difference;
 }
 
@@ -417,6 +423,7 @@ void update_telepath(void)
 		if((character_list[m].character_type == MONSTER) && ((character_list[m].character_parent.monster.abilities & 0x2) == 0x2))
 		{
 			character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
+			character_list[m].character_parent.monster.lost = FALSE;
 			//printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
 	}
@@ -438,7 +445,12 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
+					character_list[m].character_parent.monster.lost = FALSE;
 					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+				}
+				else
+				{
+					character_list[m].character_parent.monster.lost = TRUE;
 				}
 			}
 			else
@@ -582,7 +594,61 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			}
 			else
 			{
-				//non-tunneler dijkstra
+				if(player_to_move->character_parent.monster.lost == FALSE)
+				{
+					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = distance_converter((dis_map[player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]);
+					for(n = 0; n < 7; n++)
+					{
+						i++;
+						if(i > 1)
+						{
+							i = -1;
+							j++;
+						}
+						if(i == 0 && j == 0)
+						{
+							i = 1;
+						}
+						
+						if(distance_converter((dis_map[player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]) <= smallest_index)
+						{
+							smallest_index = distance_converter((dis_map[player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]);
+							a = i;
+							b = j;
+						}
+					}
+					
+					move_to.x += a;
+					move_to.y += b;
+				}
+				else
+				{
+					int a = 0, b = 0;
+					if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
+					{
+						a = -1;
+					}
+					else if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x < 0)
+					{
+						a = 1;
+					}
+					
+					if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y > 0)
+					{
+						b = -1;
+					}
+					else if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y < 0)
+					{
+						b = 1;
+					}
+					
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
+					{
+						move_to.x += a;
+						move_to.y += b;
+					}
+					
+				}
 				moving = TRUE;
 			}
 		}
@@ -659,4 +725,274 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 	player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 	
 	return moving;
+}
+
+void set_distance(char *distance)
+{
+	dis_map = distance;
+}
+void set_distance_tunneler(char *distance_tunneller)
+{
+	dis_map_tun = distance_tunneller;
+}
+
+int distance_converter(char symbol)
+{
+	int value = 428400;
+	switch(symbol)
+		{
+			case '0':
+			value = 0;
+			break;
+			
+			case '1':
+			value = 1;
+			break;
+			
+			case '2':
+			value = 2;
+			break;
+			
+			case '3':
+			value = 3;
+			break;
+			
+			case '4':
+			value = 4;
+			break;
+			
+			case '5':
+			value = 5;
+			break;
+			
+			case '6':
+			value = 6;
+			break;
+			
+			case '7':
+			value = 7;
+			break;
+			
+			case '8':
+			value = 8;
+			break;
+			
+			case '9':
+			value = 9;
+			break;
+			
+			case 'a':
+			value = 10;
+			break;
+			
+			case 'b':
+			value = 11;
+			break;
+			
+			case 'c':
+			value = 12;
+			break;
+			
+			case 'd':
+			value = 13;
+			break;
+			
+			case 'e':
+			value = 14;
+			break;
+			
+			case 'f':
+			value = 15;
+			break;
+			
+			case 'g':
+			value = 16;
+			break;
+			
+			case 'h':
+			value = 17;
+			break;
+			
+			case 'i':
+			value = 18;
+			break;
+			
+			case 'j':
+			value = 19;
+			break;
+			
+			case 'k':
+			value = 20;
+			break;
+			
+			case 'l':
+			value = 21;
+			break;
+			
+			case 'm':
+			value = 22;
+			break;
+			
+			case 'n':
+			value = 23;
+			break;
+			
+			case 'o':
+			value = 24;
+			break;
+			
+			case 'p':
+			value = 25;
+			break;
+			
+			case 'q':
+			value = 26;
+			break;
+			
+			case 'r':
+			value = 27;
+			break;
+			
+			case 's':
+			value = 28;
+			break;
+			
+			case 't':
+			value = 29;
+			break;
+			
+			case 'u':
+			value = 30;
+			break;
+			
+			case 'v':
+			value = 31;
+			break;
+			
+			case 'w':
+			value = 32;
+			break;
+			
+			case 'x':
+			value = 33;
+			break;
+			
+			case 'y':
+			value = 34;
+			break;
+			
+			case 'z':
+			value = 35;
+			break;
+			
+			case 'A':
+			value = 36;
+			break;
+			
+			case 'B':
+			value = 37;
+			break;
+			
+			case 'C':
+			value = 38;
+			break;
+			
+			case 'D':
+			value = 39;
+			break;
+			
+			case 'E':
+			value = 40;
+			break;
+			
+			case 'F':
+			value = 41;
+			break;
+			
+			case 'G':
+			value = 42;
+			break;
+			
+			case 'H':
+			value = 43;
+			break;
+			
+			case 'I':
+			value = 44;
+			break;
+			
+			case 'J':
+			value = 45;
+			break;
+			
+			case 'K':
+			value = 46;
+			break;
+			
+			case 'L':
+			value = 47;
+			break;
+			
+			case 'M':
+			value = 48;
+			break;
+			
+			case 'N':
+			value = 49;
+			break;
+			
+			case 'O':
+			value = 50;
+			break;
+			
+			case 'P':
+			value = 51;
+			break;
+			
+			case 'Q':
+			value = 52;
+			break;
+			
+			case 'R':
+			value = 53;
+			break;
+			
+			case 'S':
+			value = 54;
+			break;
+			
+			case 'T':
+			value = 55;
+			break;
+			
+			case 'U':
+			value = 56;
+			break;
+			
+			case 'V':
+			value = 57;
+			break;
+			
+			case 'W':
+			value = 58;
+			break;
+			
+			case 'X':
+			value = 59;
+			break;
+			
+			case 'Y':
+			value = 60;
+			break;
+			
+			case 'Z':
+			value = 61;
+			break;
+			
+			default:
+			value = 428400;
+			break;
+		}
+		
+		return value;
 }

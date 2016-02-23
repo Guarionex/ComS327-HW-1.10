@@ -21,6 +21,7 @@ typedef struct player
 typedef struct monster
 {
 	uint8_t abilities;
+	bool lost;
 	pos_t memory;
 } monster_t;
 
@@ -64,6 +65,9 @@ void update_telepath(void);
 void line_of_sight(Dungeon_Space_Struct **dungeon);
 bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon);
 bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon);
+void set_distance(char *distance);
+void set_distance_tunneler(char *distance_tunneller);
+int distance_converter(char symbol);
 
 
 

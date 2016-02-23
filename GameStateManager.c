@@ -434,7 +434,7 @@ void turn(int *seed)
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
 	
-	vertex_t *path = Get_Path(Get_Vertex(character_list[0].pos.x, character_list[0].pos.y), Get_Vertex(character_list[1].pos.x, character_list[1].pos.y));
+	/*vertex_t *path = Get_Path(Get_Vertex(character_list[0].pos.x, character_list[0].pos.y), Get_Vertex(character_list[1].pos.x, character_list[1].pos.y));
 	int l = 1;
 	printf("Path is: ");
 	while(Compare_Vertices(path[l], NULL_VERTEX) == FALSE)
@@ -442,7 +442,7 @@ void turn(int *seed)
 		printf("[%d][%d]->", path[l].x, path[l].y);
 		l++;
 	}
-	printf("\n");
+	printf("\n");*/
 	
 	int p;
 	for(p = 0; p < num_characters; p++)
@@ -461,7 +461,9 @@ void turn(int *seed)
 		if(current->character_type == PLAYER)
 		{
 			distance_dungeon = Generate_Distance_Dungeon(FALSE);
+			set_distance(distance_dungeon);
 			distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
+			set_distance_tunneler(distance_dungeon_tunneler);
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon();
