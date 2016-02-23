@@ -623,9 +623,11 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					//printf("Smallest is %d\n", smallest_index);
 					move_to.x += a;
 					move_to.y += b;
+					printf("Player found\n");
 				}
 				else
 				{
+					printf("Player lost\n");
 					int a = 0, b = 0;
 					if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
 					{
