@@ -437,7 +437,7 @@ void turn(int *seed)
 	vertex_t *path = Get_Path(Get_Vertex(character_list[0].pos.x, character_list[0].pos.y), Get_Vertex(character_list[1].pos.x, character_list[1].pos.y));
 	int l = 0;
 	printf("Path is: ");
-	while(Compare_Vertices(path[l], NULL_VERTEX) == FALSE)
+	while(Compare_Vertices(path[l], NULL_VERTEX) != FALSE)
 	{
 		printf("[%d][%d]->", path[l].x, path[l].y);
 		l++;
