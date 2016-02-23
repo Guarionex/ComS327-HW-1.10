@@ -63,7 +63,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	pos_t new_pos = open_pos[rand()%open_count];
 	//pc.cell = dungeon[pc.pos.x][pc.pos.y];
 	pc.name = "Edwin";
-	player = character_tag_create(10, 0, 0, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
+	player = character_tag_create(10, 0, 0, TRUE,new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
 	create_character_list();
 	add_character(player);
 	free(open_pos);
@@ -156,7 +156,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	{
 		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 	}
-	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
+	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	add_character(mon);
 	free(open_pos);
 	return mon;
@@ -179,7 +179,7 @@ character_parent_t character_parent_create(character_type_t character_type, va_l
   return character_parent;
 }
 
-character_t character_tag_create(int32_t speed, int32_t timer, int id, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
+character_t character_tag_create(int32_t speed, int32_t timer, int id, bool alive, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
 {
   va_list ap;
   va_start(ap, character_type);

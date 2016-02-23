@@ -342,11 +342,11 @@ void Draw_Dungeon(void)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y)
+			/*if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y)
 			{
 				printf("@");
-			}
-			else if(check_character_map(x, y) > 0)
+			}*/
+			if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
 			{
 				printf("%x", get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities);
 			}
