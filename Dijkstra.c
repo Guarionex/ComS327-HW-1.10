@@ -83,11 +83,14 @@ vertex_t *Get_Path(vertex_t source, vertex_t target)
 		{
 			continue;
 		}
-		path[path_count] = predecessor[previous];
-		path_count++;
-		path = realloc(path, sizeof(vertex_t) + sizeof(vertex_t) * path_count);
-		path[path_count] = NULL_VERTEX;
-		previous = predecessor[previous].y*80+predecessor[previous].x;
+		else
+		{
+			path[path_count] = predecessor[previous];
+			path_count++;
+			path = realloc(path, sizeof(vertex_t) + sizeof(vertex_t) * path_count);
+			path[path_count] = NULL_VERTEX;
+			previous = predecessor[previous].y*80+predecessor[previous].x;
+		}
 	}
 	
 	return path;
