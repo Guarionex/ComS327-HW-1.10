@@ -63,7 +63,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	pos_t new_pos = open_pos[rand()%open_count];
 	//pc.cell = dungeon[pc.pos.x][pc.pos.y];
 	pc.name = "Edwin";
-	player = character_tag_create(10, 0, 0, TRUE,new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
+	player = character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
 	create_character_list();
 	add_character(player);
 	free(open_pos);
@@ -188,6 +188,7 @@ character_t character_tag_create(int32_t speed, int32_t timer, int id, bool aliv
   character_tag.speed = speed;
   character_tag.timer = timer;
   character_tag.id = id;
+  character_tag.alive = alive;
   character_tag.pos = pos;
   character_tag.cell = cell;
   character_tag.character_type = character_type;
