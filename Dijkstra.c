@@ -79,6 +79,10 @@ vertex_t *Get_Path(vertex_t source, vertex_t target)
 	
 	while(previous >= 0 && Compare_Vertices(predecessor[previous], source) == FALSE)
 	{
+		if(predecessor[previous].x < 0 || predecessor[previous].x > 79 || predecessor[previous].y < 0 || predecessor[previous].y > 20)
+		{
+			continue;
+		}
 		path[path_count] = predecessor[previous];
 		path_count++;
 		path = realloc(path, sizeof(vertex_t) + sizeof(vertex_t) * path_count);
