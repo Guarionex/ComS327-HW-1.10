@@ -434,7 +434,7 @@ void turn(int *seed)
 	
 	int pa = Get_Path(character_list[1], path);
 	int l;
-	printf("Path is: ")
+	printf("Path is: ");
 	for(l = 0; l < pa; l++)
 	{
 		printf("[%d][%d] ", path[l].x, path[l].y);
