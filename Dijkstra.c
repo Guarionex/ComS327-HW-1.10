@@ -81,7 +81,8 @@ vertex_t *Get_Path(vertex_t source, vertex_t target)
 	{
 		if(predecessor[previous].x < 0 || predecessor[previous].x > 79 || predecessor[previous].y < 0 || predecessor[previous].y > 20)
 		{
-			continue;
+			previous = predecessor[previous].y*80+predecessor[previous].x;
+			//continue;
 		}
 		else
 		{
