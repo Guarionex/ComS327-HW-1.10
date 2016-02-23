@@ -461,14 +461,14 @@ void turn(int *seed)
 		if(current->character_type == PLAYER)
 		{
 			distance_dungeon = Generate_Distance_Dungeon(FALSE);
-			Draw_Distance_Dungeon(distance_dungeon);
+			//Draw_Distance_Dungeon(distance_dungeon);
 			set_distance(distance_dungeon);
 			distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			set_distance_tunneler(distance_dungeon_tunneler);
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon();
-			sleep(3);
+			sleep(1);
 		}
 	}
 	
