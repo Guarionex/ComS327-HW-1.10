@@ -543,7 +543,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			{
 				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 				{
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
 					{
 						return moving;
 					}
@@ -603,7 +603,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					}
 					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 					{
-						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
 						{
 							return moving;
 						}
@@ -649,7 +649,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					
 					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 					{
-						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
 						{
 							return moving;
 						}
@@ -770,7 +770,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 				//if density <= 0 moving = TRUE;
 				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 				{
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density < 255)
+					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
 					{
 						return moving;
 					}
