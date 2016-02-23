@@ -597,7 +597,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 				if(player_to_move->character_parent.monster.lost == FALSE)
 				{
 					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = distance_converter(dis_map[(player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]);
-					for(n = 0; n < 7; n++)
+					for(n = 0; n < 8; n++)
 					{
 						i++;
 						if(i > 1)
@@ -617,7 +617,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 							b = j;
 						}
 					}
-					
+					printf("Smallest is %d\n", smallest_index);
 					move_to.x += a;
 					move_to.y += b;
 				}
