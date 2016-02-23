@@ -432,7 +432,7 @@ void turn(int *seed)
 	binheap_t h;
 	binheap_init(&h, compare_character, NULL);	
 	
-	int pa = Get_Path(character_list[1], path);
+	int pa = Get_Path(Get_Vertex(character_list[1].pos.x, character_list[1].pos.y), path);
 	int l;
 	printf("Path is: ");
 	for(l = 0; l < pa; l++)
