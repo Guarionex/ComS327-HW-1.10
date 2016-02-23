@@ -596,9 +596,17 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			{
 				if(player_to_move->character_parent.monster.lost == FALSE)
 				{
-					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = distance_converter(dis_map[(player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]);
+					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = 428400;
 					for(n = 0; n < 8; n++)
 					{
+						
+						if(distance_converter(dis_map[(player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]) < smallest_index && dungeon[player_to_move->pos.x+i][player_to_move->pos.y+j].space_type != ROCK)
+						{
+							smallest_index = distance_converter(dis_map[(player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]);
+							a = i;
+							b = j;
+						}
+						
 						i++;
 						if(i > 1)
 						{
@@ -610,12 +618,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 							i = 1;
 						}
 						
-						if(distance_converter(dis_map[(player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]) < smallest_index && dungeon[player_to_move->pos.x+i][player_to_move->pos.y+j].space_type != ROCK)
-						{
-							smallest_index = distance_converter(dis_map[(player_to_move->pos.y+i)*80+(player_to_move->pos.x+j)]);
-							a = i;
-							b = j;
-						}
+						
 					}
 					printf("Smallest is %d\n", smallest_index);
 					move_to.x += a;
