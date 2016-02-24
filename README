@@ -34,6 +34,19 @@ Cells with hardness of 1 to 84 also have a weight of 1, 85 to 170 have a weight 
 Tunnelling effort is not taken into account in this version as it is not required in the assignment specificaitons.
 Borders are now draw with ~
 
+1.04:
+Game now has player and monsters.
+Player is a drunken idiot. He moves randomly.
+There are 16 types of monsters, combination of any 4 powers: intelligence, telepath, tunneler, and erratic. These powers correspond from least significant bit to most significant bit.
+The monster is represented by the hexadecimal combinations of its powers, from 0 (no behaviour other than sight aggro) to f (all powers).
+Intelligent monsters remember the last place they saw the player and move via shortest path to the known player position, straight line otherwise.
+Telepaths always knows the player's location.
+Tunnellers can go through rock, but have to chisel away 85 density points per turn
+Erratic monsters have a 50% chance of just moving randomly instead.
+Turns are determined via 100/speed with speed been a number between 5 and 20. This is queued through a priority queue.
+New switch --nummon <int> is now available. This sets the number of monsters to spawn. Monsters are chosen at random and placed randomly, but following their rules. (non tunnelers will
+only spawn inside the dungeon floor).
+
 Usage using time as seed: ./dungeonGenerator
 
 Usage using int as seed: ./dungeonGenerator <number>
@@ -43,3 +56,5 @@ Usage for load: ./dungeonGenerator --load <optional file name>
 Usage for save: ./dungeonGenerator --save <optional file name> <optional seed>
 
 Usage for load/save: ./dungeonGenerator --load <optional file name> --save <optional file name>
+
+Usage for spawning monsters: ./dungeonGenerator --nummon <int>
