@@ -73,7 +73,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 {	
-	uint8_t powers = 0b0000;
+	uint8_t powers = 0b0111;
 	powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
@@ -616,7 +616,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 							a = i;
 							b = j;
 						}
-						//printf("i = %d, j = %d\n with distance = %d", i, j, distance_converter(dis_map[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]));
+						printf("i = %d, j = %d with distance = %d\n", i, j, distance_converter(dis_map[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]));
 						i++;
 						if(i > 1)
 						{
