@@ -630,6 +630,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 						
 						
 					}
+					printf("a = %d, b = %d\n", a, b);
 					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 					{
 						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
