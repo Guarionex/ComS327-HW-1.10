@@ -610,7 +610,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					for(n = 0; n < 8; n++)
 					{
 						
-						if(distance_converter(dis_map_tun[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]) < smallest_index && dungeon[player_to_move->pos.x+i][player_to_move->pos.y+j].space_type != ROCK)
+						if(distance_converter(dis_map_tun[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]) < smallest_index)
 						{
 							smallest_index = distance_converter(dis_map_tun[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]);
 							a = i;
