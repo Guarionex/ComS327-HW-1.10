@@ -73,8 +73,8 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 {	
-	uint8_t powers = 0b0111;
-	//powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
+	uint8_t powers = 0b0000;
+	powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
 	
