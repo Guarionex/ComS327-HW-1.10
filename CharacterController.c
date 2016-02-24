@@ -616,7 +616,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 							a = i;
 							b = j;
 						}
-						//printf("i = %d, j = %d with distance = %d\n", i, j, distance_converter(dis_map_tun[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]));
+						printf("i = %d, j = %d with distance = %d\n", i, j, distance_converter(dis_map_tun[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]));
 						i++;
 						if(i > 1)
 						{
