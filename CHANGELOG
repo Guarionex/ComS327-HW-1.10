@@ -230,6 +230,8 @@
 2/2/16 Removing last commit of taking number only filename for load
 2/2/16 Added more usage printf for invalid load and seed argument
 2/2/16 Finished CHANGELOG. Ready to package and deliver
+
+1.03
 2/4/16 Update README.md
 2/6/16 Including binheap files and updating makefile for them
 2/7/16 Implemented a graph with vertex and edges for dungeon
@@ -437,3 +439,114 @@
 2/16/16 removing last commit
 2/16/16 forgot to revert one more thing
 2/16/16 Finished CHANGELOG. Ready to package and deliver
+
+1.04
+2/17/16 Started homework
+2/21/16 added character types enum and character tagged union as a parent struct for all characters
+2/21/16 added constructors
+2/21/16 fixing errors to contstructors
+2/21/16 changed player_t handling to it's parent
+2/21/16 forgot to declared num_character as int
+2/21/16 changed global pc to character_t
+2/21/16 resolving global conflicts
+2/21/16 added functions for moving player
+2/21/16 fixes to bugs from last commit
+2/21/16 Made turns function
+2/21/16 Fixing bugs from last commit
+2/21/16 setting player character from character list
+2/21/16 applying timer
+2/21/16 Making sure distance drawing still works
+2/21/16 back to drawing turns
+2/21/16 started monsters, testing setting powers
+2/21/16 forgot stdio.h
+2/21/16 fixing bugs from last change
+2/21/16 more bug fixing
+2/21/16 forgot ;
+2/21/16 turned off turns for debugging monster powers
+2/21/16 debugging monster powers
+2/21/16 more monster powers
+2/21/16 more debugging monsters
+2/21/16 fixed seg fault
+2/21/16 trying to find segfault
+2/21/16 trying to find that segfault
+2/21/16 trying to fix segfault
+2/21/16 debugging
+2/21/16 Found it
+2/21/16 back to testing setting powers
+2/21/16 commenting out reseeding
+2/21/16 moved seeding to gamestate
+2/21/16 testing setting powers
+2/21/16 wrapping in parenthesis
+2/21/16 fixed power choosing
+2/21/16 making monsters and printfing them
+2/21/16 fixed return types for monster creation
+2/21/16 fixing some more minor bugs
+2/22/16 debugging monsters that are drawn on map
+2/22/16 No overlapping monster on start
+2/22/16 prints number of characters placed
+2/22/16 added initial telepathy, now printing hex value for monster
+2/22/16 checking telepaths are assigned correctly
+2/22/16 testing updating telepaths when player moves
+2/22/16 fixing small bug
+2/22/16 checking line of sight
+2/22/16 bug fix last commit
+2/22/16 more small bug fixes
+2/22/16 forgot to comment out turn
+2/22/16 started skeleton for monster movements
+2/22/16 testing moving stupid monsters
+2/22/16 small bug fix
+2/22/16 wrong monster type
+2/22/16 testing stupid tunnelers
+2/22/16 testing erratic
+2/22/16 small bug fix
+2/23/16 testing get path
+2/23/16 forgot a ;
+2/23/16 small bug fix
+2/23/16 change get path back
+2/23/16 testing get path again
+2/23/16 small bug fix
+2/23/16 bug fix in while loop
+2/23/16 testing loop
+2/23/16 testing more loops
+2/23/16 added a condition
+2/23/16 small fix
+2/23/16 testing smart non tunneler telepath
+2/23/16 bug fix
+2/23/16 checking map
+2/23/16 bug fix
+2/23/16 debugging
+2/23/16 bug found
+2/23/16 testing non tunneling smart
+2/23/16 debugging
+2/23/16 changing linee of sight calculation
+2/23/16 debugging
+2/23/16 all movements
+2/23/16 fix some things
+2/23/16 checking the monsters
+2/23/16 fixed stuff
+2/23/16 have all monsters
+2/23/16 don't move to border
+2/23/16 added alive boolean
+2/23/16 forgot to set the bool
+2/23/16 draw player
+2/23/16 testing the stuff I made
+2/23/16 small bug fix in tunneling
+2/23/16 killing
+2/23/16 small bug fix
+2/23/16 removing warnings
+2/23/16 accidentally removed else if in drawing
+2/23/16 all monster types
+2/23/16 was referencing the wrong thing
+2/23/16 typo fix
+2/23/16 stops turning when player dies
+2/23/16 added win case
+2/23/16 debugging
+2/23/16 forgot to use tunneler map
+2/23/16 commenting out debugg printf
+2/23/16 debug comment
+2/23/16 fixed bugg
+2/23/16 cleaning code
+2/23/16 debugging with strongest monster
+2/23/16 everything works just need README and CHANGELOG
+2/23/16 Finished README
+2/23/16 Finished CHANGELOG. Ready to package and deliver
