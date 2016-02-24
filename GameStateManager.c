@@ -474,6 +474,10 @@ void turn(int *seed)
 				printf("Player is dead\n");
 				break;
 			}
+			if(dead_monsters == num_characters - 1)
+			{
+				printf("The drunk player wins!\n");
+			}
 		}
 	}
 	

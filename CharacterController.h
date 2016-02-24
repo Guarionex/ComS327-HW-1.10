@@ -48,6 +48,7 @@ extern int *character_map;
 extern character_t *character_list;
 extern int num_characters;
 extern const character_t NULL_CHARACTER;
+extern int dead_monsters;
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed);
