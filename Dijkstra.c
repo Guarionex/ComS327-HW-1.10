@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 uint *distance;
-vertex_t *predecessor;
+//vertex_t *predecessor;
 vertex_t *visited;
 
 int32_t compare_vertex(const void *key, const void *with)
@@ -25,7 +25,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 	int num_vertices = graph.num_vertices;
 	binheap_node_t *nodes[num_vertices];
 	distance = malloc(sizeof(uint) * num_vertices);
-	predecessor = malloc(sizeof(vertex_t) * num_vertices);
+	//predecessor = malloc(sizeof(vertex_t) * num_vertices);
 	visited = malloc(sizeof(vertex_t) * num_vertices);
 	vertex_t insert_vertex[num_vertices];
 	int visited_count = 0;
@@ -39,7 +39,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		int index_y = graph.vertices[v].y;
 		int index_x = graph.vertices[v].x;
 		distance[v] = (Compare_Vertices(Get_Vertex(index_x, index_y), src) == TRUE) ? 0 : 428400;
-		predecessor[v] = NULL_VERTEX;
+		//predecessor[v] = NULL_VERTEX;
 		//vertex_t *insert_vertex = malloc(sizeof(vertex_t));
 		insert_vertex[v] = graph.vertices[v];
 		nodes[v] = binheap_insert(&h, insert_vertex + v);
@@ -61,7 +61,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 			if((distance[current->y*80+current->x] + next.weight  < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE))
 			{
 				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
-				predecessor[next.y*80+next.x] = *current;
+				//predecessor[next.y*80+next.x] = *current;
 				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
 		}
@@ -70,7 +70,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 	//free(nodes);
 	binheap_delete(&h);
 }
-
+/*
 vertex_t *Get_Path(vertex_t source, vertex_t target)
 {
 	vertex_t *path = malloc(sizeof(vertex_t));
@@ -95,7 +95,7 @@ vertex_t *Get_Path(vertex_t source, vertex_t target)
 	}
 	
 	return path;
-}
+}*/
 
 int Get_Cost(vertex_t target)
 {

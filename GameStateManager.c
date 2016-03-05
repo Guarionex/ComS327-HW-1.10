@@ -330,7 +330,7 @@ char *Generate_Distance_Dungeon(bool tunneler)
 		//printf("Char at [%d][%d] = %c\n", x, y, distance_map[x][y]);
 	}
 	
-	//Destroy_Distance();
+	Destroy_Distance();
 	return distance_map;
 }
 
