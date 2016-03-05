@@ -488,5 +488,6 @@ void turn(int *seed)
 		}
 	}
 	
+	Destroy_All();
 	binheap_delete(&h);
 }
