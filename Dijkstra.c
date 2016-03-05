@@ -108,3 +108,8 @@ void Destroy_Dijkstra(void)
 	free(predecessor);
 	free(visited);
 }
+
+void Destroy_Distance(void)
+{
+	free(distance);
+}
