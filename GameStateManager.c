@@ -470,14 +470,18 @@ void turn(int *seed)
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon();
-			sleep(3);
+			//sleep(3);
 			if(character_list[0].alive == FALSE)
 			{
 				printf("Player is dead\n");
+				free(distance_dungeon);
+				free(distance_dungeon_tunneler);
 				break;
 			}
 			if(dead_monsters == num_characters - 1)
 			{
+				free(distance_dungeon);
+				free(distance_dungeon_tunneler);
 				printf("The drunk player wins!\n");
 				break;
 			}
