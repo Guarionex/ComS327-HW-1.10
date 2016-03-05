@@ -424,7 +424,7 @@ void Destroy_All(void)
 {
 	Destroy_Dijkstra();
 	Destroy_Graph(&graphed_dungeon);
-	free(distance_map);
+	//free(distance_map);
 }
 
 void turn(int *seed)
