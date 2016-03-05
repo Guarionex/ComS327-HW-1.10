@@ -104,7 +104,7 @@ int Get_Cost(vertex_t target)
 
 void Destroy_Dijkstra(void)
 {
-	free(distance);
+	//free(distance);
 	free(predecessor);
 	free(visited);
 }
