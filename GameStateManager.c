@@ -350,8 +350,74 @@ void Draw_Dungeon(void)
 			}
 			else if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
 			{
-				renderer[y*80+x] = get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities;//printf("%x", get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities);
-				printf("%x", renderer[y*80+x]);
+				switch(get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities)
+				{
+					case 0x0:
+						renderer[y*80+x] = '0';
+					break;
+					
+					case 0x1:
+						renderer[y*80+x] = '1';
+					break;
+					
+					case 0x2:
+						renderer[y*80+x] = '2';
+					break;
+					
+					case 0x3:
+						renderer[y*80+x] = '3';
+					break;
+					
+					case 0x4:
+						renderer[y*80+x] = '4';
+					break;
+					
+					case 0x5:
+						renderer[y*80+x] = '5';
+					break;
+					
+					case 0x6:
+						renderer[y*80+x] = '6';
+					break;
+					
+					case 0x7:
+						renderer[y*80+x] = '7';
+					break;
+					
+					case 0x8:
+						renderer[y*80+x] = '8';
+					break;
+					
+					case 0x9:
+						renderer[y*80+x] = '9';
+					break;
+					
+					case 0xa:
+						renderer[y*80+x] = 'a';
+					break;
+					
+					case 0xb:
+						renderer[y*80+x] = 'b';
+					break;
+					
+					case 0xc:
+						renderer[y*80+x] = 'c';
+					break;
+					
+					case 0xd:
+						renderer[y*80+x] = 'd';
+					break;
+					
+					case 0xe:
+						renderer[y*80+x] = 'e';
+					break;
+					
+					case 0xf:
+						renderer[y*80+x] = 'f';
+					break;
+				}
+				//renderer[y*80+x] = get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities;//printf("%x", get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities);
+				printf("%c", renderer[y*80+x]);
 			}
 			else
 			{
