@@ -577,9 +577,7 @@ void turn(int *seed)
 	{
 		character_t *current = (character_t *) binheap_remove_min(&h);
 		
-		move_character(current->id, seed, current_dungeon);
-		current->timer += 100/current->speed;
-		/*nodes[p] = */binheap_insert(&h, current);
+		
 		
 		if(current->character_type == PLAYER)
 		{
@@ -615,6 +613,10 @@ void turn(int *seed)
 				break;
 			}
 		}
+		
+		move_character(current->id, seed, current_dungeon);
+		current->timer += 100/current->speed;
+		/*nodes[p] = */binheap_insert(&h, current);
 	}
 	
 	Destroy_Characters();
