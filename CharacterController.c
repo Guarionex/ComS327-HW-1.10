@@ -1129,4 +1129,5 @@ int distance_converter(char symbol)
 void Destroy_Characters(void)
 {
 	free(character_list);
+	free(character_map);
 }
