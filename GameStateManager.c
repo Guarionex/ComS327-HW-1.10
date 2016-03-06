@@ -595,16 +595,7 @@ void turn(int *seed)
 			line_of_sight(current_dungeon);
 			Draw_Dungeon(1);
 			//sleep(3);
-			define_key("\033Op", 1000);
-			define_key("\033Oq", 1001);
-			define_key("\033Or", 1002);
-			define_key("\033Os", 1003);
-			define_key("\033Ot", 1004);
-			define_key("\033Ou", 1005);
-			define_key("\033Ov", 1006);
-			define_key("\033Ow", 1007);
-			define_key("\033Ox", 1008);
-			define_key("\033Oy", 1009);
+			define_new_keys();
 			input = input_handler(getch());
 			//printf("Input is = %d\n", input);
 			if(character_list[0].alive == FALSE)
@@ -691,4 +682,36 @@ int input_handler(int key)
 	}*/
 	
 	return key;
+}
+
+void define_new_keys(void)
+{
+	define_key("\033Op", 1000);
+	define_key("\033Oq", 1001);
+	define_key("\033Or", 1002);
+	define_key("\033Os", 1003);
+	define_key("\033Ot", 1004);
+	define_key("\033Ou", 1005);
+	define_key("\033Ov", 1006);
+	define_key("\033Ow", 1007);
+	define_key("\033Ox", 1008);
+	define_key("\033Oy", 1009);
+	
+	// non-arrow keypad keys (for macros)
+	define_key("\033OM", 1010); // Enter
+	define_key("\033OP", 1011); // NumLock
+	define_key("\033OQ", 1012); // /
+	define_key("\033OR", 1013); // *
+	define_key("\033OS", 1014); // -
+	define_key("\033Oj", 1015); // *
+	define_key("\033Ok", 1016); // +
+	define_key("\033Ol", 1017); // +
+	define_key("\033Om", 1018); // .
+	define_key("\033On", 1019); // .
+	define_key("\033Oo", 1020); // -
+
+	// variants.  Ugly curses won't allow us to return the same code...
+	define_key("\033[1~", 1031); // Home
+	define_key("\033[4~", 1034); // End
+	define_key("\033[E",  1040); // center arrow
 }
