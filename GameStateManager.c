@@ -468,20 +468,20 @@ void Draw_Dungeon(int use_curses)
 	
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Number of rooms = %d", seed_state, num_rooms_state);
-	if(use_curses == 1)
+	/*if(use_curses == 1)
 	{
 		int debug_len = strlen(debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
-			clear();
+			//clear();
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 			refresh();
 		}
 	}
 	else
-	{
+	{*/
 		printf("%s\n", debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
@@ -496,7 +496,7 @@ void Draw_Dungeon(int use_curses)
 		{
 			printf("The drunk player wins!\n");
 		}
-	}
+	//}
 	
 }
 
