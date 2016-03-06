@@ -57,27 +57,12 @@ void Dijkstra(graph_t graph, vertex_t src)
 		for(e = 0; e < 8; e++)
 		{
 			vertex_t next = adjacent_edges[e].target;
-			/*uint p = distance[current->y*80+current->x] + next.weight;
-			uint q = distance[next.y*80+next.x];
-			if(q < 0 || q > 428400)
-			{
-				printf("The values = %d\n", q);
-			}
-			if(next.y*80+next.x < 0)
-			{
-				printf("Is it a null vertex = %d\n", Compare_Vertices(next, NULL_VERTEX));
-			}*/
+			
 			if((Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE) && (distance[current->y*80+current->x] + next.weight  < distance[next.y*80+next.x]))
 			{
-				//if((Contains_Vertex(visited, visited_count, next) == FALSE))
-				//{
-					//if((Compare_Vertices(next, NULL_VERTEX) == FALSE))
-					//{
-						distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
-						//predecessor[next.y*80+next.x] = *current;
-						binheap_decrease_key(&h, nodes[next.y*80+next.x]);
-					//}
-				//}
+				distance[next.y*80+next.x] = distance[current->y*80+current->x] + next.weight;
+				//predecessor[next.y*80+next.x] = *current;
+				binheap_decrease_key(&h, nodes[next.y*80+next.x]);
 			}
 		}
 		free(adjacent_edges);
