@@ -40,4 +40,5 @@ void Draw_Distance_Dungeon(char *char_map);
 void Destroy_All(void);
 void turn(int *seed);
 int input_handler(int key);
+void define_new_keys(void);
 #endif
