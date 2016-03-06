@@ -8,6 +8,7 @@ char *distance_dungeon;
 char *distance_dungeon_tunneler;
 int seed_state, num_rooms_state;
 int game_state = 0;
+int input = -1;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -467,8 +468,8 @@ void Draw_Dungeon(int use_curses)
 	}
 	
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Number of rooms = %d", seed_state, num_rooms_state);
-	/*if(use_curses == 1)
+	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d", seed_state, num_rooms_state, input);
+	if(use_curses == 1)
 	{
 		int debug_len = strlen(debug_line);
 		int d;
@@ -481,7 +482,7 @@ void Draw_Dungeon(int use_curses)
 		}
 	}
 	else
-	{*/
+	{
 		printf("%s\n", debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
@@ -496,7 +497,7 @@ void Draw_Dungeon(int use_curses)
 		{
 			printf("The drunk player wins!\n");
 		}
-	//}
+	}
 	
 }
 
@@ -595,8 +596,8 @@ void turn(int *seed)
 			line_of_sight(current_dungeon);
 			Draw_Dungeon(1);
 			//sleep(3);
-			int input = getch();
-			printf("Input is = %d\n", input);
+			input = getch();
+			//printf("Input is = %d\n", input);
 			if(character_list[0].alive == FALSE)
 			{
 				//printf("Player is dead\n");
