@@ -595,7 +595,7 @@ void turn(int *seed)
 			line_of_sight(current_dungeon);
 			Draw_Dungeon(1);
 			//sleep(3);
-			input = getch();
+			input = input_handler(getch());
 			//printf("Input is = %d\n", input);
 			if(character_list[0].alive == FALSE)
 			{
@@ -624,4 +624,42 @@ void turn(int *seed)
 	//Destroy_All();
 	
 	binheap_delete(&h);
+}
+
+int input_handler(int key)
+{
+	if(key == KEY_UP)
+	{
+		return 1337;
+	}
+	/*else if()
+	{
+		
+	}
+	else if()
+	{
+		
+	}
+	else if()
+	{
+		
+	}
+	else if()
+	{
+		
+	}
+	else if()
+	{
+		
+	}
+	else if()
+	{
+		
+	}
+	else if()
+	{
+		
+	}*/
+	
+	return key;
 }
