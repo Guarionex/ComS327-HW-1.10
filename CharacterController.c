@@ -476,7 +476,7 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 				{
 					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
 					character_list[m].character_parent.monster.lost = FALSE;
-					printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
+					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{

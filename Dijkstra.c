@@ -68,6 +68,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 		free(adjacent_edges);
 	}
 	//free(nodes);
+	free(visited);
 	binheap_delete(&h);
 }
 /*
