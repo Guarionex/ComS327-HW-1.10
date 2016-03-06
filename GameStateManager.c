@@ -458,7 +458,7 @@ void Draw_Dungeon(void)
 		//printf("\n");
 	}
 	
-	initscr();
+	
 	int d;
 	for(d = 0; d < 1701; d++)
 	{
@@ -466,7 +466,7 @@ void Draw_Dungeon(void)
 		mvaddch(d/81, d-((d/81)*81), renderer[d]);
 		refresh();
 	}
-	endwin();
+	
 }
 
 void Draw_Distance_Dungeon(char *char_map)
