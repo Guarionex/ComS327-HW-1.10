@@ -466,12 +466,14 @@ void Draw_Dungeon(void)
 	}
 	
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Number of rooms = %d", seed_state, num_rooms_state);
-	printf("%s", debug_line);
+	sprintf(debug_line, "Seed = %d, Number of rooms = %d\0", seed_state, num_rooms_state);
+	//printf("%s", debug_line);
+	int debug_len = strlen(debug_line);
 	int d;
 	for(d = 0; d < 1701; d++)
 	{
-		printf("%s", debug_line);
+		printf("%s\n", debug_line);
+		printf("%d\n", debug_len);
 		//mvaddch(0, d-((d/81)*81), debug_line[d%81]);
 		mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 		refresh();
