@@ -472,9 +472,9 @@ void Draw_Dungeon(void)
 	int d;
 	for(d = 0; d < 1701; d++)
 	{
-		printf("%s\n", debug_line);
-		printf("%d\n", debug_len);
-		//mvaddch(0, d-((d/81)*81), debug_line[d%81]);
+		//printf("%s\n", debug_line);
+		//printf("%d\n", debug_len);
+		mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 		mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 		refresh();
 	}
