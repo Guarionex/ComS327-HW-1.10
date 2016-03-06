@@ -346,12 +346,12 @@ void Draw_Dungeon(void)
 			if(x == 80)
 			{
 				renderer[y*80+x] = '\n';
-				printf("%c", renderer[y*80+x]);
+				//printf("%c", renderer[y*80+x]);
 			}
 			else if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y && get_character_by_id(0).alive == TRUE)
 			{
 				renderer[y*80+x] = '@';
-				printf("%c", renderer[y*80+x]);
+				//printf("%c", renderer[y*80+x]);
 			}
 			else if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
 			{
@@ -422,7 +422,7 @@ void Draw_Dungeon(void)
 					break;
 				}
 				//renderer[y*80+x] = get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities;//printf("%x", get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities);
-				printf("%c", renderer[y*80+x]);
+				//printf("%c", renderer[y*80+x]);
 			}
 			else
 			{
@@ -433,24 +433,24 @@ void Draw_Dungeon(void)
 						if(current_dungeon[x][y].space_union.rock.density == 255)
 						{
 							renderer[y*80+x] = '~';
-							printf("%c", renderer[y*80+x]);
+							//printf("%c", renderer[y*80+x]);
 						}
 						else 
 						{
 							renderer[y*80+x] = ' ';
-							printf("%c", renderer[y*80+x]);
+							//printf("%c", renderer[y*80+x]);
 						}
 					
 					break;
 					case ROOM :
 					
 						renderer[y*80+x] = '.';
-						printf("%c", renderer[y*80+x]);
+						//printf("%c", renderer[y*80+x]);
 					
 					break;
 					case CORRIDOR :
 						renderer[y*80+x] = '#';
-						printf("%c", renderer[y*80+x]);
+						//printf("%c", renderer[y*80+x]);
 					break;
 				}
 			}
@@ -458,15 +458,11 @@ void Draw_Dungeon(void)
 		//printf("\n");
 	}
 	
-	/*int d;
-	for(d = 0; d < 1680; d++)
+	int d;
+	for(d = 0; d < 1701; d++)
 	{
 		printf("%c", renderer[d]);
-		if(d%79 == 0)
-		{
-			//printf("\n");
-		}
-	}*/
+	}
 }
 
 void Draw_Distance_Dungeon(char *char_map)
