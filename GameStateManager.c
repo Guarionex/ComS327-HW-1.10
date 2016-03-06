@@ -351,7 +351,7 @@ void Draw_Dungeon(void)
 			else if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
 			{
 				renderer[y*80+x] = get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities;//printf("%x", get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities);
-				printf("%c", renderer[y*80+x]);
+				printf("%x", renderer[y*80+x]);
 			}
 			else
 			{
