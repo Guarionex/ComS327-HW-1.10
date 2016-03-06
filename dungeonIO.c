@@ -210,7 +210,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 		printf("File number rooms not correct\n");
 		return NULL;
 	}
-	printf("Number of rooms = %d\n", total_num_room);
+	//printf("Number of rooms = %d\n", total_num_room);
 	*num_rooms = total_num_room;
 	
 	fclose(f);

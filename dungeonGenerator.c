@@ -183,6 +183,7 @@ int main(int argc, char *argv[])
 		dungeon = Generate_Map(&int_seed, &num_rooms);
 		Set_Dungeon(dungeon);
 		Set_Player(Place_Player(dungeon, &int_seed));
+		Set_Debug_Info(int_seed, num_rooms);
 		populate_monsters(nummon_value, &int_seed);
 		initscr();
 		Draw_Dungeon();
@@ -201,7 +202,7 @@ int main(int argc, char *argv[])
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{
 		
-		printf("Made it here\n");
+		//printf("Made it here\n");
 		//printf("getenv = %s\n", getenv("HOME"));
 		if(loaded == FALSE)
 		{

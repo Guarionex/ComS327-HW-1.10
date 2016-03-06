@@ -266,11 +266,11 @@ Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms)
 		
 		//printf("Room[%d] = {w = %d, h = %d}\n", total_num_rooms, rooms[total_num_rooms].width, rooms[total_num_rooms].height);
 	}
-	printf("Number of rooms is %d\n", total_num_rooms);
+	//printf("Number of rooms is %d\n", total_num_rooms);
 	*num_rooms = total_num_rooms;
 	
 	Create_Blank_Map(seed);
-	printf("Seed is %d\n", *seed);
+	//printf("Seed is %d\n", *seed);
 	bool success = FALSE;
 	int attempts = 0;
 	while(success == FALSE || attempts > 2000)

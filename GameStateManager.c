@@ -6,6 +6,7 @@ char *distance_map;
 graph_t graphed_dungeon;
 char *distance_dungeon;
 char *distance_dungeon_tunneler;
+int seed_state, num_rooms_state;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -15,6 +16,12 @@ void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 void Set_Player(character_t player)
 {
 	player_character = player;
+}
+
+void Set_Debug_Info(int seed, int num_rooms)
+{
+	seed_state = seed;
+	num_rooms_state = num_rooms;
 }
 
 void populate_monsters(int num_mon, int *seed)
@@ -458,12 +465,14 @@ void Draw_Dungeon(void)
 		//printf("\n");
 	}
 	
-	
+	char debug_line[80];
+	sprintf(debug_line, "Seed = %d, Number of rooms = %d", seed_state, num_rooms_state);
 	int d;
 	for(d = 0; d < 1701; d++)
 	{
 		//printf("%c", renderer[d]);
-		mvaddch(d/81, d-((d/81)*81), renderer[d]);
+		mvaddch(0, d-((d/81)*81), debug_line[d%80]);
+		mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 		refresh();
 	}
 	
@@ -563,7 +572,7 @@ void turn(int *seed)
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon();
-			//sleep(3);
+			sleep(3);
 			if(character_list[0].alive == FALSE)
 			{
 				printf("Player is dead\n");
