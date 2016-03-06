@@ -345,7 +345,7 @@ void Draw_Dungeon(void)
 		{
 			if(x == 80)
 			{
-				renderer[y*80+1] = '\n';
+				renderer[y*80+x] = '\n';
 				printf("%c", renderer[y*80+x]);
 			}
 			else if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y && get_character_by_id(0).alive == TRUE)
