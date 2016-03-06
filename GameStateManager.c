@@ -628,11 +628,17 @@ void turn(int *seed)
 
 int input_handler(int key)
 {
-	if(key == KEY_UP)
+	switch(key)
+	{
+		case KEY_UP:
+			return 1337;
+		break;
+	}
+	/*if(key == KEY_UP)
 	{
 		return 1337;
 	}
-	/*else if()
+	else if()
 	{
 		
 	}
