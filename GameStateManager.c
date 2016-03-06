@@ -643,7 +643,7 @@ int input_handler(int key)
 		case KEY_UP:
 			return UP;
 		break;
-		
+		/*
 		case 107:
 			return UP;
 		break;
@@ -653,7 +653,8 @@ int input_handler(int key)
 		break;
 		
 		case 27:
-		break;
+			//nodelay(stdscr, )
+		break;*/
 	}
 	/*if(key == KEY_UP)
 	{
