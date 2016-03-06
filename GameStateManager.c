@@ -673,39 +673,118 @@ int input_handler(int key)
 		case 1002:
 			return DOWN;
 		break;
-	}
-	/*if(key == KEY_UP)
-	{
-		return 1337;
-	}
-	else if()
-	{
 		
-	}
-	else if()
-	{
+		//LEFT
+		case KEY_LEFT:
+			return LEFT;
+		break;
 		
-	}
-	else if()
-	{
+		case 104:
+			return LEFT;
+		break;
 		
-	}
-	else if()
-	{
+		case 52:
+			return LEFT;
+		break;
 		
-	}
-	else if()
-	{
+		case 97:
+			return LEFT;
+		break;
 		
-	}
-	else if()
-	{
+		case 1004:
+			return LEFT;
+		break;
 		
-	}
-	else if()
-	{
+		//RIGHT
+		case KEY_RIGHT:
+			return RIGHT;
+		break;
 		
-	}*/
+		case 108:
+			return RIGHT;
+		break;
+		
+		case 54:
+			return RIGHT;
+		break;
+		
+		case 100:
+			return RIGHT;
+		break;
+		
+		case 1006:
+			return RIGHT;
+		break;
+		
+		//UP_LEFT
+		case 121:
+			return UP_LEFT;
+		break;
+		
+		case 55:
+			return UP_LEFT;
+		break;
+		
+		case 113:
+			return UP_LEFT;
+		break;
+		
+		case 1007:
+			return UP_LEFT;
+		break;
+		
+		//UP_RIGHT
+		case 117:
+			return UP_RIGHT;
+		break;
+		
+		case 57:
+			return UP_RIGHT;
+		break;
+		
+		case 101:
+			return UP_RIGHT;
+		break;
+		
+		case 1009:
+			return UP_RIGHT;
+		break;
+		
+		//DOWN_LEFT
+		case 98:
+			return DOWN_LEFT;
+		break;
+		
+		case 49:
+			return DOWN_LEFT;
+		break;
+		
+		case 122:
+			return DOWN_LEFT;
+		break;
+		
+		case 1001:
+			return DOWN_LEFT;
+		break;
+		
+		//DOWN_RIGHT
+		case 110:
+			return DOWN_RIGHT;
+		break;
+		
+		case 51:
+			return DOWN_RIGHT;
+		break;
+		
+		case 99:
+			return DOWN_RIGHT;
+		break;
+		
+		case 1003:
+			return DOWN_RIGHT;
+		break;
+	}
+	
 	
 	return key;
 }
