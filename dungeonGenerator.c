@@ -186,7 +186,10 @@ int main(int argc, char *argv[])
 		Set_Debug_Info(int_seed, num_rooms);
 		populate_monsters(nummon_value, &int_seed);
 //		initscr();
+		raw();
+		noecho();
 		curs_set(0);
+		keypad(stdscr, TRUE);
 		Draw_Dungeon(1);
 		//printf("\n");
 		//distance_dungeon = Generate_Distance_Dungeon(FALSE);
