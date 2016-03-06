@@ -633,6 +633,10 @@ int input_handler(int key)
 		case KEY_UP:
 			return 1337;
 		break;
+		
+		case KEY_A1:
+			return 7777;
+		break;
 	}
 	/*if(key == KEY_UP)
 	{
