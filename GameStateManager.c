@@ -422,7 +422,7 @@ void Draw_Distance_Dungeon(char *char_map)
 
 void Destroy_All(void)
 {
-	Destroy_Dijkstra();
+	//Destroy_Dijkstra();
 	Destroy_Graph(&graphed_dungeon);
 	//free(distance_map);
 }
