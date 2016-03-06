@@ -478,8 +478,9 @@ void Draw_Dungeon(int use_curses)
 		{
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
-			refresh();
+			
 		}
+		refresh();
 	}
 	else
 	{
