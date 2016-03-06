@@ -381,7 +381,7 @@ void Draw_Dungeon(void)
 				}
 			}
 		}
-		//printf("\n");
+		printf("\n");
 	}
 	
 	/*int d;
