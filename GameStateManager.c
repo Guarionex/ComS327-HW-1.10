@@ -7,6 +7,7 @@ graph_t graphed_dungeon;
 char *distance_dungeon;
 char *distance_dungeon_tunneler;
 int seed_state, num_rooms_state;
+int game_state = 0;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -578,7 +579,8 @@ void turn(int *seed)
 			sleep(3);
 			if(character_list[0].alive == FALSE)
 			{
-				printf("Player is dead\n");
+				//printf("Player is dead\n");
+				game_state = 1;
 				free(distance_dungeon);
 				free(distance_dungeon_tunneler);
 				break;
@@ -587,7 +589,8 @@ void turn(int *seed)
 			{
 				free(distance_dungeon);
 				free(distance_dungeon_tunneler);
-				printf("The drunk player wins!\n");
+				//printf("The drunk player wins!\n");
+				game_state = 2;
 				break;
 			}
 		}
