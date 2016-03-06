@@ -19,8 +19,8 @@ graph_t Create_Graph()
 
 void Destroy_Graph(graph_t *destroy_graph)
 {
-	free(destroy_graph.vertices);
-	free(destroy_graph.edges);
+	free(destroy_graph->vertices);
+	free(destroy_graph->edges);
 }
 
 bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
