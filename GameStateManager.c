@@ -628,7 +628,7 @@ void turn(int *seed)
 
 int input_handler(int key)
 {
-	switch(key)
+	/*switch(key)
 	{
 		case KEY_UP:
 			return 1337;
@@ -638,7 +638,7 @@ int input_handler(int key)
 			return 7777;
 		break;
 	}
-	/*if(key == KEY_UP)
+	if(key == KEY_UP)
 	{
 		return 1337;
 	}
