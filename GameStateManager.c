@@ -364,8 +364,11 @@ void Draw_Dungeon(void)
 							renderer[y*80+x] = '~';
 							printf("%c", renderer[y*80+x]);
 						}
-						else renderer[y*80+x] = ' ';
-						printf("%c", renderer[y*80+x]);
+						else 
+						{
+							renderer[y*80+x] = ' ';
+							printf("%c", renderer[y*80+x]);
+						}
 					
 					break;
 					case ROOM :
