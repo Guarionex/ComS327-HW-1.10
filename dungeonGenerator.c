@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 		raw();
 		noecho();
 		curs_set(0);
-		keypad(stdscr, 0);
+		keypad(stdscr, 1);
 		//Draw_Dungeon(1);
 		//printf("\n");
 		//distance_dungeon = Generate_Distance_Dungeon(FALSE);

@@ -595,6 +595,16 @@ void turn(int *seed)
 			line_of_sight(current_dungeon);
 			Draw_Dungeon(1);
 			//sleep(3);
+			define_key("\033Op", 1000);
+			define_key("\033Oq", 1001);
+			define_key("\033Or", 1002);
+			define_key("\033Os", 1003);
+			define_key("\033Ot", 1004);
+			define_key("\033Ou", 1005);
+			define_key("\033Ov", 1006);
+			define_key("\033Ow", 1007);
+			define_key("\033Ox", 1008);
+			define_key("\033Oy", 1009);
 			input = input_handler(getch());
 			//printf("Input is = %d\n", input);
 			if(character_list[0].alive == FALSE)
@@ -628,16 +638,7 @@ void turn(int *seed)
 
 int input_handler(int key)
 {
-	define_key("\033Op", 1000);
-	define_key("\033Oq", 1001);
-	define_key("\033Or", 1002);
-	define_key("\033Os", 1003);
-	define_key("\033Ot", 1004);
-	define_key("\033Ou", 1005);
-	define_key("\033Ov", 1006);
-	define_key("\033Ow", 1007);
-	define_key("\033Ox", 1008);
-	define_key("\033Oy", 1009);
+	
 	switch(key)
 	{
 		case KEY_UP:
