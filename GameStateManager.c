@@ -474,8 +474,7 @@ void Draw_Dungeon(int use_curses)
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
-			//printf("%s\n", debug_line);
-			//printf("%d\n", debug_len);
+			clear();
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 			refresh();
@@ -488,9 +487,6 @@ void Draw_Dungeon(int use_curses)
 		for(d = 0; d < 1701; d++)
 		{
 			printf("%c", renderer[d]);
-			//mvaddch(0, d%debug_len, debug_line[d%debug_len]);
-			//mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
-			//refresh();
 		}
 		if(game_state == 1)
 		{
@@ -598,7 +594,8 @@ void turn(int *seed)
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon(1);
-			sleep(3);
+			//sleep(3);
+			getch();
 			if(character_list[0].alive == FALSE)
 			{
 				//printf("Player is dead\n");
