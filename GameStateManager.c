@@ -466,7 +466,7 @@ void Draw_Dungeon(void)
 	}
 	
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Number of rooms = %d\0", seed_state, num_rooms_state);
+	sprintf(debug_line, "Seed = %d, Number of rooms = %d", seed_state, num_rooms_state);
 	//printf("%s", debug_line);
 	int debug_len = strlen(debug_line);
 	int d;

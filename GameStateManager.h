@@ -10,6 +10,7 @@
 #include "binheap.h"
 #include <unistd.h>
 #include <ncurses.h>
+#include <string.h>
 
 extern Dungeon_Space_Struct **current_dungeon;
 extern character_t player_character;
