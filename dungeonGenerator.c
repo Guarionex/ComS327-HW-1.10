@@ -185,7 +185,7 @@ int main(int argc, char *argv[])
 		Set_Player(Place_Player(dungeon, &int_seed));
 		Set_Debug_Info(int_seed, num_rooms);
 		populate_monsters(nummon_value, &int_seed);
-		initscr();
+//		initscr();
 		curs_set(0);
 		Draw_Dungeon(1);
 		//printf("\n");
@@ -197,7 +197,7 @@ int main(int argc, char *argv[])
 		turn(&int_seed);
 		//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		Destroy_All();
-		endwin();
+	//	endwin();
 		Draw_Dungeon(0);
 	}
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
