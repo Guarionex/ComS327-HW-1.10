@@ -10,6 +10,17 @@ int seed_state, num_rooms_state;
 int game_state = 0;
 int input = -1;
 
+define_key("\033Op", 1000);
+define_key("\033Oq", 1001);
+define_key("\033Or", 1002);
+define_key("\033Os", 1003);
+define_key("\033Ot", 1004);
+define_key("\033Ou", 1005);
+define_key("\033Ov", 1006);
+define_key("\033Ow", 1007);
+define_key("\033Ox", 1008);
+define_key("\033Oy", 1009);
+
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
 	current_dungeon = dungeon;
