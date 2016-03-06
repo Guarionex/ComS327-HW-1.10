@@ -384,7 +384,7 @@ void Draw_Dungeon(void)
 		printf("%c", renderer[d]);
 		if(d%79 == 0)
 		{
-			printf("\n");
+			//printf("\n");
 		}
 	}
 }
