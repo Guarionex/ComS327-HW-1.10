@@ -471,11 +471,11 @@ void Draw_Dungeon(int use_curses)
 	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d", seed_state, num_rooms_state, input);
 	if(use_curses == 1)
 	{
+		clear();
 		int debug_len = strlen(debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
-			//clear();
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 			refresh();
