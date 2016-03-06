@@ -632,10 +632,11 @@ int input_handler(int key)
 	
 	switch(key)
 	{
+		//UP
 		case KEY_UP:
 			return UP;
 		break;
-		/*
+		
 		case 107:
 			return UP;
 		break;
@@ -644,9 +645,34 @@ int input_handler(int key)
 			return UP;
 		break;
 		
-		case 27:
-			//nodelay(stdscr, )
-		break;*/
+		case 119:
+			return UP;
+		break;
+		
+		case 1008:
+			return UP;
+		break;
+		
+		//DOWN
+		case KEY_DOWN:
+			return DOWN;
+		break;
+		
+		case 106:
+			return DOWN;
+		break;
+		
+		case 50:
+			return DOWN;
+		break;
+		
+		case 115:
+			return DOWN;
+		break;
+		
+		case 1002:
+			return DOWN;
+		break;
 	}
 	/*if(key == KEY_UP)
 	{
