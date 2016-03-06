@@ -651,6 +651,9 @@ int input_handler(int key)
 		case 56:
 			return UP;
 		break;
+		
+		case 27:
+		break;
 	}
 	/*if(key == KEY_UP)
 	{
