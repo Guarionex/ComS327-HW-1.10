@@ -652,7 +652,7 @@ int input_handler(int key)
 			return UP;
 		break;
 	}
-	if(key == KEY_UP)
+	/*if(key == KEY_UP)
 	{
 		return 1337;
 	}
