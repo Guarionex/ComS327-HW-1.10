@@ -595,8 +595,8 @@ void turn(int *seed)
 			line_of_sight(current_dungeon);
 			Draw_Dungeon(1);
 			//sleep(3);
-			int input = getch();
-			printf("Input is = %d\n", input);
+			//int input = getch();
+			//printf("Input is = %d\n", input);
 			if(character_list[0].alive == FALSE)
 			{
 				//printf("Player is dead\n");
