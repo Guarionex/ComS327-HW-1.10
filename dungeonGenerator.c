@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
 		//player.pos.x = 18;
 		//player.pos.y = 4;
 		Set_Player(Place_Player(dungeon, &null_seed));
-		Draw_Dungeon();
+		Draw_Dungeon(0);
 		printf("\n");
 		distance_dungeon = Generate_Distance_Dungeon(FALSE);
 		Draw_Distance_Dungeon(distance_dungeon);
