@@ -65,7 +65,7 @@ void Dijkstra(graph_t graph, vertex_t src)
 			}
 			if(next.y*80+next.x < 0)
 			{
-				printf("The index = %d\n", next.y*80+next.x);
+				printf("Is it a null vertex = %d\n", Compare_Vertices(next, NULL_VERTEX) == FALSE);
 			}
 			if(p < q/*(distance[current->y*80+current->x] + next.weight  < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE)*/)
 			{
