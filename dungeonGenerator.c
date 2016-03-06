@@ -185,16 +185,6 @@ int main(int argc, char *argv[])
 		Set_Player(Place_Player(dungeon, &int_seed));
 		Set_Debug_Info(int_seed, num_rooms);
 		populate_monsters(nummon_value, &int_seed);
-		define_key("\033Op", 1000);
-		define_key("\033Oq", 1001);
-		define_key("\033Or", 1002);
-		define_key("\033Os", 1003);
-		define_key("\033Ot", 1004);
-		define_key("\033Ou", 1005);
-		define_key("\033Ov", 1006);
-		define_key("\033Ow", 1007);
-		define_key("\033Ox", 1008);
-		define_key("\033Oy", 1009);
 		initscr();
 		raw();
 		noecho();

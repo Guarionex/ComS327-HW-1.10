@@ -12,6 +12,18 @@
 #include <ncurses.h>
 #include <string.h>
 
+typedef enum command
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	UP_LEFT,
+	UP_RIGHT,
+	DOWN_LEFT,
+	DOWN_RIGHT
+} command_t;
+
 extern Dungeon_Space_Struct **current_dungeon;
 extern character_t player_character;
 extern char *distance_map;

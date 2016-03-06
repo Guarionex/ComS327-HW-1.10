@@ -628,14 +628,28 @@ void turn(int *seed)
 
 int input_handler(int key)
 {
-	/*switch(key)
+	define_key("\033Op", 1000);
+	define_key("\033Oq", 1001);
+	define_key("\033Or", 1002);
+	define_key("\033Os", 1003);
+	define_key("\033Ot", 1004);
+	define_key("\033Ou", 1005);
+	define_key("\033Ov", 1006);
+	define_key("\033Ow", 1007);
+	define_key("\033Ox", 1008);
+	define_key("\033Oy", 1009);
+	switch(key)
 	{
 		case KEY_UP:
-			return 1337;
+			return UP;
 		break;
 		
-		case KEY_A1:
-			return 7777;
+		case 107:
+			return UP;
+		break;
+		
+		case 56:
+			return UP;
 		break;
 	}
 	if(key == KEY_UP)
