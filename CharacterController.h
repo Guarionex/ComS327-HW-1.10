@@ -70,6 +70,7 @@ bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon);
 void set_distance(char *distance);
 void set_distance_tunneler(char *distance_tunneller);
 int distance_converter(char symbol);
+void Destroy_Characters(void);
 
 
 

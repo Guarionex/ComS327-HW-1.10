@@ -490,6 +490,7 @@ void turn(int *seed)
 		}
 	}
 	
+	Destroy_Characters();
 	//Destroy_All();
 	
 	binheap_delete(&h);

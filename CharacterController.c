@@ -1125,3 +1125,8 @@ int distance_converter(char symbol)
 		
 		return value;
 }
+
+void Destroy_Characters(void)
+{
+	free(character_list);
+}
