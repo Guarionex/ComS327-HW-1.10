@@ -59,6 +59,8 @@ void Dijkstra(graph_t graph, vertex_t src)
 			vertex_t next = adjacent_edges[e].target;
 			uint p = distance[current->y*80+current->x] + next.weight;
 			uint q = distance[next.y*80+next.x];
+			printf("The values = %d", q);
+			printf("The index = %d", next.y*80+next.x);
 			if(p < q/*(distance[current->y*80+current->x] + next.weight  < distance[next.y*80+next.x]) && (Contains_Vertex(visited, visited_count, next) == FALSE) && (Compare_Vertices(next, NULL_VERTEX) == FALSE)*/)
 			{
 				if((Contains_Vertex(visited, visited_count, next) == FALSE))
