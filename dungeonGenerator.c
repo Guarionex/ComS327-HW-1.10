@@ -187,7 +187,7 @@ int main(int argc, char *argv[])
 		populate_monsters(nummon_value, &int_seed);
 		initscr();
 		curs_set(0);
-		Draw_Dungeon();
+		Draw_Dungeon(1);
 		//printf("\n");
 		//distance_dungeon = Generate_Distance_Dungeon(FALSE);
 		//Draw_Distance_Dungeon(distance_dungeon);
@@ -198,7 +198,7 @@ int main(int argc, char *argv[])
 		//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		Destroy_All();
 		endwin();
-		Draw_Dungeon();
+		Draw_Dungeon(0);
 	}
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{

@@ -342,7 +342,7 @@ char *Generate_Distance_Dungeon(bool tunneler)
 	return distance_map;
 }
 
-void Draw_Dungeon(void)
+void Draw_Dungeon(int use_curses)
 {
 	char renderer[1701];
 	int x;
@@ -468,16 +468,38 @@ void Draw_Dungeon(void)
 	
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Number of rooms = %d", seed_state, num_rooms_state);
-	//printf("%s", debug_line);
-	int debug_len = strlen(debug_line);
-	int d;
-	for(d = 0; d < 1701; d++)
+	if(use_curses == 1)
 	{
-		//printf("%s\n", debug_line);
-		//printf("%d\n", debug_len);
-		mvaddch(0, d%debug_len, debug_line[d%debug_len]);
-		mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
-		refresh();
+		int debug_len = strlen(debug_line);
+		int d;
+		for(d = 0; d < 1701; d++)
+		{
+			//printf("%s\n", debug_line);
+			//printf("%d\n", debug_len);
+			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
+			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
+			refresh();
+		}
+	}
+	else
+	{
+		printf("%s\n", debug_line);
+		int d;
+		for(d = 0; d < 1701; d++)
+		{
+			printf("%c", renderer[d]);
+			//mvaddch(0, d%debug_len, debug_line[d%debug_len]);
+			//mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
+			//refresh();
+		}
+		if(game_state == 1)
+		{
+			printf("Player is dead\n");
+		}
+		else if(game_state == 2)
+		{
+			printf("The drunk player wins!\n");
+		}
 	}
 	
 }
@@ -575,7 +597,7 @@ void turn(int *seed)
 			set_distance_tunneler(distance_dungeon_tunneler);
 			update_telepath();
 			line_of_sight(current_dungeon);
-			Draw_Dungeon();
+			Draw_Dungeon(1);
 			sleep(3);
 			if(character_list[0].alive == FALSE)
 			{
