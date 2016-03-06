@@ -336,14 +336,19 @@ char *Generate_Distance_Dungeon(bool tunneler)
 
 void Draw_Dungeon(void)
 {
-	char renderer[1680];
+	char renderer[1701];
 	int x;
 	int y;
 	for(y = 0; y < 21; y++)
 	{
-		for(x = 0; x < 80; x++)
+		for(x = 0; x <= 80; x++)
 		{
-			if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y && get_character_by_id(0).alive == TRUE)
+			if(x == 80)
+			{
+				renderer[y*80+1] = '\n';
+				printf("%c", renderer[y*80+x]);
+			}
+			else if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y && get_character_by_id(0).alive == TRUE)
 			{
 				renderer[y*80+x] = '@';
 				printf("%c", renderer[y*80+x]);
@@ -450,7 +455,7 @@ void Draw_Dungeon(void)
 				}
 			}
 		}
-		printf("\n");
+		//printf("\n");
 	}
 	
 	/*int d;
