@@ -514,7 +514,7 @@ void Draw_Monster_List(void)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
-	for(m = 1 + scroll_index; (m < num_characters) || (m < 24); m++)
+	for(m = 1 + scroll_index; (m < num_characters) && (m < 24); m++)
 	{
 		/*if(m > 23)
 		{
@@ -682,6 +682,10 @@ void turn(int *seed)
 						continue;
 					}
 				}
+			}
+			while(input > 15)
+			{
+				input = input_handler(getch());
 			}
 			//printf("Input is = %d\n", input);
 		}
