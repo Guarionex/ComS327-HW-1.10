@@ -194,7 +194,7 @@ int main(int argc, char *argv[])
 			{
 				endwin();
 				printf("Start\n");
-				game_state = 0;
+				game_state = 4;
 			}
 			Set_Player(Place_Player(dungeon, &int_seed));
 			Set_Debug_Info(int_seed, num_rooms);

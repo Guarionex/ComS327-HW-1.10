@@ -672,12 +672,18 @@ int turn(int *seed)
 				free(distance_dungeon_tunneler);
 				break;
 			}
-			free(distance_dungeon);
+			if(game_state != 4)
+			{
+				free(distance_dungeon);
+			}
 			Destroy_Graph(&graphed_dungeon);
 			distance_dungeon = Generate_Distance_Dungeon(FALSE);
 			//Draw_Distance_Dungeon(distance_dungeon);
 			set_distance(distance_dungeon);
-			free(distance_dungeon_tunneler);
+			if(game_state != 4)
+			{
+				free(distance_dungeon_tunneler);
+			}
 			Destroy_Graph(&graphed_dungeon);
 			distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			set_distance_tunneler(distance_dungeon_tunneler);
