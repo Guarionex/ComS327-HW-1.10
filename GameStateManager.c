@@ -693,6 +693,8 @@ int turn(int *seed)
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
 					{
 						level++;
+						free(distance_dungeon);
+						free(distance_dungeon_tunneler);
 						Destroy_Characters();
 						//Destroy_All();
 						binheap_delete(&h);
