@@ -626,6 +626,14 @@ void turn(int *seed)
 				{
 					Draw_Dungeon(1);
 					input = input_handler(getch());
+					if(input < 9)
+					{
+						moving_to = get_direction(input);
+					}
+					if(input == 9)
+					{
+						continue;
+					}
 					break;
 				}
 			}
