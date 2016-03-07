@@ -25,6 +25,7 @@ void Set_Player(character_t player)
 
 void Set_Stairs(stair_t stairs)
 {
+	printf("Stair pos = [%d][%d]\n", stairs.location.x, stairs.location.y);
 	if(stairs.direction == DOWNSTAIRS)
 	{
 		stair_set[0] = stairs;

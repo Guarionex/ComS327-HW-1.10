@@ -108,7 +108,7 @@ stair_t Place_Stairs(Dungeon_Space_Struct **dungeon, int *seed, stair_direction_
 	srand(seed_local);
 	
 	pos_t new_pos = open_pos[rand()%open_count];
-	printf("Stair pos = [%d][%d], available positions = %d\n", new_pos.x, new_pos.y, open_count);
+	//printf("Stair pos = [%d][%d], available positions = %d\n", new_pos.x, new_pos.y, open_count);
 	stair_well.location = new_pos;
 	stair_well.direction = rand()%2;
 	free(open_pos);
