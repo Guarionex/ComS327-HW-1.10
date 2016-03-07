@@ -207,8 +207,8 @@ int main(int argc, char *argv[])
 			stair_t down;
 			if(stair_used == UPSTAIRS)
 			{
-				down.loaction.x = player_to_set.pos.x;
-				down.loaction.y = player_to_set.pos.y;
+				down.location.x = player_to_set.pos.x;
+				down.location.y = player_to_set.pos.y;
 				down.direction = DOWNSTAIRS;
 			}
 			else 
@@ -225,8 +225,8 @@ int main(int argc, char *argv[])
 				stair_t up;
 				if(stair_used == DOWNSTAIRS)
 				{
-					up.loaction.x = player_to_set.pos.x;
-					up.loaction.y = player_to_set.pos.y;
+					up.location.x = player_to_set.pos.x;
+					up.location.y = player_to_set.pos.y;
 					up.direction = UPSTAIRS;
 				}
 				else 
