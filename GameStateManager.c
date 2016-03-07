@@ -800,13 +800,13 @@ pos_t get_direction(command_t key)
 	{
 		case UP:
 			direction.x = 0;
-			direction.y = 1;
+			direction.y = -1;
 			return direction;
 		break;
 		
 		case DOWN:
 			direction.x = 0;
-			direction.y = -1;
+			direction.y = 1;
 			return direction;
 		break;
 		
@@ -824,25 +824,25 @@ pos_t get_direction(command_t key)
 		
 		case UP_LEFT:
 			direction.x = -1;
-			direction.y = 1;
+			direction.y = -1;
 			return direction;
 		break;
 		
 		case UP_RIGHT:
 			direction.x = 1;
-			direction.y = 1;
+			direction.y = -1;
 			return direction;
 		break;
 		
 		case DOWN_LEFT:
 			direction.x = -1;
-			direction.y = -1;
+			direction.y = 1;
 			return direction;
 		break;
 		
 		case DOWN_RIGHT:
 			direction.x = 1;
-			direction.y = -1;
+			direction.y = 1;
 			return direction;
 		break;
 	}
