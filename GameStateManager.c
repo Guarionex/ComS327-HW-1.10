@@ -541,7 +541,7 @@ void Draw_Monster_List(void)
 {
 	char monster_info[num_characters-1][80];
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d, Monsters alive = %d", seed_state, num_rooms_state, input, (num_characters - 1) - dead_monsters);
+	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
 	int m, d, dead_count = 0;
 	clear();
 	for(d = 0; d < strlen(debug_line); d++)
@@ -693,10 +693,10 @@ int turn(int *seed)
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
 					{
 						level++;
-						/*Destroy_Characters();
+						Destroy_Characters();
 						//Destroy_All();
 						binheap_delete(&h);
-						return level;*/
+						return level;
 					}
 				}
 				while(input == 9)

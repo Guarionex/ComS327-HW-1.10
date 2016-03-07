@@ -179,28 +179,32 @@ int main(int argc, char *argv[])
 		srand(seed);
 		
 		int int_seed = seed;
-		
-		dungeon = Generate_Map(&int_seed, &num_rooms);
-		Set_Dungeon(dungeon);
-		Set_Player(Place_Player(dungeon, &int_seed));
-		Set_Debug_Info(int_seed, num_rooms);
-		populate_monsters(nummon_value, &int_seed);
-		Set_Stairs(Place_Stairs(dungeon, &int_seed, DOWNSTAIRS));
+
 		initscr();
 		raw();
 		noecho();
 		curs_set(0);
 		keypad(stdscr, 1);
-		//Draw_Dungeon(1);
-		//printf("\n");
-		//distance_dungeon = Generate_Distance_Dungeon(FALSE);
-		//Draw_Distance_Dungeon(distance_dungeon);
-		Destroy_All();
-		//printf("\n");
-		//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
-		turn(&int_seed);
-		//Draw_Distance_Dungeon(distance_dungeon_tunneler);
-		Destroy_All();
+		//while()
+		//{
+			dungeon = Generate_Map(&int_seed, &num_rooms);
+			Set_Dungeon(dungeon);
+			Set_Player(Place_Player(dungeon, &int_seed));
+			Set_Debug_Info(int_seed, num_rooms);
+			populate_monsters(nummon_value, &int_seed);
+			Set_Stairs(Place_Stairs(dungeon, &int_seed, DOWNSTAIRS));
+	
+			//Draw_Dungeon(1);
+			//printf("\n");
+			//distance_dungeon = Generate_Distance_Dungeon(FALSE);
+			//Draw_Distance_Dungeon(distance_dungeon);
+			Destroy_All();
+			//printf("\n");
+			//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
+			turn(&int_seed);
+			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
+			Destroy_All();
+		//}
 		endwin();
 		Draw_Dungeon(0);
 	}
