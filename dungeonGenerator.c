@@ -188,7 +188,9 @@ int main(int argc, char *argv[])
 		keypad(stdscr, 1);
 		while(game_state == 0)
 		{
+			printf("A\n");
 			dungeon = Generate_Map(&int_seed, &num_rooms);
+			printf("B\n");
 			Set_Dungeon(dungeon);
 			Set_Player(Place_Player(dungeon, &int_seed));
 			Set_Debug_Info(int_seed, num_rooms);
