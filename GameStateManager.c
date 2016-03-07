@@ -497,7 +497,7 @@ void Draw_Dungeon(int use_curses)
 	}
 	
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d,Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
+	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
 	if(use_curses == 1)
 	{
 		clear();
