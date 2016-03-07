@@ -190,10 +190,8 @@ int main(int argc, char *argv[])
 		{
 			if(game_state == 3)
 			{
-				while(1)
-				{
-					mvaddch(0, 0, '!');
-				}
+				endwin();
+				printf("Start\n");
 			}
 			dungeon = Generate_Map(&int_seed, &num_rooms);
 			Set_Dungeon(dungeon);
