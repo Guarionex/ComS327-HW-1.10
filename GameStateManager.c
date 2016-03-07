@@ -507,7 +507,7 @@ void Draw_Monster_List(void)
 {
 	char monster_info[num_characters-1][80];
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d, Monsters alive = %d"", seed_state, num_rooms_state, input, (num_characters - 1) - dead_monsters);
+	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d, Monsters alive = %d", seed_state, num_rooms_state, input, (num_characters - 1) - dead_monsters);
 	int m, d, dead_count = 0;
 	clear();
 	for(d = 0; d < strlen(debug_line); d++)
