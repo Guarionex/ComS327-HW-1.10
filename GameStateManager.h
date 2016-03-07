@@ -49,7 +49,7 @@ void Draw_Dungeon(int use_curses);
 void Draw_Monster_List(void);
 void Draw_Distance_Dungeon(char *char_map);
 void Destroy_All(void);
-int turn(int *seed);
+int turn(int *seed, int num_mon);
 int input_handler(int key);
 pos_t get_direction(command_t key);
 void define_new_keys(void);

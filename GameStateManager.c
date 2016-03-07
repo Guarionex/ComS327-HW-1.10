@@ -619,7 +619,7 @@ void Destroy_All(void)
 	//free(distance_map);
 }
 
-int turn(int *seed)
+int turn(int *seed, int num_mon)
 {
 	//binheap_node_t *nodes[num_characters];
 	
@@ -675,6 +675,7 @@ int turn(int *seed)
 			if(game_state != 4)
 			{
 				dead_monsters = 0;
+				num_characters = num_mon+1;
 				free(distance_dungeon);
 				Destroy_Graph(&graphed_dungeon);
 			}
@@ -701,7 +702,8 @@ int turn(int *seed)
 				{
 					moving_to = get_direction(input);
 				}
-				else if(input == 13 || input == 14)
+				printf("Made it outside with %d", input);
+				if(input == 13 || input == 14)
 				{
 					printf("Made it with %d", input);
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
@@ -715,7 +717,7 @@ int turn(int *seed)
 						binheap_delete(&h);
 						return level;*/
 					}
-					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[1].pos.y == stair_set[1].location.y)
+					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[0].pos.y == stair_set[1].location.y)
 					{
 						endwin();
 						printf("Made it\n");
