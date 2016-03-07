@@ -840,7 +840,7 @@ pos_t get_direction(command_t key)
 			return direction;
 		break;
 		
-		case DOWN_RIGH:
+		case DOWN_RIGHT:
 			direction.x = 1;
 			direction.y = -1;
 			return direction;
