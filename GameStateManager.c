@@ -715,7 +715,6 @@ int turn(int *seed)
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[1].pos.y == stair_set[1].location.y)
 					{
-						endwin();
 						printf("Made it\n");
 						level--;
 						game_state = 3;
@@ -773,7 +772,8 @@ int turn(int *seed)
 
 int input_handler(int key)
 {
-	
+endwin();
+printf("Key = %d\n", key);	
 	switch(key)
 	{
 		//UP
