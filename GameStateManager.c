@@ -489,7 +489,7 @@ void Draw_Dungeon(int use_curses)
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
-			if(character_list[0].pos.y == (d/81)+1 && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
+			if(character_list[0].pos.y == (d/81) && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
 			{
 				printf("%c", '@');
 			}
