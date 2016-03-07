@@ -952,6 +952,7 @@ printf("Key = %d\n", key);
 		
 		//UP_STAIRS
 		case 60:
+			printf("Val = %d\n", UP_STAIRS);
 			return UP_STAIRS;
 		break;
 	}
