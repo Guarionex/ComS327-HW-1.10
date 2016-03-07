@@ -23,9 +23,9 @@ void Set_Player(character_t player)
 	player_character = player;
 }
 
-void Set_Stairs(stair_t stairs, stair_direction_t direction)
+void Set_Stairs(stair_t stairs)
 {
-	if(direction == DOWNSTAIRS)
+	if(stairs.direction == DOWNSTAIRS)
 	{
 		stair_set[0] = stairs;
 	}
