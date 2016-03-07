@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
 			Set_Player(Place_Player(dungeon, &int_seed));
 			Set_Debug_Info(int_seed, num_rooms);
 			populate_monsters(nummon_value, &int_seed);
-			stair_t down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS) 
+			stair_t down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS) ;
 			Set_Stairs(down);
 			if(level > 0)
 			{
