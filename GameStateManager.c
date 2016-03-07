@@ -672,11 +672,6 @@ int turn(int *seed, int num_mon)
 				free(distance_dungeon_tunneler);
 				break;
 			}
-			if(game_state == 4)
-			{
-				dead_monsters = 0;
-				num_characters = num_mon+1;
-			}
 			if(game_state != 4)
 			{
 				//dead_monsters = 0;
@@ -694,6 +689,12 @@ int turn(int *seed, int num_mon)
 			}
 			distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			set_distance_tunneler(distance_dungeon_tunneler);
+			if(game_state == 4)
+			{
+				dead_monsters = 0;
+				num_characters = num_mon+1;
+				game_state = 0;
+			}
 			update_telepath();
 			line_of_sight(current_dungeon);
 			Draw_Dungeon(1);
