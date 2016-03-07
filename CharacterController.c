@@ -283,7 +283,7 @@ int check_character_map(int x, int y)
 	return character_map[y*80+x];
 }
 
-bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
+bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...)
 {
 	int index = get_character_index_by_id(character_id);
 	if(index < 0 || character_list[index].alive == FALSE) 
@@ -291,26 +291,27 @@ bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon)
 		return FALSE;
 	}
 	
-	
+	va_list ap;
+	va_start(ap, dungeon);
 	
 	switch(character_list[index].character_type)
 	{
 		case PLAYER:
-		return move_player(&character_list[index], rand()%9, dungeon);
+		return move_player(&character_list[index], va_arg(ap, pos_t), dungeon);
 		break;
 		
 		case MONSTER:
 		return move_monster(&character_list[index], dungeon);
 		break;
 	}
-	
+	va_end(ap);
 	return FALSE;
 }
 
-bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dungeon)
+bool move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **dungeon)
 {
-	int a, b;
-	switch(to)
+	int a = to.x, b = to.y;
+	/*switch(to)
 	{
 		case 0:
 		a = -1;
@@ -361,7 +362,7 @@ bool move_player(character_t *player_to_move, int to, Dungeon_Space_Struct **dun
 		a = 0;
 		b =0;
 		break;
-	}
+	}*/
 	
 	switch(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type)
 	{

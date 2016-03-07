@@ -578,7 +578,7 @@ void turn(int *seed)
 	{
 		character_t *current = (character_t *) binheap_remove_min(&h);
 		
-		
+		pos_t moving_to = NULL_POS;
 		
 		if(current->character_type == PLAYER)
 		{
@@ -597,6 +597,10 @@ void turn(int *seed)
 			//sleep(3);
 			define_new_keys();
 			input = input_handler(getch());
+			if(input < 8)
+			{
+				moving_to = get_direction(input);
+			}
 			//printf("Input is = %d\n", input);
 			if(character_list[0].alive == FALSE)
 			{
@@ -616,7 +620,7 @@ void turn(int *seed)
 			}
 		}
 		
-		move_character(current->id, seed, current_dungeon);
+		move_character(current->id, seed, current_dungeon, moving_to);
 		current->timer += 100/current->speed;
 		/*nodes[p] = */binheap_insert(&h, current);
 	}
@@ -787,6 +791,47 @@ int input_handler(int key)
 	
 	
 	return key;
+}
+
+pos_t get_direction(command_t key)
+{
+	pos_t direction;
+	switch(key)
+	{
+		case UP:
+			return direction = {.x = 0, .y = 1};
+		break;
+		
+		case DOWN:
+			return direction = {.x = 0, .y = -1};
+		break;
+		
+		case LEFT:
+			return direction = {.x = -1, .y = 0};
+		break;
+		
+		case RIGHT:
+			return direction = {.x = 1, .y = 0};
+		break;
+		
+		case UP_LEFT:
+			return direction = {.x = -1, .y = 1};
+		break;
+		
+		case UP_RIGHT:
+			return direction = {.x = 1, .y = 1};
+		break;
+		
+		case DOWN_LEFT:
+			return direction = {.x = -1, .y = -1};
+		break;
+		
+		case DOWN_RIGH:
+			return direction = {.x = 1, .y = -1};
+		break;
+	}
+	
+	return NULL_POS;
 }
 
 void define_new_keys(void)
