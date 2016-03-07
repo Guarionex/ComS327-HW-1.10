@@ -24,7 +24,9 @@ typedef enum command
 	DOWN_RIGHT,
 	REST,
 	MONSTER_LIST,
-	ESCAPE
+	ESCAPE,
+	SCROLL_UP,
+	SCROLL_DOWN
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;

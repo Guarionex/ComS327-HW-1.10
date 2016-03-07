@@ -9,6 +9,7 @@ char *distance_dungeon_tunneler;
 int seed_state, num_rooms_state;
 int game_state = 0;
 int input = -1;
+int scroll_index = 0;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -513,7 +514,7 @@ void Draw_Monster_List(void)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
-	for(m = 1; m < num_characters; m++)
+	for(m = 1 + scroll_index; m < num_characters; m++)
 	{
 		if(character_list[m].alive == FALSE)
 		{
@@ -664,6 +665,19 @@ void turn(int *seed)
 					}
 					break;
 				}
+				else if((num_characters - 1)- dead_monsters > 23 && ((menu_input == 12 && ((num_characters - 1)- dead_monsters) - scroll_index > 23) || (menu_input == 11 && scroll_index > 0)))
+				{
+					if(menu_input == 12)
+					{
+						scroll_index++;
+						continue;
+					}
+					else if(menu_input == 11)
+					{
+						scroll_index--;
+						continue;
+					}
+				}
 			}
 			//printf("Input is = %d\n", input);
 		}
@@ -685,10 +699,6 @@ int input_handler(int key)
 	switch(key)
 	{
 		//UP
-		case KEY_UP:
-			return UP;
-		break;
-		
 		case 107:
 			return UP;
 		break;
@@ -706,10 +716,6 @@ int input_handler(int key)
 		break;
 		
 		//DOWN
-		case KEY_DOWN:
-			return DOWN;
-		break;
-		
 		case 106:
 			return DOWN;
 		break;
@@ -727,10 +733,6 @@ int input_handler(int key)
 		break;
 		
 		//LEFT
-		case KEY_LEFT:
-			return LEFT;
-		break;
-		
 		case 104:
 			return LEFT;
 		break;
@@ -748,10 +750,6 @@ int input_handler(int key)
 		break;
 		
 		//RIGHT
-		case KEY_RIGHT:
-			return RIGHT;
-		break;
-		
 		case 108:
 			return RIGHT;
 		break;
@@ -857,6 +855,16 @@ int input_handler(int key)
 		//ESCAPE
 		case 27:
 			return ESCAPE;
+		break;
+		
+		//SCROLL_UP
+		case KEY_UP:
+			return SCROLL_UP;
+		break;
+		
+		//SCROLL_DOWN
+		case KEY_DOWN:
+			return SCROLL_DOWN;
 		break;
 	}
 	
