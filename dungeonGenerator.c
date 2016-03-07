@@ -194,8 +194,6 @@ int main(int argc, char *argv[])
 				seed = time(NULL);
 				srand(seed);
 				int_seed = seed;
-				//endwin();
-				//printf("Start\n");
 				game_state = 4;
 			}
 			dungeon = Generate_Map(&int_seed, &num_rooms);
@@ -207,7 +205,6 @@ int main(int argc, char *argv[])
 			stair_t down;
 			if(stair_player == UPSTAIRS)
 			{
-				endwin();
 				printf("I went upstairs\n");
 				down.location.x = player_to_set.pos.x;
 				down.location.y = player_to_set.pos.y;
