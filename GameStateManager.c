@@ -624,6 +624,8 @@ void turn(int *seed)
 				int menu_input = input_handler(getch());
 				if(menu_input == ESCAPE)
 				{
+					Draw_Dungeon(1);
+					input = input_handler(getch());
 					break;
 				}
 			}
