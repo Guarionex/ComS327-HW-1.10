@@ -193,6 +193,7 @@ int main(int argc, char *argv[])
 			{
 				endwin();
 				printf("Start\n");
+				game_state = 0;
 			}
 			Set_Dungeon(dungeon);
 			Set_Player(Place_Player(dungeon, &int_seed));
