@@ -188,12 +188,12 @@ int main(int argc, char *argv[])
 		keypad(stdscr, 1);
 		while(game_state == 0 || game_state == 3)
 		{
+			dungeon = Generate_Map(&int_seed, &num_rooms);
 			if(game_state == 3)
 			{
 				endwin();
 				printf("Start\n");
 			}
-			dungeon = Generate_Map(&int_seed, &num_rooms);
 			Set_Dungeon(dungeon);
 			Set_Player(Place_Player(dungeon, &int_seed));
 			Set_Debug_Info(int_seed, num_rooms);
