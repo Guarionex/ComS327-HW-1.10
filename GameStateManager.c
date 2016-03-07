@@ -606,6 +606,14 @@ void turn(int *seed)
 		
 		if(current->character_type == PLAYER)
 		{
+			if(character_list[0].alive == FALSE)
+			{
+				//printf("Player is dead\n");
+				game_state = 1;
+				free(distance_dungeon);
+				free(distance_dungeon_tunneler);
+				break;
+			}
 			free(distance_dungeon);
 			Destroy_Graph(&graphed_dungeon);
 			distance_dungeon = Generate_Distance_Dungeon(FALSE);
@@ -645,14 +653,7 @@ void turn(int *seed)
 				}
 			}
 			//printf("Input is = %d\n", input);
-			if(character_list[0].alive == FALSE)
-			{
-				//printf("Player is dead\n");
-				game_state = 1;
-				free(distance_dungeon);
-				free(distance_dungeon_tunneler);
-				break;
-			}
+			
 			if(dead_monsters == num_characters - 1)
 			{
 				free(distance_dungeon);
