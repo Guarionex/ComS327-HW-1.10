@@ -597,7 +597,7 @@ void turn(int *seed)
 			//sleep(3);
 			define_new_keys();
 			input = input_handler(getch());
-			if(input < 8)
+			if(input < 9)
 			{
 				moving_to = get_direction(input);
 			}
@@ -786,6 +786,11 @@ int input_handler(int key)
 		
 		case 1003:
 			return DOWN_RIGHT;
+		break;
+		
+		//REST
+		case 32:
+			return REST;
 		break;
 	}
 	

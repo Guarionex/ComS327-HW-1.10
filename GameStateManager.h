@@ -21,7 +21,8 @@ typedef enum command
 	UP_LEFT,
 	UP_RIGHT,
 	DOWN_LEFT,
-	DOWN_RIGHT
+	DOWN_RIGHT,
+	REST
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
