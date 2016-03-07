@@ -204,7 +204,10 @@ int main(int argc, char *argv[])
 			Set_Player(player_to_set);
 			Set_Debug_Info(int_seed, num_rooms);
 			populate_monsters(nummon_value, &int_seed);
-			stair_t down;
+			stair_t down, up;
+			up.location.x = -1;
+			up.location.y = -1;
+			up.direction = UPSTAIRS;
 			if(stair_used == UPSTAIRS)
 			{
 				down.location.x = player_to_set.pos.x;
@@ -214,7 +217,7 @@ int main(int argc, char *argv[])
 			else 
 			{
 				down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS) ;
-				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.pos.y)
+				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.location.y)
 					{
 						down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
 					}
