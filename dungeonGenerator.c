@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
 			//printf("\n");
 			//distance_dungeon = Generate_Distance_Dungeon(FALSE);
 			//Draw_Distance_Dungeon(distance_dungeon);
-			Destroy_All();
+			//Destroy_All();
 			//printf("\n");
 			//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			level = turn(&int_seed);
