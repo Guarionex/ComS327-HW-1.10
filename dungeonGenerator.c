@@ -195,7 +195,7 @@ int main(int argc, char *argv[])
 			populate_monsters(nummon_value, &int_seed);
 			stair_t down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS) ;
 			Set_Stairs(down);
-			if(level > 0)
+			/*if(level > 0)
 			{
 				stair_t up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
 				while(down.location.x == up.location.x && down.location.y == up.location.y)
@@ -203,7 +203,7 @@ int main(int argc, char *argv[])
 					up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
 				}
 				Set_Stairs(up);
-			}
+			}*/
 			//Draw_Dungeon(1);
 			//printf("\n");
 			//distance_dungeon = Generate_Distance_Dungeon(FALSE);
