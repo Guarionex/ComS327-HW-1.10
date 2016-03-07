@@ -509,7 +509,7 @@ void Draw_Monster_List(void)
 	clear();
 	for(m = 1; m < num_characters; m++)
 	{
-		sprintf(monster_info[m-1], "%x: at x = %d, y = %d", character_list.character_parent.monster.abilities, character_list.pos.x, character_list.pos.y);
+		sprintf(monster_info[m-1], "%x: at x = %d, y = %d", character_list[m].character_parent.monster.abilities, character_list[m].pos.x, character_list[m].pos.y);
 		int c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
