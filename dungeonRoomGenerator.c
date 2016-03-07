@@ -110,7 +110,7 @@ stair_t Place_Stairs(Dungeon_Space_Struct **dungeon, int *seed, stair_direction_
 	pos_t new_pos = open_pos[rand()%open_count];
 	//pc.cell = dungeon[pc.pos.x][pc.pos.y];
 	stair_well.location = new_pos;
-	stair_well.direction = rand()%2
+	stair_well.direction = rand()%2;
 	free(open_pos);
 	return stair_well;
 }
