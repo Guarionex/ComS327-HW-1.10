@@ -27,7 +27,9 @@ typedef enum command
 	MONSTER_LIST,
 	ESCAPE,
 	SCROLL_UP,
-	SCROLL_DOWN
+	SCROLL_DOWN,
+	DOWN_STAIRS,
+	UP_STAIRS
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
@@ -46,7 +48,7 @@ void Draw_Dungeon(int use_curses);
 void Draw_Monster_List(void);
 void Draw_Distance_Dungeon(char *char_map);
 void Destroy_All(void);
-void turn(int *seed);
+int turn(int *seed);
 int input_handler(int key);
 pos_t get_direction(command_t key);
 void define_new_keys(void);

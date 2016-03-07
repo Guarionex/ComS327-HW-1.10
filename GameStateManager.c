@@ -496,7 +496,7 @@ void Draw_Dungeon(int use_curses)
 	}
 	
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d,Input = %d, Monsters alive = %d, Stair = [%d][%d]", seed_state, input, (num_characters - 1) - dead_monsters, stair_set[0].location.x, stair_set[0].location.y);
+	sprintf(debug_line, "Seed = %d,Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
 	if(use_curses == 1)
 	{
 		clear();
@@ -619,7 +619,7 @@ void Destroy_All(void)
 	//free(distance_map);
 }
 
-void turn(int *seed)
+int turn(int *seed)
 {
 	//binheap_node_t *nodes[num_characters];
 	
@@ -688,6 +688,17 @@ void turn(int *seed)
 				{
 					moving_to = get_direction(input);
 				}
+				if(input == 13 || input == 14)
+				{
+					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
+					{
+						level++;
+						/*Destroy_Characters();
+						//Destroy_All();
+						binheap_delete(&h);
+						return level;*/
+					}
+				}
 				while(input == 9)
 				{
 					Draw_Monster_List();
@@ -734,8 +745,8 @@ void turn(int *seed)
 	
 	Destroy_Characters();
 	//Destroy_All();
-	
 	binheap_delete(&h);
+	return level;
 }
 
 int input_handler(int key)
@@ -910,6 +921,16 @@ int input_handler(int key)
 		//SCROLL_DOWN
 		case KEY_DOWN:
 			return SCROLL_DOWN;
+		break;
+		
+		//DOWN_STAIRS
+		case 62:
+			return DOWN_STAIRS;
+		break;
+		
+		//UP_STAIRS
+		case 60:
+			return UP_STAIRS;
 		break;
 	}
 	
