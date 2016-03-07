@@ -10,6 +10,8 @@ int seed_state, num_rooms_state;
 int game_state = 0;
 int input = -1;
 int scroll_index = 0;
+int level = 0;
+stair_t stair_set[2];
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -19,6 +21,18 @@ void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 void Set_Player(character_t player)
 {
 	player_character = player;
+}
+
+void Set_Stairs(stair_t stairs, stair_direction_t direction)
+{
+	if(direction == DOWNSTAIRS)
+	{
+		stair_set[0] = stairs;
+	}
+	else
+	{
+		stair_set[1] = stairs;
+	}
 }
 
 void Set_Debug_Info(int seed, int num_rooms)
@@ -453,8 +467,18 @@ void Draw_Dungeon(int use_curses)
 					
 					break;
 					case ROOM :
-					
-						renderer[y*81+x] = '.';
+						if(stair_set[0].location.x == x && stair_set[0].location.y == y)
+						{
+							renderer[y*81+x] = '>';
+						}
+						else if(level > 0 && stair_set[1].location.x == x && stair_set[1].location.y == y)
+						{
+							renderer[y*81+x] = '<';
+						}
+						else
+						{
+							renderer[y*81+x] = '.';
+						}
 						//printf("%c", renderer[y*80+x]);
 					
 					break;

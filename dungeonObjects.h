@@ -18,6 +18,18 @@ typedef struct position
 
 extern const pos_t NULL_POS;
 
+typedef enum stair_direction
+{
+	DOWNSTAIRS,
+	UPSTAIRS
+} stair_direction_t;
+
+typedef struct stair
+{
+	pos_t location;
+	stair_direction_t direction;
+} stair_t;
+
 typedef enum
 {
   ROCK,

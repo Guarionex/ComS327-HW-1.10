@@ -8,6 +8,7 @@
 
 Dungeon_Space_Room generateRoom();//lol seed
 Dungeon_Space_Room *generateMultipleRooms(int *seed);
+stair_t Place_Stairs(Dungeon_Space_Struct **dungeon, int *seed, stair_direction_t direction);
 
 
 #endif
