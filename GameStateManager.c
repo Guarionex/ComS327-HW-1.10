@@ -715,6 +715,7 @@ int turn(int *seed)
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[1].pos.y == stair_set[1].location.y)
 					{
+						endwin();
 						level--;
 						game_state = 3;
 					}
