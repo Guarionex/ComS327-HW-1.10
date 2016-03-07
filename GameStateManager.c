@@ -646,7 +646,8 @@ void turn(int *seed)
 			Draw_Dungeon(1);
 			//sleep(3);
 			define_new_keys();
-			while(input < 0 || input > 8)
+			input = -1;
+			while(input < 0)
 			{
 				input = input_handler(getch());
 				if(input < 9)
