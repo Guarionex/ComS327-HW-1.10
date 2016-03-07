@@ -469,7 +469,7 @@ void Draw_Dungeon(int use_curses)
 	}
 	
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d", seed_state, num_rooms_state, input);
+	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d, Monsters alive = %d", seed_state, num_rooms_state, input, (num_characters - 1) - dead_monsters);
 	if(use_curses == 1)
 	{
 		clear();
@@ -507,14 +507,14 @@ void Draw_Monster_List(void)
 {
 	char monster_info[num_characters-1][80];
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d", seed_state, num_rooms_state, input);
+	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d, Monsters alive = %d"", seed_state, num_rooms_state, input, (num_characters - 1) - dead_monsters);
 	int m, d, dead_count = 0;
 	clear();
 	for(d = 0; d < strlen(debug_line); d++)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
-	for(m = 1 + scroll_index; (m < num_characters) && (m < 24); m++)
+	for(m = 1 + scroll_index; (m < num_characters) && (m < 24+scroll_index); m++)
 	{
 		/*if(m > 23)
 		{
@@ -683,10 +683,10 @@ void turn(int *seed)
 					}
 				}
 			}
-			while(input > 15)
+			/*while(input > 8)
 			{
 				input = input_handler(getch());
-			}
+			}*/
 			//printf("Input is = %d\n", input);
 		}
 		
