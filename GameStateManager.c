@@ -713,6 +713,11 @@ int turn(int *seed)
 						binheap_delete(&h);
 						return level;*/
 					}
+					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[1].pos.y == stair_set[1].location.y)
+					{
+						level--;
+						game_state = 3;
+					}
 				}
 				while(input == 9)
 				{
