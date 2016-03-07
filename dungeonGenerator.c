@@ -212,6 +212,10 @@ int main(int argc, char *argv[])
 			//printf("\n");
 			//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			level = turn(&int_seed);
+			if(game_state == 3)
+			{
+				game_state = 0;
+			}
 			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 			Destroy_All();
 		}
