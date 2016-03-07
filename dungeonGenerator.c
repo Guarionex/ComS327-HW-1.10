@@ -204,10 +204,7 @@ int main(int argc, char *argv[])
 			Set_Player(player_to_set);
 			Set_Debug_Info(int_seed, num_rooms);
 			populate_monsters(nummon_value, &int_seed);
-			stair_t down, up;
-			up.location.x = -1;
-			up.location.y = -1;
-			up.direction = UPSTAIRS;
+			stair_t down;
 			if(stair_player == UPSTAIRS)
 			{
 				endwin();
