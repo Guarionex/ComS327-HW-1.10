@@ -666,6 +666,12 @@ int turn(int *seed)
 				game_state = 2;
 				break;
 			}
+			if(game_state == 3)
+			{
+				free(distance_dungeon);
+				free(distance_dungeon_tunneler);
+				break;
+			}
 			free(distance_dungeon);
 			Destroy_Graph(&graphed_dungeon);
 			distance_dungeon = Generate_Distance_Dungeon(FALSE);
@@ -681,7 +687,7 @@ int turn(int *seed)
 			//sleep(3);
 			define_new_keys();
 			input = -1;
-			while(input < 0)
+			while(input < 0 && game_state != 3)
 			{
 				input = input_handler(getch());
 				if(input < 9)
@@ -693,12 +699,13 @@ int turn(int *seed)
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
 					{
 						level++;
-						free(distance_dungeon);
-						free(distance_dungeon_tunneler);
-						Destroy_Characters();
+						//free(distance_dungeon);
+						//free(distance_dungeon_tunneler);
+						game_state = 3;
+						/*Destroy_Characters();
 						//Destroy_All();
 						binheap_delete(&h);
-						return level;
+						return level;*/
 					}
 				}
 				while(input == 9)
