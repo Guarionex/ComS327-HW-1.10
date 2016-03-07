@@ -702,6 +702,7 @@ int turn(int *seed)
 				}
 				if(input == 13 || input == 14)
 				{
+					printf("Made it with %d", input);
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
 					{
 						level++;
