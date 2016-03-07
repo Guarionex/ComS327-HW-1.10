@@ -526,7 +526,7 @@ void Draw_Monster_List(void)
 		int c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
-			mvaddch(m - dead_count, c, monster_info[m-1][c]);
+			mvaddch(m - dead_count - scroll_index, c, monster_info[m-1][c]);
 		}
 	}
 	refresh();
