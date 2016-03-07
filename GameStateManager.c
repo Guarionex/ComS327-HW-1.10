@@ -12,6 +12,7 @@ int input = -1;
 int scroll_index = 0;
 int level = 0;
 stair_t stair_set[2];
+pos_t stair_player;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -710,21 +711,16 @@ int turn(int *seed, int num_mon)
 				}
 				if(input == 13 || input == 14)
 				{
-					printf("Made it with %d", input);
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
 					{
 						level++;
-						//free(distance_dungeon);
-						//free(distance_dungeon_tunneler);
+						stair_player = {character_list[0].pos.x, character_list[0].pos.y};
 						game_state = 3;
-						/*Destroy_Characters();
-						//Destroy_All();
-						binheap_delete(&h);
-						return level;*/
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[0].pos.y == stair_set[1].location.y)
 					{
 						level--;
+						stair_player = {character_list[0].pos.x, character_list[0].pos.y};
 						game_state = 3;
 					}
 				}

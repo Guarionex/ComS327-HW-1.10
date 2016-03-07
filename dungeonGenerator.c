@@ -180,6 +180,7 @@ int main(int argc, char *argv[])
 		
 		int int_seed = seed;
 		int level = 0;
+		int stair_used = -1;
 		
 		initscr();
 		raw();
@@ -199,17 +200,42 @@ int main(int argc, char *argv[])
 			}
 			dungeon = Generate_Map(&int_seed, &num_rooms);
 			Set_Dungeon(dungeon);
-			Set_Player(Place_Player(dungeon, &int_seed));
+			character_t player_to_set = Place_Player(dungeon, &int_seed)
+			Set_Player(player_to_set);
 			Set_Debug_Info(int_seed, num_rooms);
 			populate_monsters(nummon_value, &int_seed);
-			stair_t down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS) ;
+			stair_t down;
+			if(stair_used == UPSTAIRS)
+			{
+				down.loaction.x = player_to_set.pos.x;
+				down.loaction.y = player_to_set.pos.y;
+				down.direction = DOWNSTAIRS;
+			}
+			else 
+			{
+				down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS) ;
+				while(level > 0 && down.location.x == up.location.x && down.location.y == up.location.y)
+					{
+						down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
+					}
+			}
 			Set_Stairs(down);
 			if(level > 0)
 			{
-				stair_t up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
-				while(down.location.x == up.location.x && down.location.y == up.location.y)
+				stair_t up;
+				if(stair_used == DOWNSTAIRS)
+				{
+					up.loaction.x = player_to_set.pos.x;
+					up.loaction.y = player_to_set.pos.y;
+					up.direction = UPSTAIRS;
+				}
+				else 
 				{
 					up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
+					while(down.location.x == up.location.x && down.location.y == up.location.y)
+					{
+						up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
+					}
 				}
 				Set_Stairs(up);
 			}
@@ -221,6 +247,14 @@ int main(int argc, char *argv[])
 			//printf("\n");
 			//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			level = turn(&int_seed, nummon_value);
+			if(stair_player.x == down.location.x && stair_player.y == down.location.y)
+			{
+				stair_used = DOWNSTAIRS;
+			}
+			else if(stair_player.x == up.location.x && stair_player.y == up.location.y)
+			{
+				stair_used = UPSTAIRS;
+			}
 			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 			Destroy_All();
 		}
