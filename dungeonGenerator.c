@@ -217,7 +217,7 @@ int main(int argc, char *argv[])
 			else 
 			{
 				down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS) ;
-				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.location.y)
+				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.pos.y)
 					{
 						down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
 					}
