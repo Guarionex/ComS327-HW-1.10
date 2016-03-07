@@ -37,12 +37,12 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 				break;
 				
 				case CORRIDOR:
-					new_pos.x = x;
+					/*new_pos.x = x;
 					new_pos.y = y;
 					open_count++;
 					open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
 					open_pos[open_count-1] = new_pos;
-					open_pos[open_count] = NULL_POS;
+					open_pos[open_count] = NULL_POS;*/
 				break;
 			}
 		}
