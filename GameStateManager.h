@@ -38,7 +38,7 @@ extern char *distance_map;
 extern char *distance_dungeon;
 extern char *distance_dungeon_tunneler;
 extern int game_state;
-extern pos_t stair_player;
+extern int stair_player;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon);
 void Set_Player(character_t player);

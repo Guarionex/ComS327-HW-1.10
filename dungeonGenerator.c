@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
 		
 		int int_seed = seed;
 		int level = 0;
-		int stair_used = -1;
+		//int stair_used = -1;
 		
 		initscr();
 		raw();
@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
 			up.location.x = -1;
 			up.location.y = -1;
 			up.direction = UPSTAIRS;
-			if(stair_used == UPSTAIRS)
+			if(stair_player == UPSTAIRS)
 			{
 				endwin();
 				printf("I went upstairs\n");
@@ -229,7 +229,7 @@ int main(int argc, char *argv[])
 			if(level > 0)
 			{
 				stair_t up;
-				if(stair_used == DOWNSTAIRS)
+				if(stair_player == DOWNSTAIRS)
 				{
 					up.location.x = player_to_set.pos.x;
 					up.location.y = player_to_set.pos.y;
@@ -253,14 +253,7 @@ int main(int argc, char *argv[])
 			//printf("\n");
 			//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 			level = turn(&int_seed, nummon_value);
-			if(stair_player.x == down.location.x && stair_player.y == down.location.y)
-			{
-				stair_used = DOWNSTAIRS;
-			}
-			else if(stair_player.x == up.location.x && stair_player.y == up.location.y)
-			{
-				stair_used = UPSTAIRS;
-			}
+			
 			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 			Destroy_All();
 		}

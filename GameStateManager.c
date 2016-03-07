@@ -12,7 +12,7 @@ int input = -1;
 int scroll_index = 0;
 int level = 0;
 stair_t stair_set[2];
-pos_t stair_player;
+int stair_player = -1;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -714,15 +714,13 @@ int turn(int *seed, int num_mon)
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
 					{
 						level++;
-						stair_player.x = character_list[0].pos.x;
-						stair_player.y = character_list[0].pos.y;
+						stair_player = DOWNSTAIRS;
 						game_state = 3;
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[0].pos.y == stair_set[1].location.y)
 					{
 						level--;
-						stair_player.x = character_list[0].pos.x;
-						stair_player.y = character_list[0].pos.y;
+						stair_player = UPSTAIRS;
 						game_state = 3;
 					}
 				}
