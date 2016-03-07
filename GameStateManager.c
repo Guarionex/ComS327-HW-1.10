@@ -674,6 +674,7 @@ int turn(int *seed)
 			}
 			if(game_state != 4)
 			{
+				dead_monsters = 0;
 				free(distance_dungeon);
 				Destroy_Graph(&graphed_dungeon);
 			}
@@ -700,7 +701,7 @@ int turn(int *seed)
 				{
 					moving_to = get_direction(input);
 				}
-				if(input == 13 || input == 14)
+				else if(input == 13 || input == 14)
 				{
 					printf("Made it with %d", input);
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
@@ -716,6 +717,7 @@ int turn(int *seed)
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[1].pos.y == stair_set[1].location.y)
 					{
+						endwin();
 						printf("Made it\n");
 						level--;
 						game_state = 3;
@@ -773,7 +775,7 @@ int turn(int *seed)
 
 int input_handler(int key)
 {
-endwin();
+//endwin();
 printf("Key = %d\n", key);	
 	switch(key)
 	{
@@ -953,7 +955,6 @@ printf("Key = %d\n", key);
 		
 		//UP_STAIRS
 		case 60:
-			printf("Val = %d\n", UP_STAIRS);
 			return UP_STAIRS;
 		break;
 	}
