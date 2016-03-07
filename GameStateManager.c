@@ -685,7 +685,7 @@ void turn(int *seed)
 						}
 					}
 				}
-				if(input > 15)
+				if(input > 8)
 				{
 					input = -1;
 				}
