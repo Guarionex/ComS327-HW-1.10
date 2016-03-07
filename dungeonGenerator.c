@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
 			{
 				while(1)
 				{
-					mvaddch(0, 0, "!");
+					mvaddch(0, 0, '!');
 				}
 			}
 			dungeon = Generate_Map(&int_seed, &num_rooms);
