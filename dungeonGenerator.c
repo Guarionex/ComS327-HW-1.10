@@ -205,14 +205,12 @@ int main(int argc, char *argv[])
 			stair_t down;
 			if(stair_player == UPSTAIRS)
 			{
-				printf("I went upstairs\n");
 				down.location.x = player_to_set.pos.x;
 				down.location.y = player_to_set.pos.y;
 				down.direction = DOWNSTAIRS;
 			}
 			else 
 			{
-				printf("Random stairs\n");
 				down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
 				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.pos.y)
 					{
