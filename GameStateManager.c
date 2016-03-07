@@ -714,13 +714,15 @@ int turn(int *seed, int num_mon)
 					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
 					{
 						level++;
-						stair_player = {character_list[0].pos.x, character_list[0].pos.y};
+						stair_player.x = character_list[0].pos.x
+						stair_player.y = character_list[0].pos.y;
 						game_state = 3;
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[0].pos.y == stair_set[1].location.y)
 					{
 						level--;
-						stair_player = {character_list[0].pos.x, character_list[0].pos.y};
+						stair_player.x = character_list[0].pos.x
+						stair_player.y = character_list[0].pos.y;
 						game_state = 3;
 					}
 				}
