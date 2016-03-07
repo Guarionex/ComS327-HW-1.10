@@ -792,6 +792,14 @@ int input_handler(int key)
 		case 32:
 			return REST;
 		break;
+		
+		case 1005:
+			return REST;
+		break;
+		
+		case 1040:
+			return REST;
+		break;
 	}
 	
 	
@@ -849,6 +857,12 @@ pos_t get_direction(command_t key)
 			direction.x = 1;
 			direction.y = 1;
 			return direction;
+		break;
+			direction.x = 0;
+			direction.y = 0;
+			return direction;
+		case REST:
+		
 		break;
 	}
 	
