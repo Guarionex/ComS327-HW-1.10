@@ -502,6 +502,23 @@ void Draw_Dungeon(int use_curses)
 	
 }
 
+void Draw_Monster_List(void)
+{
+	char monster_info[num_characters-1][80];
+	int m;
+	clear();
+	for(m = 1; m < num_characters; m++)
+	{
+		sprintf(monster_info[m-1], "%x: at x = %d, y = %d", character_list.character_parent.monster.abilities, character_list.pos.x, character_list.pos.y);
+		int c;
+		for(c = 0; c < strlen(monster_info[m-1]); c++)
+		{
+			mvaddch(m-1, c, monster_info[m-1][c]);
+		}
+	}
+	refresh();
+}
+
 void Draw_Distance_Dungeon(char *char_map)
 {
 	int x;
@@ -578,7 +595,7 @@ void turn(int *seed)
 	{
 		character_t *current = (character_t *) binheap_remove_min(&h);
 		
-		pos_t moving_to = NULL_POS;
+		pos_t moving_to = {0, 0};
 		
 		if(current->character_type == PLAYER)
 		{
@@ -600,6 +617,15 @@ void turn(int *seed)
 			if(input < 9)
 			{
 				moving_to = get_direction(input);
+			}
+			while(input == 9)
+			{
+				Draw_Monster_List();
+				int menu_input = input_handler(getch());
+				if(menu_input == ESCAPE)
+				{
+					break;
+				}
 			}
 			//printf("Input is = %d\n", input);
 			if(character_list[0].alive == FALSE)
@@ -800,6 +826,16 @@ int input_handler(int key)
 		case 1040:
 			return REST;
 		break;
+		
+		//MONSTER_LIST
+		case 109:
+			return MONSTER_LIST;
+		break;
+		
+		//ESCAPE
+		case 27:
+			return ESCAPE;
+		break;
 	}
 	
 	
@@ -808,7 +844,7 @@ int input_handler(int key)
 
 pos_t get_direction(command_t key)
 {
-	pos_t direction;
+	pos_t direction = {0, 0};
 	switch(key)
 	{
 		case UP:
@@ -858,15 +894,18 @@ pos_t get_direction(command_t key)
 			direction.y = 1;
 			return direction;
 		break;
+			
+		case REST:
 			direction.x = 0;
 			direction.y = 0;
 			return direction;
-		case REST:
+		break;
 		
+		default:
 		break;
 	}
 	
-	return NULL_POS;
+	return direction;
 }
 
 void define_new_keys(void)

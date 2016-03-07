@@ -22,7 +22,9 @@ typedef enum command
 	UP_RIGHT,
 	DOWN_LEFT,
 	DOWN_RIGHT,
-	REST
+	REST,
+	MONSTER_LIST,
+	ESCAPE
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
@@ -37,6 +39,7 @@ void Set_Debug_Info(int seed, int num_rooms);
 void populate_monsters(int num_mon, int *seed);
 char *Generate_Distance_Dungeon(bool tunneler);
 void Draw_Dungeon(int use_curses);
+void Draw_Monster_List(void);
 void Draw_Distance_Dungeon(char *char_map);
 void Destroy_All(void);
 void turn(int *seed);
