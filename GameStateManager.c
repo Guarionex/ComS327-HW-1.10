@@ -33,7 +33,7 @@ void Set_Stairs(stair_t stairs)
 	}
 	else
 	{
-		//printf("I'm there\n");
+		printf("Stair = [%d][%d]\n", stairs.location.x, stairs.location.y);
 		stair_set[1] = stairs;
 	}
 }

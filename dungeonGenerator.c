@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
 			Set_Dungeon(dungeon);
 			if(game_state == 3)
 			{
-				//endwin();
+				endwin();
 				//printf("Start\n");
 				game_state = 4;
 			}
