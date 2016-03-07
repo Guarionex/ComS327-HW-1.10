@@ -646,48 +646,46 @@ void turn(int *seed)
 			Draw_Dungeon(1);
 			//sleep(3);
 			define_new_keys();
-			input = input_handler(getch());
-			if(input < 9)
-			{
-				moving_to = get_direction(input);
-			}
-			while(input == 9)
-			{
-				Draw_Monster_List();
-				int menu_input = input_handler(getch());
-				if(menu_input == ESCAPE)
-				{
-					Draw_Dungeon(1);
-					input = input_handler(getch());
-					if(input < 9)
-					{
-						moving_to = get_direction(input);
-					}
-					if(input == 9)
-					{
-						continue;
-					}
-					break;
-				}
-				else if((num_characters - 1)- dead_monsters > 23 && ((menu_input == 12 && ((num_characters - 1)- dead_monsters) - scroll_index > 23) || (menu_input == 11 && scroll_index > 0)))
-				{
-					if(menu_input == 12)
-					{
-						scroll_index++;
-						continue;
-					}
-					else if(menu_input == 11)
-					{
-						scroll_index--;
-						continue;
-					}
-				}
-			}
-			/*while(input > 8)
+			while(input < 9)
 			{
 				input = input_handler(getch());
-			}*/
-			//printf("Input is = %d\n", input);
+				if(input < 9)
+				{
+					moving_to = get_direction(input);
+				}
+				while(input == 9)
+				{
+					Draw_Monster_List();
+					int menu_input = input_handler(getch());
+					if(menu_input == ESCAPE)
+					{
+						Draw_Dungeon(1);
+						input = input_handler(getch());
+						if(input < 9)
+						{
+							moving_to = get_direction(input);
+						}
+						if(input == 9)
+						{
+							continue;
+						}
+						break;
+					}
+					else if((num_characters - 1)- dead_monsters > 23 && ((menu_input == 12 && ((num_characters - 1)- dead_monsters) - scroll_index > 23) || (menu_input == 11 && scroll_index > 0)))
+					{
+						if(menu_input == 12)
+						{
+							scroll_index++;
+							continue;
+						}
+						else if(menu_input == 11)
+						{
+							scroll_index--;
+							continue;
+						}
+					}
+				}
+			}
 		}
 		
 		move_character(current->id, seed, current_dungeon, moving_to);
