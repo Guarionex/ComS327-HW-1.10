@@ -672,6 +672,11 @@ int turn(int *seed, int num_mon)
 				free(distance_dungeon_tunneler);
 				break;
 			}
+			if(game_state == 4)
+			{
+				dead_monsters = 0;
+				num_characters = num_mon+1;
+			}
 			if(game_state != 4)
 			{
 				//dead_monsters = 0;
