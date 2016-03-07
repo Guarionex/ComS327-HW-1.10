@@ -674,8 +674,8 @@ int turn(int *seed, int num_mon)
 			}
 			if(game_state != 4)
 			{
-				dead_monsters = 0;
-				num_characters = num_mon+1;
+				//dead_monsters = 0;
+				//num_characters = num_mon+1;
 				free(distance_dungeon);
 				Destroy_Graph(&graphed_dungeon);
 			}
@@ -702,7 +702,6 @@ int turn(int *seed, int num_mon)
 				{
 					moving_to = get_direction(input);
 				}
-				printf("Made it outside with %d", input);
 				if(input == 13 || input == 14)
 				{
 					printf("Made it with %d", input);
@@ -719,8 +718,6 @@ int turn(int *seed, int num_mon)
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[0].pos.y == stair_set[1].location.y)
 					{
-						endwin();
-						printf("Made it\n");
 						level--;
 						game_state = 3;
 					}
@@ -777,8 +774,6 @@ int turn(int *seed, int num_mon)
 
 int input_handler(int key)
 {
-//endwin();
-printf("Key = %d\n", key);	
 	switch(key)
 	{
 		//UP
