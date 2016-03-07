@@ -507,7 +507,7 @@ void Draw_Monster_List(void)
 	char monster_info[num_characters-1][80];
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Number of rooms = %d, Input = %d", seed_state, num_rooms_state, input);
-	int m, d;
+	int m, d, dead_count = 0;
 	clear();
 	for(d = 0; d < strlen(debug_line); d++)
 	{
@@ -515,12 +515,17 @@ void Draw_Monster_List(void)
 	}
 	for(m = 1; m < num_characters; m++)
 	{
+		if(character_list[m].alive == FALSE)
+		{
+			dead_count++;
+			continue;
+		}
 		pos_t distance_to_player = {character_list[0].pos.x - character_list[m].pos.x, character_list[0].pos.y - character_list[m].pos.y};
 		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", character_list[m].character_parent.monster.abilities, (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
 		int c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
-			mvaddch(m, c, monster_info[m-1][c]);
+			mvaddch(m - dead_count, c, monster_info[m-1][c]);
 		}
 	}
 	refresh();
