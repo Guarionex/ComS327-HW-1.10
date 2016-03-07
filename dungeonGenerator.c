@@ -186,8 +186,8 @@ int main(int argc, char *argv[])
 		noecho();
 		curs_set(0);
 		keypad(stdscr, 1);
-		while(game_state == 0)
-		{
+		//while(game_state == 0)
+		//{
 			dungeon = Generate_Map(&int_seed, &num_rooms);
 			Set_Dungeon(dungeon);
 			Set_Player(Place_Player(dungeon, &int_seed));
@@ -214,7 +214,7 @@ int main(int argc, char *argv[])
 			level = turn(&int_seed);
 			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 			Destroy_All();
-		}
+		//}
 		endwin();
 		Draw_Dungeon(0);
 	}
