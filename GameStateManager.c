@@ -47,7 +47,7 @@ void Set_Debug_Info(int seed, int num_rooms)
 void populate_monsters(int num_mon, int *seed)
 {
 	int seed_local;
-	
+	num_characters = num_mon + 1;
 	if(*seed <= 0)
 	{
 		seed_local = time(NULL);
