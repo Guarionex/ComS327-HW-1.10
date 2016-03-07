@@ -192,8 +192,8 @@ int main(int argc, char *argv[])
 			Set_Dungeon(dungeon);
 			if(game_state == 3)
 			{
-				endwin();
-				printf("Start\n");
+				//endwin();
+				//printf("Start\n");
 				game_state = 4;
 			}
 			Set_Player(Place_Player(dungeon, &int_seed));
@@ -203,12 +203,12 @@ int main(int argc, char *argv[])
 			Set_Stairs(down);
 			if(level > 0)
 			{
-			/*	stair_t up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
-				while(down.location.x == up.location.x && down.location.y == up.location.y)
+				stair_t up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
+				/*while(down.location.x == up.location.x && down.location.y == up.location.y)
 				{
 					up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
-				}
-				Set_Stairs(up);*/
+				}*/
+				Set_Stairs(up);
 			}
 			//Draw_Dungeon(1);
 			//printf("\n");
