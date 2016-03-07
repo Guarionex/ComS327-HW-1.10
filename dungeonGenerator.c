@@ -207,10 +207,10 @@ int main(int argc, char *argv[])
 			if(level > 0)
 			{
 				stair_t up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
-				/*while(down.location.x == up.location.x && down.location.y == up.location.y)
+				while(down.location.x == up.location.x && down.location.y == up.location.y)
 				{
 					up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
-				}*/
+				}
 				Set_Stairs(up);
 			}
 			//Draw_Dungeon(1);
