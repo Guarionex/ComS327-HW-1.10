@@ -28,10 +28,12 @@ void Set_Stairs(stair_t stairs)
 	printf("Stair pos = [%d][%d]\n", stairs.location.x, stairs.location.y);
 	if(stairs.direction == DOWNSTAIRS)
 	{
+		printf("I'm here\n");
 		stair_set[0] = stairs;
 	}
 	else
 	{
+		printf("I'm there\n");
 		stair_set[1] = stairs;
 	}
 }
