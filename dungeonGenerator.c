@@ -220,7 +220,7 @@ int main(int argc, char *argv[])
 			//Destroy_All();
 			//printf("\n");
 			//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
-			level = turn(&int_seed, int nummon_value);
+			level = turn(&int_seed, nummon_value);
 			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 			Destroy_All();
 		}
