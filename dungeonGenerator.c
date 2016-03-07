@@ -192,7 +192,7 @@ int main(int argc, char *argv[])
 			{
 				seed = time(NULL);
 				srand(seed);
-				int int_seed = seed;
+				int_seed = seed;
 				//endwin();
 				//printf("Start\n");
 				game_state = 4;
