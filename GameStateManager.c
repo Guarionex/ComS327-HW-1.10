@@ -517,7 +517,7 @@ void Draw_Dungeon(int use_curses)
 			{
 				attron(COLOR_PAIR(2));
 			}
-			else if(check_character_map(d-((d/81)*81), (d/81))) > 0 && get_character_by_id(check_character_map(d-((d/81)*81), (d/81))).alive == TRUE)
+			else if(check_character_map(d-((d/81)*81), (d/81)) > 0 && get_character_by_id(check_character_map(d-((d/81)*81), (d/81))).alive == TRUE)
 			{
 				attron(COLOR_PAIR(3));
 			}
