@@ -558,24 +558,32 @@ void Draw_Dungeon(int use_curses)
 		initscr();
 		clear();
 		start_color();
-		init_pair(8, COLOR_BLACK, COLOR_RED);
+		if(game_state == 1)
+		{
+			init_pair(8, COLOR_BLACK, COLOR_RED);
+		}
+		if(game_state == 2)
+		{
+			init_pair(11, COLOR_BLACK, COLOR_WHITE);
+		}
 		attron(COLOR_PAIR(8));
-		printw("%s\n", debug_line);
+		//printw("%s\n", debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
+			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			if(character_list[0].pos.y == (d/81) && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
 			{
-				printw("%c", '@');
+				mvaddch((d/81)+1, d-((d/81)*81), '@');
 			}
-			else if(renderer[d] != '\n')
+			else
 			{
-				printw("%c", renderer[d]);
+				mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 			}
 		}
 		if(game_state == 1)
 		{
-			printw("Player is dead\n");
+			printw("Player is dead                                                                  \n");
 		}
 		else if(game_state == 2)
 		{
