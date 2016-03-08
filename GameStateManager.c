@@ -510,15 +510,16 @@ void Draw_Dungeon(int use_curses)
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
+			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			if(get_character_by_id(0).pos.x	== x && get_character_by_id(0).pos.y == y)
 			{
 				attron(COLOR_PAIR(2));
+				printw("player\n");
 			}
 			else
 			{
 				//attron(COLOR_PAIR(1));
 			}
-			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 			
 		}
