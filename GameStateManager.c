@@ -499,7 +499,7 @@ void Draw_Dungeon(int use_curses)
 	
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
-	
+	int debug_len = strlen(debug_line);
 	if(use_curses == 1)
 	{
 		start_color();
@@ -516,7 +516,7 @@ void Draw_Dungeon(int use_curses)
 		init_pair(11, COLOR_BLACK, COLOR_WHITE);
 
 		clear();
-		int debug_len = strlen(debug_line);
+		
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
@@ -557,10 +557,10 @@ void Draw_Dungeon(int use_curses)
 	else
 	{
 		int l;
-		for(l = strlen(debug_line); l < 80; l++)
+		/*for(l = debug_len; l < 80; l++)
 		{
 			debug_line[l] = ' ';
-		}
+		}*/
 		initscr();
 		clear();
 		start_color();
