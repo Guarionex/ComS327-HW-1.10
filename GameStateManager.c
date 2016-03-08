@@ -500,7 +500,7 @@ void Draw_Dungeon(int use_curses)
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
 	//attron(COLOR_PAIR(1));
-	
+	attron(COLOR_PAIR(2));
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
 	if(use_curses == 1)
