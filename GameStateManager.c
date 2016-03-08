@@ -561,13 +561,13 @@ void Draw_Dungeon(int use_curses)
 		start_color();
 		if(game_state == 1)
 		{
-			init_pair(8, COLOR_BLACK, COLOR_RED);
+			init_pair(9, COLOR_BLACK, COLOR_RED);
 		}
 		if(game_state == 2)
 		{
 			init_pair(11, COLOR_BLACK, COLOR_WHITE);
 		}
-		attron(COLOR_PAIR(8));
+		
 		//printw("%s\n", debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
