@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
 			printf("Failed to load dungeon\n");
 			return 0;
 		}
-		Set_Dungeon(dungeon);
+		/*Set_Dungeon(dungeon);
 		//player_t player;
 		//player.cell = dungeon[18][4];
 		//player.pos.x = 18;
@@ -172,7 +172,86 @@ int main(int argc, char *argv[])
 		distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
 		Draw_Distance_Dungeon(distance_dungeon_tunneler);
 		loaded = TRUE;
-		Destroy_All();
+		Destroy_All();*/
+		
+		seed = time(NULL);
+		srand(seed);
+		int int_seed = seed;
+		int level = 0;
+		//int stair_used = -1;
+		
+		initscr();
+		raw();
+		noecho();
+		curs_set(0);
+		keypad(stdscr, 1);
+		while(game_state == 0 || game_state == 3)
+		{
+			if(game_state == 3)
+			{
+				seed = time(NULL);
+				srand(seed);
+				int_seed = seed;
+				game_state = 4;
+			}
+			if (game_state != 0)
+			{
+				dungeon = Generate_Map(&int_seed, &num_rooms);
+			}
+			Set_Dungeon(dungeon);
+			character_t player_to_set = Place_Player(dungeon, &int_seed);
+			Set_Player(player_to_set);
+			Set_Debug_Info(int_seed, num_rooms);
+			populate_monsters(nummon_value, &int_seed);
+			stair_t down;
+			if(stair_player == UPSTAIRS)
+			{
+				down.location.x = player_to_set.pos.x;
+				down.location.y = player_to_set.pos.y;
+				down.direction = DOWNSTAIRS;
+			}
+			else 
+			{
+				down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
+				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.pos.y)
+					{
+						down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
+					}
+			}
+			Set_Stairs(down);
+			if(level > 0)
+			{
+				stair_t up;
+				if(stair_player == DOWNSTAIRS)
+				{
+					up.location.x = player_to_set.pos.x;
+					up.location.y = player_to_set.pos.y;
+					up.direction = UPSTAIRS;
+				}
+				else 
+				{
+					up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
+					while(down.location.x == up.location.x && down.location.y == up.location.y)
+					{
+						up = Place_Stairs(dungeon, &int_seed, UPSTAIRS);
+					}
+				}
+				Set_Stairs(up);
+			}
+			//Draw_Dungeon(1);
+			//printf("\n");
+			//distance_dungeon = Generate_Distance_Dungeon(FALSE);
+			//Draw_Distance_Dungeon(distance_dungeon);
+			//Destroy_All();
+			//printf("\n");
+			//distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
+			level = turn(&int_seed, nummon_value);
+			
+			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
+			Destroy_All();
+		}
+		endwin();
+		Draw_Dungeon(0);
 	}
 	else
 	{
