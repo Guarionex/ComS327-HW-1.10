@@ -558,7 +558,7 @@ void Draw_Dungeon(int use_curses)
 		initscr();
 		clear();
 		start_color();
-		init_pair(8, COLOR_CYAN, COLOR_BLACK);
+		init_pair(8, COLOR_BLACK, COLOR_RED);
 		attron(COLOR_PAIR(8));
 		printw("%s\n", debug_line);
 		int d;
