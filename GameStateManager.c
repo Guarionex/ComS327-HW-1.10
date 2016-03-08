@@ -514,11 +514,10 @@ void Draw_Dungeon(int use_curses)
 			if(get_character_by_id(0).pos.x	== d-((d/81)*81) && get_character_by_id(0).pos.y == (d/81)+1)
 			{
 				attron(COLOR_PAIR(2));
-				//mvaddch(25, 0, 'P');
 			}
 			else
 			{
-				//attron(COLOR_PAIR(1));
+				attron(COLOR_PAIR(1));
 			}
 			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 			
