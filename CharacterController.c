@@ -373,7 +373,7 @@ bool move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **d
 		}
 		else
 		{
-		/*	character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
+			character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
 			player_to_move->pos.x = player_to_move->pos.x+a;
 			player_to_move->pos.y = player_to_move->pos.y+b;
 			if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
@@ -387,7 +387,7 @@ bool move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **d
 			}
 			character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
 			dungeon[player_to_move->pos.x][player_to_move->pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
-			player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];*/
+			player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
 			return TRUE;
 		}
 		break;
