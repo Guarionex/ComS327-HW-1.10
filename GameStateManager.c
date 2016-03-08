@@ -609,7 +609,7 @@ void Draw_Dungeon(int use_curses)
 		}
 		refresh();
 		char *exit_message = (game_state == 5)? "Game Saved, press any key to exit                                               " : "Press any key to exit                                                           \n";
-		mvprintw(23, 0, "Press any key to exit                                                           \n");
+		mvprintw(23, 0, exit_message);
 		getch();
 		endwin();
 	}
