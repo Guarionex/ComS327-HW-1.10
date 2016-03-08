@@ -581,6 +581,8 @@ void Draw_Dungeon(int use_curses)
 			printw("The drunk player wins!\n");
 		}
 		refresh();
+		printw("Press any key to exit\n");
+		getch();
 		endwin();
 	}
 	
