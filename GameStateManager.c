@@ -497,10 +497,12 @@ void Draw_Dungeon(int use_curses)
 	}
 	
 	start_color();
-	init_pair(1, COLOR_BLACK, COLOR_RED);
-	attron(COLOR_PAIR(1));
+	//init_pair(1, COLOR_BLUE, COLOR_BLACK);
+	//init_pair(1, COLOR_WHITE, COLOR_BLACK);
+	//attron(COLOR_PAIR(1));
+	//printw("My terminal supports %d colors.\n", COLORS);
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
+	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, Colors = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, COLORS);
 	if(use_curses == 1)
 	{
 		clear();
