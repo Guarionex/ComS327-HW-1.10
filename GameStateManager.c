@@ -608,6 +608,7 @@ void Draw_Dungeon(int use_curses)
 			mvprintw(22, 0, "Dr. Sheaffer cleared the level, but his adventures continue...                  \n");
 		}
 		refresh();
+		char *exit_message = (game_state == 5)? "Game Saved, press any key to exit                                               " : "Press any key to exit                                                           \n";
 		mvprintw(23, 0, "Press any key to exit                                                           \n");
 		getch();
 		endwin();
@@ -761,7 +762,7 @@ int turn(int *seed, int num_mon)
 				game_state = 2;
 				break;
 			}
-			if(game_state == 3)
+			if(game_state == 3 || game_state == 5)
 			{
 				free(distance_dungeon);
 				free(distance_dungeon_tunneler);
@@ -796,7 +797,7 @@ int turn(int *seed, int num_mon)
 			//sleep(3);
 			define_new_keys();
 			input = -1;
-			while(input < 0 && game_state != 3)
+			while(input < 0 && game_state != 3 && game_state !=5)
 			{
 				input = input_handler(getch());
 				if(input < 9)
@@ -849,6 +850,10 @@ int turn(int *seed, int num_mon)
 							continue;
 						}
 					}
+				}
+				if(input == 15)
+				{
+					game_state = 5;
 				}
 				if(input > 8)
 				{
@@ -1049,6 +1054,11 @@ int input_handler(int key)
 		//UP_STAIRS
 		case 60:
 			return UP_STAIRS;
+		break;
+		
+		//SAVE_QUIT
+		case 83:
+			return SAVE_QUIT;
 		break;
 	}
 	

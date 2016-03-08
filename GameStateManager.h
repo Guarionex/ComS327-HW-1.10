@@ -29,7 +29,8 @@ typedef enum command
 	SCROLL_UP,
 	SCROLL_DOWN,
 	DOWN_STAIRS,
-	UP_STAIRS
+	UP_STAIRS,
+	SAVE_QUIT
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;

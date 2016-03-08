@@ -331,7 +331,7 @@ int main(int argc, char *argv[])
 		endwin();
 		Draw_Dungeon(0);
 	}
-	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
+	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE || game_state == 5)
 	{
 		
 		//printf("Made it here\n");
