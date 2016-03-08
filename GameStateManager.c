@@ -584,14 +584,14 @@ void Draw_Dungeon(int use_curses)
 		}
 		if(game_state == 1)
 		{
-			printw("Player is dead                                                                  \n");
+			mvprintw(22, 0, "Player is dead                                                                  \n");
 		}
 		else if(game_state == 2)
 		{
-			printw("The drunk player wins!                                                          \n");
+			mvprintw(22, 0, "The drunk player wins!                                                          \n");
 		}
 		refresh();
-		printw("Press any key to exit                                                           \n");
+		mvprintw(23, 0, "Press any key to exit                                                           \n");
 		getch();
 		endwin();
 	}
