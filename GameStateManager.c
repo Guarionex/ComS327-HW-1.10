@@ -628,6 +628,7 @@ void Draw_Monster_List(void)
 	}
 	start_color();
 	init_pair(11, COLOR_BLACK, COLOR_WHITE);
+	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	attron(COLOR_PAIR(11));
 	for(m = 1 + scroll_index; (m < num_characters) && (m < 24+scroll_index); m++)
 	{
@@ -653,6 +654,14 @@ void Draw_Monster_List(void)
 			mvaddch(m - dead_count - scroll_index, l, ' ');
 		}
 	}
+	if(m < 24)
+	{
+		for(m; m < 24; m++)
+		{
+			mvprintw(m, 0, "                                                                                ");
+		}
+	}
+	attron(COLOR_PAIR(1));
 	refresh();
 }
 
