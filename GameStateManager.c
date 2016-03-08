@@ -496,24 +496,24 @@ void Draw_Dungeon(int use_curses)
 		//printf("\n");
 	}
 	
-	start_color();
-	init_pair(1, COLOR_WHITE, COLOR_BLACK);
-	init_pair(2, COLOR_BLUE, COLOR_BLACK);
-	init_pair(3, COLOR_RED, COLOR_BLACK);
-	init_pair(4, COLOR_BLACK, COLOR_MAGENTA);
-	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(6, COLOR_BLACK, COLOR_GREEN);
-	init_pair(7, COLOR_BLACK, COLOR_YELLOW);
-	init_pair(8, COLOR_CYAN, COLOR_BLACK);
-	init_pair(9, COLOR_BLACK, COLOR_RED);
-	init_pair(10, COLOR_BLACK, COLOR_BLUE);
-	init_pair(11, COLOR_BLACK, COLOR_WHITE);
-	//attron(COLOR_PAIR(1));
-	//attron(COLOR_PAIR(2));
+	
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
 	if(use_curses == 1)
 	{
+		start_color();
+		init_pair(1, COLOR_WHITE, COLOR_BLACK);
+		init_pair(2, COLOR_BLUE, COLOR_BLACK);
+		init_pair(3, COLOR_RED, COLOR_BLACK);
+		init_pair(4, COLOR_BLACK, COLOR_MAGENTA);
+		init_pair(5, COLOR_YELLOW, COLOR_BLACK);
+		init_pair(6, COLOR_BLACK, COLOR_GREEN);
+		init_pair(7, COLOR_BLACK, COLOR_YELLOW);
+		init_pair(8, COLOR_CYAN, COLOR_BLACK);
+		init_pair(9, COLOR_BLACK, COLOR_RED);
+		init_pair(10, COLOR_BLACK, COLOR_BLUE);
+		init_pair(11, COLOR_BLACK, COLOR_WHITE);
+
 		clear();
 		int debug_len = strlen(debug_line);
 		int d;
@@ -559,27 +559,28 @@ void Draw_Dungeon(int use_curses)
 		start_color();
 		init_pair(8, COLOR_CYAN, COLOR_BLACK);
 		attron(COLOR_PAIR(8));
-		printf("%s\n", debug_line);
+		printw("%s\n", debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
 		{
 			if(character_list[0].pos.y == (d/81) && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
 			{
-				printf("%c", '@');
+				printw("%c", '@');
 			}
 			else
 			{
-				printf("%c", renderer[d]);
+				printw("%c", renderer[d]);
 			}
 		}
 		if(game_state == 1)
 		{
-			printf("Player is dead\n");
+			printw("Player is dead\n");
 		}
 		else if(game_state == 2)
 		{
-			printf("The drunk player wins!\n");
+			printw("The drunk player wins!\n");
 		}
+		refresh();
 		endwin();
 	}
 	
