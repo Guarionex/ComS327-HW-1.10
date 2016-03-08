@@ -811,18 +811,12 @@ int turn(int *seed, int num_mon)
 						level++;
 						stair_player = DOWNSTAIRS;
 						game_state = 3;
-						free(distance_dungeon);
-						free(distance_dungeon_tunneler);
-						break;
 					}
 					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[0].pos.y == stair_set[1].location.y)
 					{
 						level--;
 						stair_player = UPSTAIRS;
 						game_state = 3;
-						free(distance_dungeon);
-						free(distance_dungeon_tunneler);
-						break;
 					}
 				}
 				while(input == 9)
@@ -860,9 +854,6 @@ int turn(int *seed, int num_mon)
 				if(input == 15)
 				{
 					game_state = 5;
-					free(distance_dungeon);
-					free(distance_dungeon_tunneler);
-					break;
 				}
 				if(input > 8)
 				{
@@ -871,7 +862,10 @@ int turn(int *seed, int num_mon)
 			}
 		}
 		
-		move_character(current->id, seed, current_dungeon, moving_to);
+		if(game_state != 3 && game_state != 5)
+		{
+			move_character(current->id, seed, current_dungeon, moving_to);
+		}
 		current->timer += 100/current->speed;
 		/*nodes[p] = */binheap_insert(&h, current);
 	}
