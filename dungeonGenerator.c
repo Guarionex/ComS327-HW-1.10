@@ -345,8 +345,16 @@ int main(int argc, char *argv[])
 				//printf("File created\n");
 			}
 			//else printf("File exist\n");
-			strcat(dungeonFolder, dungeonSaveFileName);
-			
+			if(game_state == 5)
+			{
+				char level_file[100];
+				sprintf(level_file, "level%d", level);
+				strcat(dungeonFolder, level_file);
+			}
+			else
+			{
+				strcat(dungeonFolder, dungeonSaveFileName);
+			}
 		}
 		else
 		{
