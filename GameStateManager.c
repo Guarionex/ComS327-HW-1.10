@@ -500,11 +500,12 @@ void Draw_Dungeon(int use_curses)
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	init_pair(2, COLOR_BLUE, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);
-	init_pair(4, COLOR_BLACK, COLOR_RED);
+	init_pair(4, COLOR_BLACK, COLOR_MAGENTA);
 	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(6, COLOR_BLACK, COLOR_GREEN);
 	init_pair(7, COLOR_BLACK, COLOR_YELLOW);
 	init_pair(8, COLOR_CYAN, COLOR_BLACK);
+	init_pair(9, COLOR_BLACK, COLOR_RED);
 	//attron(COLOR_PAIR(1));
 	//attron(COLOR_PAIR(2));
 	char debug_line[80];
@@ -539,7 +540,7 @@ void Draw_Dungeon(int use_curses)
 			}
 			else if(renderer[d] == '.')
 			{
-				attron(COLOR_PAIR(5));
+				attron(COLOR_PAIR(9));
 			}
 			else
 			{
