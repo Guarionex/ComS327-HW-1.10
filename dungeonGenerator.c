@@ -347,8 +347,7 @@ int main(int argc, char *argv[])
 			//else printf("File exist\n");
 			if(game_state == 5)
 			{
-				char level_file[100];
-				sprintf(level_file, "level%d", level);
+				char level_file[6] = "level";
 				strcat(dungeonFolder, level_file);
 			}
 			else
