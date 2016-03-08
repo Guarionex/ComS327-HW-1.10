@@ -354,6 +354,7 @@ int main(int argc, char *argv[])
 			{
 				strcat(dungeonFolder, dungeonSaveFileName);
 			}
+			printf("Here\n");
 		}
 		else
 		{
