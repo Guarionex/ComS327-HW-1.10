@@ -537,6 +537,10 @@ void Draw_Dungeon(int use_curses)
 			{
 				attron(COLOR_PAIR(7));
 			}
+			else if(renderer[d] == '.')
+			{
+				attron(COLOR_PAIR(5));
+			}
 			else
 			{
 				attron(COLOR_PAIR(1));
