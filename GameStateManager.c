@@ -503,6 +503,8 @@ void Draw_Dungeon(int use_curses)
 	init_pair(4, COLOR_BLACK, COLOR_MAGENTA);
 	init_pair(5, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(6, COLOR_BLACK, COLOR_GREEN);
+	init_pair(7, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(8, COLOR_CYAN, COLOR_BLACK);
 	//attron(COLOR_PAIR(1));
 	//attron(COLOR_PAIR(2));
 	char debug_line[80];
@@ -517,7 +519,7 @@ void Draw_Dungeon(int use_curses)
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
 			if(get_character_by_id(0).pos.x	== d-((d/81)*81) && get_character_by_id(0).pos.y == (d/81))
 			{
-				attron(COLOR_PAIR(5));
+				attron(COLOR_PAIR(8));
 			}
 			else if(check_character_map(d-((d/81)*81), (d/81)) > 0 && get_character_by_id(check_character_map(d-((d/81)*81), (d/81))).alive == TRUE)
 			{
@@ -530,6 +532,10 @@ void Draw_Dungeon(int use_curses)
 			else if(level > 0 && stair_set[1].location.x == d-((d/81)*81) && stair_set[1].location.y == (d/81))
 			{
 				attron(COLOR_PAIR(4));
+			}
+			else if(renderer[d] == '#')
+			{
+				attron(COLOR_PAIR(7));
 			}
 			else
 			{
