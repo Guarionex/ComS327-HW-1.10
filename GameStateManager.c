@@ -626,6 +626,9 @@ void Draw_Monster_List(void)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
+	start_color();
+	init_pair(11, COLOR_BLACK, COLOR_WHITE);
+	attron(COLOR_PAIR(11));
 	for(m = 1 + scroll_index; (m < num_characters) && (m < 24+scroll_index); m++)
 	{
 		/*if(m > 23)
@@ -643,6 +646,11 @@ void Draw_Monster_List(void)
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
 			mvaddch(m - dead_count - scroll_index, c, monster_info[m-1][c]);
+		}
+		int l;
+		for(l = strlen(monster_info[m-1]); l < 80; l++)
+		{
+			mvaddch(m - dead_count - scroll_index, l, ' ');
 		}
 	}
 	refresh();
