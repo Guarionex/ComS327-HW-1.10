@@ -656,7 +656,7 @@ void Draw_Monster_List(void)
 	}
 	if(m < 24)
 	{
-		for(m; m < 24; m++)
+		for(; m < 24; m++)
 		{
 			mvprintw(m, 0, "                                                                                ");
 		}
