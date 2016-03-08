@@ -556,8 +556,8 @@ void Draw_Dungeon(int use_curses)
 	}
 	else
 	{
-		/*int l;
-		for(l = debug_len; l < 80; l++)
+		int l;
+		/*for(l = debug_len; l < 80; l++)
 		{
 			debug_line[l] = ' ';
 		}*/
