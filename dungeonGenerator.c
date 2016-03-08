@@ -354,7 +354,7 @@ int main(int argc, char *argv[])
 			{
 				strcat(dungeonFolder, dungeonSaveFileName);
 			}
-			printf("Here\n");
+			//printf("Here\n");
 		}
 		else
 		{
@@ -369,7 +369,7 @@ int main(int argc, char *argv[])
 			{
 				strcpy(substring, dungeonFileName);
 			}
-			printf("substring = %s\n", substring);
+			//printf("substring = %s\n", substring);
 			//printf("dungeonFolder = %s\n", dungeonFolder);
 		}
 		
