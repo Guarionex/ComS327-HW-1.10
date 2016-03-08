@@ -556,6 +556,7 @@ void Draw_Dungeon(int use_curses)
 	else
 	{
 		initscr();
+		clear();
 		start_color();
 		init_pair(8, COLOR_CYAN, COLOR_BLACK);
 		attron(COLOR_PAIR(8));
@@ -567,7 +568,7 @@ void Draw_Dungeon(int use_curses)
 			{
 				printw("%c", '@');
 			}
-			else
+			else if(renderer[d] != '\n')
 			{
 				printw("%c", renderer[d]);
 			}
