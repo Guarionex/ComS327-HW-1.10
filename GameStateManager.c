@@ -555,6 +555,9 @@ void Draw_Dungeon(int use_curses)
 	}
 	else
 	{
+		initscr();
+		start_color();
+		init_pair(8, COLOR_CYAN, COLOR_BLACK);
 		attron(COLOR_PAIR(8));
 		printf("%s\n", debug_line);
 		int d;
@@ -577,6 +580,7 @@ void Draw_Dungeon(int use_curses)
 		{
 			printf("The drunk player wins!\n");
 		}
+		endwin();
 	}
 	
 }
