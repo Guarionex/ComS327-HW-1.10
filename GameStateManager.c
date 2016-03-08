@@ -575,7 +575,7 @@ void Draw_Dungeon(int use_curses)
 		for(d = 0; d < 1701; d++)
 		{
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
-			if(d%80 > debug_len)
+			if(d%80 >= debug_len)
 			{
 				mvaddch(0, d%80, ' ');
 			}
@@ -590,11 +590,11 @@ void Draw_Dungeon(int use_curses)
 		}
 		if(game_state == 1)
 		{
-			mvprintw(22, 0, "Player is dead                                                                  \n");
+			mvprintw(22, 0, "Dr. Sheaffer is dead                                                            \n");
 		}
 		else if(game_state == 2)
 		{
-			mvprintw(22, 0, "The drunk player wins!                                                          \n");
+			mvprintw(22, 0, "Dr. Sheaffer cleared the level, but his adventures continue...                  \n");
 		}
 		refresh();
 		mvprintw(23, 0, "Press any key to exit                                                           \n");
