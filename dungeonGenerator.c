@@ -250,7 +250,7 @@ int main(int argc, char *argv[])
 			Destroy_All();
 		}
 		endwin();
-		Draw_Dungeon(1);
+		Draw_Dungeon(0);
 	}
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE)
 	{

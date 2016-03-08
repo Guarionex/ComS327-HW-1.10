@@ -555,6 +555,7 @@ void Draw_Dungeon(int use_curses)
 	}
 	else
 	{
+		attron(COLOR_PAIR(8));
 		printf("%s\n", debug_line);
 		int d;
 		for(d = 0; d < 1701; d++)
