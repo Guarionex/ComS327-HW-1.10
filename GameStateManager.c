@@ -562,10 +562,12 @@ void Draw_Dungeon(int use_curses)
 		if(game_state == 1)
 		{
 			init_pair(9, COLOR_BLACK, COLOR_RED);
+			attron(COLOR_PAIR(9));
 		}
 		if(game_state == 2)
 		{
 			init_pair(11, COLOR_BLACK, COLOR_WHITE);
+			attron(COLOR_PAIR(11));
 		}
 		
 		//printw("%s\n", debug_line);
@@ -573,6 +575,10 @@ void Draw_Dungeon(int use_curses)
 		for(d = 0; d < 1701; d++)
 		{
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
+			if(d%80 > debug_len)
+			{
+				mvaddch(0, d%80, ' ');
+			}
 			if(character_list[0].pos.y == (d/81) && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
 			{
 				mvaddch((d/81)+1, d-((d/81)*81), '@');
