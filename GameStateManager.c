@@ -534,7 +534,7 @@ void Draw_Dungeon(int use_curses)
 			}
 			else if(level > 0 && stair_set[1].location.x == d-((d/81)*81) && stair_set[1].location.y == (d/81))
 			{
-				attron(COLOR_PAIR(10));
+				attron(COLOR_PAIR(4));
 			}
 			else if(renderer[d] == '#')
 			{
@@ -579,10 +579,10 @@ void Draw_Dungeon(int use_curses)
 		}
 		else if(game_state == 2)
 		{
-			printw("The drunk player wins!\n");
+			printw("The drunk player wins!                                                          \n");
 		}
 		refresh();
-		printw("Press any key to exit\n");
+		printw("Press any key to exit                                                           \n");
 		getch();
 		endwin();
 	}
