@@ -514,7 +514,7 @@ void Draw_Dungeon(int use_curses)
 			if(get_character_by_id(0).pos.x	== x && get_character_by_id(0).pos.y == y)
 			{
 				attron(COLOR_PAIR(2));
-				printw("player\n");
+				mvaddch(25, 0, 'P');
 			}
 			else
 			{
