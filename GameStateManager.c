@@ -487,7 +487,18 @@ void Draw_Dungeon(int use_curses)
 					
 					break;
 					case CORRIDOR :
-						renderer[y*81+x] = '#';
+						if(stair_set[0].location.x == x && stair_set[0].location.y == y)
+						{
+							renderer[y*81+x] = '>';
+						}
+						else if(level > 0 && stair_set[1].location.x == x && stair_set[1].location.y == y)
+						{
+							renderer[y*81+x] = '<';
+						}
+						else 
+						{
+							renderer[y*81+x] = '#';
+						}
 						//printf("%c", renderer[y*80+x]);
 					break;
 				}
