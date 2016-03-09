@@ -591,9 +591,9 @@ void Draw_Dungeon(int use_curses)
 			{
 				mvaddch(0, d%80, ' ');
 			}
-			if(character_list[0].pos.y == (d/81) && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
+			if(character_list[0].pos.y == (d/81)+1 && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
 			{
-				mvaddch((d/81), d-((d/81)*81), '@');
+				mvaddch((d/81)+1, d-((d/81)*81), '@');
 			}
 			else
 			{
@@ -606,7 +606,7 @@ void Draw_Dungeon(int use_curses)
 		}
 		else if(game_state == 2)
 		{
-			mvaddch(last_pos.y, last_pos.x, '@');
+			mvaddch(last_pos.y+1, last_pos.x, '@');
 			mvprintw(22, 0, "Dr. Sheaffer cleared the level, but his adventures continue...                  \n");
 		}
 		refresh();
