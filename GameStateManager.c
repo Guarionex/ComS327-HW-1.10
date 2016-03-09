@@ -592,7 +592,7 @@ void Draw_Dungeon(int use_curses)
 			}
 			if(character_list[0].pos.y == (d/81) && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
 			{
-				mvaddch((d/81)+1, d-((d/81)*81), '@');
+				mvaddch((d/81), d-((d/81)*81), '@');
 			}
 			else
 			{

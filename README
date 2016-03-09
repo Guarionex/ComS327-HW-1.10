@@ -47,6 +47,27 @@ Turns are determined via 100/speed with speed been a number between 5 and 20. Th
 New switch --nummon <int> is now available. This sets the number of monsters to spawn. Monsters are chosen at random and placed randomly, but following their rules. (non tunnelers will
 only spawn inside the dungeon floor).
 
+1.05:
+Game now draws with curses in the scr window. It now also take key inputs to control the game:
+Move up - w, k, 8, numpad 8
+Move down - s, j, 2, numpad 2
+Move left - a, h, 4, numpad 4
+Move right - d, l, 6, numpad 6
+Rest - Spacebar, center arrow, numpad 5
+Go downstairs - >
+Go upstairs - <
+Display monster list - m
+Scroll up through monster list - up arrow
+Scroll down through monster list - down arrow
+Exit monster list - esc
+Save and exit game - S (upper case S, not to be confused with lower case s for move down)
+The monster list is only scrollable if there are more monster than fits the screen.
+A new dungeon is randomly generated every time you go up or down a stair. First dungeon is level 0 and has no upstairs. Every time you gown down a stair you reach another level.
+To win you just clear all monsters in the current map. 
+Player can no longer tunnel. 
+Game is now colorful. Player is cyan, monsters are red, down stairs are black on green, up stairs are black on magenta, rooms are black on white, corridors are black on yellow.
+Monster list is black on white, win screen is everything black on white, lose screen is everything black on red, save and exit is white on black.
+
 Usage using time as seed: ./dungeonGenerator
 
 Usage using int as seed: ./dungeonGenerator <number>
