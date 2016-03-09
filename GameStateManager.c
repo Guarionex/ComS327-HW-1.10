@@ -605,6 +605,7 @@ void Draw_Dungeon(int use_curses)
 		}
 		else if(game_state == 2)
 		{
+			mvaddch(character_list[0].pos.y, character_list[0].pos.x, '@');
 			mvprintw(22, 0, "Dr. Sheaffer cleared the level, but his adventures continue...                  \n");
 		}
 		refresh();
