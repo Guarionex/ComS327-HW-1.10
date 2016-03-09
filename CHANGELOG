@@ -550,3 +550,127 @@
 2/23/16 everything works just need README and CHANGELOG
 2/23/16 Finished README
 2/23/16 Finished CHANGELOG. Ready to package and deliver
+
+1.05
+3/4/16 Started homework
+3/5/16 freeing memory
+3/5/16 more freeing and commented out slee
+3/5/16 removing double free
+3/5/16 destroy all
+3/5/16 free distances
+3/5/16 freeing distance
+3/5/16 removing double free
+3/5/16 freeing distance and commenting out predecessor
+3/5/16 forgot to comment out one predecessor
+3/5/16 commented out a debug printf and freeing visited
+3/5/16 freeing graph
+3/5/16 destroy characters
+3/5/16 locating invalid read
+3/5/16 testing invalid read
+3/5/16 Is the next vertex null
+3/5/16 invalid read found
+3/5/16 making char array of what to draw
+3/5/16 changed single string to char
+3/5/16 fixing errors
+3/5/16 testing drawing array
+3/5/16 forgot new line
+3/5/16 printf %x
+3/5/16 forgot {}
+3/5/16 converting hex to char
+3/5/16 testing adding \n to renderer array
+3/5/16 printing rendering array in another loop
+3/5/16 error fix
+3/5/16 started curses
+3/5/16 moved init end endwin
+3/5/16 printing debug line and map in 1 to 21
+3/5/16 testing printing debug line
+3/5/16 testing printing debug line with curses
+3/5/16 draw final dungeon
+3/5/16 fixing errors
+3/6/16 testing clear
+3/6/16 printing input
+3/6/16 testing commented out drawing
+3/6/16 testing getch
+3/6/16 raw, noecho, keypad
+3/6/16 moving moving character
+3/6/16 clear when redrawing
+3/6/16 moving refresh out of loop
+3/6/16 testing getting key up
+3/6/16 Defining keys
+3/6/16 moved define_keys to input_handler, made command enum
+3/6/16 small error fix
+3/6/16 set keypad to true and moving define_key
+3/6/16 define keys helper
+3/6/16 UP and DOWN caugh
+3/6/16 all directions programmed
+3/6/16 moving player based on controls
+3/6/16 error fix
+3/6/16 added rest key
+3/6/16 doing monster list
+3/6/16 returning from menu
+3/6/16 menu handling
+3/6/16 monster distance to playe
+3/6/16 end game immediately after death
+3/6/16 end immediatle after win
+3/6/16 dont draw dead monster info
+3/6/16 scrolling
+3/6/16 scroll fix
+3/6/16 limit menu draw
+3/6/16 fixing limiting draw and wait for another input on invalid key
+3/6/16 don't move until move key
+3/6/16 fixing not moving on wrong key
+3/7/16 stair placement start
+3/7/16 forgot ;
+3/7/16 trying to draw stairs
+3/7/16 debugging stairs
+3/7/16 stairs fixed
+3/7/16 go downstairs
+3/7/16 moving curses before dungeon generation
+3/7/16 testing making new dungeon
+3/7/16 removing warnings
+3/7/16 trying more stuff
+3/7/16 printf testing
+3/7/16 debugging
+3/7/16 trying things
+3/7/16 setting upstairs
+3/7/16 testinng second stairs
+3/7/16 making random new level
+3/7/16 go downstairs
+3/7/16 testing going up
+3/7/16 debbuging
+3/7/16 debuging with printf
+3/7/16 Revert "debugging"
+3/7/16 fix monster kill
+3/7/16 going up error fix
+3/7/16 testing monster killing
+3/7/16 monster killing fix
+3/7/16 move upstairs if same as downstairs
+3/7/16 placing stairs where player spawns
+3/7/16 error fix
+3/7/16 player only spawns in rooms
+3/7/16 debugging stair placement
+3/7/16 Only missing S and colors
+3/7/16 removing some debug printf
+3/7/16 can't move through rock
+3/7/16 doing colors
+3/7/16 testing how many colors you can do
+3/7/16 Coloring
+3/7/16 fixing stuff
+3/7/16 not adding a nunch of space
+3/7/16 Reverts
+3/7/16 changing how to draw final
+3/7/16 using mvprintw
+3/7/16 white win
+3/7/16 filling out blank space
+3/7/16 changing messages
+3/7/16 stairs and player can now spawn in corridors
+3/7/16 uncommented the wrong code
+3/7/16 draw stairs on corridors
+3/7/16 colors on monster list
+3/7/16 work on load
+3/7/16 exit key
+3/7/16 fixing segfault
+3/7/16 can't give it a level number
+3/7/16 last debugging
+3/7/16 don't move things on stairs or exit
+3/7/16 README and CHANGELOG finished, ready to submit
