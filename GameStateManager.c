@@ -13,6 +13,7 @@ int scroll_index = 0;
 int level = 0;
 stair_t stair_set[2];
 int stair_player = -1;
+pos_t last_pos;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -605,7 +606,7 @@ void Draw_Dungeon(int use_curses)
 		}
 		else if(game_state == 2)
 		{
-			mvaddch(character_list[0].pos.y, character_list[0].pos.x, '@');
+			mvaddch(last_pos.y, last_pos.x, '@');
 			mvprintw(22, 0, "Dr. Sheaffer cleared the level, but his adventures continue...                  \n");
 		}
 		refresh();
@@ -757,6 +758,7 @@ int turn(int *seed, int num_mon)
 			}
 			if(dead_monsters == num_characters - 1)
 			{
+				last_pos = {character_list[0].pos.x, character_list[0].pos.y};
 				free(distance_dungeon);
 				free(distance_dungeon_tunneler);
 				//printf("The drunk player wins!\n");
