@@ -758,7 +758,8 @@ int turn(int *seed, int num_mon)
 			}
 			if(dead_monsters == num_characters - 1)
 			{
-				last_pos = {character_list[0].pos.x, character_list[0].pos.y};
+				last_pos.x = character_list[0].pos.x character_list[0].pos.y;
+				last_pos.y = character_list[0].pos.y;
 				free(distance_dungeon);
 				free(distance_dungeon_tunneler);
 				//printf("The drunk player wins!\n");
