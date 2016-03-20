@@ -568,7 +568,7 @@ void Draw_Dungeon(int use_curses)
 	}
 	else
 	{
-		initscr();
+		//initscr();
 		clear();
 		start_color();
 		if(game_state == 1)
@@ -613,7 +613,7 @@ void Draw_Dungeon(int use_curses)
 		char *exit_message = (game_state == 5)? "Game Saved, press any key to exit                                               " : "Press any key to exit                                                           \n";
 		mvprintw(23, 0, exit_message);
 		getch();
-		endwin();
+		//endwin();
 	}
 	
 }

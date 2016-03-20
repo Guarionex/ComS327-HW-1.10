@@ -253,7 +253,7 @@ character_t delete_character(int id)
 character_t get_character_by_id(int id)
 {
 	int i;
-	for(i = 0; i < num_characters; i++)
+	for(i = 0; i <  - 1; i++)
 	{
 		if(character_list[i].id == id)
 		{
