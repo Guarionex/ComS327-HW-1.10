@@ -328,8 +328,8 @@ int main(int argc, char *argv[])
 			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 			Destroy_All();
 		}
-		endwin();
 		Draw_Dungeon(0);
+		endwin();
 	}
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE || game_state == 5)
 	{
