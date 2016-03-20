@@ -1,42 +1,34 @@
-COM S 229, Spring 2015
-Programming Project 1.05
-User Interface with Ncurses
-Last week we added some characters, and made them move around and smite one another. You added
-some code to drive your @. You can rip that code out, now. We’re going to add a user interface that you can
-use to drive your @ manually. If you like, you can leave the auto-drive code in there and add a command to
-turn it on and off at runtime.
-Still working in C, link in the ncurses library and use it for unbuffered I/O.
-We’re going to add stairs now, too. When the PC goes up or down stairs, a new dungeon is generated and
-populated with the PC and new monsters. An upward staircase is represented with <; a downward staircase
-with >. The PC uses stairs by entering the appropriate stair command while standing on the staircase. NPCs
-cannot use stairs, not even the smart ones. Stairs provide an important means of escape for PCs.
-All commands are activated immediately upon key-press. There is never a need to hit enter. Any
-command which is not explicitly defined is a no-op. Implement the following commands:
-Key(s) Action
-7 or y Attempt to move PC one cell to the upper left.
-8 or k Attempt to move PC one cell up.
-9 or u Attempt to move PC one cell to the upper right.
-6 or l Attempt to move PC one cell to the right.
-3 or n Attempt to move PC one cell to the lower right.
-2 or j Attempt to move PC one cell down.
-1 or b Attempt to move PC one cell to the lower left.
-4 or h Attempt to move PC one cell to the left.
-> Attempt to go down stairs.
-< Attempt to go up stairs.
-space Rest for a turn. NPCs still move.
-m Display a list of monsters in the dungeon, with their symbol and position relative to the PC
-(e.g.: “c, 2 north and 14 west”).
-up arrow When displaying monster list, if entire list does not fit in screen and not currently at top of
-list, scroll list up.
-down arrow
-When displaying monster list, if entire list does not fit in screen and not currently at bottom
-of list, scroll list down.
-escape When displaying monster list, return to character control.
-S Save to disk and exit game. Saving and restoring will be revisited later. For now, this will
-just quit the game.
-With these changes, we no longer need the delay that we built in last week; the game pauses automatically
-for input. And ncurses should handle the redrawing, so we’re no longer spewing the entire dungeon to
-the terminal each turn. Things will look much nicer.
-Our dungeons fill 21 out of 24 lines in a terminal. Display them on lines 1–21 (zero indexed). The top
-line is for message display. Use it to display any messages you like (like debugging information!). The
-bottom 2 lines are for status information, which we’ll deal with in a later assignment.
+COM S 327, Spring 2016
+Programming Project 1.06
+“Fog of War” and interfacing C with C++
+Working with C and C++ in one project can be tedious. If you’ve got a C library that you want to use in
+a C++ project, it’s simply a matter of wrapping headers in an extern "C" block. And even if the headers
+themselves aren’t suitably sanitized, you can usually get away with wrapping the include directive. Going
+the other direction—using a C++ library in C code—is usually more work. Here you’ve got to explicitly
+export a C interface from the C++ code, so if the library developer hasn’t already done it, it will require
+source code, it could be a lot of work, and you may be better off choosing another library.
+Working with C and C++ source files in a single executable; well that’s just silly. I have seen examples
+of it, but I can’t see any good reason for it, except maybe to teach, which is why we’re going to do it. 1.07
+will convert the whole project to C++, so we won’t have to deal with this tedium again, but for now, I want
+you to get experience interfacing C and C++ code, so this week only we’ll have them both in our project.
+This description of how we’ll divide code into C and C++ parts applies to those of you who are using my
+code drops or otherwise developing your own code based roughly on the design ideas I discuss in lecture. If
+your code differs in the implementation of characters significantly, we’ll need to figure out another way to
+do this division for you. In that case, please arrange to discuss it with me.
+My code uses an object oriented design of the character t, with sub-types pc t and npc t. We will be
+converting all three of these to classes with C++ class inheritance. Any method that you want to call from
+the C side of your code will need to export a C interface.
+To the PC structure we’re going to add yet another map of the dungeon, this one will contain terrain—
+like the first map we ever made—however, it will be the terrain that the PC can see or remembers having
+seen. The dungeon is now dark. In a later assignment, we’ll implement objects, including lights, but for
+now we treat the PC as if it is carrying a light with a light radius of 3 dungeon cells. Everything within that
+radius is illuminated and thus visible. Dungeon terrain, once seen, is remembered.
+Rendering is changed to render only visible monsters, and visible and remembered terrain. All unseen
+and unremembered terrain is rendered with spaces (like rock). Note that monsters can alter the dungeon. If
+the PC doesn’t see this happening, what has been remembered doesn’t change. For instance, dungeon cell
+(y, x) is rock and is in sight of the PC. The PC moves to a position where (y, x) is no longer visible, and
+a monster tunnels through that position, converting it to corridor. The PC hasn’t witnessed that event and
+doesn’t know about it. The rendered view still displays the cell as rock. The PC moves back so that (y, x)
+re-enters view and the remembered terrain is updated so that the cell is displayed as corridor.
+All new code should be written in C++, except what is necessary to interface into the C side of the
+project.
