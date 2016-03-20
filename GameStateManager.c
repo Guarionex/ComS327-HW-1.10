@@ -792,7 +792,7 @@ int turn(int *seed, int num_mon)
 			if(game_state == 4)
 			{
 				dead_monsters = 0;
-				num_characters = num_mon+1;
+				num_characters = num_mon;
 				game_state = 0;
 			}
 			update_telepath();
