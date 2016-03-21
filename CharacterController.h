@@ -13,9 +13,9 @@ class player_t
 {
 	const char *name;
 	public:
-	player();
-	~player();
-	player(const char *player_name);
+	player_t();
+	~player_t();
+	player_t(const char *player_name);
 	inline char *get_name() const
 	{
 		return name;
