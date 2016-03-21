@@ -10,6 +10,36 @@ char *dis_map;
 char *dis_map_tun;
 int dead_monsters = 0;
 
+player::player()
+{
+	name = "";
+}
+
+player::~player()
+{
+	name = NULL;
+}
+
+player::player(const char *player_name)
+{
+	name = player_name;
+}
+
+player_t new_Player()
+{
+	return new player();
+}
+
+void destroy_Player()
+{
+	~player();
+}
+
+player_t new_Player_param(const char *player_name)
+{
+	return new player(player_name);
+}
+
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
@@ -60,10 +90,9 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 		seed_local = *seed;
 	}
 	srand(seed_local);
-	//pc.pos = open_pos[rand()%open_count];
 	pos_t new_pos = open_pos[rand()%open_count];
-	//pc.cell = dungeon[pc.pos.x][pc.pos.y];
-	pc.name = "Edwin";
+	pc = new_Player_param("Edwin");
+	//pc.name = "Edwin";
 	player = character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
 	create_character_list();
 	add_character(player);

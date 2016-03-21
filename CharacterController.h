@@ -8,6 +8,22 @@
 #include <stdint.h>
 
 # ifdef __cplusplus
+
+class player 
+{
+	char *name;
+	public:
+	player();
+	~player();
+	player(const char *player_name);
+	inline char *get_name() const
+	{
+		return name;
+	}
+	
+};
+
+
 extern "C" {
 # endif
 
@@ -20,9 +36,9 @@ typedef enum character_type_enum
 } character_type_t;
 
 typedef struct player
-{
+/*{
 	const char *name;
-} player_t;
+} */player_t;
 
 typedef struct monster
 {
@@ -55,6 +71,10 @@ extern character_t *character_list;
 extern int num_characters;
 extern const character_t NULL_CHARACTER;
 extern int dead_monsters;
+
+player_t new_Player();
+void destroy_Player();
+player_t new_Player_param(const char * player_name);
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed);
