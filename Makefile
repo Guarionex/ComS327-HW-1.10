@@ -22,8 +22,8 @@ Dijkstra.o: Dijkstra.h Dijkstra.c
 Graph.o: Graph.h Graph.c
 	gcc -g -Wall -Werror Graph.c -c
 	
-CharacterController.o: CharacterController.h CharacterController.c
-	gcc -g -Wall -Werror CharacterController.c -c
+CharacterController.o: CharacterController.h CharacterController.cpp
+	g++ -g -Wall -Werror CharacterController.cpp -c
 
 GameStateManager.o: GameStateManager.h GameStateManager.c
 	gcc -g -Wall -Werror GameStateManager.c -c
