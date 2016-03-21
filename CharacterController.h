@@ -36,9 +36,9 @@ typedef enum character_type_enum
 } character_type_t;
 
 typedef struct player
-/*{
-	const char *name;
-} */player_t;
+{
+	//const char *name;
+} player_t;
 
 typedef struct monster
 {
