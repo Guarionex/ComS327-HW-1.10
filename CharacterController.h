@@ -3,7 +3,7 @@
 
 #include "dungeonObjects.h"
 #include <time.h>
-#include <cstdlib.h>
+#include <stdlib.h>
 #include <stdarg.h>
 #include <stdint.h>
 
