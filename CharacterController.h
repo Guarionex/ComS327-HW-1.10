@@ -9,9 +9,9 @@
 
 # ifdef __cplusplus
 
-class player 
+class player_t 
 {
-	char *name;
+	const char *name;
 	public:
 	player();
 	~player();
