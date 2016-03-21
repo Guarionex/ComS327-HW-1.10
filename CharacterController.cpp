@@ -12,7 +12,7 @@ int dead_monsters = 0;
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
-	pos_t *open_pos = malloc(sizeof(pos_t));
+	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 	open_pos[0] = NULL_POS;
 	character_t player;
 	
@@ -31,7 +31,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 					new_pos.x = x;
 					new_pos.y = y;
 					open_count++;
-					open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+					open_pos = (pos_t *) realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
 					open_pos[open_count-1] = new_pos;
 					open_pos[open_count] = NULL_POS;
 				break;
@@ -40,7 +40,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 					new_pos.x = x;
 					new_pos.y = y;
 					open_count++;
-					open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+					open_pos = (pos_t *) realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
 					open_pos[open_count-1] = new_pos;
 					open_pos[open_count] = NULL_POS;
 				break;
@@ -78,7 +78,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
 	
-	pos_t *open_pos = malloc(sizeof(pos_t));
+	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 	pos_t mon_pos;
 	int open_count = 0;
 	if((0x4 & powers) == 0x4)
@@ -121,7 +121,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 							new_pos.x = x;
 							new_pos.y = y;
 							open_count++;
-							open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+							open_pos = (pos_t *) realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
 							open_pos[open_count-1] = new_pos;
 							open_pos[open_count] = NULL_POS;
 						}
@@ -133,7 +133,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 							new_pos.x = x;
 							new_pos.y = y;
 							open_count++;
-							open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+							open_pos = (pos_t *) realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
 							open_pos[open_count-1] = new_pos;
 							open_pos[open_count] = NULL_POS;
 						}
@@ -202,10 +202,10 @@ character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean a
 
 void create_character_list()
 {
-	character_list = malloc(sizeof(character_t));
+	character_list = (character_t *) malloc(sizeof(character_t));
 	character_list[0] = NULL_CHARACTER;
 	num_characters = 0;
-	character_map = malloc(sizeof(int) * 1680);
+	character_map = (int *) malloc(sizeof(int) * 1680);
 	int i;
 	for(i = 0; i < 1680; i++)
 	{
@@ -216,7 +216,7 @@ void create_character_list()
 void add_character(character_t new_character)
 {
 	num_characters++;
-	character_list = realloc(character_list, sizeof(character_t) + (sizeof(character_t) * num_characters));
+	character_list = (character_t *) realloc(character_list, sizeof(character_t) + (sizeof(character_t) * num_characters));
 	character_list[num_characters - 1] = new_character;
 	character_list[num_characters] = NULL_CHARACTER;
 	character_map[new_character.pos.y*80+new_character.pos.x] = new_character.id;
