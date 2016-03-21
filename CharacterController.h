@@ -48,7 +48,7 @@ class monsterClass
 	{
 		lost = is_mon_lost;
 	}
-	inline int *get_memoryX() const
+	inline int get_memoryX() const
 	{
 		return memoryX;
 	}
@@ -56,7 +56,7 @@ class monsterClass
 	{
 		memoryX = new_x;
 	}
-	inline int *get_memoryY() const
+	inline int get_memoryY() const
 	{
 		return memoryY;
 	}
