@@ -93,7 +93,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	pos_t new_pos = open_pos[rand()%open_count];
 	pc = new_Player_param("Edwin");
 	//pc.name = "Edwin";
-	player = character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, *pc);
+	player = character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
 	create_character_list();
 	add_character(player);
 	free(open_pos);
@@ -199,7 +199,7 @@ character_parent_t character_parent_create(character_type_t character_type, va_l
   switch(character_type)
     {
     case PLAYER:
-      character_parent.player = va_arg(ap, player_t);
+      character_parent.player = va_arg(ap, player_t *);
       break;
     case MONSTER:
       character_parent.monster = va_arg(ap, monster_t);

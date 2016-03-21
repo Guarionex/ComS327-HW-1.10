@@ -49,7 +49,7 @@ typedef struct monster
 
 typedef union character_parent
 {
-	player_t player;
+	player_t *player;
 	monster_t monster;
 } character_parent_t;
 
