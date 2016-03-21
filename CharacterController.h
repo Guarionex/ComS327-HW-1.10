@@ -27,30 +27,30 @@ class playerClass
 class monsterClass
 {
 	uint8_t abilities;
-	boolean lost;
-	pos_t memory;
+	bool lost;
+	int memory[2];
 	
 	public:
 	monsterClass();
 	~monsterClass();
-	monsterClass(uint8_t abilities, boolean lost, pos_t memory);
+	monsterClass(uint8_t abilities, bool lost, int *memory);
 	inline uint8_t get_abilities() const
 	{
 		return abilities;
 	}
-	inline boolean get_lost() const
+	inline bool get_lost() const
 	{
 		return lost;
 	}
-	inline void set_lost(boolean is_mon_lost)
+	inline void set_lost(bool is_mon_lost)
 	{
 		lost = is_mon_lost;
 	}
-	inline pos_t get_memory() const
+	inline int *get_memory() const
 	{
 		return memory;
 	}
-	inline void set_memory(pos_t new_memory)
+	inline void set_memory(int *new_memory)
 	{
 		memory = new_memory;
 	}
