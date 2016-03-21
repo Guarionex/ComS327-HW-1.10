@@ -44,20 +44,19 @@ monsterClass::monsterClass()
 {
 	abilities = 0;
 	lost = true;
-	memory[0] = -1;
-	memory[1] = -1;
+	memory = (int *) malloc((int) * 2);
 }
 monsterClass::~monsterClass()
 {
 	abilities = 0;
 	lost = false;
-	memory[0] = -1;
-	memory[1] = -1;
+	free(memory);
 }
 monsterClass::monsterClass(uint8_t abilities, bool lost, int *memory)
 {
 	this->abilities = abilities;
 	this->lost = lost;
+	this->memory = (int *) malloc((int) * 2);
 	this->memory = memory;
 }
 
@@ -65,27 +64,33 @@ monster_t *new_Monster()
 {
 	return ((monster_t *) new monsterClass());
 }
+
 void destroy_Monster(monster_t *monster_to_destroy)
 {
 	delete ((monsterClass *) monster_to_destroy);
 }
+
 monster_t new_Monster_param(uint8_t abilities, boolean lost, pos_t memory)
 {
 	int new_mem[2] = {memory.x, memory.y};
 	return ((monster_t *) new monsterClass(abilities, (lost == TRUE)? true : false, new_mem));
 }
+
 uint8_t get_Monster_abilities(monster_t *mon)
 {
 	return ((monsterClass *) mon)->get_abilities();
 }
+
 boolean get_Monster_lost(monster_t *mon)
 {
 	return (((monsterClass *) mon)->get_lost() == true)? TRUE : FALSE;
 }
+
 void set_Monster_lost(monster_t *mon, boolean is_mon_lost)
 {
 	((monsterClass *) mon)->set_lost((is_mon_lost == TRUE)? true : false);
 }
+
 pos_t get_Monster_memory(monster_t *mon)
 {
 	pos_t mon_pos;
@@ -93,6 +98,7 @@ pos_t get_Monster_memory(monster_t *mon)
 	mon_pos.y = ((monsterClass *) mon)->get_memory()[1];
 	return mon_pos;
 }
+
 void set_Monster_memory(monster_t *mon, pos_t new_memory)
 {
 	int mem[2] = {new_memory.x, new_memory.y};
@@ -1217,6 +1223,12 @@ int distance_converter(char symbol)
 
 void Destroy_Characters(void)
 {
+	destroy_Player(character_list[0].character_parent.player);
+	int m;
+	for(m = 1; m < num_characters; m++)
+	{
+		destroy_Monster(character_list[m].character_parent.monster);
+	}
 	free(character_list);
 	free(character_map);
 }
