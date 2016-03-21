@@ -9,14 +9,14 @@
 
 # ifdef __cplusplus
 
-class player_t 
+class player 
 {
 	const char *name;
 	public:
-	player_t();
-	~player_t();
-	player_t(const char *player_name);
-	inline char *get_name() const
+	player();
+	~player();
+	player(const char *player_name);
+	inline const char *get_name() const
 	{
 		return name;
 	}
@@ -72,9 +72,9 @@ extern int num_characters;
 extern const character_t NULL_CHARACTER;
 extern int dead_monsters;
 
-player_t new_Player();
-void destroy_Player();
-player_t new_Player_param(const char * player_name);
+player_t *new_Player();
+void destroy_Player(player_t *player_to_destroy);
+player_t *new_Player_param(const char * player_name);
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed);

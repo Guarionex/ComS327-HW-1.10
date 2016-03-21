@@ -27,17 +27,17 @@ player::player(const char *player_name)
 
 player_t new_Player()
 {
-	return new player();
+	return ((player_t *) new player());
 }
 
-void destroy_Player()
+void destroy_Player(player_t *player_to_destroy)
 {
-	~player();
+	delete ((player *) player_to_destroy);
 }
 
 player_t new_Player_param(const char *player_name)
 {
-	return new player(player_name);
+	return ((player_t *) new player(player_name));
 }
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
