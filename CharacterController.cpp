@@ -40,6 +40,58 @@ player_t *new_Player_param(const char *player_name)
 	return ((player_t *) new playerClass(player_name));
 }
 
+monsterClass::monsterClass()
+{
+	abilities = 0;
+	lost = TRUE;
+	memory = NULL_POS;
+}
+monsterClass::~monsterClass()
+{
+	abilities = 0;
+	lost = TRUE;
+	memory = NULL_POS;
+}
+monsterClass::monsterClass(uint8_t abilities, boolean lost, pos_t memory)
+{
+	this.abilities = abilities;
+	this.lost = lost;
+	this.memory = memory;
+}
+
+monster_t *new_Monster()
+{
+	return ((monster_t *) new monsterClass());
+}
+void destroy_Monster(monster_t *monster_to_destroy)
+{
+	delete ((monsterClass *) monster_to_destroy);
+}
+monster_t new_Monster_param(uint8_t abilities, boolean lost, pos_t memory)
+{
+	return ((monster_t *) new monsterClass(abilities, lost, memory));
+}
+uint8_t get_Monster_abilities(monster_t *mon)
+{
+	return ((monsterClass *) mon)->get_abilities();
+}
+boolean get_Monster_lost(monster_t *mon)
+{
+	return ((monsterClass *) mon)->get_lost();
+}
+void set_Monster_lost(monster_t *mon, boolean is_mon_lost)
+{
+	((monsterClass *) mon)->set_lost(is_mon_lost);
+}
+pos_t get_Monster_memory(monster_t *mon)
+{
+	return ((monsterClass *) mon)->get_memory();
+}
+void set_Monster_memory(monster_t *mon, pos_t new_memory)
+{
+	((monsterClass *) mon)->set_memory(new_memory);
+}
+
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
@@ -177,12 +229,12 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 		mon_pos = open_pos[rand()%open_count];
 	}
 	
-	monster_t monster = {.abilities = powers, .lost = TRUE,.memory = NULL_POS};
-	if((monster.abilities & 0x2) == 0x2)
+	monster_t *monster = new_Monster_param(powers, TRUE, NULL_POS);
+	if((get_Monster_abilities(monster) & 0x2) == 0x2)
 	{
-		monster.memory = get_character_by_id(0).pos;
+		set_Monster_memory(monster, get_character_by_id(0).pos);
 	}
-	if((monster.abilities & 0x4) == 0x4 && dungeon[mon_pos.x][mon_pos.y].space_type == ROCK)
+	if((get_Monster_abilities(monster) & 0x4) == 0x4 && dungeon[mon_pos.x][mon_pos.y].space_type == ROCK)
 	{
 		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 	}
@@ -202,7 +254,7 @@ character_parent_t character_parent_create(character_type_t character_type, va_l
       character_parent.player = va_arg(ap, player_t *);
       break;
     case MONSTER:
-      character_parent.monster = va_arg(ap, monster_t);
+      character_parent.monster = va_arg(ap, monster_t *);
       break;
     }
 
@@ -480,10 +532,10 @@ void update_telepath(void)
 	int m;
 	for(m = 0; m < num_characters; m++)
 	{
-		if((character_list[m].character_type == MONSTER) && ((character_list[m].character_parent.monster.abilities & 0x2) == 0x2))
+		if((character_list[m].character_type == MONSTER) && ((get_Monster_abilities(character_list[m].character_parent.monster) & 0x2) == 0x2))
 		{
-			character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
-			character_list[m].character_parent.monster.lost = FALSE;
+			set_Monster_memory(character_list[m].character_parent.monster, get_character_by_id(0).pos);
+			set_Monster_lost(character_list[m].character_parent.monster, FALSE);
 			//printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
 	}
@@ -496,33 +548,33 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 	{
 		if(character_list[m].character_type == MONSTER)
 		{
-			if((character_list[m].character_parent.monster.abilities & 0x2) == 0x2)
+			if((get_Monster_abilities(character_list[m].character_parent.monster) & 0x2) == 0x2)
 			{
 				continue;
 			}
-			else if((character_list[m].character_parent.monster.abilities & 0x1) == 0x1)
+			else if((get_Monster_abilities(character_list[m].character_parent.monster) & 0x1) == 0x1)
 			{
 				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
 				{
-					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
-					character_list[m].character_parent.monster.lost = FALSE;
+					set_Monster_memory(character_list[m].character_parent.monster, get_character_by_id(0).pos);
+					set_Monster_lost(character_list[m].character_parent.monster, FALSE);
 					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
-					character_list[m].character_parent.monster.lost = TRUE;
+					set_Monster_lost(character_list[m].character_parent.monster, TRUE);
 				}
 			}
 			else
 			{
 				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
 				{
-					character_list[m].character_parent.monster.memory = get_character_by_id(0).pos;
+					set_Monster_memory(character_list[m].character_parent.monster, get_character_by_id(0).pos);
 					//printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
-					character_list[m].character_parent.monster.memory = NULL_POS;
+					set_Monster_memory(character_list[m].character_parent.monster, NULL_POS);
 					//printf("Monster %d lost sight of player\n", character_list[m].id);
 				}
 			}
@@ -585,20 +637,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	pos_t move_to = {.x = player_to_move->pos.x, .y = player_to_move->pos.y};
 	boolean moving = FALSE, erratic = FALSE;
 	
-	if((player_to_move->character_parent.monster.abilities & 0x8) == 0x8)
+	if((get_Monster_abilities(player_to_move->character_parent.monster) & 0x8) == 0x8)
 	{
 		if(rand()%2 == 1)
 		{
 			erratic = TRUE;
 			int a = (rand()%3)-1;
 			int b = (rand()%3)-1;
-			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x0 && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
+			if((get_Monster_abilities(player_to_move->character_parent.monster) & 0x4) == 0x0 && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
 			{
 				move_to.x += a;
 				move_to.y += b;
 				moving = TRUE;
 			}
-			else if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
+			else if((get_Monster_abilities(player_to_move->character_parent.monster) & 0x4) == 0x4)
 			{
 				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
 				{
@@ -628,13 +680,13 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 		//coin toss random move or chosen move
 	}
 	
-	if((player_to_move->character_parent.monster.abilities & 0x1) == 0x1 && erratic == FALSE)
+	if((get_Monster_abilities(player_to_move->character_parent.monster) & 0x1) == 0x1 && erratic == FALSE)
 	{
-		if(player_to_move->character_parent.monster.memory.x != NULL_POS.x && player_to_move->character_parent.monster.memory.y != NULL_POS.y )
+		if(get_Monster_memory(player_to_move->character_parent.monster).x != NULL_POS.x && get_Monster_memory(player_to_move->character_parent.monster).y != NULL_POS.y )
 		{
-			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
+			if((get_Monster_abilities(player_to_move->character_parent.monster) & 0x4) == 0x4)
 			{
-				if(player_to_move->character_parent.monster.lost == FALSE)
+				if(get_Monster_lost(player_to_move->character_parent.monster) == FALSE)
 				{
 					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = 428400;
 					for(n = 0; n < 8; n++)
@@ -688,20 +740,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 				{
 					//printf("Player lost\n");
 					int a = 0, b = 0;
-					if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
+					if(player_to_move->pos.x - get_Monster_memory(player_to_move->character_parent.monster).x > 0)
 					{
 						a = -1;
 					}
-					else if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x < 0)
+					else if(player_to_move->pos.x - get_Monster_memory(player_to_move->character_parent.monster).x < 0)
 					{
 						a = 1;
 					}
 					
-					if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y > 0)
+					if(player_to_move->pos.y - get_Monster_memory(player_to_move->character_parent.monster).y > 0)
 					{
 						b = -1;
 					}
-					else if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y < 0)
+					else if(player_to_move->pos.y - get_Monster_memory(player_to_move->character_parent.monster).y < 0)
 					{
 						b = 1;
 					}
@@ -735,7 +787,7 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 			}
 			else
 			{
-				if(player_to_move->character_parent.monster.lost == FALSE)
+				if(get_Monster_lost(player_to_move->character_parent.monster) == FALSE)
 				{
 					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = 428400;
 					for(n = 0; n < 8; n++)
@@ -770,20 +822,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 				{
 					//printf("Player lost\n");
 					int a = 0, b = 0;
-					if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
+					if(player_to_move->pos.x - get_Monster_memory(player_to_move->character_parent.monster).x > 0)
 					{
 						a = -1;
 					}
-					else if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x < 0)
+					else if(player_to_move->pos.x - get_Monster_memory(player_to_move->character_parent.monster).x < 0)
 					{
 						a = 1;
 					}
 					
-					if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y > 0)
+					if(player_to_move->pos.y - get_Monster_memory(player_to_move->character_parent.monster).y > 0)
 					{
 						b = -1;
 					}
-					else if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y < 0)
+					else if(player_to_move->pos.y - get_Monster_memory(player_to_move->character_parent.monster).y < 0)
 					{
 						b = 1;
 					}
@@ -801,29 +853,29 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	}
 	else if(erratic == FALSE)
 	{
-		if(player_to_move->character_parent.monster.memory.x != NULL_POS.x && player_to_move->character_parent.monster.memory.y != NULL_POS.y )
+		if(get_Monster_memory(player_to_move->character_parent.monster).x != NULL_POS.x && get_Monster_memory(player_to_move->character_parent.monster).y != NULL_POS.y )
 		{
 			//find direction
 			int a = 0, b = 0;
-			if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x > 0)
+			if(player_to_move->pos.x - get_Monster_memory(player_to_move->character_parent.monster).x > 0)
 			{
 				a = -1;
 			}
-			else if(player_to_move->pos.x - player_to_move->character_parent.monster.memory.x < 0)
+			else if(player_to_move->pos.x - get_Monster_memory(player_to_move->character_parent.monster).x < 0)
 			{
 				a = 1;
 			}
 			
-			if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y > 0)
+			if(player_to_move->pos.y - get_Monster_memory(player_to_move->character_parent.monster).y > 0)
 			{
 				b = -1;
 			}
-			else if(player_to_move->pos.y - player_to_move->character_parent.monster.memory.y < 0)
+			else if(player_to_move->pos.y - get_Monster_memory(player_to_move->character_parent.monster).y < 0)
 			{
 				b = 1;
 			}
 			
-			if((player_to_move->character_parent.monster.abilities & 0x4) == 0x4)
+			if((get_Monster_abilities(player_to_move->character_parent.monster) & 0x4) == 0x4)
 			{
 				//chisel
 				//if density <= 0 moving = TRUE;

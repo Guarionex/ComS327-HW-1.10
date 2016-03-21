@@ -12,6 +12,7 @@
 class playerClass 
 {
 	const char *name;
+	
 	public:
 	playerClass();
 	~playerClass();
@@ -19,6 +20,39 @@ class playerClass
 	inline const char *get_name() const
 	{
 		return name;
+	}
+	
+};
+
+class monsterClass
+{
+	uint8_t abilities;
+	boolean lost;
+	pos_t memory;
+	
+	public:
+	monsterClass();
+	~monsterClass();
+	monsterClass(uint8_t abilities, boolean lost, pos_t memory);
+	inline uint8_t get_abilities() const
+	{
+		return abilities;
+	}
+	inline boolean get_lost() const
+	{
+		return lost;
+	}
+	inline void set_lost(boolean is_mon_lost)
+	{
+		lost = is_mon_lost;
+	}
+	inline pos_t get_memory() const
+	{
+		return memory;
+	}
+	inline void set_memory(pos_t new_memory)
+	{
+		memory = new_memory;
 	}
 	
 };
@@ -42,15 +76,15 @@ typedef struct player
 
 typedef struct monster
 {
-	uint8_t abilities;
+	/*uint8_t abilities;
 	boolean lost;
-	pos_t memory;
+	pos_t memory;*/
 } monster_t;
 
 typedef union character_parent
 {
 	player_t *player;
-	monster_t monster;
+	monster_t *monster;
 } character_parent_t;
 
 typedef struct character_tag
@@ -75,6 +109,15 @@ extern int dead_monsters;
 player_t *new_Player(void);
 void destroy_Player(player_t *player_to_destroy);
 player_t *new_Player_param(const char *player_name);
+
+monster_t *new_Monster();
+void destroy_Monster(monster_t *monster_to_destroy);
+monster_t new_Monster_param(uint8_t abilities, boolean lost, pos_t memory);
+uint8_t get_Monster_abilities(monster_t *mon);
+boolean get_Monster_lost(monster_t *mon);
+void set_Monster_lost(monster_t *mon, boolean is_mon_lost);
+pos_t get_Monster_memory(monster_t *mon);
+void set_Monster_memory(monster_t *mon, pos_t new_memory);
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed);
