@@ -26,6 +26,7 @@ class playerClass
 
 class monsterClass
 {
+	private:
 	uint8_t abilities;
 	bool lost;
 	int memory[2];
