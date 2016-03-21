@@ -4,8 +4,7 @@
 player_t pc;
 int *character_map;
 character_t *character_list;
-const character_t NULL_CHARACTER = {};
-NULL_CHARACTER.id = -1;
+const character_t NULL_CHARACTER = {-1,	-1,	-1,	false, NULL, NULL, NULL, NULL};
 int num_characters;
 char *dis_map;
 char *dis_map_tun;
