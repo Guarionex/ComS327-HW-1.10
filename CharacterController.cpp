@@ -10,34 +10,34 @@ char *dis_map;
 char *dis_map_tun;
 int dead_monsters = 0;
 
-player::player()
+playerClass::playerClass()
 {
 	name = "";
 }
 
-player::~player()
+playerClass::~playerClass()
 {
 	name = NULL;
 }
 
-player::player(const char *player_name)
+playerClass::playerClass(const char *player_name)
 {
 	name = player_name;
 }
 
-player_t new_Player()
+player_t *new_Player(void)
 {
-	return ((player_t *) new player());
+	return ((player_t *) new playerClass());
 }
 
 void destroy_Player(player_t *player_to_destroy)
 {
-	delete ((player *) player_to_destroy);
+	delete ((playerClass *) player_to_destroy);
 }
 
-player_t new_Player_param(const char *player_name)
+player_t *new_Player_param(const char *player_name)
 {
-	return ((player_t *) new player(player_name));
+	return ((player_t *) new playerClass(player_name));
 }
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
