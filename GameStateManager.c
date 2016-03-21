@@ -384,7 +384,7 @@ void Draw_Dungeon(int use_curses)
 			}
 			else if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
 			{
-				switch(get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities)
+				switch(get_Monster_abilities(get_character_by_id(check_character_map(x, y)).character_parent.monster))
 				{
 					case 0x0:
 						renderer[y*81+x] = '0';
@@ -645,7 +645,7 @@ void Draw_Monster_List(void)
 			continue;
 		}
 		pos_t distance_to_player = {character_list[0].pos.x - character_list[m].pos.x, character_list[0].pos.y - character_list[m].pos.y};
-		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", character_list[m].character_parent.monster.abilities, (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
+		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", get_Monster_abilities(character_list[m].character_parent.monster), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
 		int c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
