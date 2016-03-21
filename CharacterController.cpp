@@ -72,7 +72,7 @@ void destroy_Monster(monster_t *monster_to_destroy)
 	delete ((monsterClass *) monster_to_destroy);
 }
 
-monster_t new_Monster_param(uint8_t abilities, boolean lost, pos_t memory)
+monster_t *new_Monster_param(uint8_t abilities, boolean lost, pos_t memory)
 {
 	return ((monster_t *) new monsterClass(abilities, (lost == TRUE)? true : false, memory.x, memory.y));
 }
