@@ -56,9 +56,9 @@ monsterClass::~monsterClass()
 }
 monsterClass::monsterClass(uint8_t abilities, bool lost, int *memory)
 {
-	this.abilities = abilities;
-	this.lost = lost;
-	this.memory = memory;
+	this->abilities = abilities;
+	this->lost = lost;
+	this->memory = memory;
 }
 
 monster_t *new_Monster()
