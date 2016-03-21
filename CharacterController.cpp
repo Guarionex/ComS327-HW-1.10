@@ -1,7 +1,7 @@
 #include "CharacterController.h"
 #include <stdio.h>
 
-player_t pc;
+player_t *pc;
 int *character_map;
 character_t *character_list;
 const character_t NULL_CHARACTER = {speed : -1, timer : -1, id : -1};
@@ -93,7 +93,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	pos_t new_pos = open_pos[rand()%open_count];
 	pc = new_Player_param("Edwin");
 	//pc.name = "Edwin";
-	player = character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
+	player = character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, *pc);
 	create_character_list();
 	add_character(player);
 	free(open_pos);

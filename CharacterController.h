@@ -65,7 +65,7 @@ typedef struct character_tag
 	character_parent_t character_parent;
 } character_t;
 
-extern player_t pc;
+extern player_t *pc;
 extern int *character_map;
 extern character_t *character_list;
 extern int num_characters;
