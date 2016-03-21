@@ -527,7 +527,7 @@
 2/23/16 have all monsters
 2/23/16 don't move to border
 2/23/16 added alive boolean
-2/23/16 forgot to set the bool
+2/23/16 forgot to set the boolean
 2/23/16 draw player
 2/23/16 testing the stuff I made
 2/23/16 small bug fix in tunneling

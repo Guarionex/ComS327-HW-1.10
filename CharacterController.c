@@ -83,7 +83,7 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	int open_count = 0;
 	if((0x4 & powers) == 0x4)
 	{
-		bool pos_found = FALSE;
+		boolean pos_found = FALSE;
 		int attempts = 0;
 		while(pos_found == FALSE && attempts < 10000)
 		{
@@ -180,7 +180,7 @@ character_parent_t character_parent_create(character_type_t character_type, va_l
   return character_parent;
 }
 
-character_t character_tag_create(int32_t speed, int32_t timer, int id, bool alive, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
+character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean alive, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
 {
   va_list ap;
   va_start(ap, character_type);
@@ -225,7 +225,7 @@ void add_character(character_t new_character)
 character_t delete_character(int id)
 {
 	int i;
-	bool deleted = FALSE;
+	boolean deleted = FALSE;
 	character_t killed_character = NULL_CHARACTER;
 	for(i = 0; i < num_characters; i++)
 	{
@@ -283,7 +283,7 @@ int check_character_map(int x, int y)
 	return character_map[y*80+x];
 }
 
-bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...)
+boolean move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...)
 {
 	int index = get_character_index_by_id(character_id);
 	if(index < 0 || character_list[index].alive == FALSE) 
@@ -308,7 +308,7 @@ bool move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon,
 	return FALSE;
 }
 
-bool move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **dungeon)
+boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **dungeon)
 {
 	int a = to.x, b = to.y;
 	/*switch(to)
@@ -501,9 +501,9 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 	}
 }
 
-bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
+boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 {
-	bool found_player = FALSE, failed = FALSE;
+	boolean found_player = FALSE, failed = FALSE;
 	int a = -1, b = -1;
 	pos_t current = monster_pos;
 	
@@ -551,10 +551,10 @@ bool line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 	return found_player;
 }
 
-bool move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
+boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 {
 	pos_t move_to = {.x = player_to_move->pos.x, .y = player_to_move->pos.y};
-	bool moving = FALSE, erratic = FALSE;
+	boolean moving = FALSE, erratic = FALSE;
 	
 	if((player_to_move->character_parent.monster.abilities & 0x8) == 0x8)
 	{

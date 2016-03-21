@@ -8,7 +8,7 @@ typedef enum
 {
 	FALSE,
 	TRUE
-} bool;
+} boolean;
 
 typedef struct position
 {

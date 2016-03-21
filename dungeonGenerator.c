@@ -13,7 +13,7 @@
 #include "GameStateManager.h"
 #include "CharacterController.h"
 
-bool isstring(char *string);
+boolean isstring(char *string);
 
 char *dungeonFolder;
 Dungeon_Space_Struct **dungeon;
@@ -25,12 +25,12 @@ int main(int argc, char *argv[])
 	Flags flags[argc - 1];
 	char *dungeonFileName;
 	char *dungeonSaveFileName;
-	bool load_param = FALSE;
-	bool save_param = FALSE;
-	bool nummon_param = FALSE;
+	boolean load_param = FALSE;
+	boolean save_param = FALSE;
+	boolean nummon_param = FALSE;
 	int nummon_value = 0;
-	bool loaded = FALSE;
-	bool save_param_used = FALSE;
+	boolean loaded = FALSE;
+	boolean save_param_used = FALSE;
 	int num_rooms;
 	
 	if(argc >= 2)
@@ -388,10 +388,10 @@ int main(int argc, char *argv[])
 	return 0;
 }
 
-bool isstring(char *string)
+boolean isstring(char *string)
 {
-	bool start = TRUE;
-	bool is_string = TRUE;
+	boolean start = TRUE;
+	boolean is_string = TRUE;
 	while(*string != '\0')
 	{
 		if(isdigit(*string) != 0)

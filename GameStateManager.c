@@ -68,7 +68,7 @@ void populate_monsters(int num_mon, int *seed)
 	}
 }
 
-char *Generate_Distance_Dungeon(bool tunneler)
+char *Generate_Distance_Dungeon(boolean tunneler)
 {
 	graphed_dungeon = GenerateGraph(current_dungeon, tunneler);
 	vertex_t player_vertex = Get_Vertex(get_character_by_id(0).pos.x, get_character_by_id(0).pos.y);

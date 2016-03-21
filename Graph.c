@@ -23,7 +23,7 @@ void Destroy_Graph(graph_t *destroy_graph)
 	free(destroy_graph->edges);
 }
 
-bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
+boolean Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 {
 	vertex_t new_vertex;
 	new_vertex.vertexData = cell;
@@ -69,7 +69,7 @@ bool Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 	return TRUE;
 }
 
-bool Add_Edge(vertex_t source, vertex_t target)
+boolean Add_Edge(vertex_t source, vertex_t target)
 {
 	edge_t new_edge;
 	new_edge.source = source;
@@ -100,7 +100,7 @@ vertex_t Get_Vertex(int x, int y)
 	return NULL_VERTEX;
 }
 
-bool Compare_Vertices(vertex_t key, vertex_t with)
+boolean Compare_Vertices(vertex_t key, vertex_t with)
 {
 	if((key.x == with.x) && (key.y == with.y))
 	{
@@ -109,7 +109,7 @@ bool Compare_Vertices(vertex_t key, vertex_t with)
 	return FALSE;
 }
 
-bool Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t find)
+boolean Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t find)
 {
 	int e;
 	for(e = 0; e < num_elements; e++)
@@ -139,7 +139,7 @@ edge_t *Get_Edges_Of(vertex_t vertex)
 	return adjacent_edges;
 }
 
-graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, bool tunneler)
+graph_t GenerateGraph(Dungeon_Space_Struct **dungeon, boolean tunneler)
 {
 	Create_Graph();
 	

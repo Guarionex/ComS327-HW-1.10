@@ -8,7 +8,7 @@
 
 Dungeon_Space_Struct **dungeon_map_load;
 
-bool Contains_Flag(Flags *flag, int size, Flags contains)
+boolean Contains_Flag(Flags *flag, int size, Flags contains)
 {
 	int f;
 	for(f = 0; f < size; f++)
@@ -23,7 +23,7 @@ bool Contains_Flag(Flags *flag, int size, Flags contains)
 	return FALSE;
 }
 
-bool Contains_Room(Dungeon_Space_Room *rooms, int size, Dungeon_Space_Room room)
+boolean Contains_Room(Dungeon_Space_Room *rooms, int size, Dungeon_Space_Room room)
 {
 	int r;
 	for(r = 0; r < size; r++)
@@ -107,7 +107,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 			//printf("X = %d\n", x);
 			Dungeon_Space_Rock rock;
 			Dungeon_Space_Corridor corridor;
-			bool is_rock = TRUE;
+			boolean is_rock = TRUE;
 			if(x == 0 || y == 0 || x == 79 || y == 20)
 			{
 				//printf("[%d][%d] = border\n", x, y);

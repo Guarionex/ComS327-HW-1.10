@@ -38,14 +38,14 @@ void Create_Blank_Map(int *seed)
 	}
 }
 
-bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
+boolean Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 {
 	
 	int r;
 	int num_attempts = 0;
 	for(r = 0; r < num_rooms; r++)
 	{
-		bool overlap = TRUE;
+		boolean overlap = TRUE;
 		num_attempts = 0;
 		while(((rooms[r].x + rooms[r].width > 79) || (rooms[r].y + rooms[r].height > 20)) || (rooms[r].x < 0 || rooms[r].y < 0) || overlap == TRUE)
 		{
@@ -63,8 +63,8 @@ bool Place_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 			
 			for(pr = 0; pr < r; pr++)
 			{	
-				bool x_overlap = FALSE;
-				bool y_overlap = FALSE;
+				boolean x_overlap = FALSE;
+				boolean y_overlap = FALSE;
 				if(rooms[r].x == rooms[pr].x)
 				{
 					x_overlap = TRUE;
@@ -156,7 +156,7 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		for(r = 0; r < num_rooms; r++)
 		{
 			int i;
-			bool already_sorted = FALSE;
+			boolean already_sorted = FALSE;
 			for(i = 0; i < num_rooms; i++)
 			{
 				if(sorted_indecis[i] == r)
@@ -200,8 +200,8 @@ void Connect_Rooms(Dungeon_Space_Room *rooms, int num_rooms)
 		int dy = abs(y1-y0), sy = y0<y1 ? 1 : -1; 
 		int err = (dx>dy ? dx : -dy)/2, e2;
 		
-		bool moved_x = FALSE;
-		bool moved_y = FALSE;
+		boolean moved_x = FALSE;
+		boolean moved_y = FALSE;
 		for(;;)
 		{
 			if(moved_x == TRUE && moved_y == TRUE)
@@ -271,7 +271,7 @@ Dungeon_Space_Struct **Generate_Map(int *seed, int *num_rooms)
 	
 	Create_Blank_Map(seed);
 	//printf("Seed is %d\n", *seed);
-	bool success = FALSE;
+	boolean success = FALSE;
 	int attempts = 0;
 	while(success == FALSE || attempts > 2000)
 	{
