@@ -122,7 +122,7 @@ player_t *new_Player_param(const char *player_name);
 
 monster_t *new_Monster();
 void destroy_Monster(monster_t *monster_to_destroy);
-monster_t new_Monster_param(uint8_t abilities, boolean lost, pos_t memory);
+monster_t *new_Monster_param(uint8_t abilities, boolean lost, pos_t memory);
 uint8_t get_Monster_abilities(monster_t *mon);
 boolean get_Monster_lost(monster_t *mon);
 void set_Monster_lost(monster_t *mon, boolean is_mon_lost);
