@@ -29,12 +29,13 @@ class monsterClass
 	private:
 	uint8_t abilities;
 	bool lost;
-	int *memory;
+	int memoryX;
+	int memoryY;
 	
 	public:
 	monsterClass();
 	~monsterClass();
-	monsterClass(uint8_t abilities, bool lost, int *memory);
+	monsterClass(uint8_t powers, bool is_mon_lost, int memX, int memY);
 	inline uint8_t get_abilities() const
 	{
 		return abilities;
@@ -47,13 +48,21 @@ class monsterClass
 	{
 		lost = is_mon_lost;
 	}
-	inline int *get_memory() const
+	inline int *get_memoryX() const
 	{
-		return memory;
+		return memoryX;
 	}
-	inline void set_memory(int *new_memory)
+	inline void set_memoryX(int new_x)
 	{
-		memory = new_memory;
+		memoryX = new_x;
+	}
+	inline int *get_memoryY() const
+	{
+		return memoryY;
+	}
+	inline void set_memoryY(int new_y)
+	{
+		memoryY = new_y;
 	}
 	
 };

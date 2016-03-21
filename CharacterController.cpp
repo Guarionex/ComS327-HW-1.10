@@ -44,20 +44,22 @@ monsterClass::monsterClass()
 {
 	abilities = 0;
 	lost = true;
-	memory = (int *) malloc((int) * 2);
+	memoryX = -1;
+	memoryY = -1;
 }
 monsterClass::~monsterClass()
 {
 	abilities = 0;
-	lost = false;
-	free(memory);
+	lost = true;
+	memoryX = -1;
+	memoryY = -1;
 }
-monsterClass::monsterClass(uint8_t abilities, bool lost, int *memory)
+monsterClass::monsterClass(uint8_t powers, bool is_mon_lost, int memX, int memY)
 {
-	this->abilities = abilities;
-	this->lost = lost;
-	this->memory = (int *) malloc((int) * 2);
-	this->memory = memory;
+	abilities = powers;
+	lost = is_mon_lost;
+	memoryX = memX;
+	memoryY = memY;
 }
 
 monster_t *new_Monster()
@@ -72,8 +74,7 @@ void destroy_Monster(monster_t *monster_to_destroy)
 
 monster_t new_Monster_param(uint8_t abilities, boolean lost, pos_t memory)
 {
-	int new_mem[2] = {memory.x, memory.y};
-	return ((monster_t *) new monsterClass(abilities, (lost == TRUE)? true : false, new_mem));
+	return ((monster_t *) new monsterClass(abilities, (lost == TRUE)? true : false, memory.x, memory.y));
 }
 
 uint8_t get_Monster_abilities(monster_t *mon)
@@ -94,15 +95,15 @@ void set_Monster_lost(monster_t *mon, boolean is_mon_lost)
 pos_t get_Monster_memory(monster_t *mon)
 {
 	pos_t mon_pos;
-	mon_pos.x = ((monsterClass *) mon)->get_memory()[0];
-	mon_pos.y = ((monsterClass *) mon)->get_memory()[1];
+	mon_pos.x = ((monsterClass *) mon)->get_memoryX();
+	mon_pos.y = ((monsterClass *) mon)->get_memoryY();
 	return mon_pos;
 }
 
 void set_Monster_memory(monster_t *mon, pos_t new_memory)
 {
-	int mem[2] = {new_memory.x, new_memory.y};
-	((monsterClass *) mon)->set_memory(mem);
+	((monsterClass *) mon)->set_memoryX(new_memory.x);
+	((monsterClass *) mon)->set_memoryY(new_memory.y);
 }
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
