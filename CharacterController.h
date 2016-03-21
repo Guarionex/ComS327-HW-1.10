@@ -19,7 +19,7 @@ typedef enum character_type_enum
 
 typedef struct player
 {
-	char *name;
+	const char *name;
 } player_t;
 
 typedef struct monster
