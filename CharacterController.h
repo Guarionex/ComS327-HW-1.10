@@ -7,9 +7,9 @@
 #include <stdarg.h>
 #include <stdint.h>
 
-# ifdef __cplusplus
+/*# ifdef __cplusplus
 extern "C" {
-# endif
+# endif*/
 
 typedef enum character_type_enum
 {
@@ -76,9 +76,9 @@ void set_distance_tunneler(char *distance_tunneller);
 int distance_converter(char symbol);
 void Destroy_Characters(void);
 
-#ifdef __cplusplus
+/*#ifdef __cplusplus
 }
-#endif
+#endif*/
 
 
 #endif
