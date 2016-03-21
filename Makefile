@@ -1,5 +1,5 @@
 dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o GameStateManager.o dungeonGenerator.o
-	gcc dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dungeonGenerator.o -o dungeonGenerator -lm -lcurses
+	g++ dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dungeonGenerator.o -o dungeonGenerator -lm -lcurses
 
 dungeonObjects.o: dungeonObjects.h dungeonObjects.c
 	gcc -g -Wall -Werror dungeonObjects.c -c
