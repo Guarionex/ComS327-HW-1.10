@@ -1,7 +1,7 @@
 #ifndef CHARACTER_CONTROLLER_H
 #define CHARACTER_CONTROLLER_H
 
-#include "dungeonObjects.h"
+
 #include <time.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -10,6 +10,8 @@
 # ifdef __cplusplus
 extern "C" {
 # endif
+
+#include "dungeonObjects.h"
 
 typedef enum character_type_enum
 {
