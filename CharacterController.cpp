@@ -628,13 +628,13 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 
 int32_t compare_character(const void *key, const void *with)
 {
-	character_t from = *((character_t *) key);
-	character_t to = *((character_t *) with);
+	character_t *from = ((character_t *) key);
+	character_t *to = ((character_t *) with);
 	
-	int32_t turn_difference = from.timer - to.timer;
+	int32_t turn_difference = get_Character_timer(from) - get_Character_timer(to);
 	if(turn_difference == 0)
 	{
-		turn_difference = from.id - to.id;
+		turn_difference = get_Character_id(from) - get_Character_id(to);
 	}
 	return turn_difference;
 }
