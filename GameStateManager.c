@@ -377,7 +377,7 @@ void Draw_Dungeon(int use_curses)
 				renderer[y*81+x] = '\n';
 				//printf("%c", renderer[y*80+x]);
 			}
-			else if(get_character_by_id(0).pos.x == x && get_character_by_id(0).pos.y == y && get_character_by_id(0).alive == TRUE)
+			else if(get_Character_pos(get_character_by_id(0)).x == x && get_Character_pos(get_character_by_id(0)).y == y && get_character_by_id(0).alive == TRUE)
 			{
 				renderer[y*81+x] = '@';
 				//printf("%c", renderer[y*80+x]);
@@ -533,7 +533,7 @@ void Draw_Dungeon(int use_curses)
 		for(d = 0; d < 1701; d++)
 		{
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
-			if(get_character_by_id(0).pos.x	== d-((d/81)*81) && get_character_by_id(0).pos.y == (d/81))
+			if(get_Character_pos(get_character_by_id(0)).x	== d-((d/81)*81) && get_Character_pos(get_character_by_id(0)).y == (d/81))
 			{
 				attron(COLOR_PAIR(8));
 			}
