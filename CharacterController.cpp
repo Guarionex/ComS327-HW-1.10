@@ -4,7 +4,7 @@
 player_t *pc;
 int *character_map;
 character_t **character_list;
-const character_t NULL_CHARACTER = *(new_Character());//{speed : -1, timer : -1, id : -1};
+character_t NULL_CHARACTER = *(new_Character());//{speed : -1, timer : -1, id : -1};
 int num_characters;
 char *dis_map;
 char *dis_map_tun;
@@ -335,7 +335,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	monster_t *monster = new_Monster_param(powers, TRUE, NULL_POS);
 	if((get_Monster_abilities(monster) & 0x2) == 0x2)
 	{
-		set_Monster_memory(monster, get_character_by_id(0).pos);
+		set_Monster_memory(monster, get_Character_pos(get_character_by_id(0)).pos);
 	}
 	if((get_Monster_abilities(monster) & 0x4) == 0x4 && dungeon[mon_pos.x][mon_pos.y].space_type == ROCK)
 	{
