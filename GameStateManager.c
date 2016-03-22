@@ -639,13 +639,13 @@ void Draw_Monster_List(void)
 		{
 			break;
 		}*/
-		if(character_list[m].alive == FALSE)
+		if(get_Character_alive(character_list[m]) == FALSE)
 		{
 			dead_count++;
 			continue;
 		}
-		pos_t distance_to_player = {get_Character_pos(character_list[0]).x - character_list[m].pos.x, get_Character_pos(character_list[0]).y - character_list[m].pos.y};
-		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", get_Monster_abilities(character_list[m].character_parent.monster), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
+		pos_t distance_to_player = {get_Character_pos(character_list[0]).x - get_Character_pos(character_list[m]).x, get_Character_pos(character_list[0]).y - get_Character_pos(character_list[m]).y};
+		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", get_Monster_abilities((monster_t *)character_list[m]), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
 		int c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
