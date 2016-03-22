@@ -614,6 +614,7 @@ void Draw_Dungeon(int use_curses)
 		mvprintw(23, 0, exit_message);
 		getch();
 		//endwin();
+		Destroy_Characters();
 	}
 	
 }
@@ -874,7 +875,10 @@ int turn(int *seed, int num_mon)
 		/*nodes[p] = */binheap_insert(&h, current);
 	}
 	
-	Destroy_Characters();
+	if(game_state != 1 && game_state != 2)
+	{
+		Destroy_Characters();
+	}
 	//Destroy_All();
 	binheap_delete(&h);
 	return level;
