@@ -8,66 +8,6 @@
 #include <stdint.h>
 
 # ifdef __cplusplus
-
-class playerClass 
-{
-	const char *name;
-	
-	public:
-	playerClass();
-	~playerClass();
-	playerClass(const char *player_name);
-	inline const char *get_name() const
-	{
-		return name;
-	}
-	
-};
-
-class monsterClass
-{
-	private:
-	uint8_t abilities;
-	bool lost;
-	int memoryX;
-	int memoryY;
-	
-	public:
-	monsterClass();
-	~monsterClass();
-	monsterClass(uint8_t powers, bool is_mon_lost, int memX, int memY);
-	inline uint8_t get_abilities() const
-	{
-		return abilities;
-	}
-	inline bool get_lost() const
-	{
-		return lost;
-	}
-	inline void set_lost(bool is_mon_lost)
-	{
-		lost = is_mon_lost;
-	}
-	inline int get_memoryX() const
-	{
-		return memoryX;
-	}
-	inline void set_memoryX(int new_x)
-	{
-		memoryX = new_x;
-	}
-	inline int get_memoryY() const
-	{
-		return memoryY;
-	}
-	inline void set_memoryY(int new_y)
-	{
-		memoryY = new_y;
-	}
-	
-};
-
-
 extern "C" {
 # endif
 
@@ -153,6 +93,79 @@ void Destroy_Characters(void);
 
 #ifdef __cplusplus
 }
+
+
+class playerClass 
+{
+	const char *name;
+	
+	public:
+	playerClass();
+	~playerClass();
+	playerClass(const char *player_name);
+	inline const char *get_name() const
+	{
+		return name;
+	}
+	
+};
+
+class monsterClass
+{
+	private:
+	uint8_t abilities;
+	bool lost;
+	int memoryX;
+	int memoryY;
+	
+	public:
+	monsterClass();
+	~monsterClass();
+	monsterClass(uint8_t powers, bool is_mon_lost, int memX, int memY);
+	inline uint8_t get_abilities() const
+	{
+		return abilities;
+	}
+	inline bool get_lost() const
+	{
+		return lost;
+	}
+	inline void set_lost(bool is_mon_lost)
+	{
+		lost = is_mon_lost;
+	}
+	inline int get_memoryX() const
+	{
+		return memoryX;
+	}
+	inline void set_memoryX(int new_x)
+	{
+		memoryX = new_x;
+	}
+	inline int get_memoryY() const
+	{
+		return memoryY;
+	}
+	inline void set_memoryY(int new_y)
+	{
+		memoryY = new_y;
+	}
+	
+};
+
+/*class characterClass
+{
+	public:
+	int32_t speed;
+	int32_t timer;
+	int id;
+	boolean alive;
+	pos_t pos;
+	Dungeon_Space_Struct cell;
+	character_type_t character_type;
+};*/
+
+
 #endif
 
 
