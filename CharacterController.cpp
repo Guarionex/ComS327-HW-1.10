@@ -283,7 +283,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 		}
 		if(attempts == 10000)
 		{
-			return NULL_CHARACTER;
+			return &NULL_CHARACTER;
 		}
 	}
 	else
@@ -327,7 +327,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 		}
 		if(open_count == 0)
 		{
-			return NULL_CHARACTER;
+			return &NULL_CHARACTER;
 		}
 		mon_pos = open_pos[rand()%open_count];
 	}
