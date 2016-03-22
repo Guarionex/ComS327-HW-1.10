@@ -348,7 +348,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	return mon;
 }
 
-character_parent_t character_parent_create(character_type_t character_type, va_list ap)
+/*character_parent_t character_parent_create(character_type_t character_type, va_list ap)
 {
   character_parent_t character_parent;
 
@@ -363,9 +363,9 @@ character_parent_t character_parent_create(character_type_t character_type, va_l
     }
 
   return character_parent;
-}
+}*/
 
-character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean alive, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
+/*character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean alive, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...)
 {
   va_list ap;
   va_start(ap, character_type);
@@ -383,7 +383,7 @@ character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean a
   va_end(ap);
   
   return character_tag;
-}
+}*/
 
 void create_character_list()
 {
