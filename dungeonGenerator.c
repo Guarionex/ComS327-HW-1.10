@@ -199,8 +199,8 @@ int main(int argc, char *argv[])
 				dungeon = Generate_Map(&int_seed, &num_rooms);
 			}
 			Set_Dungeon(dungeon);
-			character_t *player_to_set = *Place_Player(dungeon, &int_seed);
-			Set_Player(player_to_set);
+			character_t *player_to_set = Place_Player(dungeon, &int_seed);
+			//Set_Player(player_to_set);
 			Set_Debug_Info(int_seed, num_rooms);
 			populate_monsters(nummon_value, &int_seed);
 			stair_t down;
