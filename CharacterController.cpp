@@ -1033,19 +1033,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	
 	
 	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
-	player_to_move->pos.x = move_to.x;
-	player_to_move->pos.y = move_to.y;
+	//player_to_move->pos.x = move_to.x;
+	//player_to_move->pos.y = move_to.y;
+	set_Character_pos(player_to_move, move_to);
 	if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] >= 0)
 	{
 		int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
 		if(get_Character_alive(character_list[dead_index]) == TRUE)
 		{	
-				set_Character_alive(character_list[dead_index]) = FALSE;
+				set_Character_alive(character_list[dead_index], FALSE);
 				dead_monsters++;
 		}
 	}
-	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = player_to_move->id;
-	player_to_move->cell = dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y];
+	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = get_Character_id(player_to_move);
+	set_Character_cell(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
 	
 	return moving;
 }
