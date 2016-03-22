@@ -387,7 +387,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 
 void create_character_list()
 {
-	character_list = (character_t *) malloc(sizeof(character_t));
+	character_list = (character_t **) malloc(sizeof(character_t *));
 	character_list[0] = &NULL_CHARACTER;
 	num_characters = 0;
 	character_map = (int *) malloc(sizeof(int) * 1680);
