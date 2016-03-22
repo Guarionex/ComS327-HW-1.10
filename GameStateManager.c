@@ -737,7 +737,7 @@ int turn(int *seed, int num_mon)
 	int p;
 	for(p = 0; p < num_characters; p++)
 	{
-		/*nodes[p] = */binheap_insert(&h, character_list + get_character_index_by_id(p)/*character_list + p*/);
+		/*nodes[p] = */binheap_insert(&h, /*character_list + get_character_index_by_id(p)*/character_list + p);
 	}
 	line_of_sight(current_dungeon);
 	while(!binheap_is_empty(&h))
