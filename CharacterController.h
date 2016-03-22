@@ -91,7 +91,7 @@ character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean a
 void create_character_list();
 void add_character(character_t new_character);
 character_t delete_character(int id);
-character_t get_character_by_id(int id);
+character_t *get_character_by_id(int id);
 int get_character_index_by_id(int id);
 int check_character_map(int x, int y);
 boolean move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...);

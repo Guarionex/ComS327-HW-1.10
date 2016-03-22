@@ -3,7 +3,7 @@
 
 player_t *pc;
 int *character_map;
-character_t *character_list;
+character_t **character_list;
 const character_t NULL_CHARACTER = *(new_Character());//{speed : -1, timer : -1, id : -1};
 int num_characters;
 char *dis_map;
@@ -198,7 +198,7 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 	open_pos[0] = NULL_POS;
-	character_t player;
+	character_t *player;
 	
 	int x, y, open_count = 0;
 	for(x = 0; x < 80; x++)
@@ -247,7 +247,8 @@ character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	pos_t new_pos = open_pos[rand()%open_count];
 	pc = new_Player_param("Edwin");
 	//pc.name = "Edwin";
-	player = character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
+	player = pc;//character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
+	set_Character_all(player, 10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
 	create_character_list();
 	add_character(player);
 	free(open_pos);
@@ -340,7 +341,8 @@ character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	{
 		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 	}
-	character_t mon = character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
+	character_t *mon = monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
+	set_Character_all((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
 	add_character(mon);
 	free(open_pos);
 	return mon;
@@ -386,7 +388,7 @@ character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean a
 void create_character_list()
 {
 	character_list = (character_t *) malloc(sizeof(character_t));
-	character_list[0] = NULL_CHARACTER;
+	character_list[0] = &NULL_CHARACTER;
 	num_characters = 0;
 	character_map = (int *) malloc(sizeof(int) * 1680);
 	int i;
@@ -396,23 +398,23 @@ void create_character_list()
 	}
 }
 
-void add_character(character_t new_character)
+void add_character(character_t *new_character)
 {
 	num_characters++;
 	character_list = (character_t *) realloc(character_list, sizeof(character_t) + (sizeof(character_t) * num_characters));
 	character_list[num_characters - 1] = new_character;
-	character_list[num_characters] = NULL_CHARACTER;
+	character_list[num_characters] = &NULL_CHARACTER;
 	character_map[new_character.pos.y*80+new_character.pos.x] = new_character.id;
 }
 
-character_t delete_character(int id)
+/*character_t delete_character(int id)
 {
 	int i;
 	boolean deleted = FALSE;
 	character_t killed_character = NULL_CHARACTER;
 	for(i = 0; i < num_characters; i++)
 	{
-		if(character_list[i].id == id && deleted == FALSE)
+		if(get_Character_id(character_list[i]) == id && deleted == FALSE)
 		{
 			killed_character = character_list[i];
 			character_list[i] = character_list[i+1];
@@ -431,20 +433,20 @@ character_t delete_character(int id)
 	}
 	
 	return killed_character;
-}
+}*/
 
-character_t get_character_by_id(int id)
+character_t *get_character_by_id(int id)
 {
 	int i;
 	for(i = 0; i < num_characters; i++)
 	{
-		if(character_list[i].id == id)
+		if(get_Character_id(character_list[i]) == id)
 		{
 			return character_list[i];
 		}
 	}
 	
-	return NULL_CHARACTER;
+	return &NULL_CHARACTER;
 }
 
 int get_character_index_by_id(int id)
@@ -452,7 +454,7 @@ int get_character_index_by_id(int id)
 	int i;
 	for(i = 0; i < num_characters; i++)
 	{
-		if(character_list[i].id == id)
+		if(get_Character_id(character_list[i]) == id)
 		{
 			return i;
 		}
@@ -469,7 +471,7 @@ int check_character_map(int x, int y)
 boolean move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...)
 {
 	int index = get_character_index_by_id(character_id);
-	if(index < 0 || character_list[index].alive == FALSE) 
+	if(index < 0 || get_Character_alive(character_list[index]) == FALSE) 
 	{ 
 		return FALSE;
 	}
@@ -477,14 +479,14 @@ boolean move_character(int character_id, int *seed, Dungeon_Space_Struct **dunge
 	va_list ap;
 	va_start(ap, dungeon);
 	
-	switch(character_list[index].character_type)
+	switch(get_Character_character_type(character_list[index]))
 	{
 		case PLAYER:
-		return move_player(&character_list[index], va_arg(ap, pos_t), dungeon);
+		return move_player(character_list[index], va_arg(ap, pos_t), dungeon);
 		break;
 		
 		case MONSTER:
-		return move_monster(&character_list[index], dungeon);
+		return move_monster(character_list[index], dungeon);
 		break;
 	}
 	va_end(ap);
@@ -582,9 +584,9 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
-			if(character_list[dead_index].alive == TRUE)
+			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{
-				character_list[dead_index].alive = FALSE;
+				set_Character_alive(character_list[dead_index]) = FALSE;
 				dead_monsters++;
 			}
 		}
@@ -600,9 +602,9 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
-			if(character_list[dead_index].alive == TRUE)
+			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{	
-				character_list[dead_index].alive = FALSE;
+				set_Character_alive(character_list[dead_index]) = FALSE;
 				dead_monsters++;
 			}
 
@@ -634,10 +636,10 @@ void update_telepath(void)
 	int m;
 	for(m = 0; m < num_characters; m++)
 	{
-		if((character_list[m].character_type == MONSTER) && ((get_Monster_abilities(character_list[m].character_parent.monster) & 0x2) == 0x2))
+		if((get_Character_character_type(character_list[m]) == MONSTER) && ((get_Monster_abilities((monster_t *)character_list[m]) & 0x2) == 0x2))
 		{
-			set_Monster_memory(character_list[m].character_parent.monster, get_character_by_id(0).pos);
-			set_Monster_lost(character_list[m].character_parent.monster, FALSE);
+			set_Monster_memory((monster_t *)character_list[m], get_character_by_id(0).pos);
+			set_Monster_lost((monster_t *)character_list[m], FALSE);
 			//printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
 	}
@@ -648,35 +650,35 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 	int m;
 	for(m = 0; m < num_characters; m++)
 	{
-		if(character_list[m].character_type == MONSTER)
+		if(get_Character_character_type(character_list[m]) == MONSTER)
 		{
-			if((get_Monster_abilities(character_list[m].character_parent.monster) & 0x2) == 0x2)
+			if((get_Monster_abilities((monster_t *)character_list[m]) & 0x2) == 0x2)
 			{
 				continue;
 			}
-			else if((get_Monster_abilities(character_list[m].character_parent.monster) & 0x1) == 0x1)
+			else if((get_Monster_abilities((monster_t *)character_list[m]) & 0x1) == 0x1)
 			{
-				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
+				if(line_of_sight_helper(get_Character_pos(character_list[m]), dungeon) == TRUE)
 				{
-					set_Monster_memory(character_list[m].character_parent.monster, get_character_by_id(0).pos);
-					set_Monster_lost(character_list[m].character_parent.monster, FALSE);
+					set_Monster_memory((monster_t *)character_list[m], get_character_by_id(0).pos);
+					set_Monster_lost((monster_t *)character_list[m], FALSE);
 					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
-					set_Monster_lost(character_list[m].character_parent.monster, TRUE);
+					set_Monster_lost((monster_t *)character_list[m], TRUE);
 				}
 			}
 			else
 			{
-				if(line_of_sight_helper(character_list[m].pos, dungeon) == TRUE)
+				if(line_of_sight_helper(get_Character_pos(character_list[m]), dungeon) == TRUE)
 				{
-					set_Monster_memory(character_list[m].character_parent.monster, get_character_by_id(0).pos);
+					set_Monster_memory((monster_t *)character_list[m], get_character_by_id(0).pos);
 					//printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
-					set_Monster_memory(character_list[m].character_parent.monster, NULL_POS);
+					set_Monster_memory((monster_t *)character_list[m], NULL_POS);
 					//printf("Monster %d lost sight of player\n", character_list[m].id);
 				}
 			}
@@ -1028,9 +1030,9 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] >= 0)
 	{
 		int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
-		if(character_list[dead_index].alive == TRUE)
+		if(get_Character_alive(character_list[dead_index]) == TRUE)
 		{	
-				character_list[dead_index].alive = FALSE;
+				set_Character_alive(character_list[dead_index]) = FALSE;
 				dead_monsters++;
 		}
 	}
@@ -1312,11 +1314,11 @@ int distance_converter(char symbol)
 
 void Destroy_Characters(void)
 {
-	destroy_Player(character_list[0].character_parent.player);
+	destroy_Player((player_t *)character_list[0]);
 	int m;
 	for(m = 1; m < num_characters; m++)
 	{
-		destroy_Monster(character_list[m].character_parent.monster);
+		destroy_Monster((monster_t *)character_list[m]);
 	}
 	free(character_list);
 	free(character_map);
