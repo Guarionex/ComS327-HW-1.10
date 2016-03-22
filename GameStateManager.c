@@ -746,9 +746,9 @@ int turn(int *seed, int num_mon)
 		
 		pos_t moving_to = {0, 0};
 		
-		if(current->character_type == PLAYER)
+		if(get_Character_character_type(current) == PLAYER)
 		{
-			if(character_list[0].alive == FALSE)
+			if(get_Character_alive(character_list[0]) == FALSE)
 			{
 				//printf("Player is dead\n");
 				game_state = 1;
@@ -868,9 +868,9 @@ int turn(int *seed, int num_mon)
 		
 		if(game_state != 3 && game_state != 5)
 		{
-			move_character(current->id, seed, current_dungeon, moving_to);
+			move_character(get_Character_id(current), seed, current_dungeon, moving_to);
 		}
-		current->timer += 100/current->speed;
+		set_Character_timer(current, get_Character_timer+(100/get_Character_speed(current)));
 		/*nodes[p] = */binheap_insert(&h, current);
 	}
 	
