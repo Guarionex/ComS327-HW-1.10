@@ -106,6 +106,94 @@ void set_Monster_memory(monster_t *mon, pos_t new_memory)
 	((monsterClass *) mon)->set_memoryY(new_memory.y);
 }
 
+characterClass::characterClass()
+{
+	speed = -1;
+	timer = -1;
+	id = -1;
+}
+characterClass::~characterClass()
+{
+	speed = -1;
+	timer = -1;
+	id = -1;
+}
+
+character_t *newCharacter()
+{
+	return ((character_t *) new characterClass());
+}
+void destroy_Character(character_t * toon)
+{
+	delete ((characterClass *) toon);
+}
+
+int32_t get_Character_speed(character_t * toon)
+{
+	return ((characterClass *) toon)->speed;
+}
+
+int32_t get_Character_timer(character_t * toon)
+{
+	return ((characterClass *) toon)->timer;
+}
+
+void set_Character_timer(character_t * toon, int32_t new_time)
+{
+	((characterClass *) toon)->timer = new_time;
+}
+
+int get_Character_id(character_t * toon)
+{
+	return ((characterClass *) toon)->id;
+}
+
+boolean get_Character_alive(character_t * toon)
+{
+	return ((characterClass *) toon)->alive;
+}
+
+void set_Character_alive(character_t * toon, boolean status)
+{
+	((characterClass *) toon)->alive = status;
+}
+
+pos_t get_Character_pos(character_t * toon)
+{
+	return ((characterClass *) toon)->pos;
+}
+
+void set_Character_pos(character_t * toon, pos_t new_pos)
+{
+	((characterClass *) toon)->pos = new_pos;
+}
+
+Dungeon_Space_Struct get_Character_cell(character_t * toon)
+{
+	return ((characterClass *) toon)->cell;
+}
+
+void set_Character_cell(character_t * toon, Dungeon_Space_Struct new_cell)
+{
+	((characterClass *) toon)->cell = new_cell;
+}
+
+character_type_t get_Character_character_type(character_t * toon)
+{
+	return ((characterClass *) toon)->character_type;
+}
+
+void set_Character_all(character_t * toon, int32_t set_speed, int32 new_time, int toon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type)
+{
+	((characterClass *) toon)->speed = set_speed;
+	set_Character_timer(toon, new_time);
+	((characterClass *) toon)->id = toon_id;
+	set_Character_alive(toon, status);
+	set_Character_pos(toon, new_pos);
+	set_Character_cell(toon, new_cell);
+	((characterClass *) toon)->character_type = toon_type;
+}
+
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));

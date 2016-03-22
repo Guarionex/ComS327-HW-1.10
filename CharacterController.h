@@ -39,14 +39,14 @@ typedef union character_parent
 
 typedef struct character_tag
 {
-	int32_t speed;
+	/*int32_t speed;
 	int32_t timer;
 	int id;
 	boolean alive;
 	pos_t pos;
 	Dungeon_Space_Struct cell;
 	character_type_t character_type;
-	character_parent_t character_parent;
+	character_parent_t character_parent;*/
 } character_t;
 
 extern player_t *pc;
@@ -68,6 +68,21 @@ boolean get_Monster_lost(monster_t *mon);
 void set_Monster_lost(monster_t *mon, boolean is_mon_lost);
 pos_t get_Monster_memory(monster_t *mon);
 void set_Monster_memory(monster_t *mon, pos_t new_memory);
+
+character_t *newCharacter();
+void destroy_Character(character_t * toon);
+int32_t get_Character_speed(character_t * toon);
+int32_t get_Character_timer(character_t * toon);
+void set_Character_timer(character_t * toon, int32_t new_time);
+int get_Character_id(character_t * toon);
+boolean get_Character_alive(character_t * toon);
+void set_Character_alive(character_t * toon, boolean status);
+pos_t get_Character_pos(character_t * toon);
+void set_Character_pos(character_t * toon, pos_t new_pos);
+Dungeon_Space_Struct get_Character_cell(character_t * toon);
+void set_Character_cell(character_t * toon, Dungeon_Space_Struct new_cell);
+character_type_t get_Character_character_type(character_t * toon);
+void set_Character_all(character_t * toon, int32_t set_speed, int32 new_time, int mon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type);
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed);
@@ -95,7 +110,7 @@ void Destroy_Characters(void);
 }
 
 
-class playerClass 
+class playerClass : public characterClass 
 {
 	const char *name;
 	
@@ -110,7 +125,7 @@ class playerClass
 	
 };
 
-class monsterClass
+class monsterClass : public characterClass
 {
 	private:
 	uint8_t abilities;
@@ -163,6 +178,9 @@ class characterClass
 	pos_t pos;
 	Dungeon_Space_Struct cell;
 	character_type_t character_type;
+	
+	characterClass();
+	~characterClass();
 };
 
 
