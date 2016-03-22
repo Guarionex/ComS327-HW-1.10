@@ -377,14 +377,14 @@ void Draw_Dungeon(int use_curses)
 				renderer[y*81+x] = '\n';
 				//printf("%c", renderer[y*80+x]);
 			}
-			else if(get_Character_pos(get_character_by_id(0)).x == x && get_Character_pos(get_character_by_id(0)).y == y && get_character_by_id(0).alive == TRUE)
+			else if(get_Character_pos(get_character_by_id(0)).x == x && get_Character_pos(get_character_by_id(0)).y == y && get_Character_alive(get_character_by_id(0)) == TRUE)
 			{
 				renderer[y*81+x] = '@';
 				//printf("%c", renderer[y*80+x]);
 			}
-			else if(check_character_map(x, y) > 0 && get_character_by_id(check_character_map(x, y)).alive == TRUE)
+			else if(check_character_map(x, y) > 0 && get_Character_alive(get_character_by_id(check_character_map(x, y))) == TRUE)
 			{
-				switch(get_Monster_abilities(get_character_by_id(check_character_map(x, y)).character_parent.monster))
+				switch(get_Monster_abilities((monster_t *)get_character_by_id(check_character_map(x, y))))
 				{
 					case 0x0:
 						renderer[y*81+x] = '0';
