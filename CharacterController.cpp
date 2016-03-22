@@ -194,7 +194,7 @@ void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, 
 	((characterClass *) toon)->character_type = toon_type;
 }
 
-character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
+character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 	open_pos[0] = NULL_POS;
@@ -252,7 +252,7 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	create_character_list();
 	add_character(player);
 	free(open_pos);
-	return player;
+	return *player;
 }
 
 character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)

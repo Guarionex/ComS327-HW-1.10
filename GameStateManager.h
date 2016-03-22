@@ -34,7 +34,7 @@ typedef enum command
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
-extern character_t player_character;
+extern character_t *player_character;
 extern char *distance_map;
 extern char *distance_dungeon;
 extern char *distance_dungeon_tunneler;

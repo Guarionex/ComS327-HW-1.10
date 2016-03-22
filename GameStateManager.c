@@ -1,7 +1,7 @@
 #include "GameStateManager.h"
 
 Dungeon_Space_Struct **current_dungeon;
-character_t player_character;
+character_t *player_character;
 char *distance_map;
 graph_t graphed_dungeon;
 char *distance_dungeon;
@@ -20,10 +20,10 @@ void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 	current_dungeon = dungeon;
 }
 
-void Set_Player(character_t player)
+/*void Set_Player(character_t player)
 {
 	player_character = player;
-}
+}*/
 
 void Set_Stairs(stair_t stairs)
 {
