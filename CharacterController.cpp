@@ -756,7 +756,7 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 			erratic = TRUE;
 			int a = (rand()%3)-1;
 			int b = (rand()%3)-1;
-			if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x0 && dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
+			if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x0 && dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type != ROCK)
 			{
 				move_to.x += a;
 				move_to.y += b;
@@ -764,20 +764,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 			}
 			else if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x4)
 			{
-				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
+				if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
 				{
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
+					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 					{
 						return moving;
 					}
-					uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+					uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-					dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+					dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
 					if(chisel == 0)
 					{
 						move_to.x += a;
 						move_to.y += b;
-						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 						moving = TRUE;
 					}
 				}
@@ -804,9 +804,9 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 					for(n = 0; n < 8; n++)
 					{
 						
-						if(distance_converter(dis_map_tun[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]) < smallest_index)
+						if(distance_converter(dis_map_tun[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]) < smallest_index)
 						{
-							smallest_index = distance_converter(dis_map_tun[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]);
+							smallest_index = distance_converter(dis_map_tun[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]);
 							a = i;
 							b = j;
 						}
@@ -824,20 +824,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 						
 						
 					}
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
+					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
 					{
-						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
+						if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 						{
 							return moving;
 						}
-						uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+						uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
 						if(chisel == 0)
 						{
 							move_to.x += a;
 							move_to.y += b;
-							dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+							dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 							moving = TRUE;
 						}
 					}
@@ -852,38 +852,38 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 				{
 					//printf("Player lost\n");
 					int a = 0, b = 0;
-					if(player_to_move->pos.x - get_Monster_memory((monster_t *)player_to_move).x > 0)
+					if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x > 0)
 					{
 						a = -1;
 					}
-					else if(player_to_move->pos.x - get_Monster_memory((monster_t *)player_to_move).x < 0)
+					else if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x < 0)
 					{
 						a = 1;
 					}
 					
-					if(player_to_move->pos.y - get_Monster_memory((monster_t *)player_to_move).y > 0)
+					if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y > 0)
 					{
 						b = -1;
 					}
-					else if(player_to_move->pos.y - get_Monster_memory((monster_t *)player_to_move).y < 0)
+					else if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y < 0)
 					{
 						b = 1;
 					}
 					
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
+					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
 					{
-						if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
+						if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 						{
 							return moving;
 						}
-						uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+						uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
 						if(chisel == 0)
 						{
 							move_to.x += a;
 							move_to.y += b;
-							dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+							dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 							moving = TRUE;
 						}
 					}
@@ -905,9 +905,9 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 					for(n = 0; n < 8; n++)
 					{
 						
-						if(distance_converter(dis_map[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]) < smallest_index && dungeon[player_to_move->pos.x+i][player_to_move->pos.y+j].space_type != ROCK)
+						if(distance_converter(dis_map[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]) < smallest_index && dungeon[get_Character_pos(player_to_move).x+i][get_Character_pos(player_to_move).y+j].space_type != ROCK)
 						{
-							smallest_index = distance_converter(dis_map[(player_to_move->pos.y+j)*80+(player_to_move->pos.x+i)]);
+							smallest_index = distance_converter(dis_map[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]);
 							a = i;
 							b = j;
 						}
@@ -934,25 +934,25 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 				{
 					//printf("Player lost\n");
 					int a = 0, b = 0;
-					if(player_to_move->pos.x - get_Monster_memory((monster_t *)player_to_move).x > 0)
+					if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x > 0)
 					{
 						a = -1;
 					}
-					else if(player_to_move->pos.x - get_Monster_memory((monster_t *)player_to_move).x < 0)
+					else if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x < 0)
 					{
 						a = 1;
 					}
 					
-					if(player_to_move->pos.y - get_Monster_memory((monster_t *)player_to_move).y > 0)
+					if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y > 0)
 					{
 						b = -1;
 					}
-					else if(player_to_move->pos.y - get_Monster_memory((monster_t *)player_to_move).y < 0)
+					else if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y < 0)
 					{
 						b = 1;
 					}
 					
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
+					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type != ROCK)
 					{
 						move_to.x += a;
 						move_to.y += b;
@@ -969,20 +969,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 		{
 			//find direction
 			int a = 0, b = 0;
-			if(player_to_move->pos.x - get_Monster_memory((monster_t *)player_to_move).x > 0)
+			if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x > 0)
 			{
 				a = -1;
 			}
-			else if(player_to_move->pos.x - get_Monster_memory((monster_t *)player_to_move).x < 0)
+			else if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x < 0)
 			{
 				a = 1;
 			}
 			
-			if(player_to_move->pos.y - get_Monster_memory((monster_t *)player_to_move).y > 0)
+			if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y > 0)
 			{
 				b = -1;
 			}
-			else if(player_to_move->pos.y - get_Monster_memory((monster_t *)player_to_move).y < 0)
+			else if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y < 0)
 			{
 				b = 1;
 			}
@@ -991,20 +991,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 			{
 				//chisel
 				//if density <= 0 moving = TRUE;
-				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type == ROCK)
+				if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
 				{
-					if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density >= 255)
+					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 					{
 						return moving;
 					}
-					uint8_t chisel = dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density;
+					uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-					dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density = chisel;
+					dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
 					if(chisel == 0)
 					{
 						move_to.x += a;
 						move_to.y += b;
-						dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 						moving = TRUE;
 					}
 				}
@@ -1017,7 +1017,7 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 			}
 			else
 			{
-				if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type != ROCK)
+				if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type != ROCK)
 				{
 					move_to.x += a;
 					move_to.y += b;
@@ -1032,20 +1032,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	
 	
 	
-	character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
+	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
 	player_to_move->pos.x = move_to.x;
 	player_to_move->pos.y = move_to.y;
-	if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] >= 0)
+	if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] >= 0)
 	{
-		int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
+		int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
 		if(get_Character_alive(character_list[dead_index]) == TRUE)
 		{	
 				set_Character_alive(character_list[dead_index]) = FALSE;
 				dead_monsters++;
 		}
 	}
-	character_map[player_to_move->pos.y*80+player_to_move->pos.x] = player_to_move->id;
-	player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
+	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = player_to_move->id;
+	player_to_move->cell = dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y];
 	
 	return moving;
 }
