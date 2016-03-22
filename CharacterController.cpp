@@ -404,7 +404,7 @@ void add_character(character_t *new_character)
 	character_list = (character_t **) realloc(character_list, sizeof(character_t *) + (sizeof(character_t *) * num_characters));
 	character_list[num_characters - 1] = new_character;
 	character_list[num_characters] = &NULL_CHARACTER;
-	character_map[new_character.pos.y*80+new_character.pos.x] = new_character.id;
+	character_map[new_character.pos.y*80+new_character.pos.x] = get_Character_id(new_character);
 }
 
 /*character_t delete_character(int id)
