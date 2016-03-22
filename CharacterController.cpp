@@ -603,10 +603,10 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
 		//player_to_move->pos.x = player_to_move->pos.x+a;
 		//player_to_move->pos.y = player_to_move->pos.y+b;
-		pos_t dest;
-		dest.x = get_Character_pos(player_to_move).x+a;
-		dest.y = get_Character_pos(player_to_move).y+b;
-		set_Character_pos(player_to_move, dest);
+		pos_t destCor;
+		destCor.x = get_Character_pos(player_to_move).x+a;
+		destCor.y = get_Character_pos(player_to_move).y+b;
+		set_Character_pos(player_to_move, destCor);
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
