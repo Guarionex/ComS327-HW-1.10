@@ -591,11 +591,11 @@ void Draw_Dungeon(int use_curses)
 			{
 				mvaddch(0, d%80, ' ');
 			}
-			if(get_Character_pos(character_list[0]).y == (d/81)+1 && get_Character_pos(character_list[0]).x == d-((d/81)*81) && game_state == 2)
+			/*if(get_Character_pos(character_list[0]).y == (d/81)+1 && get_Character_pos(character_list[0]).x == d-((d/81)*81) && game_state == 2)
 			{
 				mvaddch((d/81)+1, d-((d/81)*81), '@');
-			}
-			else
+			}*/
+			//else
 			{
 				mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
 			}
@@ -875,7 +875,7 @@ int turn(int *seed, int num_mon)
 		/*nodes[p] = */binheap_insert(&h, current);
 	}
 	
-	if(game_state != 1 && game_state != 2)
+	if(game_state != 1 && game_state != 2 && game_state != 5)
 	{
 		Destroy_Characters();
 	}
