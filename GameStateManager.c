@@ -870,7 +870,7 @@ int turn(int *seed, int num_mon)
 		{
 			move_character(get_Character_id(current), seed, current_dungeon, moving_to);
 		}
-		set_Character_timer(current, get_Character_timer+(100/get_Character_speed(current)));
+		set_Character_timer(current, get_Character_timer(current)+(100/get_Character_speed(current)));
 		/*nodes[p] = */binheap_insert(&h, current);
 	}
 	
