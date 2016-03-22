@@ -153,7 +153,7 @@ class monsterClass
 	
 };
 
-/*class characterClass
+class characterClass
 {
 	public:
 	int32_t speed;
@@ -163,7 +163,7 @@ class monsterClass
 	pos_t pos;
 	Dungeon_Space_Struct cell;
 	character_type_t character_type;
-};*/
+};
 
 
 #endif
