@@ -581,7 +581,7 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
 		//player_to_move->pos.x = player_to_move->pos.x+a;
 		//player_to_move->pos.y = player_to_move->pos.y+b;
-		pos_t dest = (set_Character_pos(player_to_move).x+a, get_Character_pos(player_to_move).y+b);
+		pos_t dest = (x : (get_Character_pos(player_to_move).x+a), y : (get_Character_pos(player_to_move).y+b));
 		set_Character_pos(player_to_move, dest);
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
@@ -601,7 +601,7 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
 		//player_to_move->pos.x = player_to_move->pos.x+a;
 		//player_to_move->pos.y = player_to_move->pos.y+b;
-		pos_t dest = (get_Character_pos(player_to_move).x+a, get_Character_pos(player_to_move).y+b);
+		pos_t dest = (x : (get_Character_pos(player_to_move).x+a), y : (get_Character_pos(player_to_move).y+b));
 		set_Character_pos(player_to_move, dest);
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
