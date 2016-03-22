@@ -199,21 +199,21 @@ int main(int argc, char *argv[])
 				dungeon = Generate_Map(&int_seed, &num_rooms);
 			}
 			Set_Dungeon(dungeon);
-			character_t player_to_set = Place_Player(dungeon, &int_seed);
+			character_t *player_to_set = *Place_Player(dungeon, &int_seed);
 			Set_Player(player_to_set);
 			Set_Debug_Info(int_seed, num_rooms);
 			populate_monsters(nummon_value, &int_seed);
 			stair_t down;
 			if(stair_player == UPSTAIRS)
 			{
-				down.location.x = player_to_set.pos.x;
-				down.location.y = player_to_set.pos.y;
+				down.location.x = get_Character_pos(player_to_set).x;
+				down.location.y = get_Character_pos(player_to_set).y;
 				down.direction = DOWNSTAIRS;
 			}
 			else 
 			{
 				down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
-				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.pos.y)
+				while(level > 0 && down.location.x == get_Character_pos(player_to_set).x && down.location.y == get_Character_pos(player_to_set).y)
 					{
 						down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
 					}
@@ -224,8 +224,8 @@ int main(int argc, char *argv[])
 				stair_t up;
 				if(stair_player == DOWNSTAIRS)
 				{
-					up.location.x = player_to_set.pos.x;
-					up.location.y = player_to_set.pos.y;
+					up.location.x = get_Character_pos(player_to_set).x;
+					up.location.y = get_Character_pos(player_to_set).y;
 					up.direction = UPSTAIRS;
 				}
 				else 
@@ -250,8 +250,8 @@ int main(int argc, char *argv[])
 			//Draw_Distance_Dungeon(distance_dungeon_tunneler);
 			Destroy_All();
 		}
-		endwin();
 		Draw_Dungeon(0);
+		endwin();
 	}
 	else
 	{
@@ -284,14 +284,14 @@ int main(int argc, char *argv[])
 			stair_t down;
 			if(stair_player == UPSTAIRS)
 			{
-				down.location.x = player_to_set.pos.x;
-				down.location.y = player_to_set.pos.y;
+				down.location.x = get_Character_pos(player_to_set).x;
+				down.location.y = get_Character_pos(player_to_set).y;
 				down.direction = DOWNSTAIRS;
 			}
 			else 
 			{
 				down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
-				while(level > 0 && down.location.x == player_to_set.pos.x && down.location.y == player_to_set.pos.y)
+				while(level > 0 && down.location.x == get_Character_pos(player_to_set).x && down.location.y == get_Character_pos(player_to_set).y)
 					{
 						down = Place_Stairs(dungeon, &int_seed, DOWNSTAIRS);
 					}
@@ -302,8 +302,8 @@ int main(int argc, char *argv[])
 				stair_t up;
 				if(stair_player == DOWNSTAIRS)
 				{
-					up.location.x = player_to_set.pos.x;
-					up.location.y = player_to_set.pos.y;
+					up.location.x = get_Character_pos(player_to_set).x;
+					up.location.y = get_Character_pos(player_to_set).y;
 					up.direction = UPSTAIRS;
 				}
 				else 
