@@ -646,7 +646,7 @@ void update_telepath(void)
 	{
 		if((get_Character_character_type(character_list[m]) == MONSTER) && ((get_Monster_abilities((monster_t *)character_list[m]) & 0x2) == 0x2))
 		{
-			set_Monster_memory((monster_t *)character_list[m], get_character_by_id(0).pos);
+			set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
 			set_Monster_lost((monster_t *)character_list[m], FALSE);
 			//printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
@@ -668,7 +668,7 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 			{
 				if(line_of_sight_helper(get_Character_pos(character_list[m]), dungeon) == TRUE)
 				{
-					set_Monster_memory((monster_t *)character_list[m], get_character_by_id(0).pos);
+					set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
 					set_Monster_lost((monster_t *)character_list[m], FALSE);
 					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
@@ -681,7 +681,7 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 			{
 				if(line_of_sight_helper(get_Character_pos(character_list[m]), dungeon) == TRUE)
 				{
-					set_Monster_memory((monster_t *)character_list[m], get_character_by_id(0).pos);
+					set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
 					//printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
@@ -726,14 +726,14 @@ boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 			break;
 			
 			case ROOM:
-			if((get_character_by_id(0).pos.x == current.x) && (get_character_by_id(0).pos.y == current.y))
+			if((get_Character_pos(get_character_by_id(0)).x == current.x) && (get_Character_pos(get_character_by_id(0)).y == current.y))
 			{
 				found_player = TRUE;
 			}
 			break;
 			
 			case CORRIDOR:
-			if((get_character_by_id(0).pos.x == current.x) && (get_character_by_id(0).pos.y == current.y))
+			if((get_Character_pos(get_character_by_id(0)).x == current.x) && (get_Character_pos(get_character_by_id(0)).y == current.y))
 			{
 				found_player = TRUE;
 			}
