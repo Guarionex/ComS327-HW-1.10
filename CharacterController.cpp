@@ -618,7 +618,7 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 
 		}
 		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = 0;
-		set_Character_pos(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
+		set_Character_cell(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
 		return TRUE;
 		break;
 	}
