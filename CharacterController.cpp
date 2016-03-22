@@ -549,10 +549,10 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		break;
 	}*/
 	
-	switch(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_type)
+	switch(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type)
 	{
 		case ROCK:
-		if(dungeon[player_to_move->pos.x+a][player_to_move->pos.y+b].space_union.rock.density == 255)
+		if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density == 255)
 		{
 			return TRUE;
 		}
@@ -578,30 +578,34 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		break;
 		
 		case ROOM:
-		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
-		player_to_move->pos.x = player_to_move->pos.x+a;
-		player_to_move->pos.y = player_to_move->pos.y+b;
-		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
+		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
+		//player_to_move->pos.x = player_to_move->pos.x+a;
+		//player_to_move->pos.y = player_to_move->pos.y+b;
+		pos_t dest = {get_Character_pos(player_to_move).x+a, get_Character_pos(player_to_move).y+b);
+		set_Character_pos(player_to_move, dest);
+		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
-			int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
+			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
 			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{
 				set_Character_alive(character_list[dead_index]) = FALSE;
 				dead_monsters++;
 			}
 		}
-		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
-		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
+		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = 0;
+		set_Character_cell(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
 		return TRUE;
 		break;
 		
 		case CORRIDOR:
-		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = -1;
-		player_to_move->pos.x = player_to_move->pos.x+a;
-		player_to_move->pos.y = player_to_move->pos.y+b;
-		if(character_map[player_to_move->pos.y*80+player_to_move->pos.x] > 0)
+		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
+		//player_to_move->pos.x = player_to_move->pos.x+a;
+		//player_to_move->pos.y = player_to_move->pos.y+b;
+		pos_t dest = {get_Character_pos(player_to_move).x+a, get_Character_pos(player_to_move).y+b);
+		set_Character_pos(player_to_move, dest);
+		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
-			int dead_index = get_character_index_by_id(character_map[player_to_move->pos.y*80+player_to_move->pos.x]);
+			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
 			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{	
 				set_Character_alive(character_list[dead_index]) = FALSE;
@@ -609,8 +613,8 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 			}
 
 		}
-		character_map[player_to_move->pos.y*80+player_to_move->pos.x] = 0;
-		player_to_move->cell = dungeon[player_to_move->pos.x][player_to_move->pos.y];
+		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = 0;
+		set_Character_pos(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
 		return TRUE;
 		break;
 	}
