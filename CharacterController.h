@@ -51,7 +51,7 @@ typedef struct character_tag
 
 extern player_t *pc;
 extern int *character_map;
-extern character_t *character_list;
+extern character_t **character_list;
 extern int num_characters;
 extern const character_t NULL_CHARACTER;
 extern int dead_monsters;
