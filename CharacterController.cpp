@@ -335,14 +335,14 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 	monster_t *monster = new_Monster_param(powers, TRUE, NULL_POS);
 	if((get_Monster_abilities(monster) & 0x2) == 0x2)
 	{
-		set_Monster_memory(monster, get_Character_pos(get_character_by_id(0)).pos);
+		set_Monster_memory(monster, get_Character_pos(get_character_by_id(0)));
 	}
 	if((get_Monster_abilities(monster) & 0x4) == 0x4 && dungeon[mon_pos.x][mon_pos.y].space_type == ROCK)
 	{
 		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 	}
 	character_t *mon = (character_t *) monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
-	set_Character_all((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+	set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
 	add_character(mon);
 	free(open_pos);
 	return mon;
