@@ -109,6 +109,20 @@ void Destroy_Characters(void);
 #ifdef __cplusplus
 }
 
+class characterClass
+{
+	public:
+	int32_t speed;
+	int32_t timer;
+	int id;
+	boolean alive;
+	pos_t pos;
+	Dungeon_Space_Struct cell;
+	character_type_t character_type;
+	
+	characterClass();
+	~characterClass();
+};
 
 class playerClass : public characterClass 
 {
@@ -167,22 +181,6 @@ class monsterClass : public characterClass
 	}
 	
 };
-
-class characterClass
-{
-	public:
-	int32_t speed;
-	int32_t timer;
-	int id;
-	boolean alive;
-	pos_t pos;
-	Dungeon_Space_Struct cell;
-	character_type_t character_type;
-	
-	characterClass();
-	~characterClass();
-};
-
 
 #endif
 
