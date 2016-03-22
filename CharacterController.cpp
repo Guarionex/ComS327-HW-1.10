@@ -252,7 +252,7 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	create_character_list();
 	add_character(player);
 	free(open_pos);
-	return *player;
+	return player;
 }
 
 character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
