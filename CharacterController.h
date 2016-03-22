@@ -84,12 +84,12 @@ void set_Character_cell(character_t * toon, Dungeon_Space_Struct new_cell);
 character_type_t get_Character_character_type(character_t * toon);
 void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, int mon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type);
 
-character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
-character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed);
+character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
+character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed);
 character_parent_t character_parent_create(character_type_t character_type, va_list ap);
 character_t character_tag_create(int32_t speed, int32_t timer, int id, boolean alive, pos_t pos, Dungeon_Space_Struct cell, character_type_t character_type, ...);
 void create_character_list();
-void add_character(character_t new_character);
+void add_character(character_t *new_character);
 character_t delete_character(int id);
 character_t *get_character_by_id(int id);
 int get_character_index_by_id(int id);
