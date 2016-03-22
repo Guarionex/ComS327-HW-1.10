@@ -537,7 +537,7 @@ void Draw_Dungeon(int use_curses)
 			{
 				attron(COLOR_PAIR(8));
 			}
-			else if(check_character_map(d-((d/81)*81), (d/81)) > 0 && get_character_by_id(check_character_map(d-((d/81)*81), (d/81))).alive == TRUE)
+			else if(check_character_map(d-((d/81)*81), (d/81)) > 0 && get_Character_alive(get_character_by_id(check_character_map(d-((d/81)*81), (d/81)))) == TRUE)
 			{
 				attron(COLOR_PAIR(3));
 			}
@@ -591,7 +591,7 @@ void Draw_Dungeon(int use_curses)
 			{
 				mvaddch(0, d%80, ' ');
 			}
-			if(character_list[0].pos.y == (d/81)+1 && character_list[0].pos.x == d-((d/81)*81) && game_state == 2)
+			if(get_Character_pos(character_list[0]).y == (d/81)+1 && get_Character_pos(character_list[0]).x == d-((d/81)*81) && game_state == 2)
 			{
 				mvaddch((d/81)+1, d-((d/81)*81), '@');
 			}
@@ -644,7 +644,7 @@ void Draw_Monster_List(void)
 			dead_count++;
 			continue;
 		}
-		pos_t distance_to_player = {character_list[0].pos.x - character_list[m].pos.x, character_list[0].pos.y - character_list[m].pos.y};
+		pos_t distance_to_player = {get_Character_pos(character_list[0]).x - character_list[m].pos.x, get_Character_pos(character_list[0]).y - character_list[m].pos.y};
 		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", get_Monster_abilities(character_list[m].character_parent.monster), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
 		int c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
@@ -758,8 +758,8 @@ int turn(int *seed, int num_mon)
 			}
 			if(dead_monsters == num_characters - 1)
 			{
-				last_pos.x = character_list[0].pos.x;
-				last_pos.y = character_list[0].pos.y;
+				last_pos.x = get_Character_pos(character_list[0]).x;
+				last_pos.y = get_Character_pos(character_list[0]).y;
 				free(distance_dungeon);
 				free(distance_dungeon_tunneler);
 				//printf("The drunk player wins!\n");
@@ -810,13 +810,13 @@ int turn(int *seed, int num_mon)
 				}
 				if(input == 13 || input == 14)
 				{
-					if(input == 13 && character_list[0].pos.x == stair_set[0].location.x && character_list[0].pos.y == stair_set[0].location.y)
+					if(input == 13 && get_Character_pos(character_list[0]).x == stair_set[0].location.x && get_Character_pos(character_list[0]).y == stair_set[0].location.y)
 					{
 						level++;
 						stair_player = DOWNSTAIRS;
 						game_state = 3;
 					}
-					else if(level > 0 && input == 14 && character_list[0].pos.x == stair_set[1].location.x && character_list[0].pos.y == stair_set[1].location.y)
+					else if(level > 0 && input == 14 && get_Character_pos(character_list[0]).x == stair_set[1].location.x && get_Character_pos(character_list[0]).y == stair_set[1].location.y)
 					{
 						level--;
 						stair_player = UPSTAIRS;
