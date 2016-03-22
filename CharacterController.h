@@ -69,7 +69,7 @@ void set_Monster_lost(monster_t *mon, boolean is_mon_lost);
 pos_t get_Monster_memory(monster_t *mon);
 void set_Monster_memory(monster_t *mon, pos_t new_memory);
 
-character_t *newCharacter();
+character_t *new_Character();
 void destroy_Character(character_t * toon);
 int32_t get_Character_speed(character_t * toon);
 int32_t get_Character_timer(character_t * toon);
@@ -82,7 +82,7 @@ void set_Character_pos(character_t * toon, pos_t new_pos);
 Dungeon_Space_Struct get_Character_cell(character_t * toon);
 void set_Character_cell(character_t * toon, Dungeon_Space_Struct new_cell);
 character_type_t get_Character_character_type(character_t * toon);
-void set_Character_all(character_t * toon, int32_t set_speed, int32 new_time, int mon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type);
+void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, int mon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type);
 
 character_t Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_t create_monster(Dungeon_Space_Struct **dungeon, int *seed);

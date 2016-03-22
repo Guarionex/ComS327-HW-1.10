@@ -4,7 +4,7 @@
 player_t *pc;
 int *character_map;
 character_t *character_list;
-const character_t NULL_CHARACTER = {speed : -1, timer : -1, id : -1};
+const character_t NULL_CHARACTER = *(new_Character());//{speed : -1, timer : -1, id : -1};
 int num_characters;
 char *dis_map;
 char *dis_map_tun;
@@ -119,7 +119,7 @@ characterClass::~characterClass()
 	id = -1;
 }
 
-character_t *newCharacter()
+character_t *new_Character()
 {
 	return ((character_t *) new characterClass());
 }
@@ -183,7 +183,7 @@ character_type_t get_Character_character_type(character_t * toon)
 	return ((characterClass *) toon)->character_type;
 }
 
-void set_Character_all(character_t * toon, int32_t set_speed, int32 new_time, int toon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type)
+void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, int toon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type)
 {
 	((characterClass *) toon)->speed = set_speed;
 	set_Character_timer(toon, new_time);
