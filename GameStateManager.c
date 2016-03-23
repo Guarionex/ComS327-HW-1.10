@@ -580,7 +580,7 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(1));
 				}
-				else if(memory_dungeon[x][y] == '~')
+				else if(memory_dungeon[u][v] == '~')
 				{
 					attron(COLOR_PAIR(1));
 				}
@@ -600,7 +600,7 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(11));
 				}
-				else if(memory_dungeon[x][y] != '~')
+				else
 				{
 					attron(COLOR_PAIR(3));
 				}
