@@ -844,6 +844,10 @@ void remember_dungeon(pos_t player_position)
 	{
 		for(x = 0; x < 80; x++)
 		{
+			if( x == 0 || x == 79 || y == 0 ||y == 20)
+			{
+				memory_dungeon[player_position.x + x][player_position.y + y] = '~';
+			}
 			/*if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~'
 				&& (player_position.x - x >=3 || player_position.x - x <=-3) && (player_position.y - y >=3 || player_position.y - y <=-3))
 				{
