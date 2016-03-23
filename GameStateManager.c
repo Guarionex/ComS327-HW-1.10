@@ -801,14 +801,7 @@ void remember_dungeon(pos_t player_position)
 					switch(current_dungeon[player_position.x + x][player_position.y + y].space_type)
 					{
 						case ROCK:
-							if( (player_position.x + x) == 0 || (player_position.x + x) == 79 || (player_position.y + y) == 0 ||(player_position.y + y) == 20)
-							{
-								memory_dungeon[player_position.x + x][player_position.y + y] = '~';
-							}
-							else
-							{
-								memory_dungeon[player_position.x + x][player_position.y + y] = ' ';
-							}
+							memory_dungeon[player_position.x + x][player_position.y + y] = ' ';
 						break;
 						
 						case ROOM:
