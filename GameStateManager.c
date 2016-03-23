@@ -797,41 +797,50 @@ void remember_dungeon(pos_t player_position)
 						break;
 					}
 				}
-				switch(current_dungeon[player_position.x + x][player_position.y + y].space_type)
-				{
-					case ROCK:
-						memory_dungeon[player_position.x + x][player_position.y + y] = ' ';
-					break;
-					
-					case ROOM:
-						if(stair_set[0].location.x == player_position.x + x && stair_set[0].location.y == player_position.y + y)
-						{
-							memory_dungeon[player_position.x + x][player_position.y + y] = '>';
-						}
-						else if(level > 0 && stair_set[1].location.x == player_position.x + x && stair_set[1].location.y == player_position.y + y)
-						{
-							memory_dungeon[player_position.x + x][player_position.y + y] = '<';
-						}
-						else
-						{
-							memory_dungeon[player_position.x + x][player_position.y + y] = '.';
-						}
-					break;
-					
-					case CORRIDOR:
-						if(stair_set[0].location.x == player_position.x + x && stair_set[0].location.y == player_position.y + y)
-						{
-							memory_dungeon[player_position.x + x][player_position.y + y] = '>';
-						}
-						else if(level > 0 && stair_set[1].location.x == player_position.x + x && stair_set[1].location.y == player_position.y + y)
-						{
-							memory_dungeon[player_position.x + x][player_position.y + y] = '<';
-						}
-						else
-						{
-							memory_dungeon[player_position.x + x][player_position.y + y] = '#';
-						}
-					break;
+				else{
+					switch(current_dungeon[player_position.x + x][player_position.y + y].space_type)
+					{
+						case ROCK:
+							if( (player_position.x + x) == 0 || (player_position.x + x) == 79 || (player_position.y + y) == 0 ||(player_position.y + y) == 20)
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = '~';
+							}
+							else
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = ' ';
+							}
+						break;
+						
+						case ROOM:
+							if(stair_set[0].location.x == player_position.x + x && stair_set[0].location.y == player_position.y + y)
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = '>';
+							}
+							else if(level > 0 && stair_set[1].location.x == player_position.x + x && stair_set[1].location.y == player_position.y + y)
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = '<';
+							}
+							else
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = '.';
+							}
+						break;
+						
+						case CORRIDOR:
+							if(stair_set[0].location.x == player_position.x + x && stair_set[0].location.y == player_position.y + y)
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = '>';
+							}
+							else if(level > 0 && stair_set[1].location.x == player_position.x + x && stair_set[1].location.y == player_position.y + y)
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = '<';
+							}
+							else
+							{
+								memory_dungeon[player_position.x + x][player_position.y + y] = '#';
+							}
+						break;
+					}
 				}
 			}
 		}
