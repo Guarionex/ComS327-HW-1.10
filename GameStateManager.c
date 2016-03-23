@@ -728,7 +728,7 @@ void remember_dungeon(pos_t player_position)
 		{
 			if((player_position.x + x) < 80 && (player_position.x + x) > -1 && (player_position.y + y) < 21 && (player_position.y + y) > -1)
 			{
-				if(check_character_map(player_position.x + x, player_position.y + y) > 0 && get_Character_alive(get_character_by_id(check_character_map(player_position.x + x, player_position.y + y))) == TRUE)
+				/*if(check_character_map(player_position.x + x, player_position.y + y) > 0 && get_Character_alive(get_character_by_id(check_character_map(player_position.x + x, player_position.y + y))) == TRUE)
 				{
 					switch(get_Monster_abilities((monster_t *)get_character_by_id(check_character_map(player_position.x + x, player_position.y + y))))
 					{
@@ -796,8 +796,8 @@ void remember_dungeon(pos_t player_position)
 							memory_dungeon[player_position.x + x][player_position.y + y] = 'f';
 						break;
 					}
-				}
-				else{
+				}*/
+				//else{
 					switch(current_dungeon[player_position.x + x][player_position.y + y].space_type)
 					{
 						case ROCK:
@@ -834,13 +834,13 @@ void remember_dungeon(pos_t player_position)
 							}
 						break;
 					}
-				}
+				//}
 			}
 		}
 	}
 	memory_dungeon[player_position.x][player_position.y] = '@';
 	
-	for(y = 0; y < 21; y++)
+	/*for(y = 0; y < 21; y++)
 	{
 		for(x = 0; x < 80; x++)
 		{
@@ -848,13 +848,13 @@ void remember_dungeon(pos_t player_position)
 			{
 				memory_dungeon[x][y] = '~';
 			}
-			/*if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~'
+			if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~'
 				&& (player_position.x - x >=3 || player_position.x - x <=-3) && (player_position.y - y >=3 || player_position.y - y <=-3))
 				{
 					memory_dungeon[x][y] = (current_dungeon[x][y].space_type == ROOM) ? '.' : '#';
-				}*/
+				}
 		}
-	}
+	}*/
 }
 
 int turn(int *seed, int num_mon)
