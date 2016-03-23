@@ -562,7 +562,7 @@ void Draw_Dungeon(int use_curses)
 			{
 				attron(COLOR_PAIR(1));
 			}
-			mvaddch((d/81)+1, d-((d/81)*81), memory_dungeon[d-((d/81)*81)][d/80]/*renderer[d]*/);
+			mvaddch((d/81)+1, d-((d/81)*81), /*memory_dungeon[d-((d/81)*81)][d/80]*/renderer[d]);
 			
 		}
 		refresh();
