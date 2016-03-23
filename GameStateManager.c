@@ -724,7 +724,7 @@ void remember_dungeon(pos_t player_position)
 	int x, y;
 	for(y = -3; y <= 3; y++)
 	{
-		for(x = -3; x <= 3 x++)
+		for(x = -3; x <= 3; x++)
 		{
 			if((player_position.x + x) < 80 && (player_position.x + x) > -1 && (player_position.y + y) < 21 && (player_position.y + y) > -1)
 			{
@@ -840,12 +840,12 @@ void remember_dungeon(pos_t player_position)
 
 int turn(int *seed, int num_mon)
 {
-	int p, q;
-	for(q = 0;q < 21; 1++)
+	int r, q;
+	for(q = 0;q < 21; q++)
 	{
-		for(p = 0; p < 80; p++)
+		for(r = 0; r < 80; r++)
 		{
-			memory_dungeon[p][q] = ' ';
+			memory_dungeon[r][q] = ' ';
 		}
 	}
 	
