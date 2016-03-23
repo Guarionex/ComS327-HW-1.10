@@ -14,6 +14,7 @@ int level = 0;
 stair_t stair_set[2];
 int stair_player = -1;
 pos_t last_pos;
+char memory_dungeon[80][21];
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -561,7 +562,7 @@ void Draw_Dungeon(int use_curses)
 			{
 				attron(COLOR_PAIR(1));
 			}
-			mvaddch((d/81)+1, d-((d/81)*81), renderer[d]);
+			mvaddch((d/81)+1, d-((d/81)*81), memory_dungeon[d-((d/81)*81)][d/80];/*renderer[d]*/);
 			
 		}
 		refresh();
@@ -718,8 +719,136 @@ void Destroy_All(void)
 	//free(distance_map);
 }
 
+void remember_dungeon(pos_t player_position)
+{
+	int x, y;
+	for(y = -3; y <= 3; y++)
+	{
+		for(x = -3; x <= 3 x++)
+		{
+			if((player_position.x + x) < 80 && (player_position.x + x) > -1 && (player_position.y + y) < 21 && (player_position.y + y) > -1)
+			{
+				if(check_character_map(x, y) > 0 && get_Character_alive(get_character_by_id(check_character_map(x, y))) == TRUE)
+				{
+					switch(get_Monster_abilities((monster_t *)get_character_by_id(check_character_map(x, y))))
+					{
+						case 0x0:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '0';
+						break;
+						
+						case 0x1:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '1';
+						break;
+						
+						case 0x2:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '2';
+						break;
+						
+						case 0x3:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '3';
+						break;
+						
+						case 0x4:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '4';
+						break;
+						
+						case 0x5:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '5';
+						break;
+						
+						case 0x6:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '6';
+						break;
+						
+						case 0x7:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '7';
+						break;
+						
+						case 0x8:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '8';
+						break;
+						
+						case 0x9:
+							memory_dungeon[player_position.x + x][player_position.y + y] = '9';
+						break;
+						
+						case 0xa:
+							memory_dungeon[player_position.x + x][player_position.y + y] = 'a';
+						break;
+						
+						case 0xb:
+							memory_dungeon[player_position.x + x][player_position.y + y] = 'b';
+						break;
+						
+						case 0xc:
+							memory_dungeon[player_position.x + x][player_position.y + y] = 'c';
+						break;
+						
+						case 0xd:
+							memory_dungeon[player_position.x + x][player_position.y + y] = 'd';
+						break;
+						
+						case 0xe:
+							memory_dungeon[player_position.x + x][player_position.y + y] = 'e';
+						break;
+						
+						case 0xf:
+							memory_dungeon[player_position.x + x][player_position.y + y] = 'f';
+						break;
+					}
+				}
+				switch(current_dungeon[x][y].space_type)
+				{
+					case ROCK:
+						memory_dungeon[player_position.x + x][player_position.y + y] = ' ';
+					break;
+					
+					case ROOM:
+						if(stair_set[0].location.x == x && stair_set[0].location.y == y)
+						{
+							memory_dungeon[player_position.x + x][player_position.y + y] = '>';
+						}
+						else if(level > 0 && stair_set[1].location.x == x && stair_set[1].location.y == y)
+						{
+							memory_dungeon[player_position.x + x][player_position.y + y] = '<';
+						}
+						else
+						{
+							memory_dungeon[player_position.x + x][player_position.y + y] = '.';
+						}
+					break;
+					
+					case CORRIDOR:
+						if(stair_set[0].location.x == x && stair_set[0].location.y == y)
+						{
+							memory_dungeon[player_position.x + x][player_position.y + y] = '>';
+						}
+						else if(level > 0 && stair_set[1].location.x == x && stair_set[1].location.y == y)
+						{
+							memory_dungeon[player_position.x + x][player_position.y + y] = '<';
+						}
+						else
+						{
+							memory_dungeon[player_position.x + x][player_position.y + y] = '#';
+						}
+					break;
+				}
+			}
+		}
+	}
+}
+
 int turn(int *seed, int num_mon)
 {
+	int p, q;
+	for(q = 0;q < 21; 1++)
+	{
+		for(p = 0; p < 80; p++)
+		{
+			memory_dungeon[p][q] = ' ';
+		}
+	}
+	
 	//binheap_node_t *nodes[num_characters];
 	
 	binheap_t h;
@@ -749,6 +878,7 @@ int turn(int *seed, int num_mon)
 		
 		if(get_Character_character_type(current) == PLAYER)
 		{
+			remember_dungeon(get_Character_pos(current));
 			if(get_Character_alive(character_list[0]) == FALSE)
 			{
 				//printf("Player is dead\n");
