@@ -595,7 +595,7 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(11));
 				}
-				else((u >3 || u <-3) || (u >3 || u <-3))
+				else if((u >3 || u <-3) || (u >3 || u <-3))
 				{
 					attron(COLOR_PAIR(1));
 				}
