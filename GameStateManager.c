@@ -859,11 +859,15 @@ void remember_dungeon(pos_t player_position)
 			{
 				memory_dungeon[x][y] = '~';
 			}
-			/*if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~'
-				&& (player_position.x - x >=3 || player_position.x - x <=-3) && (player_position.y - y >=3 || player_position.y - y <=-3))
+			/*if((player_position.x - x >=3 || player_position.x - x <=-3) || (player_position.y - y >=3 || player_position.y - y <=-3))
+			{
+				
+			}*/
+			if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~'
+				&& ((player_position.x - x >=3 || player_position.x - x <=-3) || (player_position.y - y >=3 || player_position.y - y <=-3)))
 				{
 					memory_dungeon[x][y] = (current_dungeon[x][y].space_type == ROOM) ? '.' : '#';
-				}*/
+				}
 		}
 	}
 }
