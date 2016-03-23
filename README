@@ -68,6 +68,13 @@ Player can no longer tunnel.
 Game is now colorful. Player is cyan, monsters are red, down stairs are black on green, up stairs are black on magenta, rooms are black on white, corridors are black on yellow.
 Monster list is black on white, win screen is everything black on white, lose screen is everything black on red, save and exit is white on black.
 
+1.06:
+In this version monster and player have been converted from struct to c++ class. Character was also changed from struct to class and is a parent to both monster and player. 
+CharacterController is a .cpp file. All references to monster, player, and character are wrapped in C functions for C++ interfacing in C. 
+Fog of war has been implemented. The player can only see within a 3x3 grid. S/He will remember the dungeon as the player saw it and not as it changes.
+The player can tell if a cell is within the visible 3x3 grid if the cell has colors, i.e., not white on black. The player can only see monsters within the grid as well.
+NOTE: Without --nummon you automatically win the game. For some TAs the win/lose screen does not appear. Valgrind takes FOREVER and the invalid reads are index out of bounds error that the code handles safely.
+
 Usage using time as seed: ./dungeonGenerator
 
 Usage using int as seed: ./dungeonGenerator <number>

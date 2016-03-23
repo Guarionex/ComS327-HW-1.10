@@ -674,3 +674,58 @@
 3/7/16 last debugging
 3/7/16 don't move things on stairs or exit
 3/7/16 README and CHANGELOG finished, ready to submit
+
+1.06
+3/19/16 Started homework
+3/19/16 Fixing invalid read
+3/19/16 Testing STuff
+3/20/16 Change CharacterController to .cpp
+3/20/16 Forgot to change reference of file to .cpp
+3/20/16 Forgot to change reference of file to .cpp
+3/20/16 Forgot to change reference of file to .cpp
+3/20/16 changed struct bool to boolean to avoid conflict
+3/20/16 updating dynamic memory calls
+3/20/16 using c++ string literals
+3/20/16 updating makefile
+3/20/16 move c headers inside extern c block
+3/21/16 turned player into a class
+3/21/16 fixing errors
+3/21/16 converting class to c
+3/21/16 made monsterClass
+3/21/16 making things private
+3/21/16 made monster memory a pointer
+3/21/16 removed memory pointer
+3/21/16 forgot to remove a pointer function
+3/21/16 forgot to make constructor a pointer
+3/21/16 fixing errors
+3/21/16 fixing adding monsters to binheap
+3/21/16 moved classes to after extern c
+3/21/16 making characterClass
+3/21/16 fixing errors
+3/22/16 changed all of CharacterController
+3/22/16 fixing errors
+3/22/16 commented out depricated functions
+3/22/16 fixing malloc
+3/22/16 fixing realloc
+3/22/16 fixing character_list references
+3/22/16 fixing character map
+3/22/16 updated move_player
+3/22/16 fixing error x 10
+3/22/16 updating compare_character
+3/22/16 fixing get_character_by_id(0)
+3/22/16 fixed casting
+3/22/16 fixed player_to_move->pos
+3/22/16 errors in CharacterController.cpp fixed
+3/22/16 testing stuff
+3/22/16 fixing errors
+3/22/16 making Set_Player return a pointer
+3/22/16 Fixed get_character_by_id(0).pos
+3/22/16 fixing character_list[0].pos
+3/22/16 fixing player_to_set.pos
+3/22/16 fixing errors
+3/22/16 started fog of war
+3/22/16 not remebering monster l;ocation
+3/22/16 fixing errors
+3/22/16 coloring
+3/22/16 Finished
+3/22/16 README and CHANGELOG finished, ready to submit 
