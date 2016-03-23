@@ -571,6 +571,38 @@ void Draw_Dungeon(int use_curses)
 		{
 			for(u = 0; u < 80; u++)
 			{
+				if(memory_dungeon[u][v] == '@')
+				{
+					attron(COLOR_PAIR(8));
+				}
+				else if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~')
+				{
+					attron(COLOR_PAIR(3));
+				}
+				else if(memory_dungeon[u][v] == '>')
+				{
+					attron(COLOR_PAIR(6));
+				}
+				else if(memory_dungeon[u][v] == '<')
+				{
+					attron(COLOR_PAIR(4));
+				}
+				else if(memory_dungeon[u][v] == '#')
+				{
+					attron(COLOR_PAIR(7));
+				}
+				else if(memory_dungeon[u][v] == '.')
+				{
+					attron(COLOR_PAIR(11));
+				}
+				else((u >3 || u <-3) || (u >3 || u <-3))
+				{
+					attron(COLOR_PAIR(1));
+				}
+				else
+				{
+					attron(COLOR_PAIR(1));
+				}
 				mvaddch(v+1, u, memory_dungeon[u][v]);
 			}
 		}
@@ -864,7 +896,7 @@ void remember_dungeon(pos_t player_position)
 				
 			}*/
 			if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~'
-				&& ((player_position.x - x >=3 || player_position.x - x <=-3) || (player_position.y - y >=3 || player_position.y - y <=-3)))
+				&& ((player_position.x - x >3 || player_position.x - x <-3) || (player_position.y - y >3 || player_position.y - y <-3)))
 				{
 					memory_dungeon[x][y] = (current_dungeon[x][y].space_type == ROOM) ? '.' : '#';
 				}
