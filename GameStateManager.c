@@ -579,7 +579,7 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(1));
 				}
-				else if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~')
+				else if(memory_dungeon[x][y] == '9')
 				{
 					attron(COLOR_PAIR(3));
 				}
