@@ -844,7 +844,7 @@ void remember_dungeon(pos_t player_position)
 	{
 		for(x = 0; x < 80; x++)
 		{
-			if( x == 0 || x == 79 || y == 0 ||y == 20)
+			if(current_dungeon[x][y].space_union.rock.density == 255)
 			{
 				memory_dungeon[x][y] = '~';
 			}
