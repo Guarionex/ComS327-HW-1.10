@@ -575,10 +575,10 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(8));
 				}
-				else if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~')
+				/*else if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~')
 				{
 					attron(COLOR_PAIR(3));
-				}
+				}*/
 				else if(memory_dungeon[u][v] == '>')
 				{
 					attron(COLOR_PAIR(6));
