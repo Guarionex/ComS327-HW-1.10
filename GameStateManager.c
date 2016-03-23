@@ -575,6 +575,10 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(8));
 				}
+				else if((get_Character_pos(get_character_by_id(0)).x - u >3 || get_Character_pos(get_character_by_id(0)).x - u <-3) || (get_Character_pos(get_character_by_id(0)).y - v >3 || get_Character_pos(get_character_by_id(0)).y - v <-3))
+				{
+					attron(COLOR_PAIR(1));
+				}
 				/*else if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<' && memory_dungeon[x][y] != '~')
 				{
 					attron(COLOR_PAIR(3));
@@ -594,10 +598,6 @@ void Draw_Dungeon(int use_curses)
 				else if(memory_dungeon[u][v] == '.')
 				{
 					attron(COLOR_PAIR(11));
-				}
-				else if((get_Character_pos(get_character_by_id(0)).x - u >3 || get_Character_pos(get_character_by_id(0)).x - u <-3) || (get_Character_pos(get_character_by_id(0)).y - v >3 || get_Character_pos(get_character_by_id(0)).y - v <-3))
-				{
-					attron(COLOR_PAIR(1));
 				}
 				else
 				{
