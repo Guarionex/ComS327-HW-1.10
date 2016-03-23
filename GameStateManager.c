@@ -580,9 +580,9 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(1));
 				}
-				else if(memory_dungeon[x][y] == '9')
+				else if(memory_dungeon[x][y] == '~')
 				{
-					attron(COLOR_PAIR(3));
+					attron(COLOR_PAIR(1));
 				}
 				else if(memory_dungeon[u][v] == '>')
 				{
@@ -602,7 +602,7 @@ void Draw_Dungeon(int use_curses)
 				}
 				else
 				{
-					attron(COLOR_PAIR(1));
+					attron(COLOR_PAIR(3));
 				}
 				mvaddch(v+1, u, memory_dungeon[u][v]);
 			}
