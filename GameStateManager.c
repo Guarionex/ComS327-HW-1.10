@@ -534,7 +534,7 @@ void Draw_Dungeon(int use_curses)
 		for(d = 0; d < 1701; d++)
 		{
 			mvaddch(0, d%debug_len, debug_line[d%debug_len]);
-			if(get_Character_pos(get_character_by_id(0)).x	== d-((d/81)*81) && get_Character_pos(get_character_by_id(0)).y == (d/81))
+			/*if(get_Character_pos(get_character_by_id(0)).x	== d-((d/81)*81) && get_Character_pos(get_character_by_id(0)).y == (d/81))
 			{
 				attron(COLOR_PAIR(8));
 			}
@@ -562,10 +562,21 @@ void Draw_Dungeon(int use_curses)
 			{
 				attron(COLOR_PAIR(1));
 			}
-			mvaddch((d/81)+1, d-((d/81)*81), memory_dungeon[d-((d/80)*80)][d/80]/*renderer[d]*/);
+			mvaddch((d/81)+1, d-((d/81)*81), memory_dungeon[d-((d/80)*80)][d/80]);//renderer[d]);*/
 			
 		}
+		
+		int u, v;
+		for(v = 0; v < 21; v++)
+		{
+			for(u = 0; u < 80; u++)
+			{
+				mvaddch(v+1, u, memory_dungeon[u][v]);
+			}
+		}
+		
 		refresh();
+		
 	}
 	else
 	{
