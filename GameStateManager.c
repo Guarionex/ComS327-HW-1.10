@@ -845,6 +845,19 @@ void remember_dungeon(pos_t player_position)
 			}
 		}
 	}
+	memory_dungeon[player_position.x][player_position.y] = '@';
+	
+	for(y = 0; y < 21; y++)
+	{
+		for(x = 0; x < 80; x++)
+		{
+			if(memory_dungeon[x][y] != '@' && memory_dungeon[x][y] != '.' && memory_dungeon[x][y] != '#' && memory_dungeon[x][y] != ' ' && memory_dungeon[x][y] != '>' && memory_dungeon[x][y] != '<'
+				&& player_position.x - x <=3 && player_position.x - x >=-3 && player_position.y - y <=3 && player_position.y - y >=-3)
+				{
+					memory_dungeon[x][y] = (current_dungeon[x][y].space_type == ROOM) ? '.' : '#';
+				}
+		}
+	}
 }
 
 int turn(int *seed, int num_mon)
