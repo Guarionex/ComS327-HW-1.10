@@ -390,25 +390,25 @@ int main(int argc, char *argv[])
 
 boolean isstring(char *string)
 {
-	boolean start = TRUE;
-	boolean is_string = TRUE;
+	boolean start = (boolean) TRUE;
+	boolean is_string = (boolean) TRUE;
 	while(*string != '\0')
 	{
 		if(isdigit(*string) != 0)
 		{
-			is_string = FALSE;
+			is_string = (boolean) FALSE;
 		}
 		else if(start == TRUE)
 		{
 			start = FALSE;
 			if(*string != '-')
 			{
-				return TRUE;
+				return (boolean) TRUE;
 			}
 		}
 		else
 		{
-			return TRUE;
+			return (boolean) TRUE;
 		}
 	  string++;
     }
