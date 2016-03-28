@@ -25,12 +25,12 @@ int main(int argc, char *argv[])
 	Flags flags[argc - 1];
 	char *dungeonFileName;
 	char *dungeonSaveFileName;
-	boolean load_param = FALSE;
-	boolean save_param = FALSE;
-	boolean nummon_param = FALSE;
+	boolean load_param = boolean.FALSE;
+	boolean save_param = boolean.FALSE;
+	boolean nummon_param = boolean.FALSE;
 	int nummon_value = 0;
-	boolean loaded = FALSE;
-	boolean save_param_used = FALSE;
+	boolean loaded = boolean.FALSE;
+	boolean save_param_used = boolean.FALSE;
 	int num_rooms;
 	
 	if(argc >= 2)
@@ -41,19 +41,19 @@ int main(int argc, char *argv[])
 			if(load_param == TRUE)
 			{
 				flags[c - 1] = LOAD;
-				load_param = FALSE;
+				load_param = boolean.FALSE;
 				continue;
 			}
 			if(save_param == TRUE)
 			{
 				flags[c - 1] = SAVE;
-				save_param = FALSE;
+				save_param = boolean.FALSE;
 				continue;
 			}
 			if(nummon_param == TRUE)
 			{
 				flags[c - 1] = NUMMON;
-				nummon_param = FALSE;
+				nummon_param = boolean.FALSE;
 				continue;
 			}
 			
@@ -69,8 +69,8 @@ int main(int argc, char *argv[])
 					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == TRUE)
 					{
 						dungeonSaveFileName = strdup(argv[c + 1]);
-						save_param = TRUE;
-						save_param_used = TRUE;
+						save_param = boolean.TRUE;
+						save_param_used = boolean.TRUE;
 					}
 					else
 					{
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == TRUE)
 					{
 						dungeonFileName = strdup(argv[c + 1]);
-						load_param = TRUE;
+						load_param = boolean.TRUE;
 					}
 					else
 					{
@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 				{
 					if(((c + 1) < argc) && strstr(argv[c + 1], "--") == NULL && isstring(argv[c + 1]) == FALSE)
 					{
-						nummon_param = TRUE;
+						nummon_param = boolean.TRUE;
 						nummon_value = atoi(argv[c+1]);
 					}
 					else
