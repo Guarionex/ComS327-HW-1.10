@@ -978,7 +978,7 @@ int turn(int *seed, int num_mon)
 				free(distance_dungeon);
 				Destroy_Graph(&graphed_dungeon);
 			}
-			distance_dungeon = Generate_Distance_Dungeon(boolean.FALSE);
+			distance_dungeon = Generate_Distance_Dungeon((boolean) FALSE);
 			//Draw_Distance_Dungeon(distance_dungeon);
 			set_distance(distance_dungeon);
 			if(game_state != 4)
@@ -986,7 +986,7 @@ int turn(int *seed, int num_mon)
 				free(distance_dungeon_tunneler);
 				Destroy_Graph(&graphed_dungeon);
 			}
-			distance_dungeon_tunneler = Generate_Distance_Dungeon(boolean.TRUE);
+			distance_dungeon_tunneler = Generate_Distance_Dungeon((boolean) TRUE);
 			set_distance_tunneler(distance_dungeon_tunneler);
 			if(game_state == 4)
 			{
@@ -1005,7 +1005,7 @@ int turn(int *seed, int num_mon)
 				input = input_handler(getch());
 				if(input < 9)
 				{
-					moving_to = get_direction(command_t.input);
+					moving_to = get_direction((command_t) input);
 				}
 				if(input == 13 || input == 14)
 				{
@@ -1032,7 +1032,7 @@ int turn(int *seed, int num_mon)
 						input = input_handler(getch());
 						if(input < 9)
 						{
-							moving_to = get_direction(command_t.input);
+							moving_to = get_direction((command_t) input);
 						}
 						if(input == 9)
 						{
