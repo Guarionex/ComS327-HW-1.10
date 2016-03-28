@@ -44,7 +44,7 @@ Dungeon_Space_Room *generateMultipleRooms(int *seed)
 	num_room = (rand()%3)+5;
 	//printf("Number of rooms is %d\n", num_room);
 	
-	Dungeon_Space_Room *room_collection = malloc(sizeof(Dungeon_Space_Room) * (num_room+1));
+	Dungeon_Space_Room *room_collection = (Dungeon_Space_Room *) malloc(sizeof(Dungeon_Space_Room) * (num_room+1));
 	Dungeon_Space_Room *room_collection_ptr;
 	
 	for(room_collection_ptr = room_collection; room_collection_ptr != room_collection + num_room; room_collection_ptr++)
@@ -58,7 +58,7 @@ Dungeon_Space_Room *generateMultipleRooms(int *seed)
 
 stair_t Place_Stairs(Dungeon_Space_Struct **dungeon, int *seed, stair_direction_t direction)
 {
-	pos_t *open_pos = malloc(sizeof(pos_t));
+	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 	open_pos[0] = NULL_POS;
 	stair_t stair_well;
 	
@@ -77,7 +77,7 @@ stair_t Place_Stairs(Dungeon_Space_Struct **dungeon, int *seed, stair_direction_
 					new_pos.x = x;
 					new_pos.y = y;
 					open_count++;
-					open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+					open_pos = (pos_t *) realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
 					open_pos[open_count-1] = new_pos;
 					open_pos[open_count] = NULL_POS;
 				break;
@@ -86,7 +86,7 @@ stair_t Place_Stairs(Dungeon_Space_Struct **dungeon, int *seed, stair_direction_
 					new_pos.x = x;
 					new_pos.y = y;
 					open_count++;
-					open_pos = realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
+					open_pos = (pos_t *) realloc(open_pos, sizeof(pos_t) + (sizeof(pos_t) * open_count));
 					open_pos[open_count-1] = new_pos;
 					open_pos[open_count] = NULL_POS;
 				break;
