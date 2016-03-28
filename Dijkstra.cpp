@@ -24,9 +24,9 @@ void Dijkstra(graph_t graph, vertex_t src)
 {
 	int num_vertices = graph.num_vertices;
 	binheap_node_t *nodes[num_vertices];
-	distance = malloc(sizeof(uint) * num_vertices);
+	distance = (uint *) malloc(sizeof(uint) * num_vertices);
 	//predecessor = malloc(sizeof(vertex_t) * num_vertices);
-	visited = malloc(sizeof(vertex_t) * num_vertices);
+	visited = (vertex_t *) malloc(sizeof(vertex_t) * num_vertices);
 	vertex_t insert_vertex[num_vertices];
 	int visited_count = 0;
 	
