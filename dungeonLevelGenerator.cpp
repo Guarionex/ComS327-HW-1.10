@@ -8,7 +8,7 @@ Dungeon_Space_Struct **dungeon_map;
 
 void Create_Blank_Map(int *seed)
 {
-	dungeon_map =  malloc(80 * sizeof(Dungeon_Space_Struct *));
+	dungeon_map =  (Dungeon_Space_Struct **) malloc(80 * sizeof(Dungeon_Space_Struct *));
 	
 	int seed_local;
 	
@@ -28,7 +28,7 @@ void Create_Blank_Map(int *seed)
 	int y;
 	for(x = 0; x < 80; x++)
 	{
-		dungeon_map[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
+		dungeon_map[x] = (Dungeon_Space_Struct *) malloc(21 * sizeof(Dungeon_Space_Struct));
 		for(y = 0; y < 21; y++)
 		{
 			Dungeon_Space_Rock rock = Dungeon_Space_Rock_create((x == 0 || y == 0 || x == 79 || y == 20) ? 255 : (rand()%254)+1);
