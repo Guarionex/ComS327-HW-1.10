@@ -54,7 +54,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 		return NULL;
 	}
 	
-	char *header = malloc (6 * sizeof(char));
+	char *header = (char *) malloc(6 * sizeof(char));
 	int items = fread(header, sizeof(char), 6, f);
 	if(items < 6 || strcmp(header, "RLG327") != 0)
 	{
@@ -63,7 +63,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 	}
     //printf("Header is %s and read %d items\n", header, items);
 	
-	char *version = malloc( 4 * sizeof(char));
+	char *version = (char *) malloc( 4 * sizeof(char));
 	items = fread(version, sizeof(char), 4, f);
 	if(items < 4 || strcmp(version, "\x00\x00\x00\x00") != 0)
 	{
@@ -73,7 +73,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 	}
 	//printf("Version Marker is %s and read %d items\n", version, items);
 	
-	char *sizeRaw = malloc( 4 * sizeof(char));
+	char *sizeRaw = (char *) malloc( 4 * sizeof(char));
 	if((items = fread(sizeRaw, sizeof(char), 4, f)) < 4)
 	{
 		printf("File size is not in the correct format\n");
@@ -90,7 +90,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 	}
 	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
-	dungeon_map_load =  malloc(80 * sizeof(Dungeon_Space_Struct *));
+	dungeon_map_load =  (Dungeon_Space_Struct **) malloc(80 * sizeof(Dungeon_Space_Struct *));
 	int x;
 	int y;
 	int bytesRead = 0;
@@ -102,7 +102,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 		{
 			if(y == 0)
 			{
-				dungeon_map_load[x] = malloc(21 * sizeof(Dungeon_Space_Struct));
+				dungeon_map_load[x] = (Dungeon_Space_Struct *) malloc(21 * sizeof(Dungeon_Space_Struct));
 			}
 			//printf("X = %d\n", x);
 			Dungeon_Space_Rock rock;
@@ -117,7 +117,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 			else
 			{
 				//printf("[%d][%d] = inside\n", x, y);
-				char *densityRaw = malloc( 1 * sizeof(char));
+				char *densityRaw = (char *) malloc( 1 * sizeof(char));
 				if((items = fread(densityRaw, sizeof(char), 1, f)) < 1)
 				{
 					printf("File hardness is not in the correct format\n");
@@ -163,7 +163,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 	for(room_byte = 1496; room_byte < sizeH; room_byte += 4)
 	{
 		total_num_room++;
-		char *roomRaw = malloc( 4 * sizeof(char));
+		char *roomRaw = (char *) malloc( 4 * sizeof(char));
 		if((items = fread(roomRaw, sizeof(char), 4, f)) < 4)
 		{
 			printf("File rooms is not in the correct format\n");
@@ -239,7 +239,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 		return -1;
 	}
 	
-	char *header = "RLG327"; //malloc(6 * sizeof(char));
+	const char *header = "RLG327"; //malloc(6 * sizeof(char));
 	//printf("Header = %s\n", header);
 	int items = fwrite(header, sizeof(char), 6, f);
 	if(items < 6)
@@ -249,7 +249,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	}
     //printf("Header is %s and read %d items\n", header, items);
 	
-	char *version = "\x00\x00\x00\x00";//malloc( 4 * sizeof(char));
+	const char *version = "\x00\x00\x00\x00";//malloc( 4 * sizeof(char));
 	items = fwrite(version, sizeof(char), 4, f);
 	if(items < 4)
 	{
@@ -269,7 +269,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	}
 	//printf("SizeH is %u and read %d items\n", sizeH, items);
 	
-	Dungeon_Space_Room *rooms = malloc(sizeof(Dungeon_Space_Room) * num_rooms);
+	Dungeon_Space_Room *rooms = (Dungeon_Space_Room *) malloc(sizeof(Dungeon_Space_Room) * num_rooms);
 	//printf("Before rocks\n");
 	int x, y, room_index = 0;
 	for(y = 0; y < 21; y++)
@@ -315,7 +315,7 @@ int Save_Dungeon(Dungeon_Space_Struct **dungeon_map_save, char *file, int num_ro
 	}
 	//printf("Before rooms\n");
 	int r;
-	char *roomToWrite = malloc( 4 * sizeof(char));
+	char *roomToWrite = (char *) malloc( 4 * sizeof(char));
 	for(r = 0; r < num_rooms; r++)
 	{
 		
