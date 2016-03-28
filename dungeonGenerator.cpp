@@ -400,7 +400,7 @@ boolean isstring(char *string)
 		}
 		else if(start == TRUE)
 		{
-			start = FALSE;
+			start = (boolean) FALSE;
 			if(*string != '-')
 			{
 				return (boolean) TRUE;
