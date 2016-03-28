@@ -1,35 +1,35 @@
 dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o GameStateManager.o dungeonGenerator.o
 	g++ dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dungeonGenerator.o -o dungeonGenerator -lm -lcurses
 
-dungeonObjects.o: dungeonObjects.h dungeonObjects.c
-	gcc -g -Wall -Werror dungeonObjects.c -c
+dungeonObjects.o: dungeonObjects.h dungeonObjects.cpp
+	g++ -g -Wall -Werror dungeonObjects.cpp -c
 
-dungeonRoomGenerator.o: dungeonRoomGenerator.h dungeonRoomGenerator.c
-	gcc -g -Wall -Werror dungeonRoomGenerator.c -c
+dungeonRoomGenerator.o: dungeonRoomGenerator.h dungeonRoomGenerator.cpp
+	g++ -g -Wall -Werror dungeonRoomGenerator.cpp -c
 
-dungeonLevelGenerator.o: dungeonLevelGenerator.h dungeonLevelGenerator.c
-	gcc -g -Wall -Werror dungeonLevelGenerator.c -c
+dungeonLevelGenerator.o: dungeonLevelGenerator.h dungeonLevelGenerator.cpp
+	g++ -g -Wall -Werror dungeonLevelGenerator.cpp -c
 
-dungeonIO.o: dungeonIO.h dungeonIO.c
-	gcc -g -Wall -Werror dungeonIO.c -c
+dungeonIO.o: dungeonIO.h dungeonIO.cpp
+	g++ -g -Wall -Werror dungeonIO.cpp -c
 	
-binheap.o: binheap.h binheap.c
-	gcc -g -Wall -Werror binheap.c -c
+binheap.o: binheap.h binheap.cpp
+	g++ -g -Wall -Werror binheap.cpp -c
 	
-Dijkstra.o: Dijkstra.h Dijkstra.c
-	gcc -g -Wall -Werror Dijkstra.c -c
+Dijkstra.o: Dijkstra.h Dijkstra.cpp
+	g++ -g -Wall -Werror Dijkstra.cpp -c
 
-Graph.o: Graph.h Graph.c
-	gcc -g -Wall -Werror Graph.c -c
+Graph.o: Graph.h Graph.cpp
+	g++ -g -Wall -Werror Graph.cpp -c
 	
 CharacterController.o: CharacterController.h CharacterController.cpp
 	g++ -g -Wall -Werror CharacterController.cpp -c
 
-GameStateManager.o: GameStateManager.h GameStateManager.c
-	gcc -g -Wall -Werror GameStateManager.c -c
+GameStateManager.o: GameStateManager.h GameStateManager.cpp
+	g++ -g -Wall -Werror GameStateManager.cpp -c
 
-dungeonGenerator.o: dungeonGenerator.c
-	gcc -g -Wall -Werror dungeonGenerator.c -c
+dungeonGenerator.o: dungeonGenerator.cpp
+	g++ -g -Wall -Werror dungeonGenerator.cpp -c
 
 clean:
 	rm -f *.o dungeonGenerator
