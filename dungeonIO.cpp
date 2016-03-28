@@ -139,7 +139,7 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 				}
 				else if(densityBE == 0)
 				{
-					corridor = Dungeon_Space_Corridor_create("0");
+					corridor = Dungeon_Space_Corridor_create(/*"0"*/);
 					is_rock = FALSE;
 				}
 				//printf("densityBE is %hu and read %d items\n", densityBE, items);
@@ -158,8 +158,8 @@ Dungeon_Space_Struct **Load_Dungeon(char *file, int *num_rooms)
 		return NULL;
 	}
 	
-	int room_byte;
-	int total_num_room = 0;
+	uint32_t /*int*/ room_byte;
+	uint32_t /*int*/ total_num_room = 0;
 	for(room_byte = 1496; room_byte < sizeH; room_byte += 4)
 	{
 		total_num_room++;
