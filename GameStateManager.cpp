@@ -94,7 +94,7 @@ char *Generate_Distance_Dungeon(boolean tunneler)
 	//printf("Using distances_int = %d\n", distances_int[0]);
 	
 	
-	distance_map = malloc(1680 * sizeof(char));
+	distance_map = (char *) malloc(1680 * sizeof(char));
 	int z;
 	for(z = 0; z < 1680; z++)
 	{
@@ -655,7 +655,7 @@ void Draw_Dungeon(int use_curses)
 			mvprintw(22, 0, "Dr. Sheaffer cleared the level, but his adventures continue...                  \n");
 		}
 		refresh();
-		char *exit_message = (game_state == 5)? "Game Saved, press any key to exit                                               " : "Press any key to exit                                                           \n";
+		const char *exit_message = (game_state == 5)? "Game Saved, press any key to exit                                               " : "Press any key to exit                                                           \n";
 		mvprintw(23, 0, exit_message);
 		getch();
 		//endwin();
@@ -669,7 +669,7 @@ void Draw_Monster_List(void)
 	char monster_info[num_characters-1][80];
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
-	int m, d, dead_count = 0;
+	uint m, d, dead_count = 0;
 	clear();
 	for(d = 0; d < strlen(debug_line); d++)
 	{
@@ -692,7 +692,7 @@ void Draw_Monster_List(void)
 		}
 		pos_t distance_to_player = {get_Character_pos(character_list[0]).x - get_Character_pos(character_list[m]).x, get_Character_pos(character_list[0]).y - get_Character_pos(character_list[m]).y};
 		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", get_Monster_abilities((monster_t *)character_list[m]), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
-		int c;
+		uint c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
 			mvaddch(m - dead_count - scroll_index, c, monster_info[m-1][c]);
@@ -977,7 +977,7 @@ int turn(int *seed, int num_mon)
 				free(distance_dungeon);
 				Destroy_Graph(&graphed_dungeon);
 			}
-			distance_dungeon = Generate_Distance_Dungeon(FALSE);
+			distance_dungeon = Generate_Distance_Dungeon((boolean) FALSE);
 			//Draw_Distance_Dungeon(distance_dungeon);
 			set_distance(distance_dungeon);
 			if(game_state != 4)
@@ -985,7 +985,7 @@ int turn(int *seed, int num_mon)
 				free(distance_dungeon_tunneler);
 				Destroy_Graph(&graphed_dungeon);
 			}
-			distance_dungeon_tunneler = Generate_Distance_Dungeon(TRUE);
+			distance_dungeon_tunneler = Generate_Distance_Dungeon((boolean) TRUE);
 			set_distance_tunneler(distance_dungeon_tunneler);
 			if(game_state == 4)
 			{
@@ -1004,7 +1004,7 @@ int turn(int *seed, int num_mon)
 				input = input_handler(getch());
 				if(input < 9)
 				{
-					moving_to = get_direction(input);
+					moving_to = get_direction((command_t) input);
 				}
 				if(input == 13 || input == 14)
 				{
@@ -1031,7 +1031,7 @@ int turn(int *seed, int num_mon)
 						input = input_handler(getch());
 						if(input < 9)
 						{
-							moving_to = get_direction(input);
+							moving_to = get_direction((command_t) input);
 						}
 						if(input == 9)
 						{
