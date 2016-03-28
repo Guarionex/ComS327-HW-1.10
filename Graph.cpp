@@ -2,15 +2,15 @@
 #include <stdio.h>
 
 graph_t internal_graph;
-const vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1};
-const edge_t NULL_EDGE = {.source = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .target = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = -1}}}, .weight = -1, .x = -1, .y = -1}, .weight = -1};
+const vertex_t NULL_VERTEX = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = 255}}}, .weight =  428400, .x = -1, .y = -1};
+const edge_t NULL_EDGE = {.source = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = 255}}}, .weight = 428400, .x = -1, .y = -1}, .target = {.vertexData = {.space_type = ROCK, .space_union = {.rock = {.density = 255}}}, .weight = 428400, .x = -1, .y = -1}, .weight = 428400};
 
 graph_t Create_Graph()
 {
 	internal_graph.num_vertices = 0;
 	internal_graph.num_edges = 0;
-	internal_graph.vertices = malloc(sizeof(vertex_t));
-	internal_graph.edges = malloc(sizeof(edge_t));
+	internal_graph.vertices = (vertex_t *) malloc(sizeof(vertex_t));
+	internal_graph.edges = (edge_t *) malloc(sizeof(edge_t));
 	internal_graph.vertices[0] = NULL_VERTEX;
 	internal_graph.edges[0] = NULL_EDGE;
 	
@@ -62,7 +62,7 @@ boolean Add_Vertex(Dungeon_Space_Struct cell, int x, int y)
 	new_vertex.y = y;
 	
 	internal_graph.num_vertices++;
-	internal_graph.vertices = realloc(internal_graph.vertices, sizeof(vertex_t) + (sizeof(vertex_t) * internal_graph.num_vertices));
+	internal_graph.vertices = (vertex_t *) realloc(internal_graph.vertices, sizeof(vertex_t) + (sizeof(vertex_t) * internal_graph.num_vertices));
 	internal_graph.vertices[internal_graph.num_vertices-1] = new_vertex;
 	internal_graph.vertices[internal_graph.num_vertices] = NULL_VERTEX;
 	
@@ -80,7 +80,7 @@ boolean Add_Edge(vertex_t source, vertex_t target)
 		printf("Weight of edge at source [0][0] = %d\n", new_edge.weight);
 	}*/
 	internal_graph.num_edges++;
-	internal_graph.edges = realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
+	internal_graph.edges = (edge_t *) realloc(internal_graph.edges, sizeof(edge_t) + (sizeof(edge_t) * internal_graph.num_edges));
 	internal_graph.edges[internal_graph.num_edges-1] = new_edge;
 	internal_graph.edges[internal_graph.num_edges] = NULL_EDGE;
 	
@@ -124,7 +124,7 @@ boolean Contains_Vertex(vertex_t *vertex_collection, int num_elements, vertex_t 
 
 edge_t *Get_Edges_Of(vertex_t vertex)
 {
-	edge_t *adjacent_edges = malloc(sizeof(edge_t) * 8);
+	edge_t *adjacent_edges = (edge_t *) malloc(sizeof(edge_t) * 8);
 	int e, edge_count = 0;
 	for(e = 0; e < internal_graph.num_edges; e++)
 	{
