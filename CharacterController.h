@@ -6,12 +6,13 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include "dungeonObjects.h"
 
 # ifdef __cplusplus
 extern "C" {
 # endif
 
-#include "dungeonObjects.h"
+//#include "dungeonObjects.h"
 
 typedef enum character_type_enum
 {
