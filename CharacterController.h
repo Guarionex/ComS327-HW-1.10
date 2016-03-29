@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdint.h>
+#include <vector>
 #include "dungeonObjects.h"
+#include "dice.h"
 
 # ifdef __cplusplus
 extern "C" {
@@ -149,6 +151,15 @@ class monsterClass : public characterClass
 	int memoryY;
 	
 	public:
+	string name;
+	string description;
+	char symbol;
+	short color;
+	Dice speed;
+	vector<string> abilities;
+	Dice hp;
+	Dice damage;
+	
 	monsterClass();
 	~monsterClass();
 	monsterClass(uint8_t powers, bool is_mon_lost, int memX, int memY);
