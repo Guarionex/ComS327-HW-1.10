@@ -10,7 +10,7 @@ vector<monsterClass> parseMonsters()
 	ifstream monsterFile((home + file).c_str());
 	bool beginMonster, name, description, symbol, color, speed, ability, hp, damage, endMonster;
 	beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
-	monsterClass mon = new monsterClass();
+	monsterClass *mon = new monsterClass();
 	
 	if(monsterFile.is_open())
 	{
@@ -27,12 +27,12 @@ vector<monsterClass> parseMonsters()
 			else if(beginMonster == true)
 			{
 				size_t found;
-				if(found = line.fine("NAME") != string::npos && found == 0)
+				if(found = line.find("NAME") != string::npos && found == 0)
 				{
 					if(name == false)
 					{
 						name = true;
-						mon.name = line.substr(5);
+						mon->name = line.substr(5);
 						cout << "Monster's name = " << line.substr(5);
 					}
 					else
