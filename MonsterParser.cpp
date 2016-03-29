@@ -14,7 +14,7 @@ vector<monsterClass> parseMonsters()
 	
 	if(monsterFile.is_open())
 	{
-		getline(monsterFile, line)
+		getline(monsterFile, line);
 		if(line.compare("RLG327 MONSTER DESCRIPTION 1") != 0)
 		{
 			return monsterList;
