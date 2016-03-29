@@ -42,5 +42,6 @@ int Dice::roll(int seed)
 
 string Dice::toString()
 {
-	return "test";
+	string rString = static_cast<ostringstream*>( &(ostringstream() << base) )->str();
+	return rString;
 }
