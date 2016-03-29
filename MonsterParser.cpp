@@ -5,7 +5,7 @@ vector<monsterClass> monsterList;
 vector<monsterClass> parseMonsters(string fileName)
 {
 	string line;
-	ifstream monsterFile(fileName);
+	ifstream monsterFile(fileName.c_str());
 	
 	if(monsterFile.is_open())
 	{
