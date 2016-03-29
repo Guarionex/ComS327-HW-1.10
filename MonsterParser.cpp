@@ -8,7 +8,8 @@ vector<monsterClass> parseMonsters()
 	string file = "/.rlg327/monster_desc.txt";
 	string home = getenv("HOME");
 	ifstream monsterFile((home + file).c_str());
-	bool beginMonster = name = description = color = speed = ability = hp = damage = false;
+	bool beginMonster, name, description, color, speed, ability, hp, damage;
+	beginMonster = name = description = color = speed = ability = hp = damage = false;
 	
 	if(monsterFile.is_open())
 	{
