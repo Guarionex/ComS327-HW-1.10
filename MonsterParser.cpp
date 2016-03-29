@@ -14,7 +14,7 @@ vector<monsterClass> parseMonsters()
 		while(getline(monsterFile, line))
 		{
 			cout << "line: " << line << "| comapre result = " << line.compare("RLG327 MONSTER DESCRIPTION 1") << endl;
-			if(line.compare("RLG327 MONSTER DESCRIPTION 1"))
+			if(line.compare("RLG327 MONSTER DESCRIPTION 1") == 0)
 			{
 				cout << "header same" << endl;
 			}
