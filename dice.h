@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <time.h> 
 
+using namespace std;
+
 class Dice
 {
 	public:
@@ -15,7 +17,7 @@ class Dice
 	Dice(int nBase, int nDice, int nSides);
 	~Dice();
 	int roll(int seed);
-	std::string toString();
+	string toString();
 };
 
 #endif
