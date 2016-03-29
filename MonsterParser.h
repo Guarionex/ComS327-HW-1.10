@@ -11,7 +11,7 @@ using namespace std;
 
 //extern vector<monsterClass> parsedMonsters;
 
-vector<monsterClass> parseMonsters(string fileName);
+vector<monsterClass> parseMonsters();
 
 
 #endif

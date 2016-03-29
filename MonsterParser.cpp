@@ -2,10 +2,10 @@
 
 vector<monsterClass> monsterList;
 
-vector<monsterClass> parseMonsters(string fileName)
+vector<monsterClass> parseMonsters()
 {
 	string line;
-	ifstream monsterFile(fileName.c_str());
+	ifstream monsterFile(getenv("HOME") + "/.rlg327/monster_desc.txt");
 	
 	if(monsterFile.is_open())
 	{

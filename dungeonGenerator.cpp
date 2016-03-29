@@ -12,6 +12,7 @@
 #include "dungeonIO.h"
 #include "GameStateManager.h"
 #include "CharacterController.h"
+#include "MonsterParser.h"
 
 boolean isstring(char *string);
 
@@ -106,6 +107,11 @@ int main(int argc, char *argv[])
 						return 0;
 					}
 					flags[c - 1] = NUMMON;
+				}
+				else if(strcmp(argv[c], "--parsemon") == 0)
+				{
+					parseMonsters();
+					return;
 				}
 				else
 				{
