@@ -27,7 +27,7 @@ vector<monsterClass> parseMonsters()
 			else if(beginMonster == true)
 			{
 				size_t found;
-				if(found = line.find("NAME") != string::npos && found == 0)
+				if((found = line.find("NAME")) != string::npos && found == 0)
 				{
 					if(name == false)
 					{
