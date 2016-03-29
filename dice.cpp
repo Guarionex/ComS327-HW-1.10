@@ -31,12 +31,12 @@ int Dice::roll(int seed)
 	{
 		srand(seed);
 	}
-	int r;
+	int r, roll;
 	for(r = 0; r < dice; r++)
 	{
-		int roll += ((rand()%sides) + 1);
+		roll += ((rand()%sides) + 1);
 	}
-	int roll = base + roll;
+	roll = base + roll;
 	return roll;
 }
 
