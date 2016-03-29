@@ -5,7 +5,9 @@ vector<monsterClass> monsterList;
 vector<monsterClass> parseMonsters()
 {
 	string line;
-	ifstream monsterFile(getenv("HOME") + "/.rlg327/monster_desc.txt");
+	string file = "/.rlg327/monster_desc.txt";
+	string home = getenv("HOME");
+	ifstream monsterFile(home + file);
 	
 	if(monsterFile.is_open())
 	{
