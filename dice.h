@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <time.h> 
+#include <sstream>
 #include <string>
 
 using namespace std;
