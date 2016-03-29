@@ -34,7 +34,7 @@ vector<monsterClass> parseMonsters()
 					{
 						name = true;
 						mon->name = line.substr(5);
-						cout << "Monster's name = " << line.substr(5);
+						cout << "Monster's name = " << mon->name << endl;
 					}
 					else
 					{
