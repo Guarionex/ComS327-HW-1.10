@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
 				else if(strcmp(argv[c], "--parsemon") == 0)
 				{
 					parseMonsters();
-					return;
+					return 0;
 				}
 				else
 				{
