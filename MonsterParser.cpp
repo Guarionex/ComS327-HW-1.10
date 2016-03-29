@@ -8,8 +8,9 @@ vector<monsterClass> parseMonsters()
 	string file = "/.rlg327/monster_desc.txt";
 	string home = getenv("HOME");
 	ifstream monsterFile((home + file).c_str());
-	bool beginMonster, name, description, color, speed, ability, hp, damage;
-	beginMonster = name = description = color = speed = ability = hp = damage = false;
+	bool beginMonster, name, description, symbol, color, speed, ability, hp, damage, endMonster;
+	beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
+	monsterClass mon = new monsterClass();
 	
 	if(monsterFile.is_open())
 	{
@@ -19,11 +20,30 @@ vector<monsterClass> parseMonsters()
 		}
 		while(getline(monsterFile, line))
 		{
-			cout << "line: " << line << "| comapre result = " << line.compare("RLG327 MONSTER DESCRIPTION 1") << endl;
-			if(line.compare("RLG327 MONSTER DESCRIPTION 1") == 0)
+			if(beginMonster == false && name == false && description == false && symbol == false && color == false && speed == false && ability == false && hp == false && damage == false && endMonster == false && line.compare("BEGIN MONSTER") == 0)
 			{
-				cout << "header same" << endl;
+				beginMonster = true;
 			}
+			else if(beginMonster == true)
+			{
+				size_t found;
+				if(found = line.fine("NAME") != string::npos && found == 0)
+				{
+					if(name == false)
+					{
+						name = true;
+						mon.name = line.substr(5);
+						cout << "Monster's name = " << line.substr(5);
+					}
+					else
+					{
+						//skipp monster
+					}
+					
+				}
+			}
+			//cout << "line: " << line << " | comapre result = " << line.compare("RLG327 MONSTER DESCRIPTION 1") << endl;
+			
 			
 		}
 		monsterFile.close();
