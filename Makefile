@@ -1,5 +1,5 @@
-dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o GameStateManager.o dungeonGenerator.o
-	g++ dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dungeonGenerator.o -o dungeonGenerator -lm -lcurses
+dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o GameStateManager.o dice.o dungeonGenerator.o
+	g++ dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dice.o dungeonGenerator.o -o dungeonGenerator -lm -lcurses
 
 dungeonObjects.o: dungeonObjects.h dungeonObjects.cpp
 	g++ -g -Wall -Werror dungeonObjects.cpp -c
@@ -28,6 +28,9 @@ CharacterController.o: CharacterController.h CharacterController.cpp
 GameStateManager.o: GameStateManager.h GameStateManager.cpp
 	g++ -g -Wall -Werror GameStateManager.cpp -c
 
+dice.o: dice.h dice.cpp
+	g++ -g -Wall -Werror dice.cpp -c
+	
 dungeonGenerator.o: dungeonGenerator.cpp
 	g++ -g -Wall -Werror dungeonGenerator.cpp -c
 
