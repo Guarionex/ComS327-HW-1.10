@@ -22,4 +22,6 @@ vector<monsterClass> parseMonsters(string fileName)
 		}
 		monsterFile.close();
 	}
+	
+	return monsterList;
 }
