@@ -16,6 +16,7 @@ vector<monsterClass> parseMonsters()
 	{
 		if(line.compare("RLG327 MONSTER DESCRIPTION 1") != 0)
 		{
+			cout << "Bad header, line = " << line << endl;
 			return monsterList;
 		}
 		while(getline(monsterFile, line))
