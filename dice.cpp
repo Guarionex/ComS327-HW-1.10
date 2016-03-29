@@ -1,6 +1,6 @@
 #include "dice.h"
 
-Dice::Dice();
+Dice::Dice()
 {
 	base = 0;
 	dice = 0;
@@ -28,7 +28,7 @@ int Dice::roll(int seed)
 	{
 		srand(seed);
 	}
-	int roll = base + (dice * ((rand()%8) + 1));
+	int roll = base + (dice * ((rand()%side) + 1));
 	return roll;
 }
 std::string Dice::toString();
