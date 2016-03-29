@@ -156,7 +156,7 @@ class monsterClass : public characterClass
 	char symbol;
 	short color;
 	Dice speed;
-	vector<string> abilities;
+	vector<string> abilityList;
 	Dice hp;
 	Dice damage;
 	
