@@ -130,11 +130,35 @@ vector<monsterClass> parseMonsters()
 				{
 					int index = 5;
 					string power;
-					//uint8_t abil = 0b00000;
-					cout << "Monster powers = ";
+					uint8_t abil = 0b00000;
+					//cout << "Monster powers = ";
 					while((power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index) - index)).compare("") != 0)
 					{
-						cout << power << endl;
+						//cout << power << endl;
+						if(power.compare("SMART") == 0)
+						{
+							abil = abil | 0b00001;
+						}
+						else if(power.compare("TELE") == 0)
+						{
+							abil = abil | 0b00010;
+						}
+						else if(power.compare("TUNNEL") == 0)
+						{
+							abil = abil | 0b00100;
+						}
+						else if(power.compare("ERRATIC") == 0)
+						{
+							abil = abil | 0b01000;
+						}
+						else if(power.compare("PASS") == 0)
+						{
+							abil = abil | 0b10000;
+						}
+						else
+						{
+							//skip monster
+						}
 						if((index = line.find_first_of(" ", index)) == -1)
 						{
 							break;
@@ -145,7 +169,8 @@ vector<monsterClass> parseMonsters()
 							index++;
 						}
 					}
-					cout << endl;
+					mon->set_abilities(power);
+					cout << mon->get_abilities() << endl;
 				}
 				else if(line.compare("END") == 0)
 				{
