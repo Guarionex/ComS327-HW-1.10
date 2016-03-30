@@ -260,7 +260,7 @@ vector<monsterClass> parseMonsters()
 						sides = atoi(sidesRaw.c_str());
 						
 						Dice HPDice(base, dice, sides);
-						mon->speed = HPDice;
+						mon->hp = HPDice;
 						
 						cout << "Monster speed = " << mon->hp.toString() << endl;
 					}
