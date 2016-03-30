@@ -28,7 +28,7 @@ vector<monsterClass> parseMonsters()
 			else if(beginMonster == true)
 			{
 				size_t found;
-				if((found = line.find("NAME")) != string::npos && found == 0)
+				if((found = line.find("NAME ")) != string::npos && found == 0)
 				{
 					if(name == false)
 					{
@@ -40,7 +40,20 @@ vector<monsterClass> parseMonsters()
 					{
 						//skipp monster
 					}
-					
+				}
+				
+				if(line.compare("END") == 0)
+				{
+					beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
+					if(beginMonster == true && name == true && description == true && symbol == true && color == true && speed == true && ability == true && hp == true && damage == true && endMonster == true )
+					{
+						beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
+						//add monster
+					}
+					else
+					{
+						//skip monster
+					}
 				}
 			}
 			//cout << "line: " << line << " | comapre result = " << line.compare("RLG327 MONSTER DESCRIPTION 1") << endl;
