@@ -130,8 +130,8 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!speed)
 					{
-						int base = -1, dice = -1, sides = -1;
-						string baseS = line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6));
+						//int base = -1, dice = -1, sides = -1;
+						string baseS = line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6);
 						cout << "Monster speed = " << baseS << endl;
 					}
 					else
