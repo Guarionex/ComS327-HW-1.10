@@ -10,7 +10,7 @@ vector<monsterClass> parseMonsters()
 	ifstream monsterFile((home + file).c_str());
 	bool beginMonster, name, description, symbol, color, speed, ability, hp, damage, endMonster, readingDesc;
 	beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = readingDesc = false;
-	monsterClass *mon = new monsterClass();
+	monsterClass mon;
 	
 	if(monsterFile.is_open())
 	{
@@ -33,8 +33,8 @@ vector<monsterClass> parseMonsters()
 					if(!name)
 					{
 						name = true;
-						mon->name = line.substr(line.find_first_not_of(" ", 5));
-						//cout << "Monster's name = " << mon->name << endl;
+						mon.name = line.substr(line.find_first_not_of(" ", 5));
+						//cout << "Monster's name = " << mon.name << endl;
 					}
 					else
 					{
@@ -53,11 +53,11 @@ vector<monsterClass> parseMonsters()
 						{
 							readingDesc = false;
 							description = true;
-							//cout << "Monster's description = " << mon->description << endl;
+							//cout << "Monster's description = " << mon.description << endl;
 						}
 						else if(line.size() <= 78)
 						{
-							mon->description += line + '\n';
+							mon.description += line + '\n';
 						}
 					}
 					else
@@ -69,8 +69,8 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!symbol)
 					{
-						mon->symbol = line.substr(line.find_first_not_of(" ", 5))[0];
-						//cout << "Monster symbol = " << mon->symbol << endl;
+						mon.symbol = line.substr(line.find_first_not_of(" ", 5))[0];
+						//cout << "Monster symbol = " << mon.symbol << endl;
 					}
 					else
 					{
@@ -85,41 +85,41 @@ vector<monsterClass> parseMonsters()
 						string colorName = line.substr(line.find_first_not_of(" ", 6));
 						if(colorName.compare("RED") == 0)
 						{
-							mon->color = COLOR_RED;
+							mon.color = COLOR_RED;
 						}
 						else if(colorName.compare("GREEN") == 0)
 						{
-							mon->color = COLOR_GREEN;
+							mon.color = COLOR_GREEN;
 						}
 						else if(colorName.compare("BLUE") == 0)
 						{
-							mon->color = COLOR_BLUE;
+							mon.color = COLOR_BLUE;
 						}
 						else if(colorName.compare("CYAN") == 0)
 						{
-							mon->color = COLOR_CYAN;
+							mon.color = COLOR_CYAN;
 						}
 						else if(colorName.compare("YELLOW") == 0)
 						{
-							mon->color = COLOR_YELLOW;
+							mon.color = COLOR_YELLOW;
 						}
 						else if(colorName.compare("MAGENTA") == 0)
 						{
-							mon->color = COLOR_MAGENTA;
+							mon.color = COLOR_MAGENTA;
 						}
 						else if(colorName.compare("WHITE") == 0)
 						{
-							mon->color = COLOR_WHITE;
+							mon.color = COLOR_WHITE;
 						}
 						else if(colorName.compare("BLACK") == 0)
 						{
-							mon->color = COLOR_BLACK;
+							mon.color = COLOR_BLACK;
 						}
 						else
 						{
 							//skip monster
 						}
-						//cout << "Monster color = " << mon->color << endl;
+						//cout << "Monster color = " << mon.color << endl;
 					}
 					else
 					{
@@ -163,9 +163,9 @@ vector<monsterClass> parseMonsters()
 						sides = atoi(sidesRaw.c_str());
 						
 						Dice speedDice(base, dice, sides);
-						mon->speed = speedDice;
+						mon.speed = speedDice;
 						
-						//cout << "Monster speed = " << mon->speed.toString() << endl;
+						//cout << "Monster speed = " << mon.speed.toString() << endl;
 					}
 					else
 					{
@@ -217,8 +217,8 @@ vector<monsterClass> parseMonsters()
 								index++;
 							}
 						}
-						mon->set_abilities(abil);
-						//printf("Monster ability is 0x%x\n", mon->get_abilities());
+						mon.set_abilities(abil);
+						//printf("Monster ability is 0x%x\n", mon.get_abilities());
 					}
 					else
 					{
@@ -262,9 +262,9 @@ vector<monsterClass> parseMonsters()
 						sides = atoi(sidesRaw.c_str());
 						
 						Dice HPDice(base, dice, sides);
-						mon->hp = HPDice;
+						mon.hp = HPDice;
 						
-						//cout << "Monster speed = " << mon->hp.toString() << endl;
+						//cout << "Monster speed = " << mon.hp.toString() << endl;
 					}
 					else
 					{
@@ -308,9 +308,9 @@ vector<monsterClass> parseMonsters()
 						sides = atoi(sidesRaw.c_str());
 						
 						Dice damageDice(base, dice, sides);
-						mon->damage = damageDice;
+						mon.damage = damageDice;
 						
-						cout << "Monster speed = " << mon->damage.toString() << endl;
+						//cout << "Monster speed = " << mon.damage.toString() << endl;
 					}
 					else
 					{
@@ -319,12 +319,13 @@ vector<monsterClass> parseMonsters()
 				}
 				else if(line.compare("END") == 0)
 				{
-					beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
+					//beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
 					delete mon;
 					mon = new monsterClass();
 					if(beginMonster == true && name == true && description == true && symbol == true && color == true && speed == true && ability == true && hp == true && damage == true && endMonster == true )
 					{
 						beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
+						cout << "I'm here" << endl;
 						//add monster
 					}
 					else
