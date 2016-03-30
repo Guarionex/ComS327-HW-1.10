@@ -33,7 +33,7 @@ vector<monsterClass> parseMonsters()
 					if(name == false)
 					{
 						name = true;
-						mon->name = line.substr(line.find_first_not_of(" "), 5);
+						mon->name = line.substr(line.find_first_not_of(" ", 5));
 						cout << "Monster's name = " << mon->name << endl;
 					}
 					else
