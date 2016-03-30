@@ -55,8 +55,7 @@ vector<monsterClass> parseMonsters()
 					}
 					if(line.size() <= 78)
 					{
-						found = line.find('\n');
-						cout << "new line at " << found << endl;
+						cout << "Size = " << line.size() << endl;
 						mon->description += line;
 					}
 				}
