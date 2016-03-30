@@ -170,7 +170,7 @@ vector<monsterClass> parseMonsters()
 						}
 					}
 					mon->set_abilities(abil);
-					cout << mon->get_abilities() << endl;
+					printf("Monster ability is 0x%x\n", mon->get_abilities());
 				}
 				else if(line.compare("END") == 0)
 				{
