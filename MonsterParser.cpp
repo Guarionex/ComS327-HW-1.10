@@ -28,13 +28,13 @@ vector<monsterClass> parseMonsters()
 			else if(beginMonster == true)
 			{
 				size_t found;
-				if((found = line.find("NAME ")) != string::npos && found == 0)
+				if((found = line.find("NAME ")) != string::npos && found == 0 && !readingDesc)
 				{
-					if(name == false)
+					if(!name)
 					{
 						name = true;
 						mon->name = line.substr(line.find_first_not_of(" ", 5));
-						//cout << "Monster's name = " << mon->name << endl;
+						cout << "Monster's name = " << mon->name << endl;
 					}
 					else
 					{
@@ -43,18 +43,26 @@ vector<monsterClass> parseMonsters()
 				}
 				else if(line.compare("DESC") == 0 || readingDesc)
 				{
-					if(!readingDesc)
+					if(!description)
 					{
-						readingDesc = true;
+						if(!readingDesc)
+						{
+							readingDesc = true;
+						}
+						else if(line.compare(".") == 0)
+						{
+							readingDesc = false;
+							description = true;
+							cout << "Monster's description = " << mon->description << endl;
+						}
+						else if(line.size() <= 78)
+						{
+							mon->description += line + '\n';
+						}
 					}
-					else if(line.compare(".") == 0)
+					else
 					{
-						readingDesc = false;
-						cout << "Monster's description = " << mon->description << endl;
-					}
-					else if(line.size() <= 78)
-					{
-						mon->description += line + '\n';
+						//skipp monster
 					}
 				}
 				else if(line.compare("END") == 0)
