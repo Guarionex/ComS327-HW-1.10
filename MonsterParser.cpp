@@ -130,6 +130,7 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!speed)
 					{
+						speed = true;
 						int base = -1, dice = -1, sides = -1;
 						
 						string baseRaw = line.substr(line.find_first_not_of(" ", 6), (dice = line.find_first_of("+", 6)) - 6);
@@ -228,6 +229,7 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!hp)
 					{
+						hp = true;
 						int base = -1, dice = -1, sides = -1;
 						
 						string baseRaw = line.substr(line.find_first_not_of(" ", 3), (dice = line.find_first_of("+", 3)) - 3);
@@ -262,7 +264,53 @@ vector<monsterClass> parseMonsters()
 						Dice HPDice(base, dice, sides);
 						mon->hp = HPDice;
 						
-						cout << "Monster speed = " << mon->hp.toString() << endl;
+						//cout << "Monster speed = " << mon->hp.toString() << endl;
+					}
+					else
+					{
+						//skip monster
+					}
+				}
+				else if((found = line.find("DAM ")) != string::npos && found == 0)
+				{
+					if(!damage)
+					{
+						damage = true;
+						int base = -1, dice = -1, sides = -1;
+						
+						string baseRaw = line.substr(line.find_first_not_of(" ", 4), (dice = line.find_first_of("+", 4)) - 4);
+						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
+						{
+							//skip monster
+						}
+						else
+						{
+							dice++;
+						}
+						base = atoi(baseRaw.c_str());
+						
+						string diceRaw = line.substr(line.find_first_not_of(" ", dice), (sides = line.find_first_of("d", dice)) - dice);
+						if(!isdigit(diceRaw.c_str()[0]) || sides == -1)
+						{
+							//skip monster
+						}
+						else
+						{
+							sides++;
+						}
+						dice = atoi(diceRaw.c_str());
+						
+						string sidesRaw = line.substr(line.find_first_not_of(" ", sides));
+						if(!isdigit(sidesRaw.c_str()[0]))
+						{
+							//skip monster
+						}
+						sides = atoi(sidesRaw.c_str());
+						
+						Dice damageDice(base, dice, sides);
+						mon->damage = damageDice;
+						
+						cout << "Monster speed = " << mon->damage.toString() << endl;
 					}
 					else
 					{
