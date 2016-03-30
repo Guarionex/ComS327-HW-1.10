@@ -133,7 +133,7 @@ vector<monsterClass> parseMonsters()
 						int base = -1;//, dice = -1, sides = -1;
 						
 						string baseRaw = line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6);
-						if(!isdigit(baseRaw.c_str()))
+						if(!isdigit(baseRaw.c_str()[0]))
 						{
 							//skip monster
 						}
