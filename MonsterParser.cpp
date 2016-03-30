@@ -48,12 +48,12 @@ vector<monsterClass> parseMonsters()
 						readingDesc = true;
 						continue;
 					}
-					if(line.comapre(".") == 0)
+					if(line.compare(".") == 0)
 					{
 						readingDesc = false;
 						cout << "Monster's description = " << mon->description << endl;
 					}
-					if(line.size <= 78 && line[line.size - 1] == '\n')
+					if(line.size() <= 78 && line[line.size() - 1] == '\n')
 					{
 						mon->description += line;
 					}
