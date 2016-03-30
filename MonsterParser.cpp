@@ -164,7 +164,7 @@ vector<monsterClass> parseMonsters()
 						Dice speedDice(base, dice, sides);
 						mon->speed = speedDice;
 						
-						cout << "Monster speed = " << mon->speed.toString() << endl;
+						//cout << "Monster speed = " << mon->speed.toString() << endl;
 					}
 					else
 					{
@@ -222,6 +222,51 @@ vector<monsterClass> parseMonsters()
 					else
 					{
 						// skip monster
+					}
+				}
+				else if((found = line.find("HP ")) != string::npos && found == 0)
+				{
+					if(!speed)
+					{
+						int base = -1, dice = -1, sides = -1;
+						
+						string baseRaw = line.substr(line.find_first_not_of(" ", 3), (dice = line.find_first_of("+", 3)) - 3);
+						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
+						{
+							//skip monster
+						}
+						else
+						{
+							dice++;
+						}
+						base = atoi(baseRaw.c_str());
+						
+						string diceRaw = line.substr(line.find_first_not_of(" ", dice), (sides = line.find_first_of("d", dice)) - dice);
+						if(!isdigit(diceRaw.c_str()[0]) || sides == -1)
+						{
+							//skip monster
+						}
+						else
+						{
+							sides++;
+						}
+						dice = atoi(diceRaw.c_str());
+						
+						string sidesRaw = line.substr(line.find_first_not_of(" ", sides));
+						if(!isdigit(sidesRaw.c_str()[0]))
+						{
+							//skip monster
+						}
+						sides = atoi(sidesRaw.c_str());
+						
+						Dice HPDice(base, dice, sides);
+						mon->speed = HPDice;
+						
+						cout << "Monster speed = " << mon->hp.toString() << endl;
+					}
+					else
+					{
+						//skip monster
 					}
 				}
 				else if(line.compare("END") == 0)
