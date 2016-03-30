@@ -8,8 +8,8 @@ vector<monsterClass> parseMonsters()
 	string file = "/.rlg327/monster_desc.txt";
 	string home = getenv("HOME");
 	ifstream monsterFile((home + file).c_str());
-	bool beginMonster, name, description, symbol, color, speed, ability, hp, damage, endMonster;
-	beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
+	bool beginMonster, name, description, symbol, color, speed, ability, hp, damage, endMonster, readingDesc;
+	beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = readingDesc = false;
 	monsterClass *mon = new monsterClass();
 	
 	if(monsterFile.is_open())
@@ -34,17 +34,33 @@ vector<monsterClass> parseMonsters()
 					{
 						name = true;
 						mon->name = line.substr(line.find_first_not_of(" ", 5));
-						cout << "Monster's name = " << mon->name << endl;
+						//cout << "Monster's name = " << mon->name << endl;
 					}
 					else
 					{
 						//skipp monster
 					}
 				}
-				
+				else if(line.compare("DESC") == 0 || readingDesc)
+				{
+					if(!readingDesc)
+					{
+						readingDesc = true;
+						continue;
+					}
+					if(line.comapre(".") == 0)
+					{
+						readingDesc = false;
+						cout << "Monster's description = " << mon->description << endl;
+					}
+					if(line.size <= 78 && line[line.size - 1] == '\n')
+					{
+						mon->description += line;
+					}
+				}
 				if(line.compare("END") == 0)
 				{
-					beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
+					//beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
 					if(beginMonster == true && name == true && description == true && symbol == true && color == true && speed == true && ability == true && hp == true && damage == true && endMonster == true )
 					{
 						beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
