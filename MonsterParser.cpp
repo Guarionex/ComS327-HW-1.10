@@ -139,7 +139,7 @@ vector<monsterClass> parseMonsters()
 						{
 							//skip monster
 						}
-						cout << "Monster speed = " << baseS << endl;
+						cout << "Monster speed = " << base << endl;
 					}
 					else
 					{
