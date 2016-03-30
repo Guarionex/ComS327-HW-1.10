@@ -156,7 +156,7 @@ class monsterClass : public characterClass
 	char symbol;
 	short color;
 	Dice speed;
-	vector<string> abilityList;
+	//vector<string> abilityList;
 	Dice hp;
 	Dice damage;
 	
@@ -166,6 +166,10 @@ class monsterClass : public characterClass
 	inline uint8_t get_abilities() const
 	{
 		return abilities;
+	}
+	inline void set_abilities(uint8_t powers)
+	{
+		abilities = powers;
 	}
 	inline bool get_lost() const
 	{

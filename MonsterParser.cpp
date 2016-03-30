@@ -126,6 +126,18 @@ vector<monsterClass> parseMonsters()
 						//skip monster
 					}
 				}
+				else if((found = line.find("ABIL ")) != string::npos && found == 0)
+				{
+					int index = 5;
+					string power;
+					uint8_t abil = 0b00000;
+					cout << "Monster powers = ";
+					while(power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index)))
+					{
+						cout << power;
+					}
+					cout << endl;
+				}
 				else if(line.compare("END") == 0)
 				{
 					beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
