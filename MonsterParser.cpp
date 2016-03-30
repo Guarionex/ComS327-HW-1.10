@@ -65,6 +65,18 @@ vector<monsterClass> parseMonsters()
 						//skip monster
 					}
 				}
+				else if((found = line.find("SYMB ")) != string::npos && found == 0)
+				{
+					if(!symbol)
+					{
+						mon->symbol = line.substr(line.find_first_not_of(" ", 5))[0];
+						cout << "Monster symbol = " << mon->symbol << endl;
+					}
+					else
+					{
+						//skip monster
+					}
+				}
 				else if((found = line.find("COLOR ")) != string::npos && found == 0)
 				{
 					if(!color)
@@ -103,7 +115,11 @@ vector<monsterClass> parseMonsters()
 						{
 							mon->color = COLOR_BLACK;
 						}
-						cout << "Monster color = " << mon->color << endl;
+						else
+						{
+							//skip monster
+						}
+						//cout << "Monster color = " << mon->color << endl;
 					}
 					else
 					{
