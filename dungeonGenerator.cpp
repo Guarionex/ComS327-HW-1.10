@@ -156,6 +156,27 @@ int main(int argc, char *argv[])
 						}
 						cout << monsterList[ml].speed.toString() << endl;
 						//printf("Monster ability is 0x%x\n", monsterList[ml].get_abilities());
+						if(monsterList[ml].get_abilities() == 0b00001)
+						{
+							cout << "SMART ";
+						}
+						if(monsterList[ml].get_abilities() == 0b00010)
+						{
+							cout << "TELE ";
+						}
+						if(monsterList[ml].get_abilities() == 0b00100)
+						{
+							cout << "TUNNEL ";
+						}
+						if(monsterList[ml].get_abilities() == 0b01000)
+						{
+							cout << "ERRATIC ";
+						}
+						if(monsterList[ml].get_abilities() == 0b10000)
+						{
+							cout << "PASS ";
+						}
+						cout << endl;
 						cout << monsterList[ml].hp.toString() << endl;
 						cout << monsterList[ml].damage.toString() << endl << endl;
 					}
