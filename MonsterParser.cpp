@@ -131,14 +131,14 @@ vector<monsterClass> parseMonsters()
 					if(!speed)
 					{
 						int base = -1;//, dice = -1, sides = -1;
-						try
-						{
-							base = std::stoi(line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6));
-						}
-						catch(...)
+						
+						string baseRaw = line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6);
+						if(!isdigit(baseRaw))
 						{
 							//skip monster
 						}
+						base = atoi(baseRaw);
+						
 						cout << "Monster speed = " << base << endl;
 					}
 					else
