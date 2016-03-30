@@ -103,7 +103,7 @@ vector<monsterClass> parseMonsters()
 						{
 							mon->color = COLOR_BLACK;
 						}
-						cout << "Monster color = " << mon->color << endl
+						cout << "Monster color = " << mon->color << endl;
 					}
 					else
 					{
