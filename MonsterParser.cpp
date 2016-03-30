@@ -137,7 +137,7 @@ vector<monsterClass> parseMonsters()
 						{
 							//skip monster
 						}
-						base = atoi(baseRaw);
+						base = atoi(baseRaw.c_string());
 						
 						cout << "Monster speed = " << base << endl;
 					}
