@@ -729,3 +729,33 @@
 3/22/16 coloring
 3/22/16 Finished
 3/22/16 README and CHANGELOG finished, ready to submit 
+
+1.07
+3/27/16 Started HW
+3/27/16 Started dice class
+3/27/16 Finished dice class
+3/28/16 Started monster parse
+3/28/16 Testing reading file
+3/28/16 Reading header
+3/28/16 Reading lines
+3/28/16 reading name
+3/28/16 storing values in monster object
+3/28/16 creating vector of monster object
+3/29/16 fixing errors
+3/29/16 testing
+3/29/16 reading name
+3/29/16 reading description
+3/29/16 testing
+3/29/16 fixing errors
+3/29/16 reading colors suing ncurses enums
+3/29/16 tetsing
+3/29/16 reading speed
+3/29/16 reading hp
+3/29/16 reading damage
+3/29/16 testing dice emthods
+3/29/16 reading abilities using bit field
+3/29/16 testing
+3/29/16 fixxing errors
+3/29/16 printing everything in right format
+3/29/16 Finished
+3/29/16 README and CHANGELOG finished, ready to submit 
