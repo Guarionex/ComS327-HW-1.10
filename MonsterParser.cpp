@@ -226,7 +226,7 @@ vector<monsterClass> parseMonsters()
 				}
 				else if((found = line.find("HP ")) != string::npos && found == 0)
 				{
-					if(!speed)
+					if(!hp)
 					{
 						int base = -1, dice = -1, sides = -1;
 						
