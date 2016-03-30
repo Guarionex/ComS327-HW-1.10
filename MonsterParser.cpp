@@ -70,7 +70,7 @@ vector<monsterClass> parseMonsters()
 					if(!symbol)
 					{
 						mon->symbol = line.substr(line.find_first_not_of(" ", 5))[0];
-						cout << "Monster symbol = " << mon->symbol << endl;
+						//cout << "Monster symbol = " << mon->symbol << endl;
 					}
 					else
 					{
@@ -126,51 +126,71 @@ vector<monsterClass> parseMonsters()
 						//skip monster
 					}
 				}
+				else if((found = line.find("SPEED ")) != string::npos && found == 0)
+				{
+					if(!speed)
+					{
+						int base = -1, dice = -1, sides = -1;
+						string baseS = line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6));
+						cout << "Monster speed = " << baseS << endl;
+					}
+					else
+					{
+						//skip monster
+					}
+				}
 				else if((found = line.find("ABIL ")) != string::npos && found == 0)
 				{
-					int index = 5;
-					string power;
-					uint8_t abil = 0b00000;
-					//cout << "Monster powers = ";
-					while((power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index) - index)).compare("") != 0)
+					if(!ability)
 					{
-						//cout << power << endl;
-						if(power.compare("SMART") == 0)
+						int index = 5;
+						string power;
+						uint8_t abil = 0b00000;
+						//cout << "Monster powers = ";
+						while((power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index) - index)).compare("") != 0)
 						{
-							abil = abil | 0b00001;
+							//cout << power << endl;
+							if(power.compare("SMART") == 0)
+							{
+								abil = abil | 0b00001;
+							}
+							else if(power.compare("TELE") == 0)
+							{
+								abil = abil | 0b00010;
+							}
+							else if(power.compare("TUNNEL") == 0)
+							{
+								abil = abil | 0b00100;
+							}
+							else if(power.compare("ERRATIC") == 0)
+							{
+								abil = abil | 0b01000;
+							}
+							else if(power.compare("PASS") == 0)
+							{
+								abil = abil | 0b10000;
+							}
+							else
+							{
+								//skip monster
+							}
+							if((index = line.find_first_of(" ", index)) == -1)
+							{
+								break;
+								
+							}
+							else
+							{
+								index++;
+							}
 						}
-						else if(power.compare("TELE") == 0)
-						{
-							abil = abil | 0b00010;
-						}
-						else if(power.compare("TUNNEL") == 0)
-						{
-							abil = abil | 0b00100;
-						}
-						else if(power.compare("ERRATIC") == 0)
-						{
-							abil = abil | 0b01000;
-						}
-						else if(power.compare("PASS") == 0)
-						{
-							abil = abil | 0b10000;
-						}
-						else
-						{
-							//skip monster
-						}
-						if((index = line.find_first_of(" ", index)) == -1)
-						{
-							break;
-							
-						}
-						else
-						{
-							index++;
-						}
+						mon->set_abilities(abil);
+						//printf("Monster ability is 0x%x\n", mon->get_abilities());
 					}
-					mon->set_abilities(abil);
-					printf("Monster ability is 0x%x\n", mon->get_abilities());
+					else
+					{
+						// skip monster
+					}
 				}
 				else if(line.compare("END") == 0)
 				{
