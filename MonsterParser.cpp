@@ -130,9 +130,9 @@ vector<monsterClass> parseMonsters()
 				{
 					int index = 5;
 					string power;
-					uint8_t abil = 0b00000;
+					//uint8_t abil = 0b00000;
 					cout << "Monster powers = ";
-					while(power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index)))
+					while((power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index))).comapre("") != 0)
 					{
 						cout << power;
 					}
