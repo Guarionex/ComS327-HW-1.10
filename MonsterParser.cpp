@@ -169,7 +169,7 @@ vector<monsterClass> parseMonsters()
 							index++;
 						}
 					}
-					mon->set_abilities(power);
+					mon->set_abilities(abil);
 					cout << mon->get_abilities() << endl;
 				}
 				else if(line.compare("END") == 0)
