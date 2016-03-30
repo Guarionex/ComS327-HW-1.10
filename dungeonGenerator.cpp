@@ -125,9 +125,35 @@ int main(int argc, char *argv[])
 						Dice damage;
 						*/
 						cout << monsterList[ml].name << endl;
-						cout << monsterList[ml].description << endl;
+						cout << monsterList[ml].description;
 						cout << monsterList[ml].symbol << endl;
-						//switch
+						switch(monsterList[ml].color)
+						{
+								case 0:
+								cout << "BLACK" << endl;
+								break;
+								case 1:
+								cout << "RED" << endl;
+								break;
+								case 2:
+								cout << "GREEN" << endl;
+								break;
+								case 3:
+								cout << "YELLOW" << endl;
+								break;
+								case 4:
+								cout << "BLUE" << endl;
+								break;
+								case 5:
+								cout << "MAGENTA" << endl;
+								break;
+								case 6:
+								cout << "CYAN" << endl;
+								break;
+								case 7:
+								cout << "WHITE" << endl;
+								break;
+						}
 						cout << monsterList[ml].speed.toString() << endl;
 						//printf("Monster ability is 0x%x\n", monsterList[ml].get_abilities());
 						cout << monsterList[ml].hp.toString() << endl;
