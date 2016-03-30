@@ -130,10 +130,10 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!speed)
 					{
-						//int base = -1, dice = -1, sides = -1;
+						int base = -1//, dice = -1, sides = -1;
 						try
 						{
-							int base = stoi(line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6));
+							base = std::stoi(line.substr(line.find_first_not_of(" ", 6), line.find_first_of("+", 6) - 6));
 						}
 						catch(...)
 						{
