@@ -130,16 +130,38 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!speed)
 					{
-						int base = -1, dice = -1;//, sides = -1;
+						int base = -1, dice = -1, sides = -1;
 						
 						string baseRaw = line.substr(line.find_first_not_of(" ", 6), (dice = line.find_first_of("+", 6)) - 6);
-						if(!isdigit(baseRaw.c_str()[0]))
+						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
 							//skip monster
 						}
+						else
+						{
+							dice++;
+						}
 						base = atoi(baseRaw.c_str());
 						
-						cout << "Monster speed = " << base << endl;
+						string diceRaw = line.substr(line.find_first_not_of(" ", dice), (sides = line.find_first_of("d", dice)) - dice);
+						if(!isdigit(diceRaw.c_str()[0]) || sides == -1)
+						{
+							//skip monster
+						}
+						else
+						{
+							sides++;
+						}
+						dice = atoi(diceRaw.c_str());
+						
+						string sidesRaw = line.substr(line.find_first_not_of(" ", sides));
+						if(!isdigit(sidesRaw.c_str()[0]))
+						{
+							//skip monster
+						}
+						sides = atoi(sidesRaw.c_str());
+						
+						cout << "Monster speed = " << base << "+" << dice << "d" << sides endl;
 					}
 					else
 					{
