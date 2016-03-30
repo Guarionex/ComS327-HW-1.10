@@ -38,6 +38,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skipp monster
 					}
 				}
@@ -62,6 +64,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skip monster
 					}
 				}
@@ -75,6 +79,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skip monster
 					}
 				}
@@ -124,6 +130,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skip monster
 					}
 				}
@@ -137,6 +145,8 @@ vector<monsterClass> parseMonsters()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 6), (dice = line.find_first_of("+", 6)) - 6);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						else
@@ -148,6 +158,8 @@ vector<monsterClass> parseMonsters()
 						string diceRaw = line.substr(line.find_first_not_of(" ", dice), (sides = line.find_first_of("d", dice)) - dice);
 						if(!isdigit(diceRaw.c_str()[0]) || sides == -1)
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						else
@@ -159,6 +171,8 @@ vector<monsterClass> parseMonsters()
 						string sidesRaw = line.substr(line.find_first_not_of(" ", sides));
 						if(!isdigit(sidesRaw.c_str()[0]))
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						sides = atoi(sidesRaw.c_str());
@@ -170,6 +184,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skip monster
 					}
 				}
@@ -224,6 +240,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						// skip monster
 					}
 				}
@@ -237,6 +255,8 @@ vector<monsterClass> parseMonsters()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 3), (dice = line.find_first_of("+", 3)) - 3);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						else
@@ -248,6 +268,8 @@ vector<monsterClass> parseMonsters()
 						string diceRaw = line.substr(line.find_first_not_of(" ", dice), (sides = line.find_first_of("d", dice)) - dice);
 						if(!isdigit(diceRaw.c_str()[0]) || sides == -1)
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						else
@@ -259,6 +281,8 @@ vector<monsterClass> parseMonsters()
 						string sidesRaw = line.substr(line.find_first_not_of(" ", sides));
 						if(!isdigit(sidesRaw.c_str()[0]))
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						sides = atoi(sidesRaw.c_str());
@@ -270,6 +294,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skip monster
 					}
 				}
@@ -283,6 +309,8 @@ vector<monsterClass> parseMonsters()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 4), (dice = line.find_first_of("+", 4)) - 4);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						else
@@ -294,6 +322,8 @@ vector<monsterClass> parseMonsters()
 						string diceRaw = line.substr(line.find_first_not_of(" ", dice), (sides = line.find_first_of("d", dice)) - dice);
 						if(!isdigit(diceRaw.c_str()[0]) || sides == -1)
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						else
@@ -305,6 +335,8 @@ vector<monsterClass> parseMonsters()
 						string sidesRaw = line.substr(line.find_first_not_of(" ", sides));
 						if(!isdigit(sidesRaw.c_str()[0]))
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 							//skip monster
 						}
 						sides = atoi(sidesRaw.c_str());
@@ -316,6 +348,8 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skip monster
 					}
 				}
@@ -335,8 +369,16 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
+						beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
 						//skip monster
 					}
+				}
+				else
+				{
+					beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+						mon = monsterClass();
+					//skip monster
 				}
 			}
 			//cout << "line: " << line << " | comapre result = " << line.compare("RLG327 MONSTER DESCRIPTION 1") << endl;
