@@ -331,7 +331,7 @@ vector<monsterClass> parseMonsters()
 						beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
 						cout << "I'm here" << endl;
 						monsterList.push_back(mon);
-						mon();
+						mon = monsterClass();
 					}
 					else
 					{
