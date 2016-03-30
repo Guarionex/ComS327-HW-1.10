@@ -69,6 +69,7 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!symbol)
 					{
+						symbol = true;
 						mon.symbol = line.substr(line.find_first_not_of(" ", 5))[0];
 						//cout << "Monster symbol = " << mon.symbol << endl;
 					}
@@ -176,6 +177,7 @@ vector<monsterClass> parseMonsters()
 				{
 					if(!ability)
 					{
+						ability = true;
 						int index = 5;
 						string power;
 						uint8_t abil = 0b00000;
@@ -320,7 +322,7 @@ vector<monsterClass> parseMonsters()
 				else if(line.compare("END") == 0)
 				{
 					endMonster = true;
-					cout << "begin=" << beginMonster << " name="<< name << " desc=" << description << " symbol=" << symbol << " color=" << color << " speed=" << speed << " ability=" << ability << " hp=" << hp << " dam=" << damage << " end=" << endMonster << endl;
+					//cout << "begin=" << beginMonster << " name="<< name << " desc=" << description << " symbol=" << symbol << " color=" << color << " speed=" << speed << " ability=" << ability << " hp=" << hp << " dam=" << damage << " end=" << endMonster << endl;
 					//beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
 					//delete mon;
 					//mon = new monsterClass();
