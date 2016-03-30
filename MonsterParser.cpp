@@ -319,10 +319,11 @@ vector<monsterClass> parseMonsters()
 				}
 				else if(line.compare("END") == 0)
 				{
+					endMonster = true;
 					//beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
 					//delete mon;
 					//mon = new monsterClass();
-					if(beginMonster == true && name == true && description == true && symbol == true && color == true && speed == true && ability == true && hp == true && damage == true && endMonster == true )
+					if(beginMonster && name && description && symbol && color && speed && ability && hp && damage && endMonster )
 					{
 						beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
 						cout << "I'm here" << endl;
