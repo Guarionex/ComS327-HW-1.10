@@ -34,7 +34,7 @@ vector<monsterClass> parseMonsters()
 					{
 						name = true;
 						mon->name = line.substr(line.find_first_not_of(" ", 5));
-						cout << "Monster's name = " << mon->name << endl;
+						//cout << "Monster's name = " << mon->name << endl;
 					}
 					else
 					{
@@ -53,7 +53,7 @@ vector<monsterClass> parseMonsters()
 						{
 							readingDesc = false;
 							description = true;
-							cout << "Monster's description = " << mon->description << endl;
+							//cout << "Monster's description = " << mon->description << endl;
 						}
 						else if(line.size() <= 78)
 						{
@@ -62,7 +62,52 @@ vector<monsterClass> parseMonsters()
 					}
 					else
 					{
-						//skipp monster
+						//skip monster
+					}
+				}
+				else if((found = line.find("COLOR ")) != string::npos && found == 0)
+				{
+					if(!color)
+					{ 
+						color = true;
+						string colorName = line.substr(line.find_first_not_of(" ", 6));
+						if(colorName.compare("RED") == 0)
+						{
+							mon->color = COLOR_RED;
+						}
+						else if(colorName.compare("GREEN") == 0)
+						{
+							mon->color = COLOR_GREEN;
+						}
+						else if(colorName.compare("BLUE") == 0)
+						{
+							mon->color = COLOR_BLUE;
+						}
+						else if(colorName.compare("CYAN") == 0)
+						{
+							mon->color = COLOR_CYAN;
+						}
+						else if(colorName.compare("YELLOW") == 0)
+						{
+							mon->color = COLOR_YELLOW;
+						}
+						else if(colorName.compare("MAGENTA") == 0)
+						{
+							mon->color = COLOR_MAGENTA;
+						}
+						else if(colorName.compare("WHITE") == 0)
+						{
+							mon->color = COLOR_WHITE;
+						}
+						else if(colorName.compare("BLACK") == 0)
+						{
+							mon->color = COLOR_BLACK;
+						}
+						cout << "Monster color = " << mon->color << endl
+					}
+					else
+					{
+						//skip monster
 					}
 				}
 				else if(line.compare("END") == 0)

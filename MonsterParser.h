@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <ncurses.h>
 #include "CharacterController.h"
 
 using namespace std;
