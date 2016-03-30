@@ -55,6 +55,7 @@ vector<monsterClass> parseMonsters()
 					}
 					if(line.size() <= 78 && line[line.size() - 1] == '\n')
 					{
+						cout << "Reading data" << endl;
 						mon->description += line;
 					}
 				}
