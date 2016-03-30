@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
 				else if(strcmp(argv[c], "--parsemon") == 0)
 				{
 					vector<monsterClass> monsterList = parseMonsters();
-					int ml;
+					uint ml;
 					for(ml = 0; ml < monsterList.size(); ml++)
 					{
 						/*
