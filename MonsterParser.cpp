@@ -135,7 +135,7 @@ vector<monsterClass> parseMonsters()
 					while((power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index))).compare("") != 0)
 					{
 						index = line.find_first_of(" ", index) + 1;
-						cout << power;
+						cout << power << " index = " << index;
 					}
 					cout << endl;
 				}
