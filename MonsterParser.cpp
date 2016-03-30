@@ -320,6 +320,7 @@ vector<monsterClass> parseMonsters()
 				else if(line.compare("END") == 0)
 				{
 					endMonster = true;
+					cout << "begin=" << beginMonster << " name="<< name << " desc=" << description << " symbol=" << symbol << " color=" << color << " speed=" << speed << " ability=" << ability << " hp=" << hp << " dam=" << damage << " end=" << endMonster << endl;
 					//beginMonster = name = description = symbol = color = speed = ability = hp = damage = endMonster = false;
 					//delete mon;
 					//mon = new monsterClass();
