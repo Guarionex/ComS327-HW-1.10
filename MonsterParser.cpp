@@ -161,7 +161,7 @@ vector<monsterClass> parseMonsters()
 						}
 						sides = atoi(sidesRaw.c_str());
 						
-						cout << "Monster speed = " << base << "+" << dice << "d" << sides endl;
+						cout << "Monster speed = " << base << "+" << dice << "d" << sides << endl;
 					}
 					else
 					{
