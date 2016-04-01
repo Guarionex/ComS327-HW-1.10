@@ -374,7 +374,7 @@ vector<monsterClass> parseMonsters()
 						//skip monster
 					}
 				}
-				else
+				else(line.compare("") != 0)
 				{
 					beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
 						mon = monsterClass();
