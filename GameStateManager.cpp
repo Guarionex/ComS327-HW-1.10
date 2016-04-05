@@ -528,6 +528,8 @@ void Draw_Dungeon(int use_curses)
 		init_pair(9, COLOR_BLACK, COLOR_RED);
 		init_pair(10, COLOR_BLACK, COLOR_BLUE);
 		init_pair(11, COLOR_BLACK, COLOR_WHITE);
+		init_pair(12, COLOR_GREEN, COLOR_BLACK);
+		init_pair(13, COLOR_MAGENTA, COLOR_BLACK);
 
 		clear();
 		
@@ -603,12 +605,37 @@ void Draw_Dungeon(int use_curses)
 				}
 				else
 				{
-					init_pair(12, get_Character_color(get_character_by_id(check_character_map(u, v))), COLOR_BLACK);
-					attron(COLOR_PAIR(12));
+					switch(get_Character_color(get_character_by_id(check_character_map(u, v))))
+					{
+						case 0:
+						attron(COLOR_PAIR(11));
+						break;
+						case 1:
+						attron(COLOR_PAIR(3));
+						break;
+						case 2:
+						attron(COLOR_PAIR(12));
+						break;
+						case 3:
+						attron(COLOR_PAIR(5));
+						break;
+						case 4:
+						attron(COLOR_PAIR(2));
+						break;
+						case 5:
+						attron(COLOR_PAIR(13));
+						break;
+						case 6:
+						attron(COLOR_PAIR(8));
+						break;
+						case 7:
+						attron(COLOR_PAIR(1));
+						break;
+					}
 					//attron(COLOR_PAIR(3));
 				}
 				mvaddch(v+1, u, memory_dungeon[u][v]);
-				attroff();
+				
 			}
 		}
 		
