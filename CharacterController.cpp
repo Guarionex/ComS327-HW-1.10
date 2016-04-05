@@ -305,6 +305,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	if(monsterList.size() > 0)
 	{
 		useParsed = true;
+		srand(time(NULL));
 		parsedMonIndex = rand()%monsterList.size();
 		monsterToUse = monsterList[parsedMonIndex];
 		//printf("Monster used = %s\n", monsterToUse.name.c_str());
