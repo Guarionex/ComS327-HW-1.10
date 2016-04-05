@@ -306,7 +306,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 		useParsed = true;
 		parsedMonIndex = rand()%monsterList.size();
 		monsterToUse = monsterList[parsedMonIndex];
-		monster = new_Monster_existing(&monsterToUse);
+		//monster = new_Monster_existing(&monsterToUse);
 	}
 	uint8_t powers = 0b0000;
 	if(!useParsed)
@@ -315,7 +315,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	}
 	else
 	{
-		powers = monsterList[parsedMonIndex].get_abilities();
+		powers = monsterToUse.get_abilities();
 	}
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
@@ -390,10 +390,9 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 		mon_pos = open_pos[rand()%open_count];
 	}
 	
-	if(!useParsed)
-	{
-		monster = new_Monster_param(powers, TRUE, NULL_POS);
-	}
+	
+	monster = new_Monster_param(powers, TRUE, NULL_POS);
+	
 	if((get_Monster_abilities(monster) & 0x2) == 0x2)
 	{
 		set_Monster_memory(monster, get_Character_pos(get_character_by_id(0)));
