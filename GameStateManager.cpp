@@ -47,7 +47,7 @@ void Set_Debug_Info(int seed, int num_rooms)
 	num_rooms_state = num_rooms;
 }
 
-void populate_monsters(int num_mon, int *seed)
+void populate_monsters(int num_mon, int *seed, vector<monsterClass> monsterList)
 {
 	int seed_local;
 	
@@ -65,7 +65,7 @@ void populate_monsters(int num_mon, int *seed)
 	int m;
 	for(m = 0; m < num_mon; m++)
 	{
-		create_monster(current_dungeon, &seed_local);
+		create_monster(current_dungeon, &seed_local, vector<monsterClass> monsterList);
 	}
 }
 
