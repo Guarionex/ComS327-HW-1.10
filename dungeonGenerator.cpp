@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 								cout << "WHITE" << endl;
 								break;
 						}
-						cout << monsterList[ml].speed.toString() << endl;
+						cout << monsterList[ml].speedDice.toString() << endl;
 						//printf("Monster ability is 0x%x\n", monsterList[ml].get_abilities());
 						if((monsterList[ml].get_abilities() & 0b00001) == 0b00001)
 						{
