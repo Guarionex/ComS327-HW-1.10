@@ -636,7 +636,7 @@ void Draw_Dungeon(int use_curses)
 			{
 				mvaddch(0, d%80, ' ');
 			}
-			/*if(get_Character_pos(character_list[0]).y == (d/81)+1 && get_Character_pos(character_list[0]).x == d-((d/81)*81) && game_state == 2)
+			/*if(characterList[0]->pos.y == (d/81)+1 && characterList[0]->pos.x == d-((d/81)*81) && game_state == 2)
 			{
 				mvaddch((d/81)+1, d-((d/81)*81), '@');
 			}*/
@@ -686,13 +686,13 @@ void Draw_Monster_List(void)
 		{
 			break;
 		}*/
-		if(get_Character_alive(character_list[m]) == FALSE)
+		if(characterList[m]->alive == FALSE)
 		{
 			dead_count++;
 			continue;
 		}
-		pos_t distance_to_player = {get_Character_pos(character_list[0]).x - get_Character_pos(character_list[m]).x, get_Character_pos(character_list[0]).y - get_Character_pos(character_list[m]).y};
-		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", get_Monster_abilities((monster_t *)character_list[m]), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
+		pos_t distance_to_player = {characterList[0]->pos.x - characterList[m]->pos.x, characterList[0]->pos.y - characterList[m]->pos.y};
+		sprintf(monster_info[m-1], "%x: is %d %s and %d %s", (dynamic_cast<monsterClass *>(characterList[m]))->get_abilities(), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
 		uint c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
@@ -935,7 +935,7 @@ int turn(int *seed, int num_mon)
 	int p;
 	for(p = 0; p < num_characters; p++)
 	{
-		/*nodes[p] = */binheap_insert(&h, *(character_list + get_character_index_by_id(p))/*character_list + p*/);
+		/*nodes[p] = */binheap_insert(&h, characterList[get_character_index_by_id(p)]);//*(character_list + get_character_index_by_id(p))/*character_list + p*/);
 	}
 	line_of_sight(current_dungeon);
 	while(!binheap_is_empty(&h))
@@ -947,7 +947,7 @@ int turn(int *seed, int num_mon)
 		if(get_Character_character_type(current) == PLAYER)
 		{
 			remember_dungeon(get_Character_pos(current));
-			if(get_Character_alive(character_list[0]) == FALSE)
+			if(characterList[0]->alive == FALSE)
 			{
 				//printf("Player is dead\n");
 				game_state = 1;
@@ -957,8 +957,8 @@ int turn(int *seed, int num_mon)
 			}
 			if(dead_monsters == num_characters - 1)
 			{
-				last_pos.x = get_Character_pos(character_list[0]).x;
-				last_pos.y = get_Character_pos(character_list[0]).y;
+				last_pos.x = characterList[0]->pos.x;
+				last_pos.y = characterList[0]->pos.y;
 				free(distance_dungeon);
 				free(distance_dungeon_tunneler);
 				//printf("The drunk player wins!\n");
@@ -1009,13 +1009,13 @@ int turn(int *seed, int num_mon)
 				}
 				if(input == 13 || input == 14)
 				{
-					if(input == 13 && get_Character_pos(character_list[0]).x == stair_set[0].location.x && get_Character_pos(character_list[0]).y == stair_set[0].location.y)
+					if(input == 13 && characterList[0]->pos.x == stair_set[0].location.x && characterList[0]->pos.y == stair_set[0].location.y)
 					{
 						level++;
 						stair_player = DOWNSTAIRS;
 						game_state = 3;
 					}
-					else if(level > 0 && input == 14 && get_Character_pos(character_list[0]).x == stair_set[1].location.x && get_Character_pos(character_list[0]).y == stair_set[1].location.y)
+					else if(level > 0 && input == 14 && characterList[0]->pos.x == stair_set[1].location.x && characterList[0]->pos.y == stair_set[1].location.y)
 					{
 						level--;
 						stair_player = UPSTAIRS;

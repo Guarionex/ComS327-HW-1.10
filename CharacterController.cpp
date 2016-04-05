@@ -9,6 +9,7 @@ int num_characters;
 char *dis_map;
 char *dis_map_tun;
 int dead_monsters = 0;
+vector<characterClass *> characterList;
 
 playerClass::playerClass()
 {
@@ -198,7 +199,8 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 	open_pos[0] = NULL_POS;
-	character_t *player;
+	//character_t *player;
+	characterClass *player;
 	
 	int x, y, open_count = 0;
 	for(x = 0; x < 80; x++)
@@ -246,11 +248,22 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	srand(seed_local);
 	pos_t new_pos = open_pos[rand()%open_count];
 	pc = new_Player_param("Edwin");
+	playerClass playerCharacter = playerCharacter("Edwin");
 	//pc.name = "Edwin";
-	player = (character_t *) pc;//character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
-	set_Character_all(player, 10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
+	player = &playerCharacter;//(character_t *) pc;//character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
+	player->speed = 10;
+	player->timer = 0;
+	player->id = 0;
+	player->alive = (boolean) TRUE;
+	player->pos = new_pos;
+	player->cell = dungeon[new_pos.x][new_pos.y];
+	player->character_type = PLAYER;
+	//set_Character_all(player, 10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
 	create_character_list();
-	add_character(player);
+	characterList.push_back(player);
+	character_map[characterList[num_characters]->pos.y*80+characterList[num_characters]->pos.x] = characterList[num_characters]->id;
+	num_characters++;
+	//add_character(player);
 	free(open_pos);
 	return player;
 }
@@ -332,18 +345,39 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed)
 		mon_pos = open_pos[rand()%open_count];
 	}
 	
-	monster_t *monster = new_Monster_param(powers, TRUE, NULL_POS);
-	if((get_Monster_abilities(monster) & 0x2) == 0x2)
+	//monster_t *monster = new_Monster_param(powers, TRUE, NULL_POS);
+	monsterClass monsterCharacter = monsterClass(powers, (boolean) TRUE, NULL_POS);
+	if((monsterCharacter.get_abilities() & 0x2) == 0x2)
+	{
+		monsterCharacter.set_memoryX(characterList[0]->pos.x);
+		monsterCharacter.set_memoryY(characterList[0]->pos.y);
+	}
+	if((monsterCharacter.get_abilities() & 0x4) == 0x4)
+	{
+		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+	}
+	/*if((get_Monster_abilities(monster) & 0x2) == 0x2)
 	{
 		set_Monster_memory(monster, get_Character_pos(get_character_by_id(0)));
 	}
 	if((get_Monster_abilities(monster) & 0x4) == 0x4 && dungeon[mon_pos.x][mon_pos.y].space_type == ROCK)
 	{
 		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
-	}
-	character_t *mon = (character_t *) monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
-	set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
-	add_character(mon);
+	}*/
+	//character_t *mon = (character_t *) monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
+	characterClass *mon = &monsterCharacter;
+	mon->speed = (rand()%16)+5;
+	mon->timer = 0;
+	mon->id = num_characters;
+	mon->alive = (boolean) TRUE;
+	mon->pos = mon_pos;
+	mon->cell = dungeon[mon_pos.x][mon_pos.y];
+	mon->character_type = MONSTER;
+	//set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+	//add_character(mon);
+	characterList.push_back(mon);
+	character_map[characterList[num_characters]->pos.y*80+characterList[num_characters]->pos.x] = characterList[num_characters]->id;
+	num_characters++;
 	free(open_pos);
 	return mon;
 }
@@ -435,14 +469,14 @@ void add_character(character_t *new_character)
 	return killed_character;
 }*/
 
-character_t *get_character_by_id(int id)
+characterClass *get_character_by_id(int id)
 {
 	int i;
 	for(i = 0; i < num_characters; i++)
 	{
-		if(get_Character_id(character_list[i]) == id)
+		if(characterList[i]->id == id)
 		{
-			return character_list[i];
+			return characterList[i];
 		}
 	}
 	
@@ -454,7 +488,7 @@ int get_character_index_by_id(int id)
 	int i;
 	for(i = 0; i < num_characters; i++)
 	{
-		if(get_Character_id(character_list[i]) == id)
+		if(characterList[i]->id == id)
 		{
 			return i;
 		}
@@ -471,7 +505,7 @@ int check_character_map(int x, int y)
 boolean move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...)
 {
 	int index = get_character_index_by_id(character_id);
-	if(index < 0 || get_Character_alive(character_list[index]) == FALSE) 
+	if(index < 0 ||characterList[index]->alive == FALSE) 
 	{ 
 		return FALSE;
 	}
@@ -479,21 +513,21 @@ boolean move_character(int character_id, int *seed, Dungeon_Space_Struct **dunge
 	va_list ap;
 	va_start(ap, dungeon);
 	
-	switch(get_Character_character_type(character_list[index]))
+	switch(characterList[index]->character_type)
 	{
 		case PLAYER:
-		return move_player(character_list[index], va_arg(ap, pos_t), dungeon);
+		return move_player(index, va_arg(ap, pos_t), dungeon);
 		break;
 		
 		case MONSTER:
-		return move_monster(character_list[index], dungeon);
+		return move_monster(index, dungeon);
 		break;
 	}
 	va_end(ap);
 	return FALSE;
 }
 
-boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **dungeon)
+boolean move_player(int id, pos_t to, Dungeon_Space_Struct **dungeon)
 {
 	int a = to.x, b = to.y;
 	/*switch(to)
@@ -549,10 +583,10 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		break;
 	}*/
 	
-	switch(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type)
+	switch(dungeon[characterList[id]->pos.x+a][characterList[id]->y+b].space_type)
 	{
 		case ROCK:
-		if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density == 255)
+		if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density == 255)
 		{
 			return TRUE;
 		}
@@ -578,47 +612,46 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 		break;
 		
 		case ROOM:
-		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
+		character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] = -1;
 		//player_to_move->pos.x = player_to_move->pos.x+a;
 		//player_to_move->pos.y = player_to_move->pos.y+b;
-		pos_t dest;
-		dest.x = get_Character_pos(player_to_move).x+a;
-		dest.y = get_Character_pos(player_to_move).y+b;
-		set_Character_pos(player_to_move, dest);
-		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
+		//pos_t dest;
+		characterList[id]->pos.x = characterList[id]->pos.x+a;
+		characterList[id]->pos.y = characterList[id]->pos.y+b;
+		//set_Character_pos(player_to_move, dest);
+		if(character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] > 0)
 		{
-			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
-			if(get_Character_alive(character_list[dead_index]) == TRUE)
+			int dead_index = get_character_index_by_id(character_map[characterList[id]->pos.y*80+characterList[id]->pos.x]);
+			if(characterList[dead_index]->alive == TRUE)
 			{
-				set_Character_alive(character_list[dead_index], FALSE);
+				characterList[dead_index]->alive = (boolean) FALSE;
 				dead_monsters++;
 			}
 		}
-		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = 0;
-		set_Character_cell(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
+		character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] = 0;
+		characterList[id]->cell = dungeon[characterList[id]->pos.x][characterList[id]->pos.y]);
 		return TRUE;
 		break;
 		
 		case CORRIDOR:
-		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
+		character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] = -1;
 		//player_to_move->pos.x = player_to_move->pos.x+a;
 		//player_to_move->pos.y = player_to_move->pos.y+b;
-		pos_t destCor;
-		destCor.x = get_Character_pos(player_to_move).x+a;
-		destCor.y = get_Character_pos(player_to_move).y+b;
-		set_Character_pos(player_to_move, destCor);
-		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
+		//pos_t dest;
+		characterList[id]->pos.x = characterList[id]->pos.x+a;
+		characterList[id]->pos.y = characterList[id]->pos.y+b;
+		//set_Character_pos(player_to_move, dest);
+		if(character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] > 0)
 		{
-			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
-			if(get_Character_alive(character_list[dead_index]) == TRUE)
-			{	
-				set_Character_alive(character_list[dead_index], FALSE);
+			int dead_index = get_character_index_by_id(character_map[characterList[id]->pos.y*80+characterList[id]->pos.x]);
+			if(characterList[dead_index]->alive == TRUE)
+			{
+				characterList[dead_index]->alive = (boolean) FALSE;
 				dead_monsters++;
 			}
-
 		}
-		character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = 0;
-		set_Character_cell(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
+		character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] = 0;
+		characterList[id]->cell = dungeon[characterList[id]->pos.x][characterList[id]->pos.y]);
 		return TRUE;
 		break;
 	}
@@ -628,13 +661,15 @@ boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct 
 
 int32_t compare_character(const void *key, const void *with)
 {
-	character_t *from = ((character_t *) key);
-	character_t *to = ((character_t *) with);
+	//character_t *from = ((character_t *) key);
+	//character_t *to = ((character_t *) with);
+	characterClass *from = ((characterClass *) key);
+	characterClass *to = ((characterClass *) with);
 	
-	int32_t turn_difference = get_Character_timer(from) - get_Character_timer(to);
+	int32_t turn_difference = from.timer - to.timer;
 	if(turn_difference == 0)
 	{
-		turn_difference = get_Character_id(from) - get_Character_id(to);
+		turn_difference = from.id - to.id;
 	}
 	return turn_difference;
 }
@@ -644,10 +679,13 @@ void update_telepath(void)
 	int m;
 	for(m = 0; m < num_characters; m++)
 	{
-		if((get_Character_character_type(character_list[m]) == MONSTER) && ((get_Monster_abilities((monster_t *)character_list[m]) & 0x2) == 0x2))
+		if((characterList[m]->character_type == MONSTER) && (((dynamic_cast<monsterClass *>(characterList[m]))->get_abilities() & 0x2) == 0x2))// come back here
 		{
-			set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
-			set_Monster_lost((monster_t *)character_list[m], FALSE);
+			(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryX(get_character_by_id(0)->pos.x);
+			(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryY(get_character_by_id(0)->pos.y);
+			//set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
+			(dynamic_cast<monsterClass *>(characterList[m]))->set_lost(false);
+			//set_Monster_lost((monster_t *)character_list[m], FALSE);
 			//printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
 	}
@@ -658,35 +696,42 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 	int m;
 	for(m = 0; m < num_characters; m++)
 	{
-		if(get_Character_character_type(character_list[m]) == MONSTER)
+		if(characterList[m]->character_type == MONSTER)
 		{
-			if((get_Monster_abilities((monster_t *)character_list[m]) & 0x2) == 0x2)
+			if(((dynamic_cast<monsterClass *>(characterList[m]))->get_abilities() & 0x2) == 0x2)
 			{
 				continue;
 			}
-			else if((get_Monster_abilities((monster_t *)character_list[m]) & 0x1) == 0x1)
+			else if(((dynamic_cast<monsterClass *>(characterList[m]))->get_abilities() & 0x1) == 0x1)
 			{
-				if(line_of_sight_helper(get_Character_pos(character_list[m]), dungeon) == TRUE)
+				if(line_of_sight_helper(characterList[m]->pos, dungeon) == TRUE)
 				{
-					set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
-					set_Monster_lost((monster_t *)character_list[m], FALSE);
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryX(get_character_by_id(0)->pos.x);
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryY(get_character_by_id(0)->pos.y);
+					//set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_lost(false);
+					//set_Monster_lost((monster_t *)character_list[m], FALSE);
 					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
-					set_Monster_lost((monster_t *)character_list[m], TRUE);
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_lost(true);
 				}
 			}
 			else
 			{
-				if(line_of_sight_helper(get_Character_pos(character_list[m]), dungeon) == TRUE)
+				if(line_of_sight_helper(characterList[m]->pos, dungeon) == TRUE)
 				{
-					set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
+					//set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryX(get_character_by_id(0)->pos.x);
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryY(get_character_by_id(0)->pos.y);
 					//printf("Monster %d saw player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
-					set_Monster_memory((monster_t *)character_list[m], NULL_POS);
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryX(NULL_POS.x);
+					(dynamic_cast<monsterClass *>(characterList[m]))->set_memoryY(NULL_POS.y);
+					//set_Monster_memory((monster_t *)character_list[m], NULL_POS);
 					//printf("Monster %d lost sight of player\n", character_list[m].id);
 				}
 			}
@@ -726,14 +771,14 @@ boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 			break;
 			
 			case ROOM:
-			if((get_Character_pos(get_character_by_id(0)).x == current.x) && (get_Character_pos(get_character_by_id(0)).y == current.y))
+			if((get_character_by_id(0)->pos.x == current.x) && (get_character_by_id(0)->pos.y == current.y))
 			{
 				found_player = TRUE;
 			}
 			break;
 			
 			case CORRIDOR:
-			if((get_Character_pos(get_character_by_id(0)).x == current.x) && (get_Character_pos(get_character_by_id(0)).y == current.y))
+			if((get_character_by_id(0)->pos.x == current.x) && (get_character_by_id(0)->pos.y == current.y))
 			{
 				found_player = TRUE;
 			}
@@ -744,40 +789,40 @@ boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 	return found_player;
 }
 
-boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
+boolean move_monster(int id, Dungeon_Space_Struct **dungeon)
 {
-	pos_t move_to = {.x = get_Character_pos(player_to_move).x, .y = get_Character_pos(player_to_move).y};
+	pos_t move_to = {.x = characterList[id]->pos.x, .y = characterList[id]->pos.y};
 	boolean moving = FALSE, erratic = FALSE;
 	
-	if((get_Monster_abilities((monster_t *)player_to_move) & 0x8) == 0x8)
+	if(((dynamic_cast<monsterClass *>(characterList[id]))->get_abilities() & 0x8) == 0x8)
 	{
 		if(rand()%2 == 1)
 		{
 			erratic = TRUE;
 			int a = (rand()%3)-1;
 			int b = (rand()%3)-1;
-			if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x0 && dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type != ROCK)
+			if(((dynamic_cast<monsterClass *>(characterList[id]))->get_abilities() & 0x4) == 0x0 && dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_type != ROCK)
 			{
 				move_to.x += a;
 				move_to.y += b;
 				moving = TRUE;
 			}
-			else if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x4)
+			else if(((dynamic_cast<monsterClass *>(characterList[id]))->get_abilities() & 0x4) == 0x4)
 			{
-				if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
+				if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_type == ROCK)
 				{
-					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
+					if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density >= 255)
 					{
 						return moving;
 					}
-					uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
+					uint8_t chisel = dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-					dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
+					dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density = chisel;
 					if(chisel == 0)
 					{
 						move_to.x += a;
 						move_to.y += b;
-						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+						dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 						moving = TRUE;
 					}
 				}
@@ -792,21 +837,21 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 		//coin toss random move or chosen move
 	}
 	
-	if((get_Monster_abilities((monster_t *)player_to_move) & 0x1) == 0x1 && erratic == FALSE)
+	if(((dynamic_cast<monsterClass *>(characterList[id]))->get_abilities() & 0x1) == 0x1 && erratic == FALSE)
 	{
-		if(get_Monster_memory((monster_t *)player_to_move).x != NULL_POS.x && get_Monster_memory((monster_t *)player_to_move).y != NULL_POS.y )
+		if((dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() != NULL_POS.x && (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() != NULL_POS.y )
 		{
-			if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x4)
+			if(((dynamic_cast<monsterClass *>(characterList[id]))->get_abilities() & 0x4) == 0x4)
 			{
-				if(get_Monster_lost((monster_t *)player_to_move) == FALSE)
+				if((dynamic_cast<monsterClass *>(characterList[id]))->get_lost() == FALSE)
 				{
 					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = 428400;
 					for(n = 0; n < 8; n++)
 					{
 						
-						if(distance_converter(dis_map_tun[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]) < smallest_index)
+						if(distance_converter(dis_map_tun[(characterList[id]->pos.y+j)*80+(characterList[id]->pos.x+i)]) < smallest_index)
 						{
-							smallest_index = distance_converter(dis_map_tun[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]);
+							smallest_index = distance_converter(dis_map_tun[(characterList[id]->pos.y+j)*80+(characterList[id]->pos.x+i)]);
 							a = i;
 							b = j;
 						}
@@ -824,20 +869,20 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 						
 						
 					}
-					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
+					if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_type == ROCK)
 					{
-						if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
+						if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density >= 255)
 						{
 							return moving;
 						}
-						uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
+						uint8_t chisel = dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
+						dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density = chisel;
 						if(chisel == 0)
 						{
 							move_to.x += a;
 							move_to.y += b;
-							dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+							dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 							moving = TRUE;
 						}
 					}
@@ -852,38 +897,38 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 				{
 					//printf("Player lost\n");
 					int a = 0, b = 0;
-					if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x > 0)
+					if(characterList[id]->pos.x - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() > 0)
 					{
 						a = -1;
 					}
-					else if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x < 0)
+					else if(characterList[id]->pos.x - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() < 0)
 					{
 						a = 1;
 					}
 					
-					if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y > 0)
+					if(characterList[id]->pos.y - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() > 0)
 					{
 						b = -1;
 					}
-					else if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y < 0)
+					else if(characterList[id]->pos.y - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() < 0)
 					{
 						b = 1;
 					}
 					
-					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
+					if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_type == ROCK)
 					{
-						if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
+						if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density >= 255)
 						{
 							return moving;
 						}
-						uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
+						uint8_t chisel = dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
+						dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density = chisel;
 						if(chisel == 0)
 						{
 							move_to.x += a;
 							move_to.y += b;
-							dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+							dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 							moving = TRUE;
 						}
 					}
@@ -899,15 +944,15 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 			}
 			else
 			{
-				if(get_Monster_lost((monster_t *)player_to_move) == FALSE)
+				if((dynamic_cast<monsterClass *>(characterList[id]))->get_lost() == FALSE)
 				{
 					int a = -1, b = -1, i = -1, j = -1, n, smallest_index = 428400;
 					for(n = 0; n < 8; n++)
 					{
 						
-						if(distance_converter(dis_map[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]) < smallest_index && dungeon[get_Character_pos(player_to_move).x+i][get_Character_pos(player_to_move).y+j].space_type != ROCK)
+						if(distance_converter(dis_map[(characterList[id]->pos.y+j)*80+(characterList[id]->pos.x+i)]) < smallest_index && dungeon[characterList[id]->pos.x+i][characterList[id]->pos.y+j].space_type != ROCK)
 						{
-							smallest_index = distance_converter(dis_map[(get_Character_pos(player_to_move).y+j)*80+(get_Character_pos(player_to_move).x+i)]);
+							smallest_index = distance_converter(dis_map[(characterList[id]->pos.y+j)*80+(characterList[id]->pos.x+i)]);
 							a = i;
 							b = j;
 						}
@@ -934,25 +979,25 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 				{
 					//printf("Player lost\n");
 					int a = 0, b = 0;
-					if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x > 0)
+					if(characterList[id]->pos.x - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() > 0)
 					{
 						a = -1;
 					}
-					else if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x < 0)
+					else if(characterList[id]->pos.x - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() < 0)
 					{
 						a = 1;
 					}
 					
-					if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y > 0)
+					if(characterList[id]->pos.y - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() > 0)
 					{
 						b = -1;
 					}
-					else if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y < 0)
+					else if(characterList[id]->pos.y - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() < 0)
 					{
 						b = 1;
 					}
 					
-					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type != ROCK)
+					if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_type != ROCK)
 					{
 						move_to.x += a;
 						move_to.y += b;
@@ -965,46 +1010,46 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	}
 	else if(erratic == FALSE)
 	{
-		if(get_Monster_memory((monster_t *)player_to_move).x != NULL_POS.x && get_Monster_memory((monster_t *)player_to_move).y != NULL_POS.y )
+		if((dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() != NULL_POS.x && (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() != NULL_POS.y )
 		{
 			//find direction
 			int a = 0, b = 0;
-			if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x > 0)
+			if(characterList[id]->pos.x - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() > 0)
 			{
 				a = -1;
 			}
-			else if(get_Character_pos(player_to_move).x - get_Monster_memory((monster_t *)player_to_move).x < 0)
+			else if(characterList[id]->pos.x - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryX() < 0)
 			{
 				a = 1;
 			}
 			
-			if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y > 0)
+			if(characterList[id]->pos.y - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() > 0)
 			{
 				b = -1;
 			}
-			else if(get_Character_pos(player_to_move).y - get_Monster_memory((monster_t *)player_to_move).y < 0)
+			else if(characterList[id]->pos.y - (dynamic_cast<monsterClass *>(characterList[id]))->get_memoryY() < 0)
 			{
 				b = 1;
 			}
 			
-			if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x4)
+			if(((dynamic_cast<monsterClass *>(characterList[id]))->get_abilities() & 0x4) == 0x4)
 			{
 				//chisel
 				//if density <= 0 moving = TRUE;
-				if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type == ROCK)
+				if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_type == ROCK)
 				{
-					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
+					if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density >= 255)
 					{
 						return moving;
 					}
-					uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
+					uint8_t chisel = dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
-					dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density = chisel;
+					dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_union.rock.density = chisel;
 					if(chisel == 0)
 					{
 						move_to.x += a;
 						move_to.y += b;
-						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+						dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 						moving = TRUE;
 					}
 				}
@@ -1017,7 +1062,7 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 			}
 			else
 			{
-				if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type != ROCK)
+				if(dungeon[characterList[id]->pos.x+a][characterList[id]->pos.y+b].space_type != ROCK)
 				{
 					move_to.x += a;
 					move_to.y += b;
@@ -1032,21 +1077,22 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	
 	
 	
-	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = -1;
+	character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] = -1;
 	//player_to_move->pos.x = move_to.x;
 	//player_to_move->pos.y = move_to.y;
-	set_Character_pos(player_to_move, move_to);
-	if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] >= 0)
+	//set_Character_pos(player_to_move, move_to);
+	characterList[id]->pos = move_to;
+	if(character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] >= 0)
 	{
-		int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
-		if(get_Character_alive(character_list[dead_index]) == TRUE)
+		int dead_index = get_character_index_by_id(character_map[characterList[id]->pos.y*80+characterList[id]->pos.x]);
+		if(characterList[dead_index]->alive == TRUE)
 		{	
-				set_Character_alive(character_list[dead_index], FALSE);
+				characterList[dead_index]->alive = FALSE;
 				dead_monsters++;
 		}
 	}
-	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = get_Character_id(player_to_move);
-	set_Character_cell(player_to_move, dungeon[get_Character_pos(player_to_move).x][get_Character_pos(player_to_move).y]);
+	character_map[characterList[id]->pos.y*80+characterList[id]->pos.x] = characterList[id]->id;//get_Character_id(player_to_move);
+	characterList[id].cell = dungeon[characterList[id]->pos.x][characterList[id]->pos.y];
 	
 	return moving;
 }
