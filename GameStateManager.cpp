@@ -606,7 +606,6 @@ void Draw_Dungeon(int use_curses)
 					init_pair(12, get_Character_color(get_character_by_id(check_character_map(u, v))), COLOR_BLACK);
 					attron(COLOR_PAIR(12));
 					//attron(COLOR_PAIR(3));
-					attron();
 				}
 				mvaddch(v+1, u, memory_dungeon[u][v]);
 			}
