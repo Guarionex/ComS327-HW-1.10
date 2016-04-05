@@ -183,6 +183,13 @@ void set_Character_pos(character_t * toon, pos_t new_pos);
 Dungeon_Space_Struct get_Character_cell(character_t * toon);
 void set_Character_cell(character_t * toon, Dungeon_Space_Struct new_cell);
 character_type_t get_Character_character_type(character_t * toon);
+string get_Character_name(character_t *toon);
+string get_Character_description(character_t *toon);
+char get_Character_symbol(character_t *toon);
+short get_Character_color(character_t *toon);
+int get_Character_healthPoints(character_t *toon);
+void set_Character_healthPoints(character_t *toon, int newHP);
+int get_Character_damage(character_t *toon);
 void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, int mon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type);
 
 character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
@@ -210,7 +217,7 @@ void Destroy_Characters(void);
 #ifdef __cplusplus
 }
 
-
+monster_t *new_Monster_existing(monsterClass *parsedMon);
 
 
 #endif

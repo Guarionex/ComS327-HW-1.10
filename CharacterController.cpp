@@ -106,6 +106,11 @@ void set_Monster_memory(monster_t *mon, pos_t new_memory)
 	((monsterClass *) mon)->set_memoryY(new_memory.y);
 }
 
+monster_t *new_Monster_existing(monsterClass *parsedMon)
+{
+	return ((monster_t *) parsedMon);
+}
+
 characterClass::characterClass()
 {
 	speed = -1;
@@ -183,6 +188,41 @@ character_type_t get_Character_character_type(character_t * toon)
 	return ((characterClass *) toon)->character_type;
 }
 
+string get_Character_name(character_t *toon)
+{
+	return ((characterClass *) toon)->name;
+}
+
+string get_Character_description(character_t *toon)
+{
+	return ((characterClass *) toon)->description;
+}
+
+char get_Character_symbol(character_t *toon)
+{
+	return ((characterClass *) toon)->symbol;
+}
+
+short get_Character_color(character_t *toon)
+{
+	return ((characterClass *) toon)->color;
+}
+
+int get_Character_healthPoints(character_t *toon)
+{
+	return ((characterClass *) toon)->healthPoints;
+}
+
+void set_Character_healthPoints(character_t *toon, int newHP)
+{
+	((characterClass *) toon)->healthPoints = newHP;
+}
+
+int get_Character_damage(character_t *toon)
+{
+	return ((characterClass *) toon)->damage.roll(-1);
+}
+
 void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, int toon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type)
 {
 	((characterClass *) toon)->speed = set_speed;
@@ -257,8 +297,26 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 
 character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<monsterClass> monsterList)
 {	
+	bool useParsed = false;
+	int parsedMonIndex = -1;
+	monster_t *monster;
+	monsterClass monsterToUse;
+	if(monsterList.size() > 0)
+	{
+		useParsed = true;
+		parsedMonIndex = rand()%monsterList.size();
+		monsterToUse = monsterList[parsedMonIndex];
+		monster_t *monster = new_Monster_existing(&monsterToUse);
+	}
 	uint8_t powers = 0b0000;
-	powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
+	if(!useParsed)
+	{
+		powers = powers | ((rand()%2 == 0) ? 0x0 : 0x1) | ((rand()%2 == 0) ? 0x0 : 0x2) | ((rand()%2 == 0) ? 0x0 : 0x4) | ((rand()%2 == 0) ? 0x0 : 0x8);
+	}
+	else
+	{
+		powers = monsterList[parsedMonIndex].get_abilities();
+	}
 	
 	//printf("Monster %d is 0x%x\n", num_characters, powers);
 	
@@ -332,7 +390,10 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 		mon_pos = open_pos[rand()%open_count];
 	}
 	
-	monster_t *monster = new_Monster_param(powers, TRUE, NULL_POS);
+	if(!useParsed)
+	{
+		monster = new_Monster_param(powers, TRUE, NULL_POS);
+	}
 	if((get_Monster_abilities(monster) & 0x2) == 0x2)
 	{
 		set_Monster_memory(monster, get_Character_pos(get_character_by_id(0)));
@@ -342,7 +403,15 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 		dungeon[mon_pos.x][mon_pos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 	}
 	character_t *mon = (character_t *) monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
-	set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+	if(!useParsed)
+	{
+		set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+	}
+	else
+	{
+		set_Character_all(mon, monsterToUse.speedDice.roll(seed), 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+		set_Character_healthPoints(mon, monsterToUse.hp.roll(seed));
+	}
 	add_character(mon);
 	free(open_pos);
 	return mon;
