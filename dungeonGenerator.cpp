@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
 						cout << monsterList[ml].damage.toString() << endl << endl;
 					}
 					flags[c - 1] = PARSEMON;
-					return 0;
+					//return 0;
 				}
 				else
 				{
