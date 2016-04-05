@@ -131,7 +131,7 @@ class characterClass
 	Dice hp;
 	Dice damage;
 	
-	int hp;
+	int healthPoints;
 	
 	characterClass();
 	~characterClass();
