@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 				else if(strcmp(argv[c], "--parsemon") == 0)
 				{
 					monsterList = parseMonsters();
-					/*uint ml;
+					uint ml;
 					for(ml = 0; ml < monsterList.size(); ml++)
 					{
 						cout << monsterList[ml].name << endl;
@@ -170,7 +170,7 @@ int main(int argc, char *argv[])
 						cout << endl;
 						cout << monsterList[ml].hp.toString() << endl;
 						cout << monsterList[ml].damage.toString() << endl << endl;
-					}*/
+					}
 					flags[c - 1] = PARSEMON;
 					return 0;
 				}
