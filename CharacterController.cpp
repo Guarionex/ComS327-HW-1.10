@@ -229,7 +229,7 @@ void set_Character_parsed_data(character_t *toon, string pName, string pDesc, ch
 	((characterClass *) toon)->name = pName;
 	((characterClass *) toon)->description = pDesc;
 	((characterClass *) toon)->symbol = pSymb;
-	((characterClass *) toon)->color = pColorl
+	((characterClass *) toon)->color = pColor;
 	((characterClass *) toon)->damage = pDamage;
 }
 
