@@ -131,6 +131,8 @@ class characterClass
 	Dice hp;
 	Dice damage;
 	
+	int hp;
+	
 	characterClass();
 	~characterClass();
 };
@@ -205,7 +207,6 @@ class monsterClass : public characterClass
 	
 };
 
-extern vector<characterClass> characterList;
 
 #endif
 
