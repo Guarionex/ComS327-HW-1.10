@@ -10,7 +10,11 @@
 #include "dungeonObjects.h"
 #include "dice.h"
 
-
+typedef enum character_type_enum
+{
+	PLAYER,
+	MONSTER
+} character_type_t;
 
 # ifdef __cplusplus
 
@@ -114,11 +118,7 @@ extern "C" {
 
 //#include "dungeonObjects.h"
 
-typedef enum character_type_enum
-{
-	PLAYER,
-	MONSTER
-} character_type_t;
+
 
 typedef struct player
 {
