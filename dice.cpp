@@ -23,14 +23,14 @@ Dice::~Dice()
 
 int Dice::roll(int seed)
 {
-	if(seed < 0)
+	/*if(seed < 0)
 	{
 		srand(time(NULL));
 	}
 	else
 	{
 		srand(seed);
-	}
+	}*/
 	int r, roll = 0;
 	for(r = 0; r < dice; r++)
 	{
