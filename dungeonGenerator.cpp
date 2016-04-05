@@ -146,7 +146,7 @@ int main(int argc, char *argv[])
 								break;
 						}
 						cout << monsterList[ml].speedDice.toString() << endl;
-						printf("Monster ability is 0x%x\n", monsterList[ml].get_abilities());
+						//printf("Monster ability is 0x%x\n", monsterList[ml].get_abilities());
 						if((monsterList[ml].get_abilities() & 0b00001) == 0b00001)
 						{
 							cout << "SMART ";
