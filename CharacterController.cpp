@@ -224,6 +224,15 @@ int get_Character_damage(character_t *toon)
 	return ((characterClass *) toon)->damage.roll(-1);
 }
 
+void set_Character_parsed_data(character_t *toon, string pName, string pDesc, char pSymb, short pColor, Dice pDamage)
+{
+	((characterClass *) toon)->name = pName;
+	((characterClass *) toon)->description = pDesc;
+	((characterClass *) toon)->symbol = pSymb;
+	((characterClass *) toon)->color = pColorl
+	((characterClass *) toon)->damage = pDamage;
+}
+
 void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, int toon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type)
 {
 	((characterClass *) toon)->speed = set_speed;
@@ -414,6 +423,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	{
 		set_Character_all(mon, monsterToUse.speedDice.roll(*seed), 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
 		set_Character_healthPoints(mon, monsterToUse.hp.roll(*seed));
+		set_Character_parsed_data(mon, monsterToUse.name, monsterToUse.description, monsterToUse.symbol, monsterToUse.color, monsterToUse.damage);
 	}
 	add_character(mon);
 	free(open_pos);
