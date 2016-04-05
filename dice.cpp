@@ -26,6 +26,7 @@ int Dice::roll(int seed)
 	if(seed < 0)
 	{
 		srand(time(NULL));
+		cout << "time" << endl;
 	}
 	else
 	{
