@@ -385,6 +385,7 @@ void Draw_Dungeon(int use_curses)
 			}
 			else if(check_character_map(x, y) > 0 && get_Character_alive(get_character_by_id(check_character_map(x, y))) == TRUE)
 			{
+				renderer[y*81+x] = get_Character_symbol(get_character_by_id(check_character_map(x, y)));
 				switch(get_Monster_abilities((monster_t *)get_character_by_id(check_character_map(x, y))))
 				{
 					case 0x0:
@@ -602,7 +603,10 @@ void Draw_Dungeon(int use_curses)
 				}
 				else
 				{
-					attron(COLOR_PAIR(3));
+					init_pair(12, get_Character_color(get_character_by_id(check_character_map(u, v))), COLOR_BLACK);
+					attron(COLOR_PAIR(12));
+					//attron(COLOR_PAIR(3));
+					attron();
 				}
 				mvaddch(v+1, u, memory_dungeon[u][v]);
 			}
