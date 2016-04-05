@@ -305,11 +305,11 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	if(monsterList.size() > 0)
 	{
 		useParsed = true;
-		srand(time(NULL));
+		//srand(time(NULL));
 		parsedMonIndex = rand()%monsterList.size();
 		monsterToUse = monsterList[parsedMonIndex];
 		//printf("Monster used = %s\n", monsterToUse.name.c_str());
-		std::cout << "Monster used = " << parsedMonIndex << std::endl;
+		std::cout << "Monster used = " << monsterList.size() << std::endl;
 		//monster = new_Monster_existing(&monsterToUse);
 	}
 	uint8_t powers = 0b0000;
