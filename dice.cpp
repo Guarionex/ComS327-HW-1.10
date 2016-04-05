@@ -26,13 +26,12 @@ int Dice::roll(int seed)
 	if(seed < 0)
 	{
 		srand(time(NULL));
-		printf("time\n");
 	}
 	else
 	{
 		srand(seed);
 	}
-	int r, roll;
+	int r, roll = 0;
 	for(r = 0; r < dice; r++)
 	{
 		roll += ((rand()%sides) + 1);
