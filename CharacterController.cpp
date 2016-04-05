@@ -1,5 +1,6 @@
 #include "CharacterController.h"
 #include <stdio.h>
+#include <iostream>
 
 player_t *pc;
 int *character_map;
