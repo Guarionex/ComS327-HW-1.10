@@ -169,11 +169,9 @@ int main(int argc, char *argv[])
 						}
 						cout << endl;
 						cout << monsterList[ml].hp.toString() << endl;
-						cout << monsterList[ml].damage.toString() << endl;
-						cout << "Damage roll = " << monsterList[ml].damage.roll(-1) << endl << endl;
+						cout << monsterList[ml].damage.toString() << endl << endl;
 					}
 					flags[c - 1] = PARSEMON;
-					
 					return 0;
 				}
 				else
