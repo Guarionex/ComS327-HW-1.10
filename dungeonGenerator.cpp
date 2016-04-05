@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 	boolean loaded = (boolean) FALSE;
 	boolean save_param_used = (boolean) FALSE;
 	int num_rooms;
+	vector<monsterClass> monsterList;
 	
 	if(argc >= 2)
 	{
@@ -110,20 +111,10 @@ int main(int argc, char *argv[])
 				}
 				else if(strcmp(argv[c], "--parsemon") == 0)
 				{
-					vector<monsterClass> monsterList = parseMonsters();
-					uint ml;
+					monsterList = parseMonsters();
+					/*uint ml;
 					for(ml = 0; ml < monsterList.size(); ml++)
 					{
-						/*
-						string name;
-						string description;
-						char symbol;
-						short color;
-						Dice speed;
-						//vector<string> abilityList;
-						Dice hp;
-						Dice damage;
-						*/
 						cout << monsterList[ml].name << endl;
 						cout << monsterList[ml].description;
 						cout << monsterList[ml].symbol << endl;
@@ -179,7 +170,8 @@ int main(int argc, char *argv[])
 						cout << endl;
 						cout << monsterList[ml].hp.toString() << endl;
 						cout << monsterList[ml].damage.toString() << endl << endl;
-					}
+					}*/
+					flags[c - 1] = PARSEMON;
 					return 0;
 				}
 				else

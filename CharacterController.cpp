@@ -12,17 +12,17 @@ int dead_monsters = 0;
 
 playerClass::playerClass()
 {
-	name = "";
+	pname = "";
 }
 
 playerClass::~playerClass()
 {
-	name = NULL;
+	pname = NULL;
 }
 
 playerClass::playerClass(const char *player_name)
 {
-	name = player_name;
+	pname = player_name;
 }
 
 player_t *new_Player(void)

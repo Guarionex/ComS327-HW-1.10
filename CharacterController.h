@@ -123,13 +123,21 @@ class characterClass
 	Dungeon_Space_Struct cell;
 	character_type_t character_type;
 	
+	string name;
+	string description;
+	char symbol;
+	short color;
+	Dice speedDice;
+	Dice hp;
+	Dice damage;
+	
 	characterClass();
 	~characterClass();
 };
 
 class playerClass : public characterClass 
 {
-	const char *name;
+	const char *pname;
 	
 	public:
 	playerClass();
@@ -137,7 +145,7 @@ class playerClass : public characterClass
 	playerClass(const char *player_name);
 	inline const char *get_name() const
 	{
-		return name;
+		return pname;
 	}
 	
 };
@@ -151,14 +159,13 @@ class monsterClass : public characterClass
 	int memoryY;
 	
 	public:
-	string name;
+	/*string name;
 	string description;
 	char symbol;
 	short color;
 	Dice speed;
-	//vector<string> abilityList;
 	Dice hp;
-	Dice damage;
+	Dice damage;*/
 	
 	monsterClass();
 	~monsterClass();
@@ -197,6 +204,8 @@ class monsterClass : public characterClass
 	}
 	
 };
+
+extern vector<characterClass> characterList;
 
 #endif
 

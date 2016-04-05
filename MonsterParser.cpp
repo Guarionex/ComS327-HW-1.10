@@ -178,7 +178,7 @@ vector<monsterClass> parseMonsters()
 						sides = atoi(sidesRaw.c_str());
 						
 						Dice speedDice(base, dice, sides);
-						mon.speed = speedDice;
+						mon.speedDice = speedDice;
 						
 						//cout << "Monster speed = " << mon.speed.toString() << endl;
 					}

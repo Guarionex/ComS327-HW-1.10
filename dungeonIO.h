@@ -8,7 +8,9 @@ typedef enum
 	SEED,
 	SAVE, 
 	LOAD,
-	NUMMON
+	NUMMON,
+	PARSEMON,
+	PARSEOBJ
 } Flags;
 
 boolean Contains_Flag(Flags *flag, int size, Flags contains);
