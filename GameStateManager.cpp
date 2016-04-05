@@ -776,7 +776,8 @@ void remember_dungeon(pos_t player_position)
 			{
 				if(check_character_map(player_position.x + x, player_position.y + y) > 0 && get_Character_alive(get_character_by_id(check_character_map(player_position.x + x, player_position.y + y))) == TRUE)
 				{
-					switch(get_Monster_abilities((monster_t *)get_character_by_id(check_character_map(player_position.x + x, player_position.y + y))))
+					memory_dungeon[player_position.x + x][player_position.y + y] = get_Character_symbol(get_character_by_id(check_character_map(player_position.x + x, player_position.y + y)));
+					/*switch(get_Monster_abilities((monster_t *)get_character_by_id(check_character_map(player_position.x + x, player_position.y + y))))
 					{
 						case 0x0:
 							memory_dungeon[player_position.x + x][player_position.y + y] = '0';
@@ -841,7 +842,7 @@ void remember_dungeon(pos_t player_position)
 						case 0xf:
 							memory_dungeon[player_position.x + x][player_position.y + y] = 'f';
 						break;
-					}
+					}*/
 				}
 				else{
 					switch(current_dungeon[player_position.x + x][player_position.y + y].space_type)
