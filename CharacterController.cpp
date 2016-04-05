@@ -306,7 +306,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 		useParsed = true;
 		parsedMonIndex = rand()%monsterList.size();
 		monsterToUse = monsterList[parsedMonIndex];
-		monster_t *monster = new_Monster_existing(&monsterToUse);
+		monster = new_Monster_existing(&monsterToUse);
 	}
 	uint8_t powers = 0b0000;
 	if(!useParsed)
@@ -409,8 +409,8 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	}
 	else
 	{
-		set_Character_all(mon, monsterToUse.speedDice.roll(seed), 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
-		set_Character_healthPoints(mon, monsterToUse.hp.roll(seed));
+		set_Character_all(mon, monsterToUse.speedDice.roll(*seed), 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+		set_Character_healthPoints(mon, monsterToUse.hp.roll(*seed));
 	}
 	add_character(mon);
 	free(open_pos);
