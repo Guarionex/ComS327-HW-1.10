@@ -701,7 +701,7 @@ void Draw_Monster_List(void)
 		int l;
 		for(l = strlen(monster_info[m-1]); l < 80; l++)
 		{
-			mvaddch(m - dead_count - scroll_index, l, ' ');
+			mvaddch(m - dead_count - scroll_index, l, 'test ');
 		}
 	}
 	if(m < 24)
