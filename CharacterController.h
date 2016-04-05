@@ -10,6 +10,10 @@
 #include "dungeonObjects.h"
 #include "dice.h"
 
+
+
+# ifdef __cplusplus
+
 class characterClass
 {
 	public:
@@ -105,7 +109,6 @@ class monsterClass : public characterClass
 	
 };
 
-# ifdef __cplusplus
 extern "C" {
 # endif
 
