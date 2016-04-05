@@ -200,7 +200,7 @@ vector<monsterClass> parseMonsters()
 						//cout << "Monster powers = ";
 						while((power = line.substr(line.find_first_not_of(" ", index), line.find_first_of(" ", index) - index)).compare("") != 0)
 						{
-							cout << "Testing " << power << endl;
+							//cout << "Testing " << power << endl;
 							if(power.compare("SMART") == 0)
 							{
 								abil = abil | 0b00001;
