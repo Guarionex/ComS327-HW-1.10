@@ -65,7 +65,7 @@ void populate_monsters(int num_mon, int *seed, vector<monsterClass> monsterList)
 	int m;
 	for(m = 0; m < num_mon; m++)
 	{
-		create_monster(current_dungeon, &seed_local, vector<monsterClass> monsterList);
+		create_monster(current_dungeon, &seed_local, monsterList);
 	}
 }
 
