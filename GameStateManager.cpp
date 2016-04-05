@@ -603,6 +603,10 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(11));
 				}
+				else if(memory_dungeon[u][v] == ' ')
+				{
+					attron(COLOR_PAIR(1));
+				}
 				else
 				{
 					switch(get_Character_color(get_character_by_id(check_character_map(u, v))))
