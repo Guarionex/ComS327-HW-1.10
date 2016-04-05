@@ -10,6 +10,101 @@
 #include "dungeonObjects.h"
 #include "dice.h"
 
+class characterClass
+{
+	public:
+	int32_t speed;
+	int32_t timer;
+	int id;
+	boolean alive;
+	pos_t pos;
+	Dungeon_Space_Struct cell;
+	character_type_t character_type;
+	
+	string name;
+	string description;
+	char symbol;
+	short color;
+	Dice speedDice;
+	Dice hp;
+	Dice damage;
+	
+	int healthPoints;
+	
+	characterClass();
+	~characterClass();
+};
+
+class playerClass : public characterClass 
+{
+	const char *pname;
+	
+	public:
+	playerClass();
+	~playerClass();
+	playerClass(const char *player_name);
+	inline const char *get_name() const
+	{
+		return pname;
+	}
+	
+};
+
+class monsterClass : public characterClass
+{
+	private:
+	uint8_t abilities;
+	bool lost;
+	int memoryX;
+	int memoryY;
+	
+	public:
+	/*string name;
+	string description;
+	char symbol;
+	short color;
+	Dice speed;
+	Dice hp;
+	Dice damage;*/
+	
+	monsterClass();
+	~monsterClass();
+	monsterClass(uint8_t powers, bool is_mon_lost, int memX, int memY);
+	inline uint8_t get_abilities() const
+	{
+		return abilities;
+	}
+	inline void set_abilities(uint8_t powers)
+	{
+		abilities = powers;
+	}
+	inline bool get_lost() const
+	{
+		return lost;
+	}
+	inline void set_lost(bool is_mon_lost)
+	{
+		lost = is_mon_lost;
+	}
+	inline int get_memoryX() const
+	{
+		return memoryX;
+	}
+	inline void set_memoryX(int new_x)
+	{
+		memoryX = new_x;
+	}
+	inline int get_memoryY() const
+	{
+		return memoryY;
+	}
+	inline void set_memoryY(int new_y)
+	{
+		memoryY = new_y;
+	}
+	
+};
+
 # ifdef __cplusplus
 extern "C" {
 # endif
@@ -112,100 +207,7 @@ void Destroy_Characters(void);
 #ifdef __cplusplus
 }
 
-class characterClass
-{
-	public:
-	int32_t speed;
-	int32_t timer;
-	int id;
-	boolean alive;
-	pos_t pos;
-	Dungeon_Space_Struct cell;
-	character_type_t character_type;
-	
-	string name;
-	string description;
-	char symbol;
-	short color;
-	Dice speedDice;
-	Dice hp;
-	Dice damage;
-	
-	int healthPoints;
-	
-	characterClass();
-	~characterClass();
-};
 
-class playerClass : public characterClass 
-{
-	const char *pname;
-	
-	public:
-	playerClass();
-	~playerClass();
-	playerClass(const char *player_name);
-	inline const char *get_name() const
-	{
-		return pname;
-	}
-	
-};
-
-class monsterClass : public characterClass
-{
-	private:
-	uint8_t abilities;
-	bool lost;
-	int memoryX;
-	int memoryY;
-	
-	public:
-	/*string name;
-	string description;
-	char symbol;
-	short color;
-	Dice speed;
-	Dice hp;
-	Dice damage;*/
-	
-	monsterClass();
-	~monsterClass();
-	monsterClass(uint8_t powers, bool is_mon_lost, int memX, int memY);
-	inline uint8_t get_abilities() const
-	{
-		return abilities;
-	}
-	inline void set_abilities(uint8_t powers)
-	{
-		abilities = powers;
-	}
-	inline bool get_lost() const
-	{
-		return lost;
-	}
-	inline void set_lost(bool is_mon_lost)
-	{
-		lost = is_mon_lost;
-	}
-	inline int get_memoryX() const
-	{
-		return memoryX;
-	}
-	inline void set_memoryX(int new_x)
-	{
-		memoryX = new_x;
-	}
-	inline int get_memoryY() const
-	{
-		return memoryY;
-	}
-	inline void set_memoryY(int new_y)
-	{
-		memoryY = new_y;
-	}
-	
-};
 
 
 #endif
