@@ -688,12 +688,12 @@ void Draw_Monster_List(void)
 		}*/
 		if(get_Character_alive(character_list[m]) == FALSE)
 		{
-			mvprintw(m, 0, "                                                                                ");
+			//mvprintw(m, 0, "                                                                                ");
 			dead_count++;
 			continue;
 		}
 		pos_t distance_to_player = {get_Character_pos(character_list[0]).x - get_Character_pos(character_list[m]).x, get_Character_pos(character_list[0]).y - get_Character_pos(character_list[m]).y};
-		sprintf(monster_info[m-1], "%s - %c: is %d %s and %d %s", get_Character_name(character_list[m]).c_str(), get_Character_symbol(character_list[m]), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south");
+		sprintf(monster_info[m-1], "%c: is %d %s and %d %s = %s", get_Character_symbol(character_list[m]), (distance_to_player.x > 0)? distance_to_player.x : distance_to_player.x*-1,(distance_to_player.x > 0) ? "west" : "east", (distance_to_player.y > 0)? distance_to_player.y : distance_to_player.y*-1,(distance_to_player.y > 0) ? "north" : "south", get_Character_name(character_list[m]).c_str());
 		uint c;
 		for(c = 0; c < strlen(monster_info[m-1]); c++)
 		{
