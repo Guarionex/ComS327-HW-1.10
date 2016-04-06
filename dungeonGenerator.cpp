@@ -524,8 +524,8 @@ int main(int argc, char *argv[])
 			{
 				dungeonItems = placeItems(dungeon, objectList, down, NULL);
 				endwin();
-				uint di;
-				/*for(di = 0; di < dungeonItems.size(); di++)
+				/*uint di;
+				for(di = 0; di < dungeonItems.size(); di++)
 				{
 					cout << dungeonItems[di].name << " " << dungeonItems[di].symbol << " [" << dungeonItems[di].pos.x << "] [" << dungeonItems[di].pos.y << "]" << endl;
 				}
