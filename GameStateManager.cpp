@@ -15,7 +15,7 @@ stair_t stair_set[2];
 int stair_player = -1;
 pos_t last_pos;
 char memory_dungeon[80][21];
-vector<itemClass> dungeonItems;
+vector<itemClass> levelItems;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -44,7 +44,7 @@ void Set_Stairs(stair_t stairs)
 
 void Set_Items(vector<itemClass> itemsToSet)
 {
-	dungeonItems = itemsToSet;
+	levelItems = itemsToSet;
 }
 
 void Set_Debug_Info(int seed, int num_rooms)
@@ -613,9 +613,9 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(1));
 				}
-				else if(containsItemAt(dungeonItems, u, v))
+				else if(containsItemAt(levelItems, u, v))
 				{
-					switch(getItemsAt(dungeonItems, u, v)[0].color)
+					switch(getItemsAt(levelItems, u, v)[0].color)
 					{
 						case 0:
 						attron(COLOR_PAIR(11));
@@ -915,9 +915,9 @@ void remember_dungeon(pos_t player_position)
 						break;
 					}*/
 				}
-				else if(containsItemAt(dungeonItems, player_position.x + x, player_position.y + y))
+				else if(containsItemAt(levelItems, player_position.x + x, player_position.y + y))
 				{
-					vector<itemClass> itemsHere = getItemsAt(dungeonItems, player_position.x + x, player_position.y + y);
+					vector<itemClass> itemsHere = getItemsAt(levelItems, player_position.x + x, player_position.y + y);
 					if(itemsHere.size() > 1)
 					{
 						memory_dungeon[player_position.x + x][player_position.y + y] = '&';

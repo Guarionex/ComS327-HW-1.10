@@ -1,7 +1,5 @@
 #include "item.h"
 
-vector<itemClass> dungeonItems;
-
 itemClass::itemClass(objectClass obj)
 {
 	name = obj.name;
@@ -44,6 +42,7 @@ itemClass::~itemClass()
 
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up)
 {
+	vector<itemClass> dungeonItems;
 	uint ol;
 	for(ol = 0; ol < objectsToPlace.size(); ol++)
 	{
