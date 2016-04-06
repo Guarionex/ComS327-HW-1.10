@@ -42,5 +42,7 @@ class itemClass
 };
 
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up);
+bool containsItemAt(vector<itemClass> search, int x, int y);
+vector<itemClass> getItemsAt(vector<itemClass> search, int x, int y);
 
 #endif

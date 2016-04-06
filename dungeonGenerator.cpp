@@ -525,12 +525,13 @@ int main(int argc, char *argv[])
 				dungeonItems = placeItems(dungeon, objectList, down, NULL);
 				endwin();
 				uint di;
-				for(di = 0; di < dungeonItems.size(); di++)
+				/*for(di = 0; di < dungeonItems.size(); di++)
 				{
 					cout << dungeonItems[di].name << " " << dungeonItems[di].symbol << " [" << dungeonItems[di].pos.x << "] [" << dungeonItems[di].pos.y << "]" << endl;
 				}
-				return 0;
+				return 0;*/
 			}
+			Set_Items(dungeonItems);
 			//Draw_Dungeon(1);
 			//printf("\n");
 			//distance_dungeon = Generate_Distance_Dungeon(FALSE);

@@ -15,6 +15,7 @@ stair_t stair_set[2];
 int stair_player = -1;
 pos_t last_pos;
 char memory_dungeon[80][21];
+vector<itemClass> dungeonItems;
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -39,6 +40,11 @@ void Set_Stairs(stair_t stairs)
 		//printf("Stair = [%d][%d]\n", stairs.location.x, stairs.location.y);
 		stair_set[1] = stairs;
 	}
+}
+
+void Set_Items(vector<itemClass> itemsToSet)
+{
+	dungeonItems = itemsToSet;
 }
 
 void Set_Debug_Info(int seed, int num_rooms)
@@ -607,6 +613,36 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(1));
 				}
+				else if(containsItemAt(dungeonItems, u, v))
+				{
+					switch(getItemsAt(dungeonItems, u, v)[0].color)
+					{
+						case 0:
+						attron(COLOR_PAIR(11));
+						break;
+						case 1:
+						attron(COLOR_PAIR(3));
+						break;
+						case 2:
+						attron(COLOR_PAIR(12));
+						break;
+						case 3:
+						attron(COLOR_PAIR(5));
+						break;
+						case 4:
+						attron(COLOR_PAIR(2));
+						break;
+						case 5:
+						attron(COLOR_PAIR(13));
+						break;
+						case 6:
+						attron(COLOR_PAIR(8));
+						break;
+						case 7:
+						attron(COLOR_PAIR(1));
+						break;
+					}
+				}
 				else
 				{
 					switch(get_Character_color(get_character_by_id(check_character_map(u, v))))
@@ -879,7 +915,20 @@ void remember_dungeon(pos_t player_position)
 						break;
 					}*/
 				}
-				else{
+				else if(containsItemAt(dungeonItems, player_position.x + x, player_position.y + y))
+				{
+					vector<itemClass> itemsHere = getItemsAt(dungeonItems, player_position.x + x, player_position.y + y);
+					if(itemsHere.size() > 1)
+					{
+						memory_dungeon[player_position.x + x][player_position.y + y] = '&';
+					}
+					else
+					{
+						memory_dungeon[player_position.x + x][player_position.y + y] = itemsHere[0].symbol;
+					}
+				}
+				else
+				{
 					switch(current_dungeon[player_position.x + x][player_position.y + y].space_type)
 					{
 						case ROCK:

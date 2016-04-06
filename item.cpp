@@ -107,3 +107,30 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 	}
 	return dungeonItems;
 }
+
+bool containsItemAt(vector<itemClass> search, int x, int y)
+{
+	uint s;
+	for(s = 0; s < search.size(); s++)
+	{
+		if(search[s].pos.x == x && search[s].pos.y == y)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+vector<itemClass> getItemsAt(vector<itemClass> search, int x, int y)
+{
+	vector<itemClass> itemStack;
+	uint s;
+	for(s = 0; s < search.size(); s++)
+	{
+		if(search[s].pos.x == x && search[s].pos.y == y)
+		{
+			itemStack.push_back(search[s]);
+		}
+	}
+	return itemStack;
+}
