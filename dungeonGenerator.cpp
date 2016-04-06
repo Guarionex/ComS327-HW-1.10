@@ -13,6 +13,7 @@
 #include "GameStateManager.h"
 #include "CharacterController.h"
 #include "MonsterParser.h"
+#include "ObjectParser.h"
 
 boolean isstring(char *string);
 
@@ -34,6 +35,7 @@ int main(int argc, char *argv[])
 	boolean save_param_used = (boolean) FALSE;
 	int num_rooms;
 	vector<monsterClass> monsterList;
+	vector<objectClass> objectList;
 	
 	if(argc >= 2)
 	{
@@ -173,6 +175,137 @@ int main(int argc, char *argv[])
 					}
 					flags[c - 1] = PARSEMON;
 					//return 0;
+				}
+				else if(strcmp(argv[c], "--parseobj") == 0)
+				{
+					objectList = parseObjects();
+					uint ol;
+					for(ol = 0; ol < objectList.size(); ol++)
+					{
+						cout << objectList.name << endl;
+						cout << objectList.description << endl;
+						switch(objectList.type)
+						{
+							case objtype_no_type:
+								cout << "no type" << endl;
+							break;
+							
+							case objtype_WEAPON:
+								cout << "WEAPON" << endl;
+							break;
+							
+							case objtype_OFFHAND:
+								cout << "OFFHAND" << endl;
+							break;
+							
+							case objtype_RANGED:
+								cout << "RANGED" << endl;
+							break;
+							
+							case objtype_LIGHT:
+								cout << "LIGHT" << endl;
+							break;
+							
+							case objtype_ARMOR:
+								cout << "ARMOR" << endl;
+							break;
+							
+							case objtype_HELMET:
+								cout << "HELMET" << endl;
+							break;
+							
+							case objtype_CLOAK:
+								cout << "CLOAK" << endl;
+							break;
+							
+							case objtype_GLOVES:
+								cout << "GLOVES" << endl;
+							break;
+							
+							case objtype_BOOTS:
+								cout << "BOOTS" << endl;
+							break;
+							
+							case objtype_AMULET:
+								cout << "AMULET" << endl;
+							break;
+							
+							case objtype_RING:
+								cout << "RING" << endl;
+							break;
+							
+							case objtype_SCROLL:
+								cout << "SCROLL" << endl;
+							break;
+							
+							case objtype_BOOK:
+								cout << "BOOK" << endl;
+							break;
+							
+							case objtype_FLASK:
+								cout << "FLASK" << endl;
+							break;
+								
+							case objtype_GOLD:
+								cout << "GOLD" << endl;
+							break;
+							
+							case objtype_AMMUNITION:
+								cout << "AMMUNITION" << endl;
+							break;
+							
+							case objtype_FOOD:
+								cout << "FOOD" << endl;
+							break;
+							
+							case objtype_WAND:
+								cout << "WAND" << endl;
+							break;
+							
+							case objtype_CONTAINER:
+								cout << "CONTAINER" << endl;
+							break;
+						}
+						switch(objectList[ol].color)
+						{
+								case 0:
+								cout << "BLACK" << endl;
+								break;
+								case 1:
+								cout << "RED" << endl;
+								break;
+								case 2:
+								cout << "GREEN" << endl;
+								break;
+								case 3:
+								cout << "YELLOW" << endl;
+								break;
+								case 4:
+								cout << "BLUE" << endl;
+								break;
+								case 5:
+								cout << "MAGENTA" << endl;
+								break;
+								case 6:
+								cout << "CYAN" << endl;
+								break;
+								case 7:
+								cout << "WHITE" << endl;
+								break;
+								case -1:
+								cout << "no color" << endl;
+								break;
+						}
+						cout << "hit: " << objectList[ol].hit.toString() << endl;
+						cout << "damage: " << objectList[ol].damage.toString() << endl;
+						cout << "dodge: " << objectList[ol].dodge.toString() << endl;
+						cout << "defence: " << objectList[ol].defence.toString() << endl;
+						cout << "weight: " << objectList[ol].weight.toString() << endl;
+						cout << "speed: " << objectList[ol].speed.toString() << endl;
+						cout << "attribute: " << objectList[ol].attribute.toString() << endl;
+						cout << "value: " << objectList[ol].value.toString() << endl << endl;
+					}
+					return 0;
 				}
 				else
 				{
