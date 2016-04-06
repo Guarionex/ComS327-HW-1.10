@@ -625,7 +625,7 @@ void Draw_Dungeon(int use_curses)
 				{
 					attron(COLOR_PAIR(1));
 				}
-				else if(containsItemAt(levelItems, u, v) && check_character_map(u, v) < 0)
+				else if(containsItemAt(levelItems, u, v))
 				{
 					switch(getItemsAt(levelItems, u, v)[0].color)
 					{
@@ -655,7 +655,7 @@ void Draw_Dungeon(int use_curses)
 						break;
 					}
 				}
-				else// if(check_character_map(x, y) > 0)
+				else if(check_character_map(u, v) > 0)
 				{
 					switch(get_Character_color(get_character_by_id(check_character_map(u, v))))
 					{
