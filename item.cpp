@@ -44,12 +44,12 @@ itemClass::~itemClass()
 
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up)
 {
-	int ol;
+	uint ol;
 	for(ol = 0; ol < objectsToPlace.size(); ol++)
 	{
 		pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 		open_pos[0] = NULL_POS;
-		itemClass newItem = item(objectsToPlace[ol]);
+		itemClass newItem = itemClass(objectsToPlace[ol]);
 		
 		int x, y, open_count = 0;
 		for(x = 0; x < 80; x++)
@@ -92,7 +92,7 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 		
 		pos_t new_pos = open_pos[rand()%open_count];
 		newItem.pos = new_pos;
-		int i;
+		uint i;
 		for(i = 0; i < dungeonItems.size(); i++)
 		{
 			if(dungeonItems[i].pos.x == newItem.pos.x && dungeonItems[i].pos.y == newItem.pos.y)
