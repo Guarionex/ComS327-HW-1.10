@@ -193,6 +193,7 @@ int get_Character_damage(character_t *toon);
 void set_Character_parsed_data(character_t *toon, string pName, string pDesc, char pSymb, short pColor, Dice pDamage);
 void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, int mon_id, boolean status, pos_t new_pos, Dungeon_Space_Struct new_cell, character_type_t toon_type);
 void set_Character_symbol(character_t *toon, char nSymbol);
+void set_Character_color(character_t *toon, short newColor);
 
 character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed);
 character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<monsterClass> monsterList);

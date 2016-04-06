@@ -249,6 +249,11 @@ void set_Character_symbol(character_t *toon, char nSymbol)
 	((characterClass *) toon)->symbol = nSymbol;
 }
 
+void set_Character_color(character_t *toon, short newColor)
+{
+	((characterClass *) toon)->color = newColor;
+}
+
 character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
@@ -491,6 +496,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 			break;
 		}
 		set_Character_symbol(mon, monSymbol);
+		set_Character_color(mon, 1);
 	}
 	else
 	{
