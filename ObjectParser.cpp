@@ -541,10 +541,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 6), (dice = line.find_first_of("+", 6)) - 6);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							cout << "ERROR IN SPEED = " << baseRaw << endl;
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{
