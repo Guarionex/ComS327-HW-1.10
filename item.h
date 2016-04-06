@@ -1,5 +1,5 @@
-#ifndef OBJECT_PARSER_H
-#define OBJECT_PARSER_H
+#ifndef ITEM_PARSER_H
+#define ITEM_PARSER_H
 
 #include <iostream>
 #include <fstream>
@@ -8,6 +8,7 @@
 #include "dice.h"
 #include <ncurses.h>
 #include "ObjectParser.h"
+#include "dungeonObjects.h"
 
 using namespace std;
 
