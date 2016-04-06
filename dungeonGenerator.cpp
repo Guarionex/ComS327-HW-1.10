@@ -518,20 +518,26 @@ int main(int argc, char *argv[])
 					}
 				}
 				Set_Stairs(up);
-				dungeonItems = placeItems(dungeon, objectList, down, &up);
+				if(Contains_Flag(flags, (argc - 1), PARSEOBJ) == TRUE)
+				{
+					dungeonItems = placeItems(dungeon, objectList, down, &up);
+				}
 			}
-			else
+			else if(Contains_Flag(flags, (argc - 1), PARSEOBJ) == TRUE)
 			{
 				dungeonItems = placeItems(dungeon, objectList, down, NULL);
-				endwin();
-				/*uint di;
+				/*endwin();
+				uint di;
 				for(di = 0; di < dungeonItems.size(); di++)
 				{
 					cout << dungeonItems[di].name << " " << dungeonItems[di].symbol << " [" << dungeonItems[di].pos.x << "] [" << dungeonItems[di].pos.y << "]" << endl;
 				}
 				return 0;*/
 			}
-			Set_Items(dungeonItems);
+			if(Contains_Flag(flags, (argc - 1), PARSEOBJ) == TRUE)
+			{
+				Set_Items(dungeonItems);
+			}
 			//Draw_Dungeon(1);
 			//printf("\n");
 			//distance_dungeon = Generate_Distance_Dungeon(FALSE);
