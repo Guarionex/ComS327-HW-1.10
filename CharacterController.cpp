@@ -417,6 +417,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	character_t *mon = (character_t *) monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	if(!useParsed)
 	{
+		std::cout << "RANDOMS" << endl;
 		set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
 	}
 	else
