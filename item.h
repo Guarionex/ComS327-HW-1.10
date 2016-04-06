@@ -1,7 +1,15 @@
 #ifndef OBJECT_PARSER_H
 #define OBJECT_PARSER_H
 
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <string>
+#include "dice.h"
+#include <ncurses.h>
 #include "ObjectParser.h"
+
+using namespace std;
 
 class itemClass
 {
