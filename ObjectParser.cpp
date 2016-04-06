@@ -16,7 +16,7 @@ objectClass::~objectClass()
 	value = ~Dice();*/
 	
 	equipment = false;
-	symbol = '';
+	symbol = '*';
 	twoHanded = false;
 }
 
