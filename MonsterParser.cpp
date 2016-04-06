@@ -124,6 +124,8 @@ vector<monsterClass> parseMonsters()
 						}
 						else
 						{
+							beginMonster = name = description = readingDesc = symbol = color = speed = ability = hp = damage = endMonster = false;
+							mon = monsterClass();
 							//skip monster
 						}
 						//cout << "Monster color = " << mon.color << endl;

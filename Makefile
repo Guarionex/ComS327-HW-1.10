@@ -1,5 +1,5 @@
-dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o GameStateManager.o dice.o MonsterParser.o ObjectParser.o dungeonGenerator.o
-	g++ dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dice.o MonsterParser.o ObjectParser.o dungeonGenerator.o -o dungeonGenerator -lm -lcurses
+dungeonGenerator: dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o GameStateManager.o dice.o MonsterParser.o ObjectParser.o item.o dungeonGenerator.o
+	g++ dungeonObjects.o dungeonRoomGenerator.o dungeonLevelGenerator.o dungeonIO.o binheap.o Dijkstra.o Graph.o CharacterController.o  GameStateManager.o dice.o MonsterParser.o ObjectParser.o item.o dungeonGenerator.o -o dungeonGenerator -lm -lcurses
 
 dungeonObjects.o: dungeonObjects.h dungeonObjects.cpp
 	g++ -g -Wall -Werror dungeonObjects.cpp -c
@@ -36,6 +36,9 @@ MonsterParser.o: MonsterParser.h MonsterParser.cpp
 	
 ObjectParser.o: ObjectParser.h ObjectParser.cpp
 	g++ -g -Wall -Werror ObjectParser.cpp -c
+
+item.o: item.h item.cpp
+	g++ -g -Wall -Werror item.cpp -c
 	
 dungeonGenerator.o: dungeonGenerator.cpp
 	g++ -g -Wall -Werror dungeonGenerator.cpp -c

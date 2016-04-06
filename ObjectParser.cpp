@@ -304,6 +304,8 @@ vector<objectClass> parseObjects()
 						}
 						else
 						{
+							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+							obj = objectClass();
 							//skip monster
 						}
 						//cout << "Monster color = " << obj.color << endl;
@@ -325,9 +327,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 4), (dice = line.find_first_of("+", 4)) - 4);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{
@@ -379,9 +388,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 6), (dice = line.find_first_of("+", 6)) - 6);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{
@@ -433,9 +449,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 4), (dice = line.find_first_of("+", 4)) - 4);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{
@@ -487,9 +510,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 7), (dice = line.find_first_of("+", 7)) - 7);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{
@@ -602,9 +632,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 4), (dice = line.find_first_of("+", 4)) - 4);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{
@@ -656,9 +693,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 5), (dice = line.find_first_of("+", 5)) - 5);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{
@@ -710,9 +754,16 @@ vector<objectClass> parseObjects()
 						string baseRaw = line.substr(line.find_first_not_of(" ", 4), (dice = line.find_first_of("+", 4)) - 4);
 						if(!isdigit(baseRaw.c_str()[0]) || dice == -1)
 						{
-							beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
-							obj = objectClass();
-							//skip monster
+							if(baseRaw.c_str()[0] == '-' && isdigit(baseRaw.c_str()[1]))
+							{
+								dice++;
+							}
+							else
+							{
+								beginObject = name = description = type = color = hit = dodge = def = weight = attr = val = speed = damage = endObject = false;
+								obj = objectClass();
+								//skip monster
+							}
 						}
 						else
 						{

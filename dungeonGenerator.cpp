@@ -14,6 +14,7 @@
 #include "CharacterController.h"
 #include "MonsterParser.h"
 #include "ObjectParser.h"
+#include "item.h"
 
 boolean isstring(char *string);
 
@@ -36,6 +37,7 @@ int main(int argc, char *argv[])
 	int num_rooms;
 	vector<monsterClass> monsterList;
 	vector<objectClass> objectList;
+	vector<itemClass> dungeonItems;
 	
 	if(argc >= 2)
 	{
@@ -305,7 +307,8 @@ int main(int argc, char *argv[])
 						cout << "attribute: " << objectList[ol].attribute.toString() << endl;
 						cout << "value: " << objectList[ol].value.toString() << endl << endl;
 					}
-					return 0;
+					flags[c - 1] = PARSEOBJ;
+					//return 0;
 				}
 				else
 				{
@@ -515,6 +518,13 @@ int main(int argc, char *argv[])
 					}
 				}
 				Set_Stairs(up);
+				dungeonItems = placeItems(dungeon, objectList, down, &up);
+			}
+			else
+			{
+				dungeonItems = placeItems(dungeon, objectList, down, NULL);
+				endwin();
+				return 0;
 			}
 			//Draw_Dungeon(1);
 			//printf("\n");
