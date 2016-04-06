@@ -759,3 +759,32 @@
 3/29/16 printing everything in right format
 3/29/16 Finished
 3/29/16 README and CHANGELOG finished, ready to submit 
+
+1.08
+4/3/16 Started HW
+4/3/16 Updated monster classes
+4/3/16 Testing
+4/3/16 fixing errors
+4/4/16 Refactoring monster generating
+4/4/16 refactoring monster movements
+4/4/16 refactoring everything monster
+4/4/16 fixing errors
+4/4/16 Revert everything related to refactoring
+4/4/16 extending monsterClass wrappers
+4/4/16 generating monster from monsterList
+4/4/16 rendering monsters
+4/4/16 fixing errors
+4/4/16 testing
+4/5/16 making object parser
+4/5/16 fixing errors
+4/5/16 testing
+4/5/16 making item factory
+4/5/16 fixing error
+4/5/16 testing
+4/5/16 placing items
+4/5/16 testing
+4/5/16 rendering
+4/5/16 fixing rendering bugs
+4/5/16 testing
+4/5/16 Done
+4/5/16 README and CHANGELOG finished, ready to submit 

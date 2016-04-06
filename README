@@ -80,7 +80,15 @@ Added Monster parsing. Will now parse a file containing description of a monster
 Note: doesn't put them in the game yet. Creates a vector of monster class to store the data.
 Need to use --parsemon flagg by itself
 
-Usage for monster parsing: ./dungeonGenerator --parsemon
+1.08:
+Added object parsing. Will now parse files containing object. WARNING negative base numbers on dices are allowed only in objects, but not monsters. Only the base number can be negative.
+With the --parsemon and --parseobj, it will parse and place the monsters and objects into the game respectively.
+Bug fix from last iteration: It would skip a monster if it read a blank line. This was fixed in this version.
+WARNING: Some monster are super fast now, good luck getting past level 0.
+
+Usage for object parsing and item placing: ./dungeonGenerator --parseobj
+
+Usage for monster parsing and placing: ./dungeonGenerator --parsemon
 
 Usage using time as seed: ./dungeonGenerator
 
