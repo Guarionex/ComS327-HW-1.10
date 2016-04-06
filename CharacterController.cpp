@@ -423,9 +423,74 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	if(!useParsed)
 	{
 		set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
-		char monSymbol[1];
-		sprintf(monSymbol, "0x%x", powers);
-		set_Character_symbol(mon, monSymbol[0]);
+		char monSymbol;
+		switch(powers)
+		{
+			case 0b0000:
+			monSymbol = '0';
+			break;
+			
+			case 0b0001:
+			monSymbol = '1';
+			break;
+			
+			case 0b0010:
+			monSymbol = '2';
+			break;
+			
+			case 0b0011:
+			monSymbol = '3';
+			break;
+			
+			case 0b0100:
+			monSymbol = '4';
+			break;
+			
+			case 0b0101:
+			monSymbol = '5';
+			break;
+			
+			case 0b0110:
+			monSymbol = '6';
+			break;
+			
+			case 0b0111:
+			monSymbol = '7';
+			break;
+			
+			case 0b1000:
+			monSymbol = '8';
+			break;
+			
+			case 0b1001:
+			monSymbol = '9';
+			break;
+			
+			case 0b1010:
+			monSymbol = 'a';
+			break;
+			
+			case 0b1011:
+			monSymbol = 'b';
+			break;
+			
+			case 0b1100:
+			monSymbol = 'c';
+			break;
+			
+			case 0b1101:
+			monSymbol = 'd';
+			break;
+			
+			case 0b1110:
+			monSymbol = 'e';
+			break;
+			
+			case 0b1111:
+			monSymbol = 'f';
+			break;
+		}
+		set_Character_symbol(mon, monSymbol);
 	}
 	else
 	{
