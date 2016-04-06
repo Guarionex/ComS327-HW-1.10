@@ -461,6 +461,18 @@ void Draw_Dungeon(int use_curses)
 				//renderer[y*80+x] = get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities;//printf("%x", get_character_by_id(check_character_map(x, y)).character_parent.monster.abilities);
 				//printf("%c", renderer[y*80+x]);
 			}
+			else if(containsItemAt(levelItems, x, y))
+			{
+				vector<itemClass> itemsHere = getItemsAt(levelItems, x, y);
+				if(itemsHere.size() > 1)
+				{
+					renderer[y*81+x] = '&';
+				}
+				else
+				{
+					renderer[y*81+x] = itemsHere[0].symbol;
+				}
+			}
 			else
 			{
 				switch(current_dungeon[x][y].space_type)
