@@ -2,18 +2,18 @@
 
 objectClass::~objectClass()
 {
-	name = NULL;
-	description = NULL;
-	type = NULL;
+	name = ~string();
+	description = ~string();
+	type = objtype_no_type;
 	color = -1;
-	hit = NULL;
-	damage = NULL;
-	dodge = NULL;
-	defence = NULL;
-	weight = NULL;
-	speed = NULL;
-	attribute = NULL;
-	value = NULL;
+	hit = ~dice();
+	damage = ~dice();
+	dodge = ~dice();
+	defence = ~dice();
+	weight = ~dice();
+	speed = ~dice();
+	attribute = ~dice();
+	value = ~dice();
 	
 	equipment = false;
 	symbol = '';
