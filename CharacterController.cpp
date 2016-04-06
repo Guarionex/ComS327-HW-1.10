@@ -496,7 +496,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 			break;
 		}
 		set_Character_symbol(mon, monSymbol);
-		set_Character_color(mon, 1);
+		set_Character_color(mon, COLOR_RED);
 	}
 	else
 	{
