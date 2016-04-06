@@ -655,7 +655,7 @@ void Draw_Dungeon(int use_curses)
 						break;
 					}
 				}
-				else
+				else if(check_character_map(x, y) > 0)
 				{
 					switch(get_Character_color(get_character_by_id(check_character_map(u, v))))
 					{
