@@ -244,6 +244,11 @@ void set_Character_all(character_t * toon, int32_t set_speed, int32_t new_time, 
 	((characterClass *) toon)->character_type = toon_type;
 }
 
+void set_Character_symbol(character_t *toon, char nSymbol)
+{
+	((characterClass *) toon)->symbol = nSymbol;
+}
+
 character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 {
 	pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
@@ -417,8 +422,10 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	character_t *mon = (character_t *) monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	if(!useParsed)
 	{
-		std::cout << "RANDOMS" << endl;
 		set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+		char monSymbol[1];
+		sprintf(monSymbol, "0x%x", powers);
+		set_Character_symbol(mon, monSymbol[0]);
 	}
 	else
 	{
