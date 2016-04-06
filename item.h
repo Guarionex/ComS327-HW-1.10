@@ -22,7 +22,7 @@ class itemClass
 	int hit;
 	int damage;
 	int dodge;
-	int defense;
+	int defence;
 	int weight;
 	int speed;
 	int attribute;

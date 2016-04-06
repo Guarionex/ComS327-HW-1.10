@@ -8,14 +8,14 @@ itemClass::itemClass(objectClass obj)
 	description = obj.description;
 	type = obj.type;
 	color = obj.color;
-	hit = obj.hit.roll();
-	damage = obj.damage.roll();
-	dodge = obj.dodge.roll();
-	defence = obj.defence.roll();
-	weight = obj.weight.roll();
-	speed = obj.speed.roll();
-	attribute = obj.attribute.roll();
-	value = obj.value.roll();
+	hit = obj.hit.roll(-1);
+	damage = obj.damage.roll(-1);
+	dodge = obj.dodge.roll(-1);
+	defence = obj.defence.roll(-1);
+	weight = obj.weight.roll(-1);
+	speed = obj.speed.roll(-1);
+	attribute = obj.attribute.roll(-1);
+	value = obj.value.roll(-1);
 	equipment = obj.equipment;
 	symbol = obj.symbol;
 	twoHanded = obj.twoHanded;
@@ -63,7 +63,7 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 					break;
 					
 					case ROOM:
-						if((down.location.x != x && down.location.y != y) || (up != NULL && up.location.x != x && up.location.y != y))
+						if((down.location.x != x && down.location.y != y) || (up != NULL && up->location.x != x && up->location.y != y))
 						{
 							new_pos.x = x;
 							new_pos.y = y;
@@ -75,7 +75,7 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 					break;
 					
 					case CORRIDOR:
-						if((down.location.x != x && down.location.y != y) || (up != NULL && up.location.x != x && up.location.y != y))
+						if((down.location.x != x && down.location.y != y) || (up != NULL && up->location.x != x && up->location.y != y))
 						{
 							new_pos.x = x;
 							new_pos.y = y;
