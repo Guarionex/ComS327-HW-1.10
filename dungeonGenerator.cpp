@@ -182,9 +182,9 @@ int main(int argc, char *argv[])
 					uint ol;
 					for(ol = 0; ol < objectList.size(); ol++)
 					{
-						cout << objectList.name << endl;
-						cout << objectList.description << endl;
-						switch(objectList.type)
+						cout << objectList[ol].name << endl;
+						cout << objectList[ol].description << endl;
+						switch(objectList[ol].type)
 						{
 							case objtype_no_type:
 								cout << "no type" << endl;
