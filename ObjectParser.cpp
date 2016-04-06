@@ -1,5 +1,25 @@
 #include "ObjectParser.h"
 
+objectClass::~objectClass()
+{
+	name = NULL;
+	description = NULL;
+	type = NULL;
+	color = -1;
+	hit = NULL;
+	damage = NULL;
+	dodge = NULL;
+	defence = NULL;
+	weight = NULL;
+	speed = NULL;
+	attribute = NULL;
+	value = NULL;
+	
+	equipment = false;
+	symbol = '';
+	twoHanded = false;
+}
+
 vector<objectClass> objectList;
 
 vector<objectClass> parseObjects()

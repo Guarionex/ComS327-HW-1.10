@@ -55,7 +55,7 @@ class objectClass
 	char symbol;
 	bool twoHanded;
 	
-	objectClass() : name(), description(), type(objtype_no_type), color(-1), hit(), damage(), dodge(), defence(), weight(), speed(), attribute(), value()
+	objectClass() : name(), description(), type(objtype_no_type), color(-1), hit(), damage(), dodge(), defence(), weight(), speed(), attribute(), value(), equipment(false), symbol(''), twoHanded(false)
 	{	
 	}
 	~objectClass();
