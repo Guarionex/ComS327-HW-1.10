@@ -554,7 +554,7 @@ vector<objectClass> parseObjects()
 						sides = atoi(sidesRaw.c_str());
 						
 						Dice speedDice(base, dice, sides);
-						obj.speedDice = speedDice;
+						obj.speed = speedDice;
 						
 						//cout << "Monster speed = " << obj.speed.toString() << endl;
 					}
