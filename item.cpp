@@ -26,7 +26,7 @@ itemClass::~itemClass()
 	type = objtype_no_type;
 	color = -1;
 	hit = -1;
-	damage = Dice();
+	//damage = -1;
 	dodge = -1;
 	defence = -1;
 	weight = -1;
