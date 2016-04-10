@@ -43,6 +43,7 @@ itemClass::~itemClass()
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up)
 {
 	vector<itemClass> dungeonItems;
+	cout << "Size = " << dungeonItems.size() << endl;
 	uint ol;
 	for(ol = 0; ol < objectsToPlace.size(); ol++)
 	{
