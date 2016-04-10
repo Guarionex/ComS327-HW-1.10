@@ -20,7 +20,7 @@ class itemClass
 	object_type_t type;
 	short color;
 	int hit;
-	int damage;
+	Dice damage;
 	int dodge;
 	int defence;
 	int weight;
@@ -33,7 +33,7 @@ class itemClass
 	pos_t pos;
 	bool item_stack;
 	
-	itemClass() : name(), description(), type(objtype_no_type), color(-1), hit(0), damage(0), dodge(0), defence(0), weight(0), speed(0), attribute(0), value(0), equipment(false), symbol('*'), twoHanded(false), pos(NULL_POS), item_stack(false)
+	itemClass() : name(), description(), type(objtype_no_type), color(-1), hit(0), damage(), dodge(0), defence(0), weight(0), speed(0), attribute(0), value(0), equipment(false), symbol('*'), twoHanded(false), pos(NULL_POS), item_stack(false)
 	{	
 	}
 	itemClass(objectClass obj);
