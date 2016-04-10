@@ -94,6 +94,7 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 		uint i;
 		for(i = 0; i < dungeonItems.size(); i++)
 		{
+			cout << "i = " << i << " size = " << dungeonItems.size() << endl;
 			if(dungeonItems[i].pos.x == newItem.pos.x && dungeonItems[i].pos.y == newItem.pos.y)
 			{
 				dungeonItems[i].item_stack = true;
