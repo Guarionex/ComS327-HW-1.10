@@ -47,9 +47,12 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 	uint ol;
 	for(ol = 0; ol < objectsToPlace.size(); ol++)
 	{
+		cout << "Inside big loop = " << dungeonItems.size() << endl;
 		pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 		open_pos[0] = NULL_POS;
 		itemClass newItem = itemClass(objectsToPlace[ol]);
+		
+		cout << " After malloc size = " << dungeonItems.size() << endl;
 		
 		int x, y, open_count = 0;
 		for(x = 0; x < 80; x++)
@@ -89,7 +92,7 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 			}
 		}
 		
-		
+		cout << "Before loop size = " << dungeonItems.size() << endl;
 		pos_t new_pos = open_pos[rand()%open_count];
 		newItem.pos = new_pos;
 		uint i;
