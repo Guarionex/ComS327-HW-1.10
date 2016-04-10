@@ -43,16 +43,13 @@ itemClass::~itemClass()
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up)
 {
 	vector<itemClass> dungeonItems;
-	cout << "Size = " << dungeonItems.size() << endl;
 	uint ol;
 	for(ol = 0; ol < objectsToPlace.size(); ol++)
 	{
-		cout << "Inside big loop = " << dungeonItems.size() << endl;
 		pos_t *open_pos = (pos_t *) malloc(sizeof(pos_t));
 		open_pos[0] = NULL_POS;
 		itemClass newItem = itemClass(objectsToPlace[ol]);
 		
-		cout << " After malloc size = " << dungeonItems.size() << endl;
 		
 		int x, y, open_count = 0;
 		for(x = 0; x < 80; x++)
@@ -92,22 +89,19 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 			}
 		}
 		
-		cout << "Before loop size = " << dungeonItems.size() << endl;
 		pos_t new_pos = open_pos[rand()%open_count];
 		newItem.pos = new_pos;
 		uint i;
 		for(i = 0; i < dungeonItems.size(); i++)
 		{
-			cout << "i = " << i << " size = " << dungeonItems.size() << endl;
 			if(dungeonItems[i].pos.x == newItem.pos.x && dungeonItems[i].pos.y == newItem.pos.y)
 			{
 				dungeonItems[i].item_stack = true;
 				newItem.item_stack = true;
 			}
 		}
-		cout << "After loop size = " << dungeonItems.size() << endl;
 		dungeonItems.push_back(newItem);
-		cout << "After add size = " << dungeonItems.size() << endl;
+		
 		free(open_pos);
 	}
 	return dungeonItems;

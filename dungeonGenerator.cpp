@@ -464,7 +464,7 @@ int main(int argc, char *argv[])
 		int level = 0;
 		//int stair_used = -1;
 		
-		//initscr();
+		initscr();
 		raw();
 		noecho();
 		curs_set(0);
@@ -551,7 +551,7 @@ int main(int argc, char *argv[])
 			Destroy_All();
 		}
 		Draw_Dungeon(0);
-		//endwin();
+		endwin();
 	}
 	if(Contains_Flag(flags, (argc - 1), SAVE) == TRUE || game_state == 5)
 	{
