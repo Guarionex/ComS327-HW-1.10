@@ -105,8 +105,9 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 				newItem.item_stack = true;
 			}
 		}
+		cout << "After loop size = " << dungeonItems.size() << endl;
 		dungeonItems.push_back(newItem);
-
+		cout << "After add size = " << dungeonItems.size() << endl;
 		free(open_pos);
 	}
 	return dungeonItems;
