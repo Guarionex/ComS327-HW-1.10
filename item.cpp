@@ -7,7 +7,7 @@ itemClass::itemClass(objectClass obj)
 	type = obj.type;
 	color = obj.color;
 	hit = obj.hit.roll(-1);
-	damage = obj.damage;
+	damage = obj.damage.roll(-1);
 	dodge = obj.dodge.roll(-1);
 	defence = obj.defence.roll(-1);
 	weight = obj.weight.roll(-1);
@@ -26,7 +26,7 @@ itemClass::~itemClass()
 	type = objtype_no_type;
 	color = -1;
 	hit = -1;
-	//damage = -1;
+	damage = -1;
 	dodge = -1;
 	defence = -1;
 	weight = -1;
