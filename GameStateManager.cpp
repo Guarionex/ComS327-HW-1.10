@@ -1182,11 +1182,11 @@ int turn(int *seed, int num_mon)
 			string moveMessage = move_character(get_Character_id(current), seed, current_dungeon, moving_to);
 			if(get_Character_character_type(current) == PLAYER)
 			{
-				playerMessage = moveMessage.c_str();
+				sprintf(playerMessage, "%s",  moveMessage.c_str());
 			}
 			else
 			{
-				monsterMessage = moveMessage.c_str();
+				sprintf(monsterMessage, "%s",  moveMessage.c_str());
 			}
 		}
 		set_Character_timer(current, get_Character_timer(current)+(100/get_Character_speed(current)));
