@@ -963,7 +963,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			{
 				move_to.x += a;
 				move_to.y += b;
-				moving = TRUE;
+				//moving = TRUE;
 			}
 			else if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x4)
 			{
@@ -981,14 +981,14 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 						move_to.x += a;
 						move_to.y += b;
 						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
-						moving = TRUE;
+						//moving = TRUE;
 					}
 				}
 				else
 				{
 					move_to.x += a;
 					move_to.y += b;
-					moving = TRUE;
+					//moving = TRUE;
 				}
 			}
 		}
@@ -1041,14 +1041,14 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 							move_to.x += a;
 							move_to.y += b;
 							dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
-							moving = TRUE;
+							//moving = TRUE;
 						}
 					}
 					else
 					{
 						move_to.x += a;
 						move_to.y += b;
-						moving = TRUE;
+						//moving = TRUE;
 					}
 				}
 				else
@@ -1087,18 +1087,18 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 							move_to.x += a;
 							move_to.y += b;
 							dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
-							moving = TRUE;
+							//moving = TRUE;
 						}
 					}
 					else
 					{
 						move_to.x += a;
 						move_to.y += b;
-						moving = TRUE;
+						//moving = TRUE;
 					}
 					
 				}
-				moving = TRUE;
+				//moving = TRUE;
 			}
 			else
 			{
@@ -1162,7 +1162,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					}
 					
 				}
-				moving = TRUE;
+				//moving = TRUE;
 			}
 		}
 	}
@@ -1208,14 +1208,14 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 						move_to.x += a;
 						move_to.y += b;
 						dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
-						moving = TRUE;
+						//moving = TRUE;
 					}
 				}
 				else
 				{
 					move_to.x += a;
 					move_to.y += b;
-					moving = TRUE;
+					//moving = TRUE;
 				}
 			}
 			else
@@ -1227,7 +1227,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					
 					//printf("I'm there\n");
 					
-					moving = TRUE;
+					//moving = TRUE;
 				}
 			}
 		}
