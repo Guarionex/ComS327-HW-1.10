@@ -692,15 +692,12 @@ void Draw_Dungeon(int use_curses)
 					//attron(COLOR_PAIR(3));
 				}
 				mvaddch(v+1, u, memory_dungeon[u][v]);
-				if(v == 19)
+				if(v == 20)
 				{
 					attron(COLOR_PAIR(1));
-					mvaddch(19, u%playerMessage_len, playerMessage[u%playerMessage_len]);
-				}
-				else if(v == 20)
-				{
+					mvaddch(22, u%playerMessage_len, playerMessage[u%playerMessage_len]);
 					attron(COLOR_PAIR(1));
-					mvaddch(20, u%monsterMessage_len, monsterMessage[u%monsterMessage_len]);
+					mvaddch(23, u%monsterMessage_len, monsterMessage[u%monsterMessage_len]);
 				}
 			}
 		}
