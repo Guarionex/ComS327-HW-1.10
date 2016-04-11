@@ -753,8 +753,8 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		dest.x = get_Character_pos(player_to_move).x+a;
 		dest.y = get_Character_pos(player_to_move).y+b;
 		set_Character_pos(player_to_move, dest);
-		xSpot << dest.x;
-		ySpot << dest.y;
+		xSpot << dest.x - a;
+		ySpot << dest.y - b;
 		returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
@@ -792,8 +792,8 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		destCor.x = get_Character_pos(player_to_move).x+a;
 		destCor.y = get_Character_pos(player_to_move).y+b;
 		set_Character_pos(player_to_move, destCor);
-		xSpot << dest.x;
-		ySpot << dest.y;
+		xSpot << dest.x - a;
+		ySpot << dest.y - b;
 		returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
