@@ -970,7 +970,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 				{
 					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 					{
-						return moving;
+						return "";
 					}
 					uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
@@ -1030,7 +1030,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					{
 						if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 						{
-							return moving;
+							return "";
 						}
 						uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
@@ -1076,7 +1076,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 					{
 						if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 						{
-							return moving;
+							return "";
 						}
 						uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 						chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
@@ -1197,7 +1197,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 				{
 					if(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density >= 255)
 					{
-						return moving;
+						return "";
 					}
 					uint8_t chisel = dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_union.rock.density;
 					chisel = ((chisel - 85) < 0) ? 0 : (chisel - 85);
@@ -1245,21 +1245,22 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 		int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
 		if(get_Character_alive(character_list[dead_index]) == TRUE)
 		{	
-				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - get_Character_damage(player_to_move));
-				if(get_Character_healthPoints(character_list[dead_index]) <= 0)
-				{
-					set_Character_alive(character_list[dead_index], FALSE);
-					dead_monsters++;
-					returnMessage = "" + get_Character_name(player_to_move) + " kills " + get_Character_name(character_list[dead_index]);
-				}
-				else
-				{
-					move_to.x = -(move_to.x);//get_Character_pos(player_to_move).x-a;
-					move_to.y = -(move_to.y);//get_Character_pos(player_to_move).y-b;
-					set_Character_pos(player_to_move, move_to);
-					damageString << damageDone;
-					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString.str();
-				}
+			int damageDone = get_Character_damage(player_to_move);
+			set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
+			if(get_Character_healthPoints(character_list[dead_index]) <= 0)
+			{
+				set_Character_alive(character_list[dead_index], FALSE);
+				dead_monsters++;
+				returnMessage = "" + get_Character_name(player_to_move) + " kills " + get_Character_name(character_list[dead_index]);
+			}
+			else
+			{
+				move_to.x = -(move_to.x);//get_Character_pos(player_to_move).x-a;
+				move_to.y = -(move_to.y);//get_Character_pos(player_to_move).y-b;
+				set_Character_pos(player_to_move, move_to);
+				damageString << damageDone;
+				returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString.str();
+			}
 		}
 	}
 	else if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
