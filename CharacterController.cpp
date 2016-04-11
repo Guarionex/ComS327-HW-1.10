@@ -825,7 +825,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		break;
 	}
 	
-	return "";
+	return " ";
 }
 
 int32_t compare_character(const void *key, const void *with)
@@ -1256,8 +1256,8 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			}
 			else
 			{
-				move_to.x = get_Character_pos(player_to_move).x-returnX;
-				move_to.y = get_Character_pos(player_to_move).y-returnY;
+				move_to.x = get_Character_pos(player_to_move).x+returnX;
+				move_to.y = get_Character_pos(player_to_move).y+returnY;
 				set_Character_pos(player_to_move, move_to);
 				damageString << damageDone;
 				returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString.str();
@@ -1266,8 +1266,8 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 	}
 	else if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 	{
-		move_to.x = get_Character_pos(player_to_move).x-returnX;
-		move_to.y = get_Character_pos(player_to_move).y-returnY;
+		move_to.x = get_Character_pos(player_to_move).x+returnX;
+		move_to.y = get_Character_pos(player_to_move).y+returnY;
 		set_Character_pos(player_to_move, move_to);
 	}
 	character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] = get_Character_id(player_to_move);

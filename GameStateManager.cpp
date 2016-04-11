@@ -1180,6 +1180,10 @@ int turn(int *seed, int num_mon)
 			if(get_Character_character_type(current) == PLAYER)
 			{
 				sprintf(playerMessage, "%s",  moveMessage.c_str());
+				if(moveMessage.find("kills") != string::npos)
+				{
+					monsterMessage = " ";
+				}
 			}
 			else if(moveMessage.compare(" ") != 0)
 			{
