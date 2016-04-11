@@ -636,7 +636,7 @@ string move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeo
 	int index = get_character_index_by_id(character_id);
 	if(index < 0 || get_Character_alive(character_list[index]) == FALSE) 
 	{ 
-		return FALSE;
+		return "";
 	}
 	
 	va_list ap;
@@ -748,7 +748,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		dest.x = get_Character_pos(player_to_move).x+a;
 		dest.y = get_Character_pos(player_to_move).y+b;
 		set_Character_pos(player_to_move, dest);
-		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + dest.x + "]" + "[" + dest.y + "]";
+		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + to_string(dest.x) + "]" + "[" + to_string(dest.y) + "]";
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
