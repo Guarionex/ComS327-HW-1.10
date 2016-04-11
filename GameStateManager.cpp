@@ -1182,7 +1182,7 @@ int turn(int *seed, int num_mon)
 				sprintf(playerMessage, "%s",  moveMessage.c_str());
 				if(moveMessage.find("kills") != string::npos)
 				{
-					monsterMessage = "                                                                               ";
+					sprintf(monsterMessage, "%s",  " ");
 				}
 			}
 			else if(moveMessage.compare(" ") != 0)
