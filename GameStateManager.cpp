@@ -1181,7 +1181,7 @@ int turn(int *seed, int num_mon)
 			{
 				sprintf(playerMessage, "%s",  moveMessage.c_str());
 			}
-			else
+			else if(moveMessage.compare(" ") != 0)
 			{
 				sprintf(monsterMessage, "%s",  moveMessage.c_str());
 			}
