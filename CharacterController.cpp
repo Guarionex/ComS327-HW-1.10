@@ -712,6 +712,11 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		break;
 	}*/
 	
+	stringstream xSpot;
+	stringstream ySpot;
+	stringstream damageString;
+	string returnMessage = "";
+	
 	switch(dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type)
 	{
 		case ROCK:
@@ -748,12 +753,9 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		dest.x = get_Character_pos(player_to_move).x+a;
 		dest.y = get_Character_pos(player_to_move).y+b;
 		set_Character_pos(player_to_move, dest);
-		stringstream xSpot;
-		stringstream ySpot;
-		stringstream damageString;
 		xSpot << dest.x;
 		ySpot << dest.y;
-		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
+		returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
@@ -790,12 +792,9 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		destCor.x = get_Character_pos(player_to_move).x+a;
 		destCor.y = get_Character_pos(player_to_move).y+b;
 		set_Character_pos(player_to_move, destCor);
-		stringstream xSpot;
-		stringstream ySpot;
-		stringstream damageString;
 		xSpot << dest.x;
 		ySpot << dest.y;
-		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
+		returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
