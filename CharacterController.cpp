@@ -949,7 +949,8 @@ boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 {
 	pos_t move_to = {.x = get_Character_pos(player_to_move).x, .y = get_Character_pos(player_to_move).y};
-	boolean moving = FALSE, erratic = FALSE;
+	//boolean moving = FALSE;
+	boolean erratic = FALSE;
 	
 	if((get_Monster_abilities((monster_t *)player_to_move) & 0x8) == 0x8)
 	{
