@@ -16,8 +16,8 @@ int stair_player = -1;
 pos_t last_pos;
 char memory_dungeon[80][21];
 vector<itemClass> levelItems;
-char playerMessage[80] = "";
-char monsterMessage[80] = "";
+char playerMessage[80] = " ";
+char monsterMessage[80] = " ";
 
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
