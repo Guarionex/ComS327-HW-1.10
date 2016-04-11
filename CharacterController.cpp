@@ -773,7 +773,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 					dest.x = -(dest.x);//get_Character_pos(player_to_move).x-a;
 					dest.y = -(dest.y);//get_Character_pos(player_to_move).y-b;
 					set_Character_pos(player_to_move, dest);
-					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString;
+					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString.str();
 				}
 			}
 		}
@@ -815,7 +815,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 					dest.x = -(dest.x);//get_Character_pos(player_to_move).x-a;
 					dest.y = -(dest.y);//get_Character_pos(player_to_move).y-b;
 					set_Character_pos(player_to_move, dest);
-					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString;
+					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString.str();
 				}
 			}
 
@@ -1259,7 +1259,7 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 					move_to.y = -(move_to.y);//get_Character_pos(player_to_move).y-b;
 					set_Character_pos(player_to_move, move_to);
 					damageString << damageDone;
-					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString;
+					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString.str();
 				}
 		}
 	}
