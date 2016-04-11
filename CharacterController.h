@@ -9,6 +9,9 @@
 #include <vector>
 #include "dungeonObjects.h"
 #include "dice.h"
+#include <string>
+
+using namespace std;
 
 typedef enum character_type_enum
 {
@@ -205,13 +208,13 @@ character_t delete_character(int id);
 character_t *get_character_by_id(int id);
 int get_character_index_by_id(int id);
 int check_character_map(int x, int y);
-boolean move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...);
-boolean move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **dungeon);
+string move_character(int character_id, int *seed, Dungeon_Space_Struct **dungeon, ...);
+string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct **dungeon);
 int32_t compare_character(const void *key, const void *with);
 void update_telepath(void);
 void line_of_sight(Dungeon_Space_Struct **dungeon);
 boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon);
-boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon);
+string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon);
 void set_distance(char *distance);
 void set_distance_tunneler(char *distance_tunneller);
 int distance_converter(char symbol);

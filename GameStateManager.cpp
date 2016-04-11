@@ -16,6 +16,9 @@ int stair_player = -1;
 pos_t last_pos;
 char memory_dungeon[80][21];
 vector<itemClass> levelItems;
+char playerMessage[80];
+char monsterMessage[80];
+
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
 {
@@ -532,6 +535,8 @@ void Draw_Dungeon(int use_curses)
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d", seed_state, input, (num_characters - 1) - dead_monsters, level);
 	int debug_len = strlen(debug_line);
+	int playerMessage_len = strlen(playerMessage);
+	int monsterMessage_len = strlen(monsterMessage);
 	if(use_curses == 1)
 	{
 		start_color();
@@ -687,7 +692,16 @@ void Draw_Dungeon(int use_curses)
 					//attron(COLOR_PAIR(3));
 				}
 				mvaddch(v+1, u, memory_dungeon[u][v]);
-				
+				if(v == 19)
+				{
+					attron(COLOR_PAIR(1));
+					mvaddch(19, u%playerMessage_len, playerMessage[u%playerMessage_len]);
+				}
+				else if(v == 20)
+				{
+					attron(COLOR_PAIR(1));
+					mvaddch(20, u%monsterMessage_len, monsterMessage[u%monsterMessage_len]);
+				}
 			}
 		}
 		
@@ -1165,7 +1179,15 @@ int turn(int *seed, int num_mon)
 		
 		if(game_state != 3 && game_state != 5)
 		{
-			move_character(get_Character_id(current), seed, current_dungeon, moving_to);
+			string moveMessage = move_character(get_Character_id(current), seed, current_dungeon, moving_to);
+			if(get_Character_character_type(current) == PLAYER)
+			{
+				playerMessage = moveMessage.c_str();
+			}
+			else
+			{
+				monsterMessage = moveMessage.c_str();
+			}
 		}
 		set_Character_timer(current, get_Character_timer(current)+(100/get_Character_speed(current)));
 		/*nodes[p] = */binheap_insert(&h, current);
