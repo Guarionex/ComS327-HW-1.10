@@ -748,13 +748,19 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		dest.x = get_Character_pos(player_to_move).x+a;
 		dest.y = get_Character_pos(player_to_move).y+b;
 		set_Character_pos(player_to_move, dest);
-		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + to_string(dest.x) + "]" + "[" + to_string(dest.y) + "]";
+		stringstream xSpot;
+		stringstream ySpot;
+		stringstream damageString;
+		xSpot << dest.x;
+		ySpot << dest.y;
+		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
 			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{
 				int damageDone = get_Character_damage(player_to_move);
+				damageString << damageDone;
 				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
 				if(get_Character_healthPoints(character_list[dead_index]) <= 0)
 				{
@@ -767,7 +773,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 					dest.x = -(dest.x);//get_Character_pos(player_to_move).x-a;
 					dest.y = -(dest.y);//get_Character_pos(player_to_move).y-b;
 					set_Character_pos(player_to_move, dest);
-					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageDone;
+					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString;
 				}
 			}
 		}
@@ -784,13 +790,20 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 		destCor.x = get_Character_pos(player_to_move).x+a;
 		destCor.y = get_Character_pos(player_to_move).y+b;
 		set_Character_pos(player_to_move, destCor);
-		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + dest.x + "]" + "[" + dest.y + "]";
+		stringstream xSpot;
+		stringstream ySpot;
+		stringstream damageString;
+		xSpot << dest.x;
+		ySpot << dest.y;
+		string returnMessage = "" + get_Character_name(player_to_move) + " moved to " + "[" + xSpot.str() + "]" + "[" + ySpot.str() + "]";
 		if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] > 0)
 		{
 			int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
 			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{	
-				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - get_Character_damage(player_to_move));
+				int damageDone = get_Character_damage(player_to_move);
+				damageString << damageDone;
+				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
 				if(get_Character_healthPoints(character_list[dead_index]) <= 0)
 				{
 					set_Character_alive(character_list[dead_index], FALSE);
@@ -802,7 +815,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 					dest.x = -(dest.x);//get_Character_pos(player_to_move).x-a;
 					dest.y = -(dest.y);//get_Character_pos(player_to_move).y-b;
 					set_Character_pos(player_to_move, dest);
-					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageDone;
+					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString;
 				}
 			}
 
@@ -1227,6 +1240,7 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 	//player_to_move->pos.y = move_to.y;
 	set_Character_pos(player_to_move, move_to);
 	string returnMessage = "";
+	stringstream damageString;
 	if(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x] == 0)
 	{
 		int dead_index = get_character_index_by_id(character_map[get_Character_pos(player_to_move).y*80+get_Character_pos(player_to_move).x]);
@@ -1244,7 +1258,8 @@ boolean move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon
 					move_to.x = -(move_to.x);//get_Character_pos(player_to_move).x-a;
 					move_to.y = -(move_to.y);//get_Character_pos(player_to_move).y-b;
 					set_Character_pos(player_to_move, move_to);
-					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageDone;
+					damageString << damageDone;
+					returnMessage = "" + get_Character_name(player_to_move) + " hits " + get_Character_name(character_list[dead_index]) + " for " + damageString;
 				}
 		}
 	}
