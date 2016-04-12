@@ -814,7 +814,7 @@ void Draw_Equipment(void)
 {
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
-	int d, e;
+	uint d, e;
 	for(d = 0; d < strlen(debug_line); d++)
 	{
 		mvaddch(0, d, debug_line[d]);
@@ -837,7 +837,7 @@ void Draw_Equipment(void)
 	itemClass equipment;
 	for(d = 0; d < 12; d++)
 	{
-		equipment = get_Player_equipment(character_list[0], d);
+		equipment = get_Player_equipment((player_t *) character_list[0], d);
 		for(e = 4; e < equipment.name.size() && e < 41; e++)
 		{
 			mvaddch(d + 7, e, (equipment.name.c_str())[e-4]);
