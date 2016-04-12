@@ -1271,8 +1271,8 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}*/
-				input = menu_helper(int 16, int input);
-				input = menu_helper(int 17, int input);
+				input = menu_helper(16, input, &moving_to);
+				input = menu_helper(17, input, &moving_to);
 				if(input == 15)
 				{
 					game_state = 5;
@@ -1313,7 +1313,7 @@ int turn(int *seed, int num_mon)
 	return level;
 }
 
-int menu_helper(int menu_type, int commandInput)
+int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 {
 	while(commandInput == menu_type)
 	{
@@ -1325,7 +1325,7 @@ int menu_helper(int menu_type, int commandInput)
 			commandInput = input_handler(getch());
 			if(commandInput < 9)
 			{
-				moving_to = get_direction((command_t) commandInput);
+				*moving_to = get_direction((command_t) commandInput);
 			}
 			if(commandInput == menu_type)
 			{
