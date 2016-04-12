@@ -85,7 +85,7 @@ itemClass get_Player_item(player_t *playerC, int slot)
 
 void set_Player_item(player_t *playerC, itemClass newItem, int slot)
 {
-	((playerClass *) playerC)->equipment[slot] = newEquipment;
+	((playerClass *) playerC)->inventory[slot] = newItem;
 }
 
 monsterClass::monsterClass()
