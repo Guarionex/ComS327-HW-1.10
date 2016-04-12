@@ -132,7 +132,7 @@ uint8_t get_Monster_abilities(monster_t *mon)
 
 boolean get_Monster_lost(monster_t *mon)
 {
-	return (boolean) (((monsterClass *) mon)->get_lost() == true)? TRUE : FALSE;
+	return (boolean) ((((monsterClass *) mon)->get_lost() == true)? TRUE : FALSE);
 }
 
 void set_Monster_lost(monster_t *mon, boolean is_mon_lost)
