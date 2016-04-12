@@ -1188,7 +1188,7 @@ int turn(int *seed, int num_mon)
 						set_Player_item((player_t *) current, itemsHere[0], itemInvariant);
 						break;
 					}
-					testingItem << itemInInventory.name << " ";
+					testingItem << itemInInventory.name << " |";
 				}
 				sprintf(playerMessage, "%s " , testingItem.str().c_str());
 			}
