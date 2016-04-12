@@ -309,8 +309,8 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	//pc.name = "Edwin";
 	player = (character_t *) pc;//character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
 	set_Character_all(player, 10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
-	set_Character_healthPoints(player, 100);
-	set_Character_parsed_data(player, "Dr. Sheaffer", "Professor of ComS 327", '@', 6, Dice(0, 1, 4));
+	set_Character_healthPoints(player, 1000);
+	set_Character_parsed_data(player, "Dr. Sheaffer", "Professor of ComS 327", '@', 6, Dice(1000, 1, 4));
 	create_character_list();
 	add_character(player);
 	free(open_pos);
