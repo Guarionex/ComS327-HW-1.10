@@ -1175,6 +1175,21 @@ int turn(int *seed, int num_mon)
 			}
 			update_telepath();
 			line_of_sight(current_dungeon);
+			if(containsItemAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y))
+			{
+				vector<itemClass> itemsHere = getItemsAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y);
+				int itemInvariant;
+				for(itemInvariant = 0; itemInvariant < 10; itemInvariant++)
+				{
+					itemClass itemInInventory = get_Player_item((player_t *) current, itemInvariant);
+					if(itemInInventory.type == objtype_no_type)
+					{
+						set_Player_item((player_t *) current, itemsHere[0], itemInvariant);
+						break;
+					}
+				}
+				playerMessage = "Invetory is full";
+			}
 			Draw_Dungeon(1);
 			//sleep(3);
 			define_new_keys();
