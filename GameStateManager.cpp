@@ -875,7 +875,7 @@ void Draw_Inventory(void)
 		inventory = get_Player_item((player_t *) character_list[0], d);
 		for(e = 23; e < inventory.name.size() && e < 60; e++)
 		{
-			mvprintw(d + 6, e, inventory.name.c_str());
+			mvprintw(d + 6, e, "I'm suppose to be an item");
 			//mvaddch(d + 6, e, (inventory.name.c_str())[e-23]);
 		}
 		
