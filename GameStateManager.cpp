@@ -838,7 +838,7 @@ void Draw_Equipment(void)
 	for(d = 0; d < 12; d++)
 	{
 		equipment = get_Player_equipment((player_t *) character_list[0], d);
-		for(e = 23; e < equipment.name.size() && e < 60; e++)
+		for(e = 23; (e - 23) < equipment.name.size() && e < 60; e++)
 		{
 			mvprintw(d + 6, e, equipment.name.c_str());
 			//mvaddch(d + 6, e, (equipment.name.c_str())[e-23]);
@@ -873,9 +873,9 @@ void Draw_Inventory(void)
 	for(d = 0; d < 10; d++)
 	{
 		inventory = get_Player_item((player_t *) character_list[0], d);
-		for(e = 23; e < inventory.name.size() && e < 60; e++)
+		for(e = 23; (e - 23) < inventory.name.size() && e < 60; e++)
 		{
-			mvprintw(d + 6, e, "I'm suppose to be an item");
+			mvprintw(d + 6, e, inventory.name.c_str());
 			//mvaddch(d + 6, e, (inventory.name.c_str())[e-23]);
 		}
 		
