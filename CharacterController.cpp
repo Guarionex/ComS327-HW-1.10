@@ -132,7 +132,7 @@ uint8_t get_Monster_abilities(monster_t *mon)
 
 boolean get_Monster_lost(monster_t *mon)
 {
-	return (((monsterClass *) mon)->get_lost() == true)? TRUE : FALSE;
+	return (boolean) (((monsterClass *) mon)->get_lost() == true)? TRUE : FALSE;
 }
 
 void set_Monster_lost(monster_t *mon, boolean is_mon_lost)
@@ -355,7 +355,7 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	pc = new_Player_param("Edwin");
 	//pc.name = "Edwin";
 	player = (character_t *) pc;//character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
-	set_Character_all(player, 10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
+	set_Character_all(player, 10, 0, 0, (boolean) TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
 	set_Character_healthPoints(player, 1000);
 	set_Character_parsed_data(player, "Dr. Sheaffer", "Professor of ComS 327", '@', 6, Dice(1000, 1, 4));
 	create_character_list();
@@ -397,7 +397,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	int open_count = 0;
 	if((0x4 & powers) == 0x4)
 	{
-		boolean pos_found = FALSE;
+		boolean pos_found = (boolean) FALSE;
 		int attempts = 0;
 		while(pos_found == FALSE && attempts < 10000)
 		{
@@ -408,7 +408,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 			{
 				mon_pos.x = x;
 				mon_pos.y = y;
-				pos_found = TRUE;
+				pos_found = (boolean) TRUE;
 			}
 		}
 		if(attempts == 10000)
@@ -463,7 +463,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	}
 	
 	
-	monster = new_Monster_param(powers, TRUE, NULL_POS);
+	monster = new_Monster_param(powers, (boolean) TRUE, NULL_POS);
 	
 	if((get_Monster_abilities(monster) & 0x2) == 0x2)
 	{
@@ -476,7 +476,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	character_t *mon = (character_t *) monster; //character_tag_create((rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER, monster);
 	if(!useParsed)
 	{
-		set_Character_all(mon, (rand()%16)+5, 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+		set_Character_all(mon, (rand()%16)+5, 0, num_characters, (boolean) TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
 		char monSymbol;
 		switch(powers)
 		{
@@ -549,7 +549,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	}
 	else
 	{
-		set_Character_all(mon, monsterToUse.speedDice.roll(*seed), 0, num_characters, TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
+		set_Character_all(mon, monsterToUse.speedDice.roll(*seed), 0, num_characters, (boolean) TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
 		set_Character_healthPoints(mon, monsterToUse.hp.roll(*seed));
 		set_Character_parsed_data(mon, monsterToUse.name, monsterToUse.description, monsterToUse.symbol, monsterToUse.color, monsterToUse.damage);
 	}
@@ -813,7 +813,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
 				if(get_Character_healthPoints(character_list[dead_index]) <= 0)
 				{
-					set_Character_alive(character_list[dead_index], FALSE);
+					set_Character_alive(character_list[dead_index], (boolean) FALSE);
 					dead_monsters++;
 					returnMessage = "" + get_Character_name(player_to_move) + " kills " + get_Character_name(character_list[dead_index]);
 				}
@@ -852,7 +852,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
 				if(get_Character_healthPoints(character_list[dead_index]) <= 0)
 				{
-					set_Character_alive(character_list[dead_index], FALSE);
+					set_Character_alive(character_list[dead_index], (boolean) FALSE);
 					dead_monsters++;
 					returnMessage = "" + get_Character_name(player_to_move) + " kills " + get_Character_name(character_list[dead_index]);
 				}
@@ -896,7 +896,7 @@ void update_telepath(void)
 		if((get_Character_character_type(character_list[m]) == MONSTER) && ((get_Monster_abilities((monster_t *)character_list[m]) & 0x2) == 0x2))
 		{
 			set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
-			set_Monster_lost((monster_t *)character_list[m], FALSE);
+			set_Monster_lost((monster_t *)character_list[m], (boolean) FALSE);
 			//printf("Monster %d knows player is at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 		}
 	}
@@ -918,12 +918,12 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 				if(line_of_sight_helper(get_Character_pos(character_list[m]), dungeon) == TRUE)
 				{
 					set_Monster_memory((monster_t *)character_list[m], get_Character_pos(get_character_by_id(0)));
-					set_Monster_lost((monster_t *)character_list[m], FALSE);
+					set_Monster_lost((monster_t *)character_list[m], (boolean) FALSE);
 					//printf("Monster %d memorized player at [%d][%d]\n", character_list[m].id, character_list[m].character_parent.monster.memory.x, character_list[m].character_parent.monster.memory.y);
 				}
 				else
 				{
-					set_Monster_lost((monster_t *)character_list[m], TRUE);
+					set_Monster_lost((monster_t *)character_list[m], (boolean) TRUE);
 				}
 			}
 			else
@@ -945,7 +945,7 @@ void line_of_sight(Dungeon_Space_Struct **dungeon)
 
 boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 {
-	boolean found_player = FALSE, failed = FALSE;
+	boolean found_player = (boolean) FALSE, failed = (boolean) FALSE;
 	int a = -1, b = -1;
 	pos_t current = monster_pos;
 	
@@ -959,7 +959,7 @@ boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 			case ROCK:
 			if(a == 1 && b == 1)
 			{
-				failed = TRUE;
+				failed = (boolean) TRUE;
 			}
 			a++;
 			if(a > 1)
@@ -977,14 +977,14 @@ boolean line_of_sight_helper(pos_t monster_pos, Dungeon_Space_Struct **dungeon)
 			case ROOM:
 			if((get_Character_pos(get_character_by_id(0)).x == current.x) && (get_Character_pos(get_character_by_id(0)).y == current.y))
 			{
-				found_player = TRUE;
+				found_player = (boolean) TRUE;
 			}
 			break;
 			
 			case CORRIDOR:
 			if((get_Character_pos(get_character_by_id(0)).x == current.x) && (get_Character_pos(get_character_by_id(0)).y == current.y))
 			{
-				found_player = TRUE;
+				found_player = (boolean) TRUE;
 			}
 			break;
 		}
@@ -997,13 +997,13 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 {
 	pos_t move_to = {.x = get_Character_pos(player_to_move).x, .y = get_Character_pos(player_to_move).y};
 	//boolean moving = FALSE;
-	boolean erratic = FALSE;
+	boolean erratic = (boolean) FALSE;
 	
 	if((get_Monster_abilities((monster_t *)player_to_move) & 0x8) == 0x8)
 	{
 		if(rand()%2 == 1)
 		{
-			erratic = TRUE;
+			erratic = (boolean) TRUE;
 			int a = (rand()%3)-1;
 			int b = (rand()%3)-1;
 			if((get_Monster_abilities((monster_t *)player_to_move) & 0x4) == 0x0 && dungeon[get_Character_pos(player_to_move).x+a][get_Character_pos(player_to_move).y+b].space_type != ROCK)
@@ -1297,7 +1297,7 @@ string move_monster(character_t *player_to_move, Dungeon_Space_Struct **dungeon)
 			set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
 			if(get_Character_healthPoints(character_list[dead_index]) <= 0)
 			{
-				set_Character_alive(character_list[dead_index], FALSE);
+				set_Character_alive(character_list[dead_index], (boolean) FALSE);
 				dead_monsters++;
 				returnMessage = "" + get_Character_name(player_to_move) + " kills " + get_Character_name(character_list[dead_index]);
 			}
