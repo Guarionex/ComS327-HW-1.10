@@ -1327,6 +1327,10 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		{
 			Draw_Inventory();
 		}
+		else if(menu_type == 9)
+		{
+			Draw_Monster_List();
+		}
 		int menu_input = input_handler(getch());
 		if(menu_input == ESCAPE)
 		{
