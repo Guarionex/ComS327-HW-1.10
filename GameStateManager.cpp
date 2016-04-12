@@ -1187,7 +1187,7 @@ int turn(int *seed, int num_mon)
 			}
 			else if(moveMessage.compare(" ") != 0)
 			{
-				sprintf(monsterMessage, "%s",  moveMessage.c_str());
+				sprintf(monsterMessage, "%s ",  moveMessage.c_str());
 			}
 		}
 		set_Character_timer(current, get_Character_timer(current)+(100/get_Character_speed(current)));
