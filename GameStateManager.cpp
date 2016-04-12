@@ -1188,7 +1188,7 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}
-				playerMessage = "Invetory is full";
+				sprintf(playerMessage, "%s " , "Invetory is full");
 			}
 			Draw_Dungeon(1);
 			//sleep(3);
