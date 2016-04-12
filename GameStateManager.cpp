@@ -1271,8 +1271,10 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}*/
-				input = menu_helper(16, input, &moving_to);
-				input = menu_helper(17, input, &moving_to);
+				if(input == 16 || input == 17)
+				{
+					input = menu_helper(input, input, &moving_to);
+				}
 				if(input == 15)
 				{
 					game_state = 5;
@@ -1317,7 +1319,14 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 {
 	while(commandInput == menu_type)
 	{
-		Draw_Inventory();
+		if(menu_type == 16)
+		{
+			Draw_Equipment();
+		}
+		else if(menu_type == 17)
+		{
+			Draw_Inventory();
+		}
 		int menu_input = input_handler(getch());
 		if(menu_input == ESCAPE)
 		{
@@ -1330,6 +1339,10 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			if(commandInput == menu_type)
 			{
 				continue;
+			}
+			if(commandInput == 16 || commandInput == 17)
+			{
+					commandInput = menu_helper(commandInput, commandInput, moving_to);
 			}
 			break;
 		}
