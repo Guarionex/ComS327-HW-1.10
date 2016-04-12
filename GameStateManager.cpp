@@ -1233,7 +1233,7 @@ int turn(int *seed, int num_mon)
 						}
 					}
 				}
-				while(input == 16)
+				/*while(input == 16)
 				{
 					Draw_Equipment();
 					int menu_input = input_handler(getch());
@@ -1270,7 +1270,9 @@ int turn(int *seed, int num_mon)
 						}
 						break;
 					}
-				}
+				}*/
+				input = menu_helper(int 16, int input);
+				input = menu_helper(int 17, int input);
 				if(input == 15)
 				{
 					game_state = 5;
@@ -1309,6 +1311,30 @@ int turn(int *seed, int num_mon)
 	//Destroy_All();
 	binheap_delete(&h);
 	return level;
+}
+
+int menu_helper(int menu_type, int commandInput)
+{
+	while(commandInput == menu_type)
+	{
+		Draw_Inventory();
+		int menu_input = input_handler(getch());
+		if(menu_input == ESCAPE)
+		{
+			Draw_Dungeon(1);
+			commandInput = input_handler(getch());
+			if(commandInput < 9)
+			{
+				moving_to = get_direction((command_t) commandInput);
+			}
+			if(commandInput == menu_type)
+			{
+				continue;
+			}
+			break;
+		}
+	}
+	return commandInput;
 }
 
 int input_handler(int key)
