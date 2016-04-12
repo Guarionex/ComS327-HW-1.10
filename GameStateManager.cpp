@@ -1187,6 +1187,7 @@ int turn(int *seed, int num_mon)
 					itemClass itemInInventory = get_Player_item((player_t *) current, itemInvariant);
 					if(itemInInventory.type == objtype_no_type)
 					{
+						nameOfItem = "Made it here" + itemInInventory.name;
 						set_Player_item((player_t *) current, itemsHere[0], itemInvariant);
 						break;
 					}
