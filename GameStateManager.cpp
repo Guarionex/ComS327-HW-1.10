@@ -819,33 +819,65 @@ void Draw_Equipment(void)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
-	mvprintw(5, 19, "+----------------------------------------+");
-	mvprintw(6, 19, "|             Equipment List             |");
-	mvprintw(7, 19, "|a:                                      |");
-	mvprintw(8, 19, "|b:                                      |");
-	mvprintw(9, 19, "|c:                                      |");
-	mvprintw(10, 19, "|d:                                      |");
-	mvprintw(11, 19, "|e:                                      |");
-	mvprintw(12, 19, "|f:                                      |");
-	mvprintw(13, 19, "|g:                                      |");
-	mvprintw(14, 19, "|h:                                      |");
-	mvprintw(15, 19, "|i:                                      |");
-	mvprintw(16, 19, "|j:                                      |");
-	mvprintw(17, 19, "|k:                                      |");
-	mvprintw(18, 19, "|l:                                      |");
-	mvprintw(19, 19, "+----------------------------------------+");
+	mvprintw(4, 19, "+----------------------------------------+");
+	mvprintw(5, 19, "|             Equipment List             |");
+	mvprintw(6, 19, "|a:                                      |");
+	mvprintw(7, 19, "|b:                                      |");
+	mvprintw(8, 19, "|c:                                      |");
+	mvprintw(9, 19, "|d:                                      |");
+	mvprintw(10, 19, "|e:                                      |");
+	mvprintw(11, 19, "|f:                                      |");
+	mvprintw(12, 19, "|g:                                      |");
+	mvprintw(13, 19, "|h:                                      |");
+	mvprintw(14, 19, "|i:                                      |");
+	mvprintw(15, 19, "|j:                                      |");
+	mvprintw(16, 19, "|k:                                      |");
+	mvprintw(17, 19, "|l:                                      |");
+	mvprintw(18, 19, "+----------------------------------------+");
 	itemClass equipment;
 	for(d = 0; d < 12; d++)
 	{
 		equipment = get_Player_equipment((player_t *) character_list[0], d);
 		for(e = 23; e < equipment.name.size() && e < 60; e++)
 		{
-			mvaddch(d + 7, e, (equipment.name.c_str())[e-23]);
+			mvaddch(d + 6, e, (equipment.name.c_str())[e-23]);
 		}
 		
 	}
-	
-	
+}
+
+void Draw_Inventory(void)
+{
+	char debug_line[80];
+	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	uint d, e;
+	for(d = 0; d < strlen(debug_line); d++)
+	{
+		mvaddch(0, d, debug_line[d]);
+	}
+	mvprintw(4, 19, "+----------------------------------------+");
+	mvprintw(5, 19, "|             Inventory List             |");
+	mvprintw(6, 19, "|0:                                      |");
+	mvprintw(7, 19, "|1:                                      |");
+	mvprintw(8, 19, "|2:                                      |");
+	mvprintw(9, 19, "|3:                                      |");
+	mvprintw(10, 19, "|4:                                      |");
+	mvprintw(11, 19, "|5:                                      |");
+	mvprintw(12, 19, "|6:                                      |");
+	mvprintw(13, 19, "|7:                                      |");
+	mvprintw(14, 19, "|8:                                      |");
+	mvprintw(15, 19, "|9:                                      |");
+	mvprintw(16, 19, "+----------------------------------------+");
+	itemClass inventory;
+	for(d = 0; d < 10; d++)
+	{
+		inventory = get_Player_item((player_t *) character_list[0], d);
+		for(e = 23; e < inventory.name.size() && e < 60; e++)
+		{
+			mvaddch(d + 6, e, (inventory.name.c_str())[e-23]);
+		}
+		
+	}
 }
 
 void Draw_Distance_Dungeon(char *char_map)
@@ -1220,6 +1252,25 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}
+				while(input == 17)
+				{
+					Draw_Inventory();
+					int menu_input = input_handler(getch());
+					if(menu_input == ESCAPE)
+					{
+						Draw_Dungeon(1);
+						input = input_handler(getch());
+						if(input < 9)
+						{
+							moving_to = get_direction((command_t) input);
+						}
+						if(input == 17)
+						{
+							continue;
+						}
+						break;
+					}
+				}
 				if(input == 15)
 				{
 					game_state = 5;
@@ -1451,6 +1502,11 @@ int input_handler(int key)
 		//Equipment Menu
 		case 69:
 			return EQUIPMENT;
+		break;
+		
+		//Inventory Menu
+		case 73:
+			return INVENTORY;
 		break;
 	}
 	

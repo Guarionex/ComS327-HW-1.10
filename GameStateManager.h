@@ -33,7 +33,8 @@ typedef enum command
 	DOWN_STAIRS,
 	UP_STAIRS,
 	SAVE_QUIT,
-	EQUIPMENT
+	EQUIPMENT,
+	INVENTORY
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
