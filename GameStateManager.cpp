@@ -840,8 +840,8 @@ void Draw_Equipment(void)
 		equipment = get_Player_equipment((player_t *) character_list[0], d);
 		for(e = 23; (e - 23) < equipment.name.size() && e < 60; e++)
 		{
-			mvprintw(d + 6, e, equipment.name.c_str());
-			//mvaddch(d + 6, e, (equipment.name.c_str())[e-23]);
+			//mvprintw(d + 6, e, equipment.name.c_str());
+			mvaddch(d + 6, e, (equipment.name.c_str())[e-23]);
 		}
 		
 	}
@@ -875,8 +875,8 @@ void Draw_Inventory(void)
 		inventory = get_Player_item((player_t *) character_list[0], d);
 		for(e = 23; (e - 23) < inventory.name.size() && e < 60; e++)
 		{
-			mvprintw(d + 6, e, inventory.name.c_str());
-			//mvaddch(d + 6, e, (inventory.name.c_str())[e-23]);
+			//mvprintw(d + 6, e, inventory.name.c_str());
+			mvaddch(d + 6, e, (inventory.name.c_str())[e-23]);
 		}
 		
 	}
