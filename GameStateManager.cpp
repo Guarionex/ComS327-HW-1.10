@@ -1192,7 +1192,7 @@ int turn(int *seed, int num_mon)
 					}
 					testingItem << itemInInventory.type << " |";
 				}
-				sprintf(playerMessage, "Items = %s " , testingItem.str().c_str());
+				sprintf(playerMessage, "Items = %s ;" , testingItem.str().c_str());
 			}
 			Draw_Dungeon(1);
 			//sleep(3);
