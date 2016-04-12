@@ -810,6 +810,44 @@ void Draw_Monster_List(void)
 	refresh();
 }
 
+void Draw_Equipment(void)
+{
+	char debug_line[80];
+	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	int d, e;
+	for(d = 0; d < strlen(debug_line); d++)
+	{
+		mvaddch(0, d, debug_line[d]);
+	}
+	mvprintw(5, 0, "+----------------------------------------+");
+	mvprintw(6, 0, "|             Equipment List             |");
+	mvprintw(7, 0, "|a:                                      |");
+	mvprintw(8, 0, "|b:                                      |");
+	mvprintw(9, 0, "|c:                                      |");
+	mvprintw(10, 0, "|d:                                     |");
+	mvprintw(11, 0, "|e:                                     |");
+	mvprintw(12, 0, "|f:                                      |");
+	mvprintw(13, 0, "|g:                                      |");
+	mvprintw(14, 0, "|h:                                      |");
+	mvprintw(15, 0, "|i:                                      |");
+	mvprintw(16, 0, "|j:                                      |");
+	mvprintw(17, 0, "|k:                                      |");
+	mvprintw(18, 0, "|l:                                      |");
+	mvprintw(19, 0, "+----------------------------------------+");
+	itemClass equipment;
+	for(d = 0; d < 12; d++)
+	{
+		equipment = get_Player_equipment(character_list[0], d);
+		for(e = 4; e < equipment.name.size() && e < 41; e++)
+		{
+			mvaddch(d + 7, e, (equipment.name.c_str())[e-4]);
+		}
+		
+	}
+	
+	
+}
+
 void Draw_Distance_Dungeon(char *char_map)
 {
 	int x;
@@ -1163,6 +1201,25 @@ int turn(int *seed, int num_mon)
 						}
 					}
 				}
+				while(input == 16)
+				{
+					Draw_Equipment();
+					int menu_input = input_handler(getch());
+					if(menu_input == ESCAPE)
+					{
+						Draw_Dungeon(1);
+						input = input_handler(getch());
+						if(input < 9)
+						{
+							moving_to = get_direction((command_t) input);
+						}
+						if(input == 9)
+						{
+							continue;
+						}
+						break;
+					}
+				}
 				if(input == 15)
 				{
 					game_state = 5;
@@ -1389,6 +1446,11 @@ int input_handler(int key)
 		//SAVE_QUIT
 		case 83:
 			return SAVE_QUIT;
+		break;
+		
+		//Equipment Menu
+		case 69:
+			return EQUIPMENT;
 		break;
 	}
 	

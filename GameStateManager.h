@@ -32,7 +32,8 @@ typedef enum command
 	SCROLL_DOWN,
 	DOWN_STAIRS,
 	UP_STAIRS,
-	SAVE_QUIT
+	SAVE_QUIT,
+	EQUIPMENT
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
@@ -52,6 +53,8 @@ void populate_monsters(int num_mon, int *seed, vector<monsterClass> monsterList)
 char *Generate_Distance_Dungeon(boolean tunneler);
 void Draw_Dungeon(int use_curses);
 void Draw_Monster_List(void);
+void Draw_Equipment(void);
+void Draw_Inventory(void);
 void Draw_Distance_Dungeon(char *char_map);
 void Destroy_All(void);
 void remember_dungeon(pos_t player_position);

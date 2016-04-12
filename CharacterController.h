@@ -10,6 +10,7 @@
 #include "dungeonObjects.h"
 #include "dice.h"
 #include <string>
+#include "item.h"
 
 using namespace std;
 
@@ -51,6 +52,9 @@ class playerClass : public characterClass
 	const char *pname;
 	
 	public:
+	itemClass equipment[12];
+	itemClass inventory[10];
+	
 	playerClass();
 	~playerClass();
 	playerClass(const char *player_name);
@@ -163,6 +167,10 @@ extern int dead_monsters;
 player_t *new_Player(void);
 void destroy_Player(player_t *player_to_destroy);
 player_t *new_Player_param(const char *player_name);
+itemClass get_Player_equipment(player_t *playerC, int slot);
+void set_Player_equipment(player_t *playerC, itemClass newEquipment, int slot);
+itemClass get_Player_item(player_t *playerC, int slot);
+void set_Player_item(player_t *playerC, itemClass newItem, int slot);
 
 monster_t *new_Monster();
 void destroy_Monster(monster_t *monster_to_destroy);

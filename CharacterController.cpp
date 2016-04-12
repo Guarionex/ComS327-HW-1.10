@@ -14,16 +14,43 @@ int dead_monsters = 0;
 playerClass::playerClass()
 {
 	pname = "";
+	int i;
+	for(i = 0; i < 12; i++)
+	{
+		equipment[i] = itemClass();
+	}
+	for(i = 0; i < 10; i++)
+	{
+		inventory[i] = itemClass();
+	}
 }
 
 playerClass::~playerClass()
 {
 	pname = NULL;
+	int i;
+	for(i = 0; i < 12; i++)
+	{
+		equipment[i] = itemClass();
+	}
+	for(i = 0; i < 10; i++)
+	{
+		inventory[i] = itemClass();
+	}
 }
 
 playerClass::playerClass(const char *player_name)
 {
 	pname = player_name;
+	int i;
+	for(i = 0; i < 12; i++)
+	{
+		equipment[i] = itemClass();
+	}
+	for(i = 0; i < 10; i++)
+	{
+		inventory[i] = itemClass();
+	}
 }
 
 player_t *new_Player(void)
@@ -39,6 +66,26 @@ void destroy_Player(player_t *player_to_destroy)
 player_t *new_Player_param(const char *player_name)
 {
 	return ((player_t *) new playerClass(player_name));
+}
+
+itemClass get_Player_equipment(player_t *playerC, int slot)
+{
+		return ((playerClass *) playerC)->equipment[slot];
+}
+
+void set_Player_equipment(player_t *playerC, itemClass newEquipment, int slot)
+{
+		((playerClass *) playerC)->equipment[slot] = newEquipment;
+}
+
+itemClass get_Player_item(player_t *playerC, int slot)
+{
+	return ((playerClass *) playerC)->inventory[slot];
+}
+
+void set_Player_item(player_t *playerC, itemClass newItem, int slot)
+{
+	((playerClass *) playerC)->equipment[slot] = newEquipment;
 }
 
 monsterClass::monsterClass()
