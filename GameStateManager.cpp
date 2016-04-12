@@ -1201,7 +1201,7 @@ int turn(int *seed, int num_mon)
 						game_state = 3;
 					}
 				}
-				while(input == 9)
+				/*while(input == 9)
 				{
 					Draw_Monster_List();
 					int menu_input = input_handler(getch());
@@ -1233,7 +1233,7 @@ int turn(int *seed, int num_mon)
 						}
 					}
 				}
-				/*while(input == 16)
+				while(input == 16)
 				{
 					Draw_Equipment();
 					int menu_input = input_handler(getch());
@@ -1271,7 +1271,7 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}*/
-				if(input == 16 || input == 17)
+				if(input == 16 || input == 17 || input == 9)
 				{
 					input = menu_helper(input, input, &moving_to);
 				}
@@ -1340,11 +1340,24 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			{
 				continue;
 			}
-			if(commandInput == 16 || commandInput == 17)
+			if(commandInput == 16 || commandInput == 17 && commandInput == 9)
 			{
 					commandInput = menu_helper(commandInput, commandInput, moving_to);
 			}
 			break;
+		}
+		else if(menu_type == 9 && ((num_characters - 1)- dead_monsters > 23 && ((menu_input == 12 && ((num_characters - 1)- dead_monsters) - scroll_index > 23) || (menu_input == 11 && scroll_index > 0))))
+		{
+			if(menu_input == 12)
+			{
+				scroll_index++;
+				continue;
+			}
+			else if(menu_input == 11)
+			{
+				scroll_index--;
+				continue;
+			}
 		}
 	}
 	return commandInput;
