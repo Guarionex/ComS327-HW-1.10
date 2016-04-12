@@ -1180,7 +1180,7 @@ int turn(int *seed, int num_mon)
 			if(containsItemAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y))
 			{
 				vector<itemClass> itemsHere = getItemsAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y);
-				stringstream testingItem;
+				string nameOfItem = "Nothing";
 				int itemInvariant;
 				for(itemInvariant = 0; itemInvariant < 10; itemInvariant++)
 				{
@@ -1190,9 +1190,9 @@ int turn(int *seed, int num_mon)
 						set_Player_item((player_t *) current, itemsHere[0], itemInvariant);
 						break;
 					}
-					testingItem << itemInInventory.type << " |";
+					nameOfItem = itemInInventory.name;
 				}
-				sprintf(playerMessage, "Items = %s ;" , testingItem.str().c_str());
+				sprintf(playerMessage, "Items = %s ;", nameOfItem.c_str());
 			}
 			Draw_Dungeon(1);
 			//sleep(3);
