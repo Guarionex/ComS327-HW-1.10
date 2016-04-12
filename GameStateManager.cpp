@@ -819,28 +819,28 @@ void Draw_Equipment(void)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
-	mvprintw(5, 0, "+----------------------------------------+");
-	mvprintw(6, 0, "|             Equipment List             |");
-	mvprintw(7, 0, "|a:                                      |");
-	mvprintw(8, 0, "|b:                                      |");
-	mvprintw(9, 0, "|c:                                      |");
-	mvprintw(10, 0, "|d:                                     |");
-	mvprintw(11, 0, "|e:                                     |");
-	mvprintw(12, 0, "|f:                                      |");
-	mvprintw(13, 0, "|g:                                      |");
-	mvprintw(14, 0, "|h:                                      |");
-	mvprintw(15, 0, "|i:                                      |");
-	mvprintw(16, 0, "|j:                                      |");
-	mvprintw(17, 0, "|k:                                      |");
-	mvprintw(18, 0, "|l:                                      |");
-	mvprintw(19, 0, "+----------------------------------------+");
+	mvprintw(5, 19, "+----------------------------------------+");
+	mvprintw(6, 19, "|             Equipment List             |");
+	mvprintw(7, 19, "|a:                                      |");
+	mvprintw(8, 19, "|b:                                      |");
+	mvprintw(9, 19, "|c:                                      |");
+	mvprintw(10, 19, "|d:                                      |");
+	mvprintw(11, 19, "|e:                                      |");
+	mvprintw(12, 19, "|f:                                      |");
+	mvprintw(13, 19, "|g:                                      |");
+	mvprintw(14, 19, "|h:                                      |");
+	mvprintw(15, 19, "|i:                                      |");
+	mvprintw(16, 19, "|j:                                      |");
+	mvprintw(17, 19, "|k:                                      |");
+	mvprintw(18, 19, "|l:                                      |");
+	mvprintw(19, 19, "+----------------------------------------+");
 	itemClass equipment;
 	for(d = 0; d < 12; d++)
 	{
 		equipment = get_Player_equipment((player_t *) character_list[0], d);
-		for(e = 4; e < equipment.name.size() && e < 41; e++)
+		for(e = 23; e < equipment.name.size() && e < 60; e++)
 		{
-			mvaddch(d + 7, e, (equipment.name.c_str())[e-4]);
+			mvaddch(d + 7, e, (equipment.name.c_str())[e-23]);
 		}
 		
 	}
@@ -1213,7 +1213,7 @@ int turn(int *seed, int num_mon)
 						{
 							moving_to = get_direction((command_t) input);
 						}
-						if(input == 9)
+						if(input == 16)
 						{
 							continue;
 						}
