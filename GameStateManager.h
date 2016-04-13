@@ -34,7 +34,12 @@ typedef enum command
 	UP_STAIRS,
 	SAVE_QUIT,
 	EQUIPMENT,
-	INVENTORY
+	INVENTORY,
+	WEAR,
+	DROP,
+	EXPUNGE,
+	INSPECT,
+	TAKE_OFF
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
@@ -56,6 +61,7 @@ void Draw_Dungeon(int use_curses);
 void Draw_Monster_List(void);
 void Draw_Equipment(void);
 void Draw_Inventory(void);
+void Draw_Carry_Slot_Dialog(void);
 void Draw_Distance_Dungeon(char *char_map);
 void Destroy_All(void);
 void remember_dungeon(pos_t player_position);

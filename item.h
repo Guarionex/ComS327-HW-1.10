@@ -33,7 +33,7 @@ class itemClass
 	pos_t pos;
 	bool item_stack;
 	
-	itemClass() : name("Null"), description(), type(objtype_no_type), color(-1), hit(0), damage(Dice()), dodge(0), defence(0), weight(0), speed(0), attribute(0), value(0), equipment(false), symbol('*'), twoHanded(false), pos(NULL_POS), item_stack(false)
+	itemClass() : name("Empty"), description("This slot is empty"), type(objtype_no_type), color(-1), hit(0), damage(Dice()), dodge(0), defence(0), weight(0), speed(0), attribute(0), value(0), equipment(false), symbol('*'), twoHanded(false), pos(NULL_POS), item_stack(false)
 	{	
 	}
 	itemClass(objectClass obj);

@@ -882,6 +882,53 @@ void Draw_Inventory(void)
 	}
 }
 
+void Draw_Carry_Slot_Dialog(void)
+{
+	char debug_line[80];
+	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	uint d, e;
+	for(d = 0; d < strlen(debug_line); d++)
+	{
+		mvaddch(0, d, debug_line[d]);
+	}
+	string dialogType = " ";
+	string doalogMessage = " ";
+	switch(input)
+	{
+		case 18:
+			dialogType = "Which item to wear?";
+			dialogMessage = "Select an inventory slot between 0 - 9";
+		break;
+		
+		case 19:
+			dialogType = "Which item to drop?";
+			dialogMessage = "Select an inventory slot between 0 - 9";
+		break;
+		
+		case 20:
+			dialogType = "Which item to expunge?";
+			dialogMessage = "Select an inventory slot between 0 - 9";
+		break;
+		
+		case 21:
+			dialogType = "Which item to inspect?";
+			dialogMessage = "Select an inventory slot between 0 - 9";
+		break;
+		
+		case 22:
+			dialogType = "Which equipment to take off?";
+			dialogMessage = "Select an equipment slot between a - l";
+		break;
+	}
+	mvprintw(10, 19, "+----------------------------------------+");
+	mvprintw(11, 19, "|                                        |");
+	mvprintw(12, 19, "|                                        |");
+	mvprintw(13, 19, "+----------------------------------------+");
+	
+	mvprintw(11, ((40 - dialogType.size())/2) + 20, dialogType.c_str() );
+	mvprintw(12, 21, dialogMessage.c_str());
+}
+
 void Draw_Distance_Dungeon(char *char_map)
 {
 	int x;
@@ -1182,7 +1229,7 @@ int turn(int *seed, int num_mon)
 				vector<itemClass> itemsHere = getItemsAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y);
 				string nameOfItem = "Inventory is full";
 				uint itemInvariant;
-				for(itemInvariant = 0; itemInvariant < 5; itemInvariant++)
+				for(itemInvariant = 0; itemInvariant < 10; itemInvariant++)
 				{
 					itemClass itemInInventory = get_Player_item((player_t *) current, itemInvariant);
 					if(itemInInventory.type == objtype_no_type && itemsHere.size() > 0)
@@ -1293,7 +1340,7 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}*/
-				if(input == 16 || input == 17 || input == 9)
+				if(input == 16 || input == 17 || input == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22)
 				{
 					input = menu_helper(input, input, &moving_to);
 				}
@@ -1352,6 +1399,10 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		else if(menu_type == 9)
 		{
 			Draw_Monster_List();
+		}
+		else if(menu_type >= 18 && menu_type <= 22)
+		{
+			Draw_Carry_Slot_Dialog();
 		}
 		int menu_input = input_handler(getch());
 		if(menu_input == ESCAPE)
