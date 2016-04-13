@@ -920,13 +920,43 @@ void Draw_Carry_Slot_Dialog(void)
 			dialogMessage = "Select an equipment slot between a - l";
 		break;
 	}
-	mvprintw(10, 19, "+----------------------------------------+");
-	mvprintw(11, 19, "|                                        |");
-	mvprintw(12, 19, "|                                        |");
-	mvprintw(13, 19, "+----------------------------------------+");
+	int numberValids = 0;
+	uint validIndex;
+	if(input != 22)
+	{
+		for(validIndex = 0; validIndex < 10; validIndex++)
+		{
+			if(get_Player_item((player_t *)character_list[0], validIndex).type != objtype_no_type)
+			{
+				numberValids++;
+			}
+		}
+		
+		for(validIndex = 0; validIndex < 10; validIndex++)
+		{
+			if(validIndex == 0)
+			{
+				mvprintw(((21 - (4+numberValids))/2), 19, "+----------------------------------------+");
+				mvprintw(((21 - (4+numberValids))/2)+1, 19, "|                                        |");
+				mvprintw(((21 - (4+numberValids))/2)+2, 19, "|                                        |");
+				mvprintw(((21 - (4+numberValids))/2)+1, ((40 - dialogType.size())/2) + 20, dialogType.c_str() );
+				mvprintw(((21 - (4+numberValids))/2)+2, 21, dialogMessage.c_str());
+			}
+			itemClass itemToDraw = get_Player_item((player_t *)character_list[0], validIndex);
+			if(itemToDraw.type != objtype_no_type)
+			{
+				mvprintw(((21 - (4+numberValids))/2)+3, 19, "|                                        |");
+				char slotString[2] = "0:";
+				slotString[0] +=  validIndex;
+				mvaddch(((21 - (4+numberValids))/2)+3, 20, slotString);
+				mvprintw(((21 - (4+numberValids))/2)+3, 22, itemToDraw.name.c_str());
+			}
+		}
+		
+	}
 	
-	mvprintw(11, ((40 - dialogType.size())/2) + 20, dialogType.c_str() );
-	mvprintw(12, 21, dialogMessage.c_str());
+	
+	mvprintw(((21 - (4+numberValids))/2)+3+validIndex, 19, "+----------------------------------------+");
 }
 
 void Draw_Item_Desc(itemClass itemForDesc)
