@@ -186,6 +186,11 @@ int32_t get_Character_speed(character_t * toon)
 	return ((characterClass *) toon)->speed;
 }
 
+void set_Character_speed(character_t * toon, int new_speed)
+{
+	((characterClass *) toon)->speed = new_speed;
+}
+
 int32_t get_Character_timer(character_t * toon)
 {
 	return ((characterClass *) toon)->timer;

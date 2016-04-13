@@ -1657,6 +1657,13 @@ bool wear_helper(int slot)
 			set_Player_equipment((player_t *) character_list[0], itemToWear, equipIndex);
 		}
 	}
+	int newSpeed = get_Character_speed(character_list[0]);
+	newSpeed += itemToWear.speed;
+	if(newSpeed <=0 )
+	{
+		newSpeed = 1;
+	}
+	set_Character_speed(character_list[0], newSpeed);
 	sprintf(playerMessage, "Equipped %s", itemToWear.name.c_str());
 	return true;
 }

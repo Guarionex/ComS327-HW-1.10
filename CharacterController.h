@@ -184,6 +184,7 @@ void set_Monster_memory(monster_t *mon, pos_t new_memory);
 character_t *new_Character();
 void destroy_Character(character_t * toon);
 int32_t get_Character_speed(character_t * toon);
+void set_Character_speed(character_t * toon, int new_speed);
 int32_t get_Character_timer(character_t * toon);
 void set_Character_timer(character_t * toon, int32_t new_time);
 int get_Character_id(character_t * toon);
