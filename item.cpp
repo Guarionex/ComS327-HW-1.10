@@ -107,6 +107,22 @@ vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass>
 	return dungeonItems;
 }
 
+void drop_itemAt(vector<itemClass> *listOfItems, itemClass dropping, int x, int y)
+{
+		dropping.pos.x = x;
+		dropping.pos.y = y;
+		uint i;
+		for(i = 0; i < listOfItems->size(); i++)
+		{
+			if((*listOfItems)[i].pos.x == dropping.pos.x && (*listOfItems)[i].pos.y == dropping.pos.y)
+			{
+				(*listOfItems)[i].item_stack = true;
+				dropping.item_stack = true;
+			}
+		}
+		listOfItems->push_back(dropping);
+}
+
 bool containsItemAt(vector<itemClass> search, int x, int y)
 {
 	uint s;

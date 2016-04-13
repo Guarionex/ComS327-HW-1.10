@@ -42,6 +42,7 @@ class itemClass
 };
 
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up);
+void drop_itemAt(vector<itemClass> *listOfItems, itemClass dropping, int x, int y);
 bool containsItemAt(vector<itemClass> search, int x, int y);
 vector<itemClass> getItemsAt(vector<itemClass> search, int x, int y);
 void removeItemAt(vector<itemClass> *search, int x, int y, string nameToRemove);

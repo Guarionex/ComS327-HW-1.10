@@ -1444,7 +1444,13 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			Draw_Dungeon(1);
 			break;
 		}
-		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 9)
+		else if(menu_type == 19 && (dialogInput - 48) >= 0 && (dialogInput - 48) <= 9)
+		{
+			drop_helper(dialogInput - 48);
+			Draw_Dungeon(1);
+			break;
+		}
+		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 11)
 		{
 			take_off_helper(dialogInput - 97);
 			Draw_Dungeon(1);
@@ -1568,8 +1574,21 @@ bool take_off_helper(int slot)
 	
 	set_Player_item((player_t *) character_list[0], equipTakeOff, inventoryItems);
 	set_Player_equipment((player_t *) character_list[0], itemClass(), slot);
-	
+	sprintf(playerMessage, "Took off %s ", equipTakeOff.c_str());
 	return true;
+}
+
+bool drop_helper(int slot)
+{
+	itemClass itemToDrop = get_Player_item((player_t *) character_list[0], slot);
+	if(itemToDrop.type == objtype_no_type)
+	{
+		sprintf(playerMessage, "%s ", "Cannot drop an empty slot");
+		return false;
+	}
+	set_Player_item((player_t *) character_list[0], itemClass(), slot);
+	drop_itemAt(&levelItems, itemToDrop, get_Character_pos(character_list[0]).x, get_Character_pos(character_list[0]).y);
+	sprintf(playerMessage, "%Dropped %s", itemToDrop.name.c_str());
 }
 
 int input_handler(int key)
