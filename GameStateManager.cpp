@@ -952,6 +952,7 @@ void Draw_Item_Desc(itemClass itemForDesc)
 	{
 		mvprintw(yStart + dIndex + 2, 0, "|                                                                              |");
 		mvprintw(yStart + dIndex + 2, 1, itemForDesc.description.substr(startIndex, positions[dIndex]).c_str());
+		mvaddch(yStart + dIndex + 2, 79, '|');
 		startIndex = positions[dIndex] + 1;
 	}
 	mvprintw(yStart + dIndex + 2, 0, "+------------------------------------------------------------------------------+");
