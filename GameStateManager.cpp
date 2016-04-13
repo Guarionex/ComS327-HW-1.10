@@ -1436,8 +1436,96 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				continue;
 			}
 		}
+		else if((menu_type - 48) >= 0 && (menu_type - 48) <= 9)
+		{
+			wear_helper(menu_type - 48);
+		}
 	}
 	return commandInput;
+}
+
+bool wear_helper(int slot)
+{
+	itemClass itemToWear = get_Player_item((player_t *) character_list[0], slot);
+	if(itemToWear.type == objtype_no_type || !itemToWear.equipment)
+	{
+		return false;
+	}
+	int equipIndex = 0;
+	switch(itemToWear.type)
+	{
+		case objtype_WEAPON:
+			return 0;
+		break;
+		
+		case objtype_OFFHAND:
+			return 1;
+		break;
+		
+		case objtype_RANGED:
+			return 2;
+		break;
+		
+		case objtype_ARMOR:
+			return 3;
+		break;
+		
+		case objtype_HELMET:
+			return 4;
+		break;
+		
+		case objtype_CLOAK:
+			return 5;
+		break;
+		
+		case objtype_GLOVES:
+			return 6;
+		break;
+		
+		case objtype_BOOTS:
+			return 7;
+		break;
+		
+		case objtype_AMULET:
+			return 8;
+		break;
+		
+		case objtype_LIGHT:
+			return 9;
+		break;
+		
+		case objtype_RING:
+			return 10;
+		break;
+	}
+	
+	itemClass equipToReplace = get_Player_equipment((player_t *) character_list[0], equipIndex);
+	if(equipToReplace.type == objtype_no_type)
+	{
+		set_Player_equipment((player_t *) character_list[0], itemToWear, equipIndex);
+		set_Player_item((player_t *) character_list[0], itemClass(), slot);
+	}
+	else
+	{
+		if(equipToReplace.type == objtype_RING && (get_Player_equipment((player_t *) character_list[0], equipIndex+1)).type == objtype_no_type)
+		{
+			set_Player_equipment((player_t *) character_list[0], itemToWear, equipIndex+1);
+			set_Player_item((player_t *) character_list[0], itemClass(), slot);
+		}
+		else if(equipToReplace.type == objtype_RING)
+		{
+			itemClass ringTemp = get_Player_equipment((player_t *) character_list[0], equipIndex+1);
+			set_Player_equipment((player_t *) character_list[0], ringTemp, equipIndex);
+			set_Player_item((player_t *) character_list[0], equipToReplace, slot);
+			set_Player_equipment((player_t *) character_list[0], itemToWear, equipIndex+1);
+		}
+		else
+		{
+			set_Player_item((player_t *) character_list[0], equipToReplace, slot);
+			set_Player_equipment((player_t *) character_list[0], itemToWear, equipIndex);
+		}
+	}
+	return true;
 }
 
 int input_handler(int key)
@@ -1634,7 +1722,7 @@ int input_handler(int key)
 		break;
 		
 		//Inventory Menu
-		case 105:
+		case 73:
 			return INVENTORY;
 		break;
 		
@@ -1654,7 +1742,7 @@ int input_handler(int key)
 		break;
 		
 		//INSPECT
-		case 73:
+		case 105:
 			return INSPECT;
 		break;
 		

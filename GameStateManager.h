@@ -67,6 +67,7 @@ void Destroy_All(void);
 void remember_dungeon(pos_t player_position);
 int turn(int *seed, int num_mon);
 int menu_helper(int menu_type, int commandInput, pos_t *moving_to);
+bool wear_helper(int slot);
 int input_handler(int key);
 pos_t get_direction(command_t key);
 void define_new_keys(void);
