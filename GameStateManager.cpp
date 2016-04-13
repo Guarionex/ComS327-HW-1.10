@@ -1494,6 +1494,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				Draw_Item_Desc(get_Player_item((player_t *) character_list[0], dialogInput - 48));
 				descInput = input_handler(getch());
 			}
+			Draw_Dungeon(1);
 			break;
 		}
 		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 11)
