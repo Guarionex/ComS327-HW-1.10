@@ -1436,10 +1436,10 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				continue;
 			}
 		}
-		else if((menu_type - 48) >= 0 && (menu_type - 48) <= 9)
+		/*else if((menu_type - 48) >= 0 && (menu_type - 48) <= 9)
 		{
 			wear_helper(menu_type - 48);
-		}
+		}*/
 	}
 	return commandInput;
 }
