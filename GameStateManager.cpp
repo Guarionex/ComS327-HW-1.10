@@ -1182,7 +1182,7 @@ int turn(int *seed, int num_mon)
 				vector<itemClass> itemsHere = getItemsAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y);
 				string nameOfItem = "Inventory is full";
 				uint itemInvariant;
-				for(itemInvariant = 0; itemInvariant < 10; itemInvariant++)
+				for(itemInvariant = 0; itemInvariant < 5; itemInvariant++)
 				{
 					itemClass itemInInventory = get_Player_item((player_t *) current, itemInvariant);
 					if(itemInInventory.type == objtype_no_type && itemsHere.size() > 0)
@@ -1195,7 +1195,7 @@ int turn(int *seed, int num_mon)
 					}
 					
 				}
-				sprintf(playerMessage, "%s size = %lu, i = %u", nameOfItem.c_str(), itemsHere.size(), itemInvariant);
+				sprintf(playerMessage, "%s ", nameOfItem.c_str());
 			}
 			Draw_Dungeon(1);
 			//sleep(3);
