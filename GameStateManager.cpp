@@ -1446,7 +1446,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		}
 		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 9)
 		{
-			wear_helper(dialogInput - 97);
+			take_off_helper(dialogInput - 97);
 			Draw_Dungeon(1);
 			break;
 		}
