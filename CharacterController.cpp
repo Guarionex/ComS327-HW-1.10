@@ -357,7 +357,7 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	player = (character_t *) pc;//character_tag_create(10, 0, 0, TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER, pc);
 	set_Character_all(player, 10, 0, 0, (boolean) TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
 	set_Character_healthPoints(player, 1000);
-	set_Character_parsed_data(player, "Dr. Sheaffer", "Professor of ComS 327", '@', 6, Dice(1000, 1, 4));
+	set_Character_parsed_data(player, "Dr. Sheaffer", "Professor of ComS 327", '@', 6, Dice(0, 1, 4));
 	create_character_list();
 	add_character(player);
 	free(open_pos);
@@ -809,6 +809,15 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{
 				int damageDone = get_Character_damage(player_to_move);
+				int diceIndex;
+				for(diceIndex = 0; diceIndex < 12 diceIndex++)
+				{
+					itemClass equipmentForDamage = get_Player_equipment((player_t *) player_to_move, diceIndex);
+					if(equipmentForDamage.type != objtype_no_type)
+					{
+						damageDone += equipmentForDamage.damage.roll;
+					}
+				}
 				damageString << damageDone;
 				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
 				if(get_Character_healthPoints(character_list[dead_index]) <= 0)
@@ -848,6 +857,15 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 			if(get_Character_alive(character_list[dead_index]) == TRUE)
 			{	
 				int damageDone = get_Character_damage(player_to_move);
+				int diceIndex;
+				for(diceIndex = 0; diceIndex < 12 diceIndex++)
+				{
+					itemClass equipmentForDamage = get_Player_equipment((player_t *) player_to_move, diceIndex);
+					if(equipmentForDamage.type != objtype_no_type)
+					{
+						damageDone += equipmentForDamage.damage.roll;
+					}
+				}
 				damageString << damageDone;
 				set_Character_healthPoints(character_list[dead_index], get_Character_healthPoints(character_list[dead_index]) - damageDone);
 				if(get_Character_healthPoints(character_list[dead_index]) <= 0)
