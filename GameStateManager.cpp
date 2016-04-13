@@ -931,7 +931,7 @@ void Draw_Carry_Slot_Dialog(void)
 
 void Draw_Item_Desc(itemClass itemForDesc)
 {
-	string desc = itemForDesc.name;
+	string desc = itemForDesc.desc;
 	vector<int> positions;
 	uint nLine;
 	for(nLine = 0; nLine < desc.length(); nLine++)
@@ -942,7 +942,7 @@ void Draw_Item_Desc(itemClass itemForDesc)
 		}
 	}
 	
-	sprintf(playerMessage, "Size = %u", nLine);
+	//sprintf(playerMessage, "Size = %s", nLine);
 	int yStart = ((21 - (positions.size()+3))/2)+1;
 	mvprintw(yStart, 0, "+-----------------------------------------------------------------------------+");
 	mvprintw(yStart + 1, 0, "|                                                                             |");
