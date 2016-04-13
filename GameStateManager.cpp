@@ -1405,7 +1405,8 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		{
 			Draw_Carry_Slot_Dialog();
 		}
-		int menu_input = input_handler(getch());
+		int dialogInput = getch();
+		int menu_input = input_handler(dialogInput);
 		if(menu_input == ESCAPE)
 		{
 			Draw_Dungeon(1);
@@ -1437,9 +1438,9 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				continue;
 			}
 		}
-		else if((menu_type - 48) >= 0 && (menu_type - 48) <= 9)
+		else if(menu_type == 18 && (dialogInput - 48) >= 0 && (dialogInput - 48) <= 9)
 		{
-			wear_helper(menu_type - 48);
+			wear_helper(dialogInput - 48);
 			break;
 		}
 	}
