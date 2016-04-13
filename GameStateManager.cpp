@@ -1634,8 +1634,33 @@ int input_handler(int key)
 		break;
 		
 		//Inventory Menu
-		case 73:
+		case 105:
 			return INVENTORY;
+		break;
+		
+		//WEARF1
+		case 87:
+			return WEAR;
+		break;
+		
+		//DROP
+		case 68:
+			return DROP;
+		break;
+		
+		//EXPUNGE
+		case 120:
+			return EXPUNGE;
+		break;
+		
+		//INSPECT
+		case 73:
+			return INSPECT;
+		break;
+		
+		//TAKE_OFF
+		case 116:
+			return TAKE_OFF;
 		break;
 	}
 	
