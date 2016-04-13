@@ -939,6 +939,7 @@ void Draw_Item_Desc(itemClass itemForDesc)
 		positions.push_back(pos);
 		pos = desc.find("\n", pos+1);
 	}
+	sprintf(playerMessage, "Size = %lu", positions.size());
 	int yStart = ((21 - (positions.size()+3))/2)+1;
 	mvprintw(yStart, 0, "+-----------------------------------------------------------------------------+");
 	mvprintw(yStart + 1, 0, "|                                                                             |");
@@ -1481,6 +1482,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		}
 		else if(menu_type == 21 && (dialogInput - 48) >= 0 && (dialogInput - 48) <= 9)
 		{
+			Draw_Dungeon(1);
 			Draw_Item_Desc(get_Player_item((player_t *) character_list[0], dialogInput - 48));
 		}
 		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 11)
