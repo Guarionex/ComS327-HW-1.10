@@ -946,9 +946,9 @@ void Draw_Carry_Slot_Dialog(void)
 			if(itemToDraw.type != objtype_no_type)
 			{
 				mvprintw(((21 - (4+numberValids))/2)+3, 19, "|                                        |");
-				char slotString[2] = "0:";
+				char slotString[3] = "0:";
 				slotString[0] +=  validIndex;
-				mvaddch(((21 - (4+numberValids))/2)+3, 20, slotString);
+				mvprintw(((21 - (4+numberValids))/2)+3, 20, slotString);
 				mvprintw(((21 - (4+numberValids))/2)+3, 22, itemToDraw.name.c_str());
 			}
 		}
