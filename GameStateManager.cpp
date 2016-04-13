@@ -956,7 +956,7 @@ void Draw_Carry_Slot_Dialog(void)
 	}
 	
 	
-	mvprintw(((21 - (4+numberValids))/2)+4+validIndex, 19, "+----------------------------------------+");
+	mvprintw(((21 - (4+numberValids))/2)+3+numberValids, 19, "+----------------------------------------+");
 }
 
 void Draw_Item_Desc(itemClass itemForDesc)
