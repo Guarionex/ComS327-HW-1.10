@@ -953,11 +953,44 @@ void Draw_Carry_Slot_Dialog(void)
 				validItemsPrinted++;
 			}
 		}
-		
+		mvprintw(((21 - (4+numberValids))/2)+3+numberValids, 19, "+----------------------------------------+");
+	}
+	else
+	{
+		for(validIndex = 0; validIndex < 12; validIndex++)
+		{
+			if(get_Player_equipment((player_t *)character_list[0], validIndex).type != objtype_no_type)
+			{
+				numberValids++;
+			}
+		}
+		int validItemsPrinted = 0;
+		for(validIndex = 0; validIndex < 12; validIndex++)
+		{
+			if(validIndex == 0)
+			{
+				mvprintw(((21 - (4+numberValids))/2), 19, "+----------------------------------------+");
+				mvprintw(((21 - (4+numberValids))/2)+1, 19, "|                                        |");
+				mvprintw(((21 - (4+numberValids))/2)+2, 19, "|                                        |");
+				mvprintw(((21 - (4+numberValids))/2)+1, ((40 - dialogType.size())/2) + 20, dialogType.c_str() );
+				mvprintw(((21 - (4+numberValids))/2)+2, 21, dialogMessage.c_str());
+			}
+			itemClass itemToDraw = get_Player_equipment((player_t *)character_list[0], validIndex);
+			if(itemToDraw.type != objtype_no_type)
+			{
+				mvprintw(((21 - (4+numberValids))/2)+3+validItemsPrinted, 19, "|                                        |");
+				char slotString[3] = "a:";
+				slotString[0] +=  validIndex;
+				mvprintw(((21 - (4+numberValids))/2)+3+validItemsPrinted, 20, slotString);
+				mvprintw(((21 - (4+numberValids))/2)+3+validItemsPrinted, 22, itemToDraw.name.c_str());
+				validItemsPrinted++;
+			}
+		}
+		mvprintw(((21 - (4+numberValids))/2)+3+numberValids, 19, "+----------------------------------------+");
 	}
 	
 	
-	mvprintw(((21 - (4+numberValids))/2)+3+numberValids, 19, "+----------------------------------------+");
+	
 }
 
 void Draw_Item_Desc(itemClass itemForDesc)
