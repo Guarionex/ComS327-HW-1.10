@@ -951,7 +951,7 @@ void Draw_Item_Desc(itemClass itemForDesc)
 	for(dIndex = 0; dIndex < positions.size(); dIndex++)
 	{
 		mvprintw(yStart + dIndex + 2, 0, "|                                                                              |");
-		mvprintw(yStart + dIndex + 2, 1, itemForDesc.description.substr(positions[dIndex], (((dIndex + 1) < positions.size()) ? positions[dIndex+1] - positions[dIndex] : string::npos )).c_str());
+		mvprintw(yStart + dIndex + 2, 1, itemForDesc.description.substr(positions[dIndex]).c_str());
 	}
 	mvprintw(yStart + dIndex + 2, 0, "+------------------------------------------------------------------------------+");
 }
