@@ -929,6 +929,29 @@ void Draw_Carry_Slot_Dialog(void)
 	mvprintw(12, 21, dialogMessage.c_str());
 }
 
+void Draw_Item_Desc(itemClass itemForDesc)
+{
+	string desc = itemForDesc.name;
+	vector<size_t> positions;
+	size_t pos = desc.find("\n", 0);
+	while(pos != string::npos)
+	{
+		positions.push_back(pos);
+		pos = desc.find("\n", pos+1);
+	}
+	int yStart = ((21 - (positions.size()+3))/2)+1;
+	mvprintw(yStart, 0, "+-----------------------------------------------------------------------------+");
+	mvprintw(yStart + 1, 0, "|                                                                             |");
+	mvprintw(yStart + 1, 1, itemForDesc.name.c_str());
+	uint dIndex;
+	for(dIndex = 0; dIndex < positions.size(); dIndex++)
+	{
+		mvprintw(yStart + dIndex + 2, 0, "|                                                                             |");
+		mvprintw(yStart + dIndex + 2, 1, itemForDesc.description.substr(positions[dIndex], (((dIndex + 1) < positions.size()) ? positions[dIndex+1] - positions[dIndex] : string::npos )).c_str());
+	}
+	mvprintw(yStart + dIndex + 2, 0, "+-----------------------------------------------------------------------------+");
+}
+
 void Draw_Distance_Dungeon(char *char_map)
 {
 	int x;
@@ -1450,6 +1473,16 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			Draw_Dungeon(1);
 			break;
 		}
+		else if(menu_type == 20 && (dialogInput - 48) >= 0 && (dialogInput - 48) <= 9)
+		{
+			expunge_helper(dialogInput - 48);
+			Draw_Dungeon(1);
+			break;
+		}
+		else if(menu_type == 21 && (dialogInput - 48) >= 0 && (dialogInput - 48) <= 9)
+		{
+			void Draw_Item_Desc(get_Player_item((player_t *) character_list[0], dialogInput - 48);)
+		}
 		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 11)
 		{
 			take_off_helper(dialogInput - 97);
@@ -1589,6 +1622,19 @@ bool drop_helper(int slot)
 	set_Player_item((player_t *) character_list[0], itemClass(), slot);
 	drop_itemAt(&levelItems, itemToDrop, get_Character_pos(character_list[0]).x, get_Character_pos(character_list[0]).y);
 	sprintf(playerMessage, "Dropped %s", itemToDrop.name.c_str());
+	return true;
+}
+
+bool expunge_helper(int slot)
+{
+	itemClass itemToDrop = get_Player_item((player_t *) character_list[0], slot);
+	if(itemToDrop.type == objtype_no_type)
+	{
+		sprintf(playerMessage, "%s ", "Cannot expunge an empty slot");
+		return false;
+	}
+	set_Player_item((player_t *) character_list[0], itemClass(), slot);
+	sprintf(playerMessage, "Expunged %s", itemToDrop.name.c_str());
 	return true;
 }
 
