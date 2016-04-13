@@ -886,13 +886,13 @@ void Draw_Carry_Slot_Dialog(void)
 {
 	char debug_line[80];
 	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
-	uint d, e;
+	uint d;
 	for(d = 0; d < strlen(debug_line); d++)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
 	string dialogType = " ";
-	string doalogMessage = " ";
+	string dialogMessage = " ";
 	switch(input)
 	{
 		case 18:
