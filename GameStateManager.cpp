@@ -1189,7 +1189,7 @@ int turn(int *seed, int num_mon)
 					{
 						nameOfItem = "Picked up " + itemsHere[itemInvariant].name;
 						set_Player_item((player_t *) current, itemsHere[itemInvariant], itemInvariant);
-						removeItemAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y, itemsHere[itemInvariant].name);
+						removeItemAt(&levelItems, get_Character_pos(current).x, get_Character_pos(current).y, itemsHere[itemInvariant].name);
 						//break;
 					}
 					
