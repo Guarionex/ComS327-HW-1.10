@@ -1180,20 +1180,21 @@ int turn(int *seed, int num_mon)
 			if(containsItemAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y))
 			{
 				vector<itemClass> itemsHere = getItemsAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y);
-				string nameOfItem = "Nothing";
-				int itemInvariant;
-				for(itemInvariant = 0; itemInvariant < 10; itemInvariant++)
+				string nameOfItem = "Inventory is full";
+				uint itemInvariant;
+				for(itemInvariant = 0; itemInvariant < 10 && itemInvariant < itemsHere.size(); itemInvariant++)
 				{
 					itemClass itemInInventory = get_Player_item((player_t *) current, itemInvariant);
 					if(itemInInventory.type == objtype_no_type)
 					{
-						nameOfItem = "Made it here" + itemInInventory.name;
-						set_Player_item((player_t *) current, itemsHere[0], itemInvariant);
-						break;
+						nameOfItem = "Picked up " + itemInInventory.name;
+						set_Player_item((player_t *) current, itemsHere[itemInvariant], itemInvariant);
+						removeItemAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y), itemsHere[itemInvariant].name);
+						//break;
 					}
-					nameOfItem = itemInInventory.name;
+					
 				}
-				sprintf(playerMessage, "Items = %s ;", nameOfItem.c_str());
+				sprintf(playerMessage, "%s ", nameOfItem.c_str());
 			}
 			Draw_Dungeon(1);
 			//sleep(3);

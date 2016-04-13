@@ -133,3 +133,16 @@ vector<itemClass> getItemsAt(vector<itemClass> search, int x, int y)
 	}
 	return itemStack;
 }
+
+void removeItemAt(vector<itemClass> search, int x, int y, string nameToRemove)
+{
+	uint s;
+	for(s = 0; s < search.size(); s++)
+	{
+		if(search[s].pos.x == x && search[s].pos.y == y && search[s].name.compare(nameToRemove) == 0)
+		{
+			search.erase(search.begin() + s);
+			break;
+		}
+	}
+}
