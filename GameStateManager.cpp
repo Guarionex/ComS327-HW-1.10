@@ -1692,6 +1692,13 @@ bool take_off_helper(int slot)
 	
 	set_Player_item((player_t *) character_list[0], equipTakeOff, inventoryItems);
 	set_Player_equipment((player_t *) character_list[0], itemClass(), slot);
+	int newSpeed = get_Character_speed(character_list[0]);
+	newSpeed -= equipTakeOff.speed;
+	if(newSpeed <=0 )
+	{
+		newSpeed = 1;
+	}
+	set_Character_speed(character_list[0], newSpeed);
 	sprintf(playerMessage, "Took off %s ", equipTakeOff.name.c_str());
 	return true;
 }
