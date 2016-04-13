@@ -1574,7 +1574,7 @@ bool take_off_helper(int slot)
 	
 	set_Player_item((player_t *) character_list[0], equipTakeOff, inventoryItems);
 	set_Player_equipment((player_t *) character_list[0], itemClass(), slot);
-	sprintf(playerMessage, "Took off %s ", equipTakeOff.c_str());
+	sprintf(playerMessage, "Took off %s ", equipTakeOff.name.c_str());
 	return true;
 }
 
@@ -1588,7 +1588,7 @@ bool drop_helper(int slot)
 	}
 	set_Player_item((player_t *) character_list[0], itemClass(), slot);
 	drop_itemAt(&levelItems, itemToDrop, get_Character_pos(character_list[0]).x, get_Character_pos(character_list[0]).y);
-	sprintf(playerMessage, "%Dropped %s", itemToDrop.name.c_str());
+	sprintf(playerMessage, "Dropped %s", itemToDrop.name.c_str());
 }
 
 int input_handler(int key)
