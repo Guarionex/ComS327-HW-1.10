@@ -944,16 +944,16 @@ void Draw_Item_Desc(itemClass itemForDesc)
 	
 	//sprintf(playerMessage, "Size = %s", nLine);
 	int yStart = ((21 - (positions.size()+3))/2)+1;
-	mvprintw(yStart, 0, "+-----------------------------------------------------------------------------+");
-	mvprintw(yStart + 1, 0, "|                                                                             |");
+	mvprintw(yStart, 0, "+------------------------------------------------------------------------------+");
+	mvprintw(yStart + 1, 0, "|                                                                              |");
 	mvprintw(yStart + 1, 1, itemForDesc.name.c_str());
 	uint dIndex;
 	for(dIndex = 0; dIndex < positions.size(); dIndex++)
 	{
-		mvprintw(yStart + dIndex + 2, 0, "|                                                                             |");
+		mvprintw(yStart + dIndex + 2, 0, "|                                                                              |");
 		mvprintw(yStart + dIndex + 2, 1, itemForDesc.description.substr(positions[dIndex], (((dIndex + 1) < positions.size()) ? positions[dIndex+1] - positions[dIndex] : string::npos )).c_str());
 	}
-	mvprintw(yStart + dIndex + 2, 0, "+-----------------------------------------------------------------------------+");
+	mvprintw(yStart + dIndex + 2, 0, "+------------------------------------------------------------------------------+");
 }
 
 void Draw_Distance_Dungeon(char *char_map)
