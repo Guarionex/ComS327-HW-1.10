@@ -1187,7 +1187,7 @@ int turn(int *seed, int num_mon)
 					itemClass itemInInventory = get_Player_item((player_t *) current, itemInvariant);
 					if(itemInInventory.type == objtype_no_type)
 					{
-						nameOfItem = "Picked up " + itemInInventory.name;
+						nameOfItem = "Picked up " + itemsHere[itemInvariant].name;
 						set_Player_item((player_t *) current, itemsHere[itemInvariant], itemInvariant);
 						removeItemAt(levelItems, get_Character_pos(current).x, get_Character_pos(current).y, itemsHere[itemInvariant].name);
 						//break;
