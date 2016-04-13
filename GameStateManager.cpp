@@ -1185,7 +1185,7 @@ int turn(int *seed, int num_mon)
 				for(itemInvariant = 0; itemInvariant < 10; itemInvariant++)
 				{
 					itemClass itemInInventory = get_Player_item((player_t *) current, itemInvariant);
-					if(itemInInventory.type == objtype_no_type)
+					if(itemInInventory.type == objtype_no_type && itemsHere.size() > 0)
 					{
 						nameOfItem = "Picked up " + itemsHere[0].name;
 						set_Player_item((player_t *) current, itemsHere[0], itemInvariant);
