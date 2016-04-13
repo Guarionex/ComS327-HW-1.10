@@ -86,6 +86,26 @@ With the --parsemon and --parseobj, it will parse and place the monsters and obj
 Bug fix from last iteration: It would skip a monster if it read a blank line. This was fixed in this version.
 WARNING: Some monster are super fast now, good luck getting past level 0.
 
+1.09:
+Updated combat. Monsters use damage dice for attacking. No more automatic kills. Monsters can't kill other monsters. 
+Updated UI to show monster's name and Health Points
+Player can now pick up and use equipments. Currently only perks are damage dices per gear and speed bonus (or decrement if wearing a dress).
+Updated UI for general gameplay. Health Points are displayed in the debug line on top. Player actions are the first line below the dungeon. Monster actions towards the player are in the line below that.
+Updated UI to manage items and equipments. Now have an Inventory menu and an Equipment menu. Multiple commands to wear and take off equipment, as well as drop, remove, or destroy items.
+When dropping items, they will fall in the floor. Stacked items are available and working. Everything resets when you go up or down a floor, so good luck making it far.
+RECOMMENDATIONS: Use seed 1460517657. You will spawn next to the one ring and a stack of items. Lich Queen is in north east corner along with her prom dress and prada shoes.
+Sorry, not sorry use flags: ./dungeonGenerator 1460517657 --nummon 10 --parsemon --parseobj  
+NOTICE: I mapped some commands differently. As a PC gamer I reserve wasd for movements.
+New Commands:
+shift+w, (W) = Wear Item Dialog
+t = take off equiped item
+shift+d, (D) = drop item
+x = expunge item
+shift+i, (I) = Inventory List
+shift+e, (E) = Equipment List
+i = inspect item
+All dialogs can be exit with Esc or Enter
+
 Usage for object parsing and item placing: ./dungeonGenerator --parseobj
 
 Usage for monster parsing and placing: ./dungeonGenerator --parsemon
