@@ -1444,6 +1444,12 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			Draw_Dungeon(1);
 			break;
 		}
+		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 9)
+		{
+			wear_helper(dialogInput - 97);
+			Draw_Dungeon(1);
+			break;
+		}
 	}
 	return commandInput;
 }
@@ -1453,6 +1459,7 @@ bool wear_helper(int slot)
 	itemClass itemToWear = get_Player_item((player_t *) character_list[0], slot);
 	if(itemToWear.type == objtype_no_type || !itemToWear.equipment)
 	{
+		sprintf(playerMessage, "Cannot equip %s", itemToWear.name.c_str());
 		return false;
 	}
 	int equipIndex = 0;
@@ -1533,6 +1540,35 @@ bool wear_helper(int slot)
 			set_Player_equipment((player_t *) character_list[0], itemToWear, equipIndex);
 		}
 	}
+	sprintf(playerMessage, "Equipped %s", itemToWear.name.c_str());
+	return true;
+}
+
+bool take_off_helper(int slot)
+{
+	itemClass equipTakeOff = get_Player_equipment((player_t *) character_list[0], slot);
+	if(equipTakeOff.type == objtype_no_type)
+	{
+		sprintf(playerMessage, "Slot %c is empty", slot+97);
+		return false;
+	}
+	int inventoryItems;
+	for(inventoryItems = 0; inventoryItems < 10; inventoryItems++)
+	{
+		if((get_Player_item((player_t *) character_list[0], inventoryItems)).type == objtype_no_type)
+		{
+			break;
+		}
+	}
+	if(inventoryItems == 10)
+	{
+		sprintf(playerMessage, "%s ", "Inventory is full");
+		return false;
+	}
+	
+	set_Player_item((player_t *) character_list[0], equipTakeOff, inventoryItems);
+	set_Player_equipment((player_t *) character_list[0], itemClass(), slot);
+	
 	return true;
 }
 
