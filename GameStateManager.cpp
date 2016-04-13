@@ -932,13 +932,17 @@ void Draw_Carry_Slot_Dialog(void)
 void Draw_Item_Desc(itemClass itemForDesc)
 {
 	string desc = itemForDesc.name;
-	vector<size_t> positions;
+	vector<int> positions;
 	size_t pos = desc.find("\n", 0);
-	while(pos != string::npos)
+	uint nLine;
+	for(nLine = 0; nLine < desc.length(); nLine++)
 	{
-		positions.push_back(pos);
-		pos = desc.find("\n", pos+1);
+		if(desc[nLine] == '\n')
+		{
+			positions.push_back(nLine);
+		}
 	}
+	
 	sprintf(playerMessage, "Size = %lu", positions.size());
 	int yStart = ((21 - (positions.size()+3))/2)+1;
 	mvprintw(yStart, 0, "+-----------------------------------------------------------------------------+");
