@@ -1589,6 +1589,7 @@ bool drop_helper(int slot)
 	set_Player_item((player_t *) character_list[0], itemClass(), slot);
 	drop_itemAt(&levelItems, itemToDrop, get_Character_pos(character_list[0]).x, get_Character_pos(character_list[0]).y);
 	sprintf(playerMessage, "Dropped %s", itemToDrop.name.c_str());
+	return true;
 }
 
 int input_handler(int key)
