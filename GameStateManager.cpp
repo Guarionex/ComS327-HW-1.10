@@ -1417,7 +1417,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			{
 				continue;
 			}
-			if(commandInput == 16 || commandInput == 17 || commandInput == 9)
+			if(commandInput == 16 || commandInput == 17 || commandInput == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22)
 			{
 					commandInput = menu_helper(commandInput, commandInput, moving_to);
 			}
