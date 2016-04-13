@@ -815,7 +815,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 					itemClass equipmentForDamage = get_Player_equipment((player_t *) player_to_move, diceIndex);
 					if(equipmentForDamage.type != objtype_no_type)
 					{
-						damageDone += equipmentForDamage.damage.roll();
+						damageDone += equipmentForDamage.damage.roll(-1);
 					}
 				}
 				damageString << damageDone;
@@ -863,7 +863,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 					itemClass equipmentForDamage = get_Player_equipment((player_t *) player_to_move, diceIndex);
 					if(equipmentForDamage.type != objtype_no_type)
 					{
-						damageDone += equipmentForDamage.damage.roll();
+						damageDone += equipmentForDamage.damage.roll(-1);
 					}
 				}
 				damageString << damageDone;
