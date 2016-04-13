@@ -1386,6 +1386,7 @@ int turn(int *seed, int num_mon)
 
 int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 {
+	input = commandInput;
 	while(commandInput == menu_type)
 	{
 		if(menu_type == 16)
@@ -1439,6 +1440,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		else if((menu_type - 48) >= 0 && (menu_type - 48) <= 9)
 		{
 			wear_helper(menu_type - 48);
+			break;
 		}
 	}
 	return commandInput;
