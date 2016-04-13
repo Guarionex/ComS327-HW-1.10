@@ -947,11 +947,12 @@ void Draw_Item_Desc(itemClass itemForDesc)
 	mvprintw(yStart, 0, "+------------------------------------------------------------------------------+");
 	mvprintw(yStart + 1, 0, "|                                                                              |");
 	mvprintw(yStart + 1, 1, itemForDesc.name.c_str());
-	uint dIndex;
+	uint dIndex, startIndex = 0;
 	for(dIndex = 0; dIndex < positions.size(); dIndex++)
 	{
 		mvprintw(yStart + dIndex + 2, 0, "|                                                                              |");
-		mvprintw(yStart + dIndex + 2, 1, itemForDesc.description.c_str());
+		mvprintw(yStart + dIndex + 2, 1, itemForDesc.description.substr(startIndex, positions[dIndex]).c_str());
+		startIndex = positions[dIndex] + 1;
 	}
 	mvprintw(yStart + dIndex + 2, 0, "+------------------------------------------------------------------------------+");
 }
