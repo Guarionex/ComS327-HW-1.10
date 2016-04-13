@@ -942,7 +942,7 @@ void Draw_Item_Desc(itemClass itemForDesc)
 		}
 	}
 	
-	sprintf(playerMessage, "Size = %lu", positions.size());
+	sprintf(playerMessage, "Size = %u", nLine);
 	int yStart = ((21 - (positions.size()+3))/2)+1;
 	mvprintw(yStart, 0, "+-----------------------------------------------------------------------------+");
 	mvprintw(yStart + 1, 0, "|                                                                             |");
