@@ -1194,7 +1194,7 @@ int turn(int *seed, int num_mon)
 					}
 					
 				}
-				sprintf(playerMessage, "%s ", nameOfItem.c_str());
+				sprintf(playerMessage, "%s size = %d", nameOfItem.c_str(), itemsHere.size());
 			}
 			Draw_Dungeon(1);
 			//sleep(3);
