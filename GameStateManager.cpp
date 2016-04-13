@@ -931,7 +931,7 @@ void Draw_Carry_Slot_Dialog(void)
 				numberValids++;
 			}
 		}
-		
+		int validItemsPrinted = 0;
 		for(validIndex = 0; validIndex < 10; validIndex++)
 		{
 			if(validIndex == 0)
@@ -945,11 +945,12 @@ void Draw_Carry_Slot_Dialog(void)
 			itemClass itemToDraw = get_Player_item((player_t *)character_list[0], validIndex);
 			if(itemToDraw.type != objtype_no_type)
 			{
-				mvprintw(((21 - (4+numberValids))/2)+3, 19, "|                                        |");
+				mvprintw(((21 - (4+numberValids))/2)+3+validItemsPrinted, 19, "|                                        |");
 				char slotString[3] = "0:";
 				slotString[0] +=  validIndex;
-				mvprintw(((21 - (4+numberValids))/2)+3, 20, slotString);
-				mvprintw(((21 - (4+numberValids))/2)+3, 22, itemToDraw.name.c_str());
+				mvprintw(((21 - (4+numberValids))/2)+3+validItemsPrinted, 20, slotString);
+				mvprintw(((21 - (4+numberValids))/2)+3+validItemsPrinted, 22, itemToDraw.name.c_str());
+				validItemsPrinted++;
 			}
 		}
 		
