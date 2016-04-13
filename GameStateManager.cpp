@@ -931,7 +931,7 @@ void Draw_Carry_Slot_Dialog(void)
 
 void Draw_Item_Desc(itemClass itemForDesc)
 {
-	string desc = itemForDesc.desc;
+	string desc = itemForDesc.description;
 	vector<int> positions;
 	uint nLine;
 	for(nLine = 0; nLine < desc.length(); nLine++)
