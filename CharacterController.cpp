@@ -810,7 +810,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 			{
 				int damageDone = get_Character_damage(player_to_move);
 				int diceIndex;
-				for(diceIndex = 0; diceIndex < 12 diceIndex++)
+				for(diceIndex = 0; diceIndex < 12; diceIndex++)
 				{
 					itemClass equipmentForDamage = get_Player_equipment((player_t *) player_to_move, diceIndex);
 					if(equipmentForDamage.type != objtype_no_type)
@@ -858,7 +858,7 @@ string move_player(character_t *player_to_move, pos_t to, Dungeon_Space_Struct *
 			{	
 				int damageDone = get_Character_damage(player_to_move);
 				int diceIndex;
-				for(diceIndex = 0; diceIndex < 12 diceIndex++)
+				for(diceIndex = 0; diceIndex < 12; diceIndex++)
 				{
 					itemClass equipmentForDamage = get_Player_equipment((player_t *) player_to_move, diceIndex);
 					if(equipmentForDamage.type != objtype_no_type)
