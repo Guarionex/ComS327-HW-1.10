@@ -1455,47 +1455,51 @@ bool wear_helper(int slot)
 	switch(itemToWear.type)
 	{
 		case objtype_WEAPON:
-			return 0;
+			equipIndex = 0;
 		break;
 		
 		case objtype_OFFHAND:
-			return 1;
+			equipIndex = 1;
 		break;
 		
 		case objtype_RANGED:
-			return 2;
+			equipIndex = 2;
 		break;
 		
 		case objtype_ARMOR:
-			return 3;
+			equipIndex = 3;
 		break;
 		
 		case objtype_HELMET:
-			return 4;
+			equipIndex = 4;
 		break;
 		
 		case objtype_CLOAK:
-			return 5;
+			equipIndex = 5;
 		break;
 		
 		case objtype_GLOVES:
-			return 6;
+			equipIndex = 6;
 		break;
 		
 		case objtype_BOOTS:
-			return 7;
+			equipIndex = 7;
 		break;
 		
 		case objtype_AMULET:
-			return 8;
+			equipIndex = 8;
 		break;
 		
 		case objtype_LIGHT:
-			return 9;
+			equipIndex = 9;
 		break;
 		
 		case objtype_RING:
-			return 10;
+			equipIndex = 10;
+		break;
+		
+		default:
+			return false;
 		break;
 	}
 	
