@@ -933,7 +933,6 @@ void Draw_Item_Desc(itemClass itemForDesc)
 {
 	string desc = itemForDesc.name;
 	vector<int> positions;
-	size_t pos = desc.find("\n", 0);
 	uint nLine;
 	for(nLine = 0; nLine < desc.length(); nLine++)
 	{
