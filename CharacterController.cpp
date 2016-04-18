@@ -23,6 +23,10 @@ playerClass::playerClass()
 	{
 		inventory[i] = itemClass();
 	}
+	for(i = 0; i < 16; i++)
+	{
+		spells[i] = itemClass();
+	}
 }
 
 playerClass::~playerClass()
@@ -37,6 +41,10 @@ playerClass::~playerClass()
 	{
 		inventory[i] = itemClass();
 	}
+	for(i = 0; i < 16; i++)
+	{
+		spells[i] = itemClass();
+	}
 }
 
 playerClass::playerClass(const char *player_name)
@@ -50,6 +58,10 @@ playerClass::playerClass(const char *player_name)
 	for(i = 0; i < 10; i++)
 	{
 		inventory[i] = itemClass();
+	}
+	for(i = 0; i < 16; i++)
+	{
+		spells[i] = itemClass();
 	}
 }
 
@@ -86,6 +98,16 @@ itemClass get_Player_item(player_t *playerC, int slot)
 void set_Player_item(player_t *playerC, itemClass newItem, int slot)
 {
 	((playerClass *) playerC)->inventory[slot] = newItem;
+}
+
+itemClass get_Player_spell(player_t *playerC, int slot)
+{
+	return ((playerClass *) playerC)->spells[slot];
+}
+
+void set_Player_spell(player_t *playerC, itemClass newSpell, int slot)
+{
+	((playerClass *) playerC)->spells[slot] = newSpell;
 }
 
 monsterClass::monsterClass()

@@ -191,6 +191,10 @@ vector<objectClass> parseObjects()
 							}
 							else if(objType.compare("SCROLL") == 0 && !gotType)
 							{
+								if(damage && obj.damage.base > 0)
+								{
+									obj.offensiveMagic = true;
+								}
 								parsedObjType = objtype_SCROLL;
 								gotType = true;
 								objSymbol = '~';
@@ -626,6 +630,10 @@ vector<objectClass> parseObjects()
 				{
 					if(!damage)
 					{
+						if(type && obj.type == objtype_SCROLL)
+						{
+							obj.offensiveMagic = true;
+						}
 						damage = true;
 						int base = -1, dice = -1, sides = -1;
 						

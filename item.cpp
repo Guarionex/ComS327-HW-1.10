@@ -17,6 +17,7 @@ itemClass::itemClass(objectClass obj)
 	equipment = obj.equipment;
 	symbol = obj.symbol;
 	twoHanded = obj.twoHanded;
+	offensiveMagic = obj.offensiveMagic;
 }
 
 itemClass::~itemClass()
@@ -38,6 +39,7 @@ itemClass::~itemClass()
 	twoHanded = false;
 	pos = NULL_POS;
 	item_stack = false;
+	offensiveMagic = false;
 }
 
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up)

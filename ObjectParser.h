@@ -54,8 +54,10 @@ class objectClass
 	bool equipment;
 	char symbol;
 	bool twoHanded;
+	bool offensiveMagic;
+	bool defensiveMagic;
 	
-	objectClass() : name(), description(), type(objtype_no_type), color(-1), hit(), damage(), dodge(), defence(), weight(), speed(), attribute(), value(), equipment(false), symbol('*'), twoHanded(false)
+	objectClass() : name(), description(), type(objtype_no_type), color(-1), hit(), damage(), dodge(), defence(), weight(), speed(), attribute(), value(), equipment(false), symbol('*'), twoHanded(false), offensiveMagic(false), defensiveMagic(false)
 	{	
 	}
 	~objectClass();

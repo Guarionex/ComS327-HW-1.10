@@ -54,6 +54,7 @@ class playerClass : public characterClass
 	public:
 	itemClass equipment[12];
 	itemClass inventory[10];
+	itemClass spells[16];
 	
 	playerClass();
 	~playerClass();
@@ -171,6 +172,9 @@ itemClass get_Player_equipment(player_t *playerC, int slot);
 void set_Player_equipment(player_t *playerC, itemClass newEquipment, int slot);
 itemClass get_Player_item(player_t *playerC, int slot);
 void set_Player_item(player_t *playerC, itemClass newItem, int slot);
+itemClass get_Player_spell(player_t *playerC, int slot);
+void set_Player_spell(player_t *playerC, itemClass newSpell, int slot);
+
 
 monster_t *new_Monster();
 void destroy_Monster(monster_t *monster_to_destroy);
