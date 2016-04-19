@@ -1049,7 +1049,7 @@ void Draw_Carry_Slot_Dialog(void)
 			}
 		}
 		int validItemsPrinted = 0;
-		for(validIndex = 0; validIndex < 62; validIndex++)
+		for(validIndex = 0; validIndex < 16; validIndex++)
 		{
 			if(validIndex == 0)
 			{
