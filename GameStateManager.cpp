@@ -911,13 +911,13 @@ void Draw_Spells(void)
 	mvprintw(19, 19, "|p:                                      |");
 	mvprintw(20, 19, "+----------------------------------------+");
 	itemClass spells;
-	for(d = 0; d < 12; d++)
+	for(d = 0; d < 16; d++)
 	{
 		spells = get_Player_spell((player_t *) character_list[0], d);
 		for(e = 23; (e - 23) < spells.name.size() && e < 60; e++)
 		{
 			//mvprintw(d + 6, e, equipment.name.c_str());
-			mvaddch(d + 6, e, (spells.name.c_str())[e-23]);
+			mvaddch(d + 4, e, (spells.name.c_str())[e-23]);
 		}
 		
 	}
