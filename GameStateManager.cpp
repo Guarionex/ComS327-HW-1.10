@@ -1686,12 +1686,18 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		}
 		else if(menu_type == 25 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 15)
 		{
+			if(get_Player_spell((player_t *) character_list[0], dialogInput - 97).type != objtype_no_type)
+			{
+				sprintf(playerMessage, "Slot %c is empty", dialogInput);
+				break;
+			}
 			int abilInput = -1;
-			while(abilInput != ESCAPE)
+			while(abilInput != ESCAPE || !(abilInput >= 0 && abilInput <= 7))
 			{
 				Draw_Direction_Dialog();
 				abilInput = input_handler(getch());
 			}
+			//ability_helper(int slot, pos direction);
 			Draw_Dungeon(1);
 			break;
 		}
