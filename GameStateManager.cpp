@@ -1689,6 +1689,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			if(get_Player_spell((player_t *) character_list[0], dialogInput - 97).type == objtype_no_type)
 			{
 				sprintf(playerMessage, "Slot %c is empty", dialogInput);
+				Draw_Dungeon(1);
 				break;
 			}
 			int abilInput = -1;
