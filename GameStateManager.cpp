@@ -1479,7 +1479,7 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}*/
-				if(input == 16 || input == 17 || input == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22 || input == 23)
+				if(input == 16 || input == 17 || input == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22 || input == 23 || input == 24)
 				{
 					input = menu_helper(input, input, &moving_to);
 				}
@@ -1544,7 +1544,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		{
 			Draw_Spells();
 		}
-		else if(menu_type >= 18 && menu_type <= 22)
+		else if((menu_type >= 18 && menu_type <= 22) || menu_input >= 24)
 		{
 			Draw_Carry_Slot_Dialog();
 		}
@@ -1562,7 +1562,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			{
 				continue;
 			}
-			if(commandInput == 16 || commandInput == 17 || commandInput == 9 || commandInput == 18 || commandInput == 19 || commandInput == 20 || commandInput == 21 || commandInput == 22 || commandInput == 23)
+			if(commandInput == 16 || commandInput == 17 || commandInput == 9 || commandInput == 18 || commandInput == 19 || commandInput == 20 || commandInput == 21 || commandInput == 22 || commandInput == 23 || commandInput == 24)
 			{
 					commandInput = menu_helper(commandInput, commandInput, moving_to);
 			}
@@ -1614,6 +1614,12 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		else if(menu_type == 22 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 11)
 		{
 			take_off_helper(dialogInput - 97);
+			Draw_Dungeon(1);
+			break;
+		}
+		else if(menu_type == 24 && (dialogInput - 48) >= 0 && (dialogInput - 48) <= 9)
+		{
+			learn_helper(dialogInput - 48);
 			Draw_Dungeon(1);
 			break;
 		}
@@ -1782,7 +1788,32 @@ bool expunge_helper(int slot)
 
 bool learn_helper(int slot)
 {
+	itemClass itemToLearn = get_Player_item((player_t *) character_list[0], slot);
+	if(itemToLearn.type == objtype_no_type || (!itemToLearn.offensiveMagic && !itemToLearn.defensiveMagic))
+	{
+		sprintf(playerMessage, "Cannot learn %s", itemToLearn.name.c_str());
+		return false;
+	}
 	
+	int learnIndex = 0;
+	for(learnIndex = 0; learnIndex < 10; learnIndex++)
+	{
+		if((get_Player_spell((player_t *) character_list[0], learnIndex)).type == objtype_no_type)
+		{
+			break;
+		}
+	}
+	if(learnIndex == 16)
+	{
+		sprintf(playerMessage, "%s ", "Cannot learn more spells");
+		return false;
+	}
+	
+	set_Player_equipment((player_t *) character_list[0], itemToLearn, learnIndex);
+	set_Player_item((player_t *) character_list[0], itemClass(), slot);
+	
+	sprintf(playerMessage, "Learned %s", itemToLearn.name.c_str());
+	return true;
 }
 
 int input_handler(int key)
