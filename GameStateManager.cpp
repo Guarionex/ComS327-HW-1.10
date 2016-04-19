@@ -762,7 +762,7 @@ void Draw_Monster_List(void)
 {
 	char monster_info[num_characters-1][80];
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
 	int m, dead_count = 0;
 	uint d;
 	clear();
@@ -813,7 +813,7 @@ void Draw_Monster_List(void)
 void Draw_Equipment(void)
 {
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
 	uint d, e;
 	for(d = 0; d < strlen(debug_line); d++)
 	{
@@ -850,7 +850,7 @@ void Draw_Equipment(void)
 void Draw_Inventory(void)
 {
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
 	uint d, e;
 	for(d = 0; d < strlen(debug_line); d++)
 	{
@@ -885,7 +885,7 @@ void Draw_Inventory(void)
 void Draw_Spells(void)
 {
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
 	uint d, e;
 	for(d = 0; d < strlen(debug_line); d++)
 	{
@@ -926,7 +926,7 @@ void Draw_Spells(void)
 void Draw_Carry_Slot_Dialog(void)
 {
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
 	uint d;
 	for(d = 0; d < strlen(debug_line); d++)
 	{
