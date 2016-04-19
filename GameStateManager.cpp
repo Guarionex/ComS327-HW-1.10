@@ -962,13 +962,18 @@ void Draw_Carry_Slot_Dialog(void)
 		break;
 		
 		case 24:
-			dialogType = "Which spell to learn off?";
-			dialogMessage = "Select an inventory slot between 0 - 9";
+			dialogType = "Which spell to learn?";
+			dialogMessage = "Select a spell slot between 0 - 9     ";
+		break;
+		
+		case 25:
+			dialogType = "Which spell to use?";
+			dialogMessage = "Select a spell slot between a - l     ";
 		break;
 	}
 	int numberValids = 0;
 	uint validIndex;
-	if(input != 22)
+	if(input != 22 && input != 25)
 	{
 		for(validIndex = 0; validIndex < 10; validIndex++)
 		{
@@ -1001,7 +1006,7 @@ void Draw_Carry_Slot_Dialog(void)
 		}
 		mvprintw(((21 - (4+numberValids))/2)+3+numberValids, 19, "+----------------------------------------+");
 	}
-	else
+	else if(input == 22)
 	{
 		for(validIndex = 0; validIndex < 12; validIndex++)
 		{
@@ -1033,6 +1038,39 @@ void Draw_Carry_Slot_Dialog(void)
 			}
 		}
 		mvprintw(((21 - (4+numberValids))/2)+3+numberValids, 19, "+----------------------------------------+");
+	}
+	else if(input == 25)
+	{
+		for(validIndex = 0; validIndex < 16; validIndex++)
+		{
+			if(get_Player_spell((player_t *)character_list[0], validIndex).type != objtype_no_type)
+			{
+				numberValids++;
+			}
+		}
+		int validItemsPrinted = 0;
+		for(validIndex = 0; validIndex < 62; validIndex++)
+		{
+			if(validIndex == 0)
+			{
+				mvprintw(((21 - (2+numberValids))/2), 19, "+----------------------------------------+");
+				mvprintw(((21 - (2+numberValids))/2)+1, 19, "|                                        |");
+				mvprintw(((21 - (2+numberValids))/2)+2, 19, "|                                        |");
+				mvprintw(((21 - (2+numberValids))/2)+1, ((40 - dialogType.size())/2) + 20, dialogType.c_str() );
+				mvprintw(((21 - (2+numberValids))/2)+2, 21, dialogMessage.c_str());
+			}
+			itemClass itemToDraw = get_Player_spell((player_t *)character_list[0], validIndex);
+			if(itemToDraw.type != objtype_no_type)
+			{
+				mvprintw(((21 - (2+numberValids))/2)+3+validItemsPrinted, 19, "|                                        |");
+				char slotString[3] = "a:";
+				slotString[0] +=  validIndex;
+				mvprintw(((21 - (2+numberValids))/2)+3+validItemsPrinted, 20, slotString);
+				mvprintw(((21 - (2+numberValids))/2)+3+validItemsPrinted, 22, itemToDraw.name.c_str());
+				validItemsPrinted++;
+			}
+		}
+		mvprintw(((21 - (2+numberValids))/2)+3+numberValids, 19, "+----------------------------------------+");
 	}
 	
 	
@@ -1479,7 +1517,7 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}*/
-				if(input == 16 || input == 17 || input == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22 || input == 23 || input == 24)
+				if(input == 16 || input == 17 || input == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22 || input == 23 || input == 24 || input == 25)
 				{
 					input = menu_helper(input, input, &moving_to);
 				}
@@ -1562,7 +1600,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			{
 				continue;
 			}
-			if(commandInput == 16 || commandInput == 17 || commandInput == 9 || commandInput == 18 || commandInput == 19 || commandInput == 20 || commandInput == 21 || commandInput == 22 || commandInput == 23 || commandInput == 24)
+			if(commandInput == 16 || commandInput == 17 || commandInput == 9 || commandInput == 18 || commandInput == 19 || commandInput == 20 || commandInput == 21 || commandInput == 22 || commandInput == 23 || commandInput == 24 || commandInput == 25)
 			{
 					commandInput = menu_helper(commandInput, commandInput, moving_to);
 			}
@@ -2047,6 +2085,11 @@ int input_handler(int key)
 		//LEARN_SPELL
 		case 76:
 			return LEARN_SPELL;
+		break;
+		
+		//USE_ABILITY
+		case 65:
+			return USE_ABILITY;
 		break;
 	}
 	

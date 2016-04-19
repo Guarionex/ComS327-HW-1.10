@@ -41,7 +41,8 @@ typedef enum command
 	INSPECT,
 	TAKE_OFF,
 	SPELLS,
-	LEARN_SPELL
+	LEARN_SPELL,
+	USE_ABILITY
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
