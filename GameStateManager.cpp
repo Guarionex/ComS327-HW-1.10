@@ -1809,7 +1809,7 @@ bool learn_helper(int slot)
 		return false;
 	}
 	
-	set_Player_equipment((player_t *) character_list[0], itemToLearn, learnIndex);
+	set_Player_spell((player_t *) character_list[0], itemToLearn, learnIndex);
 	set_Player_item((player_t *) character_list[0], itemClass(), slot);
 	
 	sprintf(playerMessage, "Learned %s", itemToLearn.name.c_str());
