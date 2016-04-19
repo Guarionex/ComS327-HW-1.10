@@ -960,6 +960,11 @@ void Draw_Carry_Slot_Dialog(void)
 			dialogType = "Which equipment to take off?";
 			dialogMessage = "Select an equipment slot between a - l";
 		break;
+		
+		case 24:
+			dialogType = "Which spell to learn off?";
+			dialogMessage = "Select an inventory slot between 0 - 9";
+		break;
 	}
 	int numberValids = 0;
 	uint validIndex;
@@ -1775,6 +1780,11 @@ bool expunge_helper(int slot)
 	return true;
 }
 
+bool learn_helper(int slot)
+{
+	
+}
+
 int input_handler(int key)
 {
 	switch(key)
@@ -1999,8 +2009,13 @@ int input_handler(int key)
 		break;
 		
 		//SPELLS
-		case 77:
+		case 65:
 			return SPELLS;
+		break;
+		
+		//LEARN_SPELL
+		case 76:
+			return LEARN_SPELL;
 		break;
 	}
 	

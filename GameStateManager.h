@@ -40,7 +40,8 @@ typedef enum command
 	EXPUNGE,
 	INSPECT,
 	TAKE_OFF,
-	SPELLS
+	SPELLS,
+	LEARN_SPELL
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
@@ -74,6 +75,7 @@ bool wear_helper(int slot);
 bool take_off_helper(int slot);
 bool drop_helper(int slot);
 bool expunge_helper(int slot);
+bool learn_helper(int slot);
 int input_handler(int key);
 pos_t get_direction(command_t key);
 void define_new_keys(void);
