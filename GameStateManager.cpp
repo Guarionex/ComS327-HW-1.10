@@ -1110,7 +1110,7 @@ void Draw_Direction_Dialog(void)
 {
 	char debug_line[80];
 	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
-	uint d, e;
+	uint d;
 	for(d = 0; d < strlen(debug_line); d++)
 	{
 		mvaddch(0, d, debug_line[d]);
