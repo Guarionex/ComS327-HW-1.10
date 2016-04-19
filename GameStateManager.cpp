@@ -1544,7 +1544,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		{
 			Draw_Spells();
 		}
-		else if((menu_type >= 18 && menu_type <= 22) || menu_input >= 24)
+		else if((menu_type >= 18 && menu_type <= 22) || menu_type >= 24)
 		{
 			Draw_Carry_Slot_Dialog();
 		}
