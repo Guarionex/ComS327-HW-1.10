@@ -882,6 +882,47 @@ void Draw_Inventory(void)
 	}
 }
 
+void Draw_Spells(void)
+{
+	char debug_line[80];
+	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	uint d, e;
+	for(d = 0; d < strlen(debug_line); d++)
+	{
+		mvaddch(0, d, debug_line[d]);
+	}
+	mvprintw(2, 19, "+----------------------------------------+");
+	mvprintw(3, 19, "|               Spell List               |");
+	mvprintw(4, 19, "|a:                                      |");
+	mvprintw(5, 19, "|b:                                      |");
+	mvprintw(6, 19, "|c:                                      |");
+	mvprintw(7, 19, "|d:                                      |");
+	mvprintw(8, 19, "|e:                                      |");
+	mvprintw(9, 19, "|f:                                      |");
+	mvprintw(10, 19, "|g:                                      |");
+	mvprintw(11, 19, "|h:                                      |");
+	mvprintw(12, 19, "|i:                                      |");
+	mvprintw(13, 19, "|j:                                      |");
+	mvprintw(14, 19, "|k:                                      |");
+	mvprintw(15, 19, "|l:                                      |");
+	mvprintw(16, 19, "|m:                                      |");
+	mvprintw(17, 19, "|n:                                      |");
+	mvprintw(18, 19, "|o:                                      |");
+	mvprintw(19, 19, "|p:                                      |");
+	mvprintw(20, 19, "+----------------------------------------+");
+	itemClass spells;
+	for(d = 0; d < 12; d++)
+	{
+		spells = get_Player_spell((player_t *) character_list[0], d);
+		for(e = 23; (e - 23) < spells.name.size() && e < 60; e++)
+		{
+			//mvprintw(d + 6, e, equipment.name.c_str());
+			mvaddch(d + 6, e, (spells.name.c_str())[e-23]);
+		}
+		
+	}
+}
+
 void Draw_Carry_Slot_Dialog(void)
 {
 	char debug_line[80];

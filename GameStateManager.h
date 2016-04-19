@@ -61,6 +61,7 @@ void Draw_Dungeon(int use_curses);
 void Draw_Monster_List(void);
 void Draw_Equipment(void);
 void Draw_Inventory(void);
+void Draw_Spells(void);
 void Draw_Carry_Slot_Dialog(void);
 void Draw_Item_Desc(itemClass itemForDesc);
 void Draw_Distance_Dungeon(char *char_map);
