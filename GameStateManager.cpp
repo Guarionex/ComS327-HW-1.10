@@ -533,7 +533,7 @@ void Draw_Dungeon(int use_curses)
 	
 	
 	char debug_line[80];
-	sprintf(debug_line, "Seed = %d, Input = %d, Monsters alive = %d, Level = %d, HP = %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]));
+	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
 	int debug_len = strlen(debug_line);
 	int playerMessage_len = strlen(playerMessage);
 	int monsterMessage_len = strlen(monsterMessage);
@@ -2040,7 +2040,7 @@ int input_handler(int key)
 		break;
 		
 		//SPELLS
-		case 65:
+		case 77:
 			return SPELLS;
 		break;
 		

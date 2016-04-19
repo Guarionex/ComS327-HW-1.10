@@ -186,12 +186,14 @@ characterClass::characterClass()
 	speed = -1;
 	timer = -1;
 	id = -1;
+	magicPoints = 0;
 }
 characterClass::~characterClass()
 {
 	speed = -1;
 	timer = -1;
 	id = -1;
+	magicPoints = -1;
 }
 
 character_t *new_Character()
@@ -293,6 +295,16 @@ void set_Character_healthPoints(character_t *toon, int newHP)
 	((characterClass *) toon)->healthPoints = newHP;
 }
 
+int get_Character_magicPoints(character_t *toon)
+{
+	return ((characterClass *) toon)->magicPoints;
+}
+
+void set_Character_magicPoints(character_t *toon, int newMP)
+{
+	((characterClass *) toon)->magicPoints = newMP;
+}
+
 int get_Character_damage(character_t *toon)
 {
 	return ((characterClass *) toon)->damage.roll(-1);
@@ -385,6 +397,7 @@ character_t *Place_Player(Dungeon_Space_Struct **dungeon, int *seed)
 	set_Character_all(player, 10, 0, 0, (boolean) TRUE, new_pos, dungeon[new_pos.x][new_pos.y], PLAYER);
 	set_Character_healthPoints(player, 1000);
 	set_Character_parsed_data(player, "Dr. Sheaffer", "Professor of ComS 327", '@', 6, Dice(0, 1, 4));
+	set_Character_magicPoints(player, 1000);
 	create_character_list();
 	add_character(player);
 	free(open_pos);
@@ -578,6 +591,7 @@ character_t *create_monster(Dungeon_Space_Struct **dungeon, int *seed, vector<mo
 	{
 		set_Character_all(mon, monsterToUse.speedDice.roll(*seed), 0, num_characters, (boolean) TRUE, mon_pos, dungeon[mon_pos.x][mon_pos.y], MONSTER);
 		set_Character_healthPoints(mon, monsterToUse.hp.roll(*seed));
+		set_Character_magicPoints(mon, 0);
 		set_Character_parsed_data(mon, monsterToUse.name, monsterToUse.description, monsterToUse.symbol, monsterToUse.color, monsterToUse.damage);
 	}
 	add_character(mon);
