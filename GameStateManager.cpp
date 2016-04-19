@@ -1115,17 +1115,17 @@ void Draw_Direction_Dialog(void)
 	{
 		mvaddch(0, d, debug_line[d]);
 	}
-	mvprintw(4, 19, "+----------------------------------------+");
-	mvprintw(5, 19, "|        Direction to cast spell         |");
-	mvprintw(6, 19, "|q: Up and Left                          |");
-	mvprintw(7, 19, "|w: Up                                   |");
-	mvprintw(8, 19, "|e: Up and Right                         |");
-	mvprintw(9, 19, "|a: Left                                 |");
-	mvprintw(10, 19, "|d: Right                                |");
-	mvprintw(11, 19, "|z: Down and Left                        |");
-	mvprintw(12, 19, "|s: Down                                 |");
-	mvprintw(13, 19, "|c: Down and Right                       |");
-	mvprintw(14, 19, "+----------------------------------------+");
+	mvprintw(6, 19, "+----------------------------------------+");
+	mvprintw(7, 19, "|        Direction to cast spell         |");
+	mvprintw(8, 19, "|q: Up and Left                          |");
+	mvprintw(9, 19, "|w: Up                                   |");
+	mvprintw(10, 19, "|e: Up and Right                         |");
+	mvprintw(11, 19, "|a: Left                                 |");
+	mvprintw(12, 19, "|d: Right                                |");
+	mvprintw(13, 19, "|z: Down and Left                        |");
+	mvprintw(14, 19, "|s: Down                                 |");
+	mvprintw(15, 19, "|c: Down and Right                       |");
+	mvprintw(16, 19, "+----------------------------------------+");
 	
 }
 
