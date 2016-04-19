@@ -963,12 +963,12 @@ void Draw_Carry_Slot_Dialog(void)
 		
 		case 24:
 			dialogType = "Which spell to learn?";
-			dialogMessage = "Select a spell slot between 0 - 9     ";
+			dialogMessage = "  Select a spell slot between 0 - 9   ";
 		break;
 		
 		case 25:
 			dialogType = "Which spell to use?";
-			dialogMessage = "Select a spell slot between a - l     ";
+			dialogMessage = "  Select a spell slot between a - l   ";
 		break;
 	}
 	int numberValids = 0;
@@ -1104,6 +1104,29 @@ void Draw_Item_Desc(itemClass itemForDesc)
 		startIndex = positions[dIndex] + 1;
 	}
 	mvprintw(yStart + dIndex + 2, 0, "+------------------------------------------------------------------------------+");
+}
+
+void Draw_Direction_Dialog(void)
+{
+	char debug_line[80];
+	sprintf(debug_line, "Seed: %d, Input: %d, Monsters alive: %d, Level: %d, HP: %d, MP: %d", seed_state, input, (num_characters - 1) - dead_monsters, level, get_Character_healthPoints(character_list[0]), get_Character_magicPoints(character_list[0]));
+	uint d, e;
+	for(d = 0; d < strlen(debug_line); d++)
+	{
+		mvaddch(0, d, debug_line[d]);
+	}
+	mvprintw(4, 19, "+----------------------------------------+");
+	mvprintw(5, 19, "|        Direction to cast spell         |");
+	mvprintw(6, 19, "|q: Up and Left                          |");
+	mvprintw(7, 19, "|w: Up                                   |");
+	mvprintw(8, 19, "|e: Up and Right                         |");
+	mvprintw(9, 19, "|a: Left                                 |");
+	mvprintw(10, 19, "|d: Right                                |");
+	mvprintw(11, 19, "|z: Down and Left                        |");
+	mvprintw(12, 19, "|s: Down                                 |");
+	mvprintw(13, 19, "|c: Down and Right                       |");
+	mvprintw(14, 19, "+----------------------------------------+");
+	
 }
 
 void Draw_Distance_Dungeon(char *char_map)
@@ -1658,6 +1681,17 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		else if(menu_type == 24 && (dialogInput - 48) >= 0 && (dialogInput - 48) <= 9)
 		{
 			learn_helper(dialogInput - 48);
+			Draw_Dungeon(1);
+			break;
+		}
+		else if(menu_type == 25 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 15)
+		{
+			int abilInput = -1;
+			while(abilInput != ESCAPE)
+			{
+				Draw_Direction_Dialog();
+				abilInput = input_handler(getch());
+			}
 			Draw_Dungeon(1);
 			break;
 		}

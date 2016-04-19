@@ -67,6 +67,7 @@ void Draw_Inventory(void);
 void Draw_Spells(void);
 void Draw_Carry_Slot_Dialog(void);
 void Draw_Item_Desc(itemClass itemForDesc);
+void Draw_Direction_Dialog(void);
 void Draw_Distance_Dungeon(char *char_map);
 void Destroy_All(void);
 void remember_dungeon(pos_t player_position);
