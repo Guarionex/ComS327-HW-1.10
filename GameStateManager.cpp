@@ -1535,6 +1535,10 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		{
 			Draw_Monster_List();
 		}
+		else if(menu_type == 23)
+		{
+			Draw_Spells();
+		}
 		else if(menu_type >= 18 && menu_type <= 22)
 		{
 			Draw_Carry_Slot_Dialog();
@@ -1992,6 +1996,11 @@ int input_handler(int key)
 		//TAKE_OFF
 		case 116:
 			return TAKE_OFF;
+		break;
+		
+		//SPELLS
+		case 77:
+			return SPELLS;
 		break;
 	}
 	

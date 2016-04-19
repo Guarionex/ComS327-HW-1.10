@@ -39,7 +39,8 @@ typedef enum command
 	DROP,
 	EXPUNGE,
 	INSPECT,
-	TAKE_OFF
+	TAKE_OFF,
+	SPELLS
 } command_t;
 
 extern Dungeon_Space_Struct **current_dungeon;
