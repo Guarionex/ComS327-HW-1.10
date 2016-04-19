@@ -1686,7 +1686,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 		}
 		else if(menu_type == 25 && (dialogInput - 97) >= 0 && (dialogInput - 97) <= 15)
 		{
-			if(get_Player_spell((player_t *) character_list[0], dialogInput - 97).type != objtype_no_type)
+			if(get_Player_spell((player_t *) character_list[0], dialogInput - 97).type == objtype_no_type)
 			{
 				sprintf(playerMessage, "Slot %c is empty", dialogInput);
 				break;
