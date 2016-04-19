@@ -1692,7 +1692,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				break;
 			}
 			int abilInput = -1;
-			while(abilInput != ESCAPE || !(abilInput >= 0 && abilInput <= 7))
+			while(abilInput != ESCAPE && !(abilInput >= 0 && abilInput <= 7))
 			{
 				Draw_Direction_Dialog();
 				abilInput = input_handler(getch());
