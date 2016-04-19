@@ -1474,7 +1474,7 @@ int turn(int *seed, int num_mon)
 						break;
 					}
 				}*/
-				if(input == 16 || input == 17 || input == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22)
+				if(input == 16 || input == 17 || input == 9 || input == 18 || input == 19 || input == 20 || input == 21 || input == 22 || input == 23)
 				{
 					input = menu_helper(input, input, &moving_to);
 				}
@@ -1557,7 +1557,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 			{
 				continue;
 			}
-			if(commandInput == 16 || commandInput == 17 || commandInput == 9 || commandInput == 18 || commandInput == 19 || commandInput == 20 || commandInput == 21 || commandInput == 22)
+			if(commandInput == 16 || commandInput == 17 || commandInput == 9 || commandInput == 18 || commandInput == 19 || commandInput == 20 || commandInput == 21 || commandInput == 22 || commandInput == 23)
 			{
 					commandInput = menu_helper(commandInput, commandInput, moving_to);
 			}
