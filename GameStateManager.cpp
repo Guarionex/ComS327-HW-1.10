@@ -1951,6 +1951,10 @@ bool learn_helper(int slot)
 
 bool ability_helper(int slot, pos_t abilDir)
 {
+	if(get_Character_magicPoints(character_list[0]) <= 0)
+	{
+		return false;
+	}
 	itemClass spellCasted = get_Player_spell((player_t *) character_list[0], slot);
 	pos_t projectilePos = get_Character_pos(character_list[0]);
 	projectilePos.x += abilDir.x;
