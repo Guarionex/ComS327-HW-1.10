@@ -1288,7 +1288,7 @@ void remember_dungeon(pos_t player_position)
 						break;
 					}*/
 				}
-				else if(containsItemAt(ability_map, player_position.x + x, player_position.y + y))
+				else if(containsProjAt(ability_map, player_position.x + x, player_position.y + y))
 				{
 					//vector<projectileClass> projHere = getProjAt(ability_map, player_position.x + x, player_position.y + y);
 					memory_dungeon[player_position.x + x][player_position.y + y] = '*';
@@ -1734,7 +1734,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				Draw_Direction_Dialog();
 				abilInput = input_handler(getch());
 			}
-			ability_helper(dialogInput - 97, get_direction(abilInput));
+			ability_helper(dialogInput - 97, get_direction((command_t) abilInput));
 			Draw_Dungeon(1);
 			break;
 		}
@@ -1933,7 +1933,7 @@ bool learn_helper(int slot)
 
 bool ability_helper(int slot, pos_t abilDir)
 {
-	itemClass spellCasted = get_Player_spell((player_t *) character_list[0], slot));
+	itemClass spellCasted = get_Player_spell((player_t *) character_list[0], slot);
 	pos_t projectilePos = get_Character_pos(character_list[0]);
 	projectilePos.x += abilDir.x;
 	projectilePos.y += abilDir.y;
