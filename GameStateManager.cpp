@@ -1967,6 +1967,7 @@ void update_projectiles()
 			shifted = false;
 			s--;
 		}
+		pos_t newPos = ability_map[s].pos;
 		if(current_dungeon[newPos.x][newPos.y].space_type == ROCK)
 		{
 			if((ability_map[s].name.compare("Fire") == 0 || ability_map[s].name.compare("Earth") == 0) && current_dungeon[newPos.x][newPos.y].space_union.rock.density != 255)
@@ -1996,7 +1997,7 @@ void update_projectiles()
 			shifted = true;
 			continue;
 		}
-		pos_t newPos = ability_map[s].pos;
+		
 		newPos.x += ability_map[s].direction.x;
 		newPos.y += ability_map[s].direction.y;
 		ability_map[s].pos = newPos;
