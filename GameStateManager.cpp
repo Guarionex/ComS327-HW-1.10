@@ -554,6 +554,7 @@ void Draw_Dungeon(int use_curses)
 		init_pair(11, COLOR_BLACK, COLOR_WHITE);
 		init_pair(12, COLOR_GREEN, COLOR_BLACK);
 		init_pair(13, COLOR_MAGENTA, COLOR_BLACK);
+		init_pair(14, COLOR_BLACK, COLOR_CYAN);
 
 		clear();
 		
@@ -666,28 +667,28 @@ void Draw_Dungeon(int use_curses)
 					switch(getProjAt(ability_map, u, v)[0].color)
 					{
 						case 0:
-						attron(COLOR_PAIR(11));
+						attron(COLOR_PAIR(1));
 						break;
 						case 1:
-						attron(COLOR_PAIR(3));
+						attron(COLOR_PAIR(9));
 						break;
 						case 2:
-						attron(COLOR_PAIR(12));
+						attron(COLOR_PAIR(6));
 						break;
 						case 3:
-						attron(COLOR_PAIR(5));
+						attron(COLOR_PAIR(7));
 						break;
 						case 4:
-						attron(COLOR_PAIR(2));
+						attron(COLOR_PAIR(10));
 						break;
 						case 5:
-						attron(COLOR_PAIR(13));
+						attron(COLOR_PAIR(4));
 						break;
 						case 6:
-						attron(COLOR_PAIR(8));
+						attron(COLOR_PAIR(14));
 						break;
 						case 7:
-						attron(COLOR_PAIR(1));
+						attron(COLOR_PAIR(11));
 						break;
 					}
 				}
@@ -1735,6 +1736,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				abilInput = input_handler(getch());
 			}
 			ability_helper(dialogInput - 97, get_direction((command_t) abilInput));
+			remember_dungeon(get_Character_pos(current));
 			Draw_Dungeon(1);
 			break;
 		}
