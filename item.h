@@ -57,7 +57,7 @@ class projectileClass
 	}
 	projectileClass(string newName, short newColor, pos_t newPos, pos_t newDirection, int newDamage);
 	~projectileClass();
-}
+};
 
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up);
 void drop_itemAt(vector<itemClass> *listOfItems, itemClass dropping, int x, int y);
