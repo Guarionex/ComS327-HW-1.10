@@ -1,46 +1,55 @@
-COM S 327, Spring 2015
-Programming Project 1.09
-PC Equipment and Updated Combat
-Now we’ve got a dungeon full of super-powered monsters, but our combat semantics haven’t changed
-to reflect that, so everything—monsters and PC—still dies in one round. Let’s pick up and use (some of)
-those items and update the combat so it goes multiple rounds.
-Characters have been updated with hitpoints and damage (if you put these in npc, you need to move
-them to character). Give the PC a default number of hitpoints; you may use whatever value you like. The
-PC’s default speed will remain at 10. It will also get a default damage dice, something small, like 0+1d4,
-since this is bare-handed damage and will be augmented by equipment.
-The PC gets equipment slots, one each for WEAPON, OFFHAND, RANGED, ARMOR, HELMET, CLOAK, GLOVES,
-BOOTS, AMULET, LIGHT, and two for RING, ‘numbered’ a–l. The PC also gets 10 carry slots, numbered 0–
-9. Equipped items do not impact carry. When the PC walks over an item, if it has an open carry slot, it
-automatically picks the item up; else the item is ignored.
-The following commands are added:
-Command Meaning
-w Wear an item. Prompts the user for a carry slot. If an item of that type is already
-equipped, items are swapped.
-t Take off an item. Prompts for equipment slot. Item goes to an open carry slot.
-d Drop an item. Prompts user for carry slot. Item goes to floor.
-x Expunge an item from the game. Prompts the user for a carry slot. Item is permanently
-removed from the game
-i List PC inventory
-e List PC equipment
-I Inspect an item. Prompts user for a carry slot. Item’s description is displayed
-In all cases, failures should be handled gracefully. You may decide what that means, but it does not
-mean, i.e., crashing the game, leaking memory, adding an extra carry slot, or expunging an item that the
-user didn’t want expunged. The prompt should include a list of all appropriate slots including their slot
-numbers and the name of the item in that slot. The user may abort the command by entering the escape
-character.
-Speed bonuses from equipment are applied additively to the PC’s base speed. Damage bonuses are
-applied additively to the PC’s damage, e.g., all damage dice for all equipped items are rolled and added
-together.
-Combat is updated as follows:
-• NPCs do not attack other NPCs. When an NPC attempts to move to a cell containing another NPC,
-the current occupant is displaced to any open cell neighboring the occupant’s slot.
-• Combat between PC and NPCs is initiated by attempts to move into the cell of the respective character.
-The attack uses a character turn, so no move will occur, only the attack.
-• All attempted attacks connect.
-• When an attack connects, the damage of the attack is calculated by rolling all applicable damage
-dice (NPCs have only one set; the PC has a base (bare-handed) set which is rolled only if nothing is
-equipped in the weapon slot, to which is added rolls for all equipped items).
-• Character hitpoints are reduced by the calculated damage. If hitpoints fall below zero1
-, the character
-is removed from the game. As always, if the PC dies, the game ends.
-1Note that if you have HP as an unsigned type, it will never fall below zero. You will need to update it to a signed type.
+COM S 327, Spring 2016
+Programming Project 1.10
+Choose Your Own Assignment
+As discussed in class, the final assignment is something of your choosing. It should be of similar
+complexity to the weekly assignments throughout the semester. It can be an extension to the game, it may
+be something entirely standalone, or it may extend some other program. It should be in C++1
+Two extensions to the game that are big enough to be an assignment:
+1. Ranged combat. Add a command to select a target (cell or monster). A ranged weapon must be
+wielded (bow, sling, holy hand grenade, etc.), and a second command will attack that target as long as
+it remains valid. Also add a command to cast a poison ball spell. The spell centers on the target and
+damages all monsters in a radius around it. Add whatever other fun and clever extensions to this idea
+you like.
+2. Update save and restore. We now have objects on the floor and in PC inventory and equipment. We
+also have monsters. The PC and monsters have a next turn, hitpoints, etc., and the dungeon has a
+character sequence number. Save all of this information to disk and reload the game from it so that it
+continues correctly.
+Unrelated to the game, I enjoy implementing recreational mathematics ideas. Something like the Collatz
+Conjecture is certainly too simple, but you could write a program to render a fractal or two and write it to an
+image file (if you want to write images, I can supply you with some very simple, easy to use code for this).
+You could create Mandelbrot sets, Julia sets, Sierpinski gaskets, etc. Langton’s Ant is fun, but too small on
+it’s own. The Game of Life, if you encode to video, but simply running the finite automaton is insufficient.
+It’s always fun to calculate pi in unusual ways. You may need a library for arbitrary precision (like the
+GNU MP Bignum library (GMP) or LiDIA (much more than just bignums)) to implement some of these.
+Implement an encryption algorithm (also probably needs GMP).
+Implement a extension to Angband or Nethack. In either case, the work would be in C, not C++, and
+that would be okay, and I wouldn’t expect a lot, because you’d spend the better part of the week just getting
+to know the code.
+Below are a bunch of ideas related to the game. Most of them are too small by themselves, but could be
+extended or combined.
+• Characters regenerate hitpoints at a rate of some percentage of their maximum hitpoints per game
+turn. Hint: You should not update this every game turn! That would be terribly inefficient. Instead,
+mark each character with a turn number that is the last time the character’s HP were updated and
+update on demand.
+• Add a command to allow the user to select cells in the dungeon and get a description of monsters and
+items there.
+• Make lights work.
+• Add spells, requiring spell books and “mana”.
+• Add spells and ranged attacks for monsters.
+1
+I will entertain the prospect of other languages, but you’ll need to discuss it with me in advance, and if the language is managed
+(i.e., does not have explicit memory management), I will reject it.
+• Add other item effects, like resistance to elements, telepathy, ability to see invisible monsters (and
+add invisible monsters!)...
+• Make dodge, defense, weight, and hit item attributes meaningful.
+• Add meaningful dungeon levels which load more powerful monsters as you go down, easier monsters
+as you go up, perhaps a town with shops at the top.
+• Add meaningful character statistics (strength, dexterity, constitution, intelligence, etc., maybe skills)
+and character levels.
+• Make containers do something.
+• Add new types of terrain, like water, lava, quicksand, etc., and make them affect gameplay in some
+sensible way.
+• Add something that sounds fun and interesting to you.
+• Develop your game into something complete enough to be interesting to the roguelike community
+(we’re actually not that all that far away at this point) and release it. If you release something that
+gains users and continues development, it could be a very nice item on a resume´
