@@ -1736,7 +1736,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				abilInput = input_handler(getch());
 			}
 			ability_helper(dialogInput - 97, get_direction((command_t) abilInput));
-			remember_dungeon(get_Character_pos(current));
+			remember_dungeon(get_Character_pos(character_list[0]));
 			Draw_Dungeon(1);
 			break;
 		}
