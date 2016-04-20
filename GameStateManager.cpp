@@ -1699,6 +1699,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				abilInput = input_handler(getch());
 			}
 			//ability_helper(int slot, pos direction);
+			sprintf(playerMessage, "%s casts %s in direction 5d", get_Character_name(player_to_move), get_Player_spell((player_t *) character_list[0], dialogInput - 97).name.c_str(), abilInput);
 			Draw_Dungeon(1);
 			break;
 		}
@@ -1887,7 +1888,7 @@ bool learn_helper(int slot)
 		sprintf(playerMessage, "%s ", "Cannot learn more spells");
 		return false;
 	}
-	
+	itemToLearn.name = itemToLearn.name.substr(10);
 	set_Player_spell((player_t *) character_list[0], itemToLearn, learnIndex);
 	set_Player_item((player_t *) character_list[0], itemClass(), slot);
 	
