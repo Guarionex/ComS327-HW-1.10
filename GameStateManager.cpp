@@ -664,32 +664,39 @@ void Draw_Dungeon(int use_curses)
 				}
 				else if(memory_dungeon[u][v] == '*')
 				{
-					switch(getProjAt(ability_map, u, v)[0].color)
+					if(getProjAt(ability_map, u, v).size() > 0)
 					{
-						case 0:
+						switch(getProjAt(ability_map, u, v)[0].color)
+						{
+							case 0:
+							attron(COLOR_PAIR(1));
+							break;
+							case 1:
+							attron(COLOR_PAIR(9));
+							break;
+							case 2:
+							attron(COLOR_PAIR(6));
+							break;
+							case 3:
+							attron(COLOR_PAIR(7));
+							break;
+							case 4:
+							attron(COLOR_PAIR(10));
+							break;
+							case 5:
+							attron(COLOR_PAIR(4));
+							break;
+							case 6:
+							attron(COLOR_PAIR(14));
+							break;
+							case 7:
+							attron(COLOR_PAIR(11));
+							break;
+						}
+					}
+					else
+					{
 						attron(COLOR_PAIR(1));
-						break;
-						case 1:
-						attron(COLOR_PAIR(9));
-						break;
-						case 2:
-						attron(COLOR_PAIR(6));
-						break;
-						case 3:
-						attron(COLOR_PAIR(7));
-						break;
-						case 4:
-						attron(COLOR_PAIR(10));
-						break;
-						case 5:
-						attron(COLOR_PAIR(4));
-						break;
-						case 6:
-						attron(COLOR_PAIR(14));
-						break;
-						case 7:
-						attron(COLOR_PAIR(11));
-						break;
 					}
 				}
 				else// if(check_character_map(x, y) > 0)
@@ -1396,7 +1403,7 @@ int turn(int *seed, int num_mon)
 		l++;
 	}
 	printf("\n");*/
-	
+	bool pMessageToggle = false;
 	int p;
 	for(p = 0; p < num_characters; p++)
 	{
@@ -1598,10 +1605,18 @@ int turn(int *seed, int num_mon)
 			string moveMessage = move_character(get_Character_id(current), seed, current_dungeon, moving_to);
 			if(get_Character_character_type(current) == PLAYER)
 			{
-				sprintf(playerMessage, "%s",  moveMessage.c_str());
-				if(moveMessage.find("kills") != string::npos)
+				if(playerMessage.find("with") != string::npos && !pMessageToggle)
 				{
-					sprintf(monsterMessage, "%s",  " ");
+					pMessageToggle = true;
+				}
+				else
+				{	
+					pMessageToggle = false;
+					sprintf(playerMessage, "%s",  moveMessage.c_str());
+					if(moveMessage.find("kills") != string::npos)
+					{
+						sprintf(monsterMessage, "%s",  " ");
+					}
 				}
 			}
 			else if(moveMessage.compare(" ") != 0)
