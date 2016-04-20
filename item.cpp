@@ -42,7 +42,7 @@ itemClass::~itemClass()
 	offensiveMagic = false;
 }
 
-projectileClass(string newName, short newColor, pos_t newPos, pos_t newDirection, int newDamage)
+projectileClass::projectileClass(string newName, short newColor, pos_t newPos, pos_t newDirection, int newDamage)
 {
 	name = newName;
 	color = newColor;
@@ -50,7 +50,7 @@ projectileClass(string newName, short newColor, pos_t newPos, pos_t newDirection
 	direction = newDirection;
 	damage = newDamage;
 }
-~projectileClass()
+projectileClass::~projectileClass()
 {
 	name = "";
 	color = -1;
