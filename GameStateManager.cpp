@@ -1967,9 +1967,6 @@ void update_projectiles()
 			shifted = false;
 			s--;
 		}
-		pos_t newPos = ability_map[s].pos;
-		newPos.x += ability_map[s].direction.x;
-		newPos.y += ability_map[s].direction.y;
 		if(current_dungeon[newPos.x][newPos.y].space_type == ROCK)
 		{
 			if((ability_map[s].name.compare("Fire") == 0 || ability_map[s].name.compare("Earth") == 0) && current_dungeon[newPos.x][newPos.y].space_union.rock.density != 255)
@@ -1988,15 +1985,20 @@ void update_projectiles()
 				set_Character_alive(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))], (boolean) FALSE);
 				dead_monsters++;
 				sprintf(playerMessage, "%s kills %s with %s", get_Character_name(character_list[0]).c_str(), get_Character_name(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))]).c_str(), ability_map[s].name.c_str());
+				Draw_Dungeon(1);
 			}
 			else
 			{
 				sprintf(playerMessage, "%s hits %s with %s for %d", get_Character_name(character_list[0]).c_str(), get_Character_name(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))]).c_str(), ability_map[s].name.c_str(), ability_map[s].damage);
+				Draw_Dungeon(1);
 			}
 			ability_map.erase(ability_map.begin() + s);
 			shifted = true;
 			continue;
 		}
+		pos_t newPos = ability_map[s].pos;
+		newPos.x += ability_map[s].direction.x;
+		newPos.y += ability_map[s].direction.y;
 		ability_map[s].pos = newPos;
 	}
 }
