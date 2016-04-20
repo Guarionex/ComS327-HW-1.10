@@ -43,10 +43,29 @@ class itemClass
 	
 };
 
+class projectileClass
+{
+	public:
+	string name;
+	short color;
+	pos_t pos;
+	pos_t direction;
+	int damage;
+	
+	projectileClass() : name(), color(-1), pos(NULL_POS), direction(NULL_POS), damage(0)
+	{
+	}
+	projectileClass(string newName, short newColor, pos_t newPos, pos_t newDirection, int newDamage);
+	~projectileClass();
+}
+
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up);
 void drop_itemAt(vector<itemClass> *listOfItems, itemClass dropping, int x, int y);
 bool containsItemAt(vector<itemClass> search, int x, int y);
 vector<itemClass> getItemsAt(vector<itemClass> search, int x, int y);
 void removeItemAt(vector<itemClass> *search, int x, int y, string nameToRemove);
+bool containsProjAt(vector<projectileClass> search, int x, int y);
+vector<projectileClass> getProjAt(vector<projectileClass> search, int x, int y);
+void removeProjAt(vector<projectileClass> *search, int x, int y, string nameToRemove);
 
 #endif

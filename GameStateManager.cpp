@@ -18,6 +18,7 @@ char memory_dungeon[80][21];
 vector<itemClass> levelItems;
 char playerMessage[80] = " ";
 char monsterMessage[80] = " ";
+vector<projectileClass> ability_map;
 
 
 void Set_Dungeon(Dungeon_Space_Struct **dungeon)
@@ -660,6 +661,36 @@ void Draw_Dungeon(int use_curses)
 						break;
 					}
 				}
+				else if(memory_dungeon[u][v] == '*')
+				{
+					switch(getProjAt(ability_map, u, v)[0].color)
+					{
+						case 0:
+						attron(COLOR_PAIR(11));
+						break;
+						case 1:
+						attron(COLOR_PAIR(3));
+						break;
+						case 2:
+						attron(COLOR_PAIR(12));
+						break;
+						case 3:
+						attron(COLOR_PAIR(5));
+						break;
+						case 4:
+						attron(COLOR_PAIR(2));
+						break;
+						case 5:
+						attron(COLOR_PAIR(13));
+						break;
+						case 6:
+						attron(COLOR_PAIR(8));
+						break;
+						case 7:
+						attron(COLOR_PAIR(1));
+						break;
+					}
+				}
 				else// if(check_character_map(x, y) > 0)
 				{
 					switch(get_Character_color(get_character_by_id(check_character_map(u, v))))
@@ -1117,14 +1148,14 @@ void Draw_Direction_Dialog(void)
 	}
 	mvprintw(6, 19, "+----------------------------------------+");
 	mvprintw(7, 19, "|        Direction to cast spell         |");
-	mvprintw(8, 19, "|q: Up and Left                          |");
-	mvprintw(9, 19, "|w: Up                                   |");
-	mvprintw(10, 19, "|e: Up and Right                         |");
-	mvprintw(11, 19, "|a: Left                                 |");
-	mvprintw(12, 19, "|d: Right                                |");
-	mvprintw(13, 19, "|z: Down and Left                        |");
-	mvprintw(14, 19, "|s: Down                                 |");
-	mvprintw(15, 19, "|c: Down and Right                       |");
+	mvprintw(8, 19, "|q, 7, y: Up and Left                    |");
+	mvprintw(9, 19, "|w, 8, k: Up                             |");
+	mvprintw(10, 19, "|e, 9, u: Up and Right                   |");
+	mvprintw(11, 19, "|a, 4, h: Left                           |");
+	mvprintw(12, 19, "|d, 6, l: Right                          |");
+	mvprintw(13, 19, "|z, 1, b: Down and Left                  |");
+	mvprintw(14, 19, "|s, 2, j: Down                           |");
+	mvprintw(15, 19, "|c, 3, n: Down and Right                 |");
 	mvprintw(16, 19, "+----------------------------------------+");
 	
 }
@@ -1256,6 +1287,11 @@ void remember_dungeon(pos_t player_position)
 							memory_dungeon[player_position.x + x][player_position.y + y] = 'f';
 						break;
 					}*/
+				}
+				else if(containsItemAt(ability_map, player_position.x + x, player_position.y + y))
+				{
+					//vector<projectileClass> projHere = getProjAt(ability_map, player_position.x + x, player_position.y + y);
+					memory_dungeon[player_position.x + x][player_position.y + y] = '*';
 				}
 				else if(containsItemAt(levelItems, player_position.x + x, player_position.y + y))
 				{
@@ -1698,8 +1734,7 @@ int menu_helper(int menu_type, int commandInput, pos_t *moving_to)
 				Draw_Direction_Dialog();
 				abilInput = input_handler(getch());
 			}
-			//ability_helper(int slot, pos direction);
-			sprintf(playerMessage, "%s casts %s in direction %d", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], dialogInput - 97).name.c_str(), abilInput);
+			ability_helper(dialogInput - 97, get_direction(abilInput));
 			Draw_Dungeon(1);
 			break;
 		}
@@ -1893,6 +1928,28 @@ bool learn_helper(int slot)
 	set_Player_item((player_t *) character_list[0], itemClass(), slot);
 	
 	sprintf(playerMessage, "Learned %s", itemToLearn.name.c_str());
+	return true;
+}
+
+bool ability_helper(int slot, pos_t abilDir)
+{
+	itemClass spellCasted = get_Player_spell((player_t *) character_list[0], slot));
+	pos_t projectilePos = get_Character_pos(character_list[0]);
+	projectilePos.x += abilDir.x;
+	projectilePos.y += abilDir.y;
+	set_Character_magicPoints(character_list[0], get_Character_magicPoints(character_list[0]) - spellCasted.attribute);
+	if(current_dungeon[projectilePos.x][projectilePos.y].space_type == ROCK && !((spellCasted.name.compare("Fire") == 0 || spellCasted.name.compare("Earth") == 0) && current_dungeon[projectilePos.x][projectilePos.y].space_union.rock.density != 255))
+	{
+		/*if((spellCasted.name.compare("Fire") == 0 || spellCasted.name.compare("Earth") == 0) && current_dungeon[projectilePos.x][projectilePos.y].space_union.rock.density != 255)
+		{
+			current_dungeon[projectilePos.x][projectilePos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+		}*/
+		sprintf(playerMessage, "%s casts %s into a wall", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], dialogInput - 97).name.c_str());
+		return false;
+	}
+	projectileClass newProjectile = projectileClass(spellCasted.name, spellCasted.color, projectilePos, abilDir, spellCasted.damage.roll());
+	ability_map.push_back(newProjectile);
+	sprintf(playerMessage, "%s casts %s", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], dialogInput - 97).name.c_str());
 	return true;
 }
 

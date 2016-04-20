@@ -42,6 +42,23 @@ itemClass::~itemClass()
 	offensiveMagic = false;
 }
 
+projectileClass(string newName, short newColor, pos_t newPos, pos_t newDirection, int newDamage)
+{
+	name = newName;
+	color = newColor;
+	pos = newPos;
+	direction = newDirection;
+	damage = newDamage;
+}
+~projectileClass()
+{
+	name = "";
+	color = -1;
+	pos = NULL_POS;
+	direction = NULL_POS;
+	damage = 0;
+}
+
 vector<itemClass> placeItems(Dungeon_Space_Struct **dungeon, vector<objectClass> objectsToPlace, stair_t down, stair_t *up)
 {
 	vector<itemClass> dungeonItems;
@@ -153,6 +170,46 @@ vector<itemClass> getItemsAt(vector<itemClass> search, int x, int y)
 }
 
 void removeItemAt(vector<itemClass> *search, int x, int y, string nameToRemove)
+{
+	uint s;
+	for(s = 0; s < search->size(); s++)
+	{
+		if((*search)[s].pos.x == x && (*search)[s].pos.y == y && (*search)[s].name.compare(nameToRemove) == 0)
+		{
+			search->erase(search->begin() + s);
+			break;
+		}
+	}
+}
+
+bool containsProjAt(vector<projectileClass> search, int x, int y)
+{
+	uint s;
+	for(s = 0; s < search.size(); s++)
+	{
+		if(search[s].pos.x == x && search[s].pos.y == y)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+vector<projectileClass> getProjAt(vector<projectileClass> search, int x, int y)
+{
+	vector<projectileClass> projStack;
+	uint s;
+	for(s = 0; s < search.size(); s++)
+	{
+		if(search[s].pos.x == x && search[s].pos.y == y)
+		{
+			projStack.push_back(search[s]);
+		}
+	}
+	return projStack;
+}
+
+void removeProjAt(vector<projectileClass> *search, int x, int y, string nameToRemove)
 {
 	uint s;
 	for(s = 0; s < search->size(); s++)
