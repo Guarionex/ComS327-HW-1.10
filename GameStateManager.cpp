@@ -1944,12 +1944,12 @@ bool ability_helper(int slot, pos_t abilDir)
 		{
 			current_dungeon[projectilePos.x][projectilePos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
 		}*/
-		sprintf(playerMessage, "%s casts %s into a wall", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], dialogInput - 97).name.c_str());
+		sprintf(playerMessage, "%s casts %s into a wall", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], slot).name.c_str());
 		return false;
 	}
-	projectileClass newProjectile = projectileClass(spellCasted.name, spellCasted.color, projectilePos, abilDir, spellCasted.damage.roll());
+	projectileClass newProjectile = projectileClass(spellCasted.name, spellCasted.color, projectilePos, abilDir, spellCasted.damage.roll(-1));
 	ability_map.push_back(newProjectile);
-	sprintf(playerMessage, "%s casts %s", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], dialogInput - 97).name.c_str());
+	sprintf(playerMessage, "%s casts %s", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], slot).name.c_str());
 	return true;
 }
 
