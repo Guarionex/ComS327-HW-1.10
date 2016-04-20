@@ -819,3 +819,32 @@
 4/12/16 Applying speed from equipments
 4/12/16 Done
 4/12/16 README and CHANGELOG finished, ready to submit 
+
+1.10
+4/16/16 Started project
+4/16/16 Defined scroll as spell items
+4/16/16 Parse spells
+4/16/16 Added Spell List
+4/17/16 Added learn spell menu
+4/17/16 Learn spell helper
+4/17/16 testing
+4/18/16 Added use spell menu
+4/18/16 testing
+4/18/16 fixing errors
+4/18/16 Added choose directions
+4/18/16 testing
+4/18/16 fixing errors
+4/18/16 testing
+4/19/16 Added projectile class
+4/19/16 Rendering projectiles
+4/19/16 Making projectile move
+4/19/16 fixing error
+4/19/16 testing
+4/19/16 added spell tunneling
+4/19/16 testing
+4/19/16 added hitting monsters
+4/19/16 fixing error
+4/19/16 debugging segfault
+4/19/16 testing
+4/19/16 Done
+4/19/16 README and CHANGELOG finished, ready to submit 

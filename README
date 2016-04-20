@@ -106,6 +106,30 @@ shift+e, (E) = Equipment List
 i = inspect item
 All dialogs can be exit with Esc or Enter
 
+1.10
+Everything from 1.09 still applies.
+In this version I made spells that can be fired as projectiles.
+Spells are defined by making a SCROLL object in the object description file. 
+Currently only offensive spells are implemented, thus the scroll object requires a damage dice to be parsed as a spell.
+The attribute data in the scroll's object description defines mana cost.
+It is also required that the name of the spell comes after "Scroll of", e.g., "Scroll of Ice".
+The player can now learn up to 16 spells. Once learned they cannot be forgotten (unequipped) and the scroll is consumed.
+To learn a spell you must have a spell scroll in your inventory, then press 'L' key and choose the scroll with keys '0' to '9'.
+The spell will then be learned and appear in the Spell List, which can be viewed with 'M', not to be confused with monster list, which is 'm'.
+To use a spell it must have been learned first. Then press 'A' to cast a spell by choosing it using keys 'a' to 'p'.
+Once a valid spell has been chosen to cast, the user will be prompt with a direction. All valid movement keys can be used as direction and are displayed in this menu for you.
+The spell will then launch away.
+Fire and Earth spell (earth spell not included in my object description file) can break through rock and tunnel. All other spells cannot tunnel.
+Spell will disappear once it hits a wall or monster. If it hits a monster it will receive damage (spell's damage calculated when fired).
+All spell will cost mana, if mana hits 0 or less, then you can't cast anymore.
+Only have Fire (tunneling) and Water (non tunneling) spells
+WARNING: Known bug when casting a spall on a monster that is adjacent to the player, my spell vector gets a bit messed up, but it's handle by changing the supposed null spell color to default white on black.
+RECOMMENDATIONS: Use seed 1460517657, e.g., ./dungeonGenerator 1460517657 --nummon 10 --parsemon --parseobj
+New commands:
+shift+m, (M) = Spell List
+shift+l, (L) = Learn spell
+shift+a, (A) = Cast spell
+
 Usage for object parsing and item placing: ./dungeonGenerator --parseobj
 
 Usage for monster parsing and placing: ./dungeonGenerator --parsemon
