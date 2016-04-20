@@ -1590,6 +1590,7 @@ int turn(int *seed, int num_mon)
 					input = -1;
 				}
 			}
+			update_projectiles();
 		}
 		
 		if(game_state != 3 && game_state != 5)
@@ -1953,6 +1954,51 @@ bool ability_helper(int slot, pos_t abilDir)
 	ability_map.push_back(newProjectile);
 	sprintf(playerMessage, "%s casts %s", get_Character_name(character_list[0]).c_str(), get_Player_spell((player_t *) character_list[0], slot).name.c_str());
 	return true;
+}
+
+void update_projectiles()
+{
+	bool shifted = false;
+	uint s;
+	for(s = 0; s < ability_map.size(); s++)
+	{
+		if(shifted)
+		{
+			shifted = false;
+			s--;
+		}
+		pos_t newPos = ability_map[s].pos;
+		newPos.x += ability_map[s].direction.x;
+		newPos.y += ability_map[s].direction.y;
+		if(current_dungeon[newPos.x][newPos.y].space_type == ROCK)
+		{
+			if((ability_map[s].name.compare("Fire") == 0 || ability_map[s].name.compare("Earth") == 0) && current_dungeon[newPos.x][newPos.y].space_union.rock.density != 255)
+			{
+				current_dungeon[newPos.x][newPos.y] = Dungeon_Space_Struct_create(CORRIDOR, Dungeon_Space_Corridor_create());
+			}
+			ability_map.erase(ability_map.begin() + s);
+			shifted = true;
+			continue;
+		}
+		else if(check_character_map(newPos.x, newPos.y) > 0 && get_Character_alive(get_character_by_id(check_character_map(newPos.x, newPos.y))) == TRUE)
+		{
+			set_Character_healthPoints(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))], get_Character_healthPoints(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))]) - ability_map[s].damage);
+			if(get_Character_healthPoints(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))]) <= 0)
+			{
+				set_Character_alive(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))], (boolean) FALSE);
+				dead_monsters++;
+				sprintf(playerMessage, "%s kills %s with %s", character_list[0], get_Character_name(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))]), ability_map[s].name);
+			}
+			else
+			{
+				sprintf(playerMessage, "%s hits %s with %s for %d", character_list[0], get_Character_name(character_list[get_character_index_by_id(check_character_map(newPos.x, newPos.y))]), ability_map[s].name, ability_map[s].damage);
+			}
+			ability_map.erase(ability_map.begin() + s);
+			shifted = true;
+			continue;
+		}
+		ability_map[s].pos = newPos;
+	}
 }
 
 int input_handler(int key)

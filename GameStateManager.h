@@ -79,6 +79,7 @@ bool drop_helper(int slot);
 bool expunge_helper(int slot);
 bool learn_helper(int slot);
 bool ability_helper(int slot, pos_t abilDir);
+void update_projectiles(void);
 int input_handler(int key);
 pos_t get_direction(command_t key);
 void define_new_keys(void);
