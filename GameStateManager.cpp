@@ -1605,7 +1605,7 @@ int turn(int *seed, int num_mon)
 			string moveMessage = move_character(get_Character_id(current), seed, current_dungeon, moving_to);
 			if(get_Character_character_type(current) == PLAYER)
 			{
-				if(str(playerMessage).find("with") != string::npos && !pMessageToggle)
+				if(string(playerMessage).find("with") != string::npos && !pMessageToggle)
 				{
 					pMessageToggle = true;
 				}
